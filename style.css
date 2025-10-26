@@ -888,7 +888,229 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 }
 
 /* --------------------------------------
-   10. UTILITIES
+   10. PLACES SECTION (SECTION 5)
+-----------------------------------------*/
+
+.places {
+  background: white;
+  padding: var(--space-5) 0;
+}
+
+.places__header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--space-5);
+}
+
+.places__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: var(--space-4);
+}
+
+/* City Card */
+.city-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.city-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+}
+
+.city-card__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+/* City Card Media */
+.city-card__media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.city-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.city-card:hover .city-card__media img {
+  transform: scale(1.08);
+}
+
+.city-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 40%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+.city-card:hover .city-card__overlay {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 40%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+}
+
+/* City Card Content */
+.city-card__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  color: white;
+  z-index: 2;
+}
+
+.city-card__title {
+  margin: 0 0 8px;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+}
+
+.city-card__tagline {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  line-height: 1.4;
+}
+
+.city-card__stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.city-card__stats i {
+  color: var(--color-accent);
+  font-size: 1rem;
+}
+
+.city-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.city-card:hover .city-card__cta {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.city-card__cta i {
+  transition: transform 0.3s ease;
+}
+
+.city-card:hover .city-card__cta i {
+  transform: translateX(4px);
+}
+
+/* Places CTA */
+.places__cta {
+  margin-top: var(--space-5);
+  text-align: center;
+}
+
+/* Responsive: Places Section */
+@media (max-width: 1199px) {
+  .places__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .city-card__title {
+    font-size: 1.5rem;
+  }
+
+  .city-card__content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .places {
+    padding: var(--space-4) 0;
+  }
+
+  .places__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .places__header {
+    margin-bottom: var(--space-4);
+  }
+
+  .city-card__media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .city-card__title {
+    font-size: 1.5rem;
+  }
+
+  .city-card__content {
+    padding: 20px;
+  }
+
+  .city-card__tagline {
+    font-size: 0.875rem;
+    margin-bottom: 12px;
+  }
+
+  .city-card__stats {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+
+  .city-card__cta {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+  }
+}
+
+/* --------------------------------------
+   11. UTILITIES
 -----------------------------------------*/
 .text-center { text-align: center; }
 .mt-0 { margin-top: 0; }
