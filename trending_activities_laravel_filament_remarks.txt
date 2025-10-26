@@ -1,0 +1,106 @@
+REMARKS FOR SECTION 3 — “Trending Activities in Uzbekistan”
+Role: Product/UX oversight notes for AI coder (Laravel + Filament v4 backend)
+----------------------------------------------------------------
+
+GOAL
+- Present 6–8 top tour categories as highly scannable, conversion‑oriented cards.
+- Combine emotional photography with brand-consistent iconography.
+- Drive clicks to category pages; surface real-time tour counts dynamically from database.
+
+DECISION
+- Use a HYBRID card layout: photo background + gradient overlay + category icon + title + 1-line description + CTA + count badge.
+- Do NOT copy the reference 1:1. Keep spacing, corner radius, and shadows consistent with the Section 2 design system.
+
+INFORMATION ARCHITECTURE
+- Header: H2 “Trending Activities in Uzbekistan”; subtitle “Choose your style of travel”.
+- Grid Layout:
+  • Desktop: 3 columns × 2 rows
+  • Tablet: 2 columns × 3 rows
+  • Mobile: 1 column stacked
+- Each Card Includes:
+  - Image (background with overlay)
+  - Icon (category type)
+  - Title (H3)
+  - Short description (max 90 chars)
+  - “Explore Tours →” CTA text
+  - Count badge (e.g., “12 tours”)
+- Entire card should be clickable (single anchor wrapper).
+
+DATA SOURCE (Laravel + Filament)
+- Use TourCategory model (or similar taxonomy entity).
+- Pull data:
+  - id, name, slug, image_path, icon_class, short_description, tours_count
+- Sort categories by tours_count DESC.
+- If count = 0, hide the category or display a “Coming soon” tag.
+- Allow future expansion for featured flag or weight column.
+
+ACCESSIBILITY
+- Section heading level: H2; each card title: H3.
+- Add aria-label on <a> for screen readers, e.g., aria-label="Explore Cultural & Historical tours".
+- Maintain visible :focus outline for keyboard users.
+- Ensure gradient + text contrast ≥ 4.5:1 (WCAG AA).
+
+VISUAL DESIGN SPECS
+- Card container: border-radius 16–20px; box-shadow: 0 8px 24px rgba(0,0,0,.12).
+- Background image: object-fit: cover; aspect-ratio: 16/10.
+- Overlay: linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,.55) 100%).
+- Title font-size: 1.25rem (desktop), 1.125rem (tablet).
+- Count badge: top-right position; semi-transparent or frosted glass effect.
+- Icon: 24–28px; accent color (#F4B400 or theme variable).
+- Hover state: slight lift + stronger shadow; transition 0.25s ease.
+
+PERFORMANCE
+- Use responsive image sets with srcset + sizes.
+- Lazy-load all except the first two visible images.
+- Explicit width/height to avoid layout shifts.
+- Compress and serve WebP/AVIF format under 120 KB each.
+- Defer or inline icons as SVGs for better performance.
+
+SEO
+- Link each card to its category route (e.g., /tours/category/{slug}).
+- Add JSON-LD ItemList schema for SEO enrichment (positions 1–6).
+- Prioritize categories with most tours or engagement first.
+- Use descriptive alt text including keywords like “Uzbekistan tour”, “Silk Road travel”, etc.
+
+SCHEMA (drop-in JSON-LD example)
+{
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "name":"Trending Activities in Uzbekistan",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Cultural & Historical","url":"https://jahongirtravel.com/tours/category/cultural"},
+    {"@type":"ListItem","position":2,"name":"Mountain & Adventure","url":"https://jahongirtravel.com/tours/category/adventure"}
+  ]
+}
+
+RESPONSIVE RULES
+- ≥1200px: 3-column layout with equal heights.
+- 768–1199px: 2 columns, reduced padding and font sizes.
+- <768px: 1 column, stacked cards, simplified gradient for performance.
+- Maintain consistent gutter (24px desktop, 16px mobile).
+
+QA / ACCEPTANCE CHECKLIST
+- [ ] Cards responsive and clickable as single link elements.
+- [ ] Correct routes generated via Laravel route('tours.category', $slug).
+- [ ] Images, icons, and titles load dynamically from DB.
+- [ ] Count badge reflects live value from tours_count column.
+- [ ] No layout shift or content jump (CLS score ≤ 0.05).
+- [ ] Hover/focus states consistent with brand style.
+- [ ] Contrast and text readability pass accessibility tests.
+- [ ] Section validated on all breakpoints (1440, 1024, 768, 480, 375).
+- [ ] JSON-LD validated with Google Rich Results test.
+
+OPTIONAL ENHANCEMENTS
+- Add a “View all tours →” link below grid to /tours.
+- Add analytics tags (e.g., data-category) for tracking user engagement.
+- Use intersection observer to trigger fade-in animation for cards.
+- Optional “Featured” label if backend marks some categories as promoted.
+
+NOTES FOR DEVELOPER
+- Backend: Laravel + Filament v4.
+- Model: TourCategory with relationship hasMany(Tour::class).
+- Controller provides data to Blade or Inertia component.
+- Use componentized BEM classes: .activities, .activities__grid, .activity-card, etc.
+- Follow same color, typography, and spacing tokens as Section 2.
+
+END OF REMARKS

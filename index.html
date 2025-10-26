@@ -250,6 +250,23 @@
 
     <!-- Section 3: Trending Activities -->
     <section class="activities" id="activities">
+      <!-- JSON-LD Schema -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Trending Activities in Uzbekistan",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Cultural & Historical", "url": "https://jahongirtravel.com/tours/category/cultural-tours/"},
+          {"@type": "ListItem", "position": 2, "name": "Mountain & Adventure", "url": "https://jahongirtravel.com/tours/category/adventure-tours/"},
+          {"@type": "ListItem", "position": 3, "name": "Family & Educational", "url": "https://jahongirtravel.com/tours/category/family-tours/"},
+          {"@type": "ListItem", "position": 4, "name": "Desert & Nomadic", "url": "https://jahongirtravel.com/tours/category/desert-tours/"},
+          {"@type": "ListItem", "position": 5, "name": "City Walks & Local Life", "url": "https://jahongirtravel.com/tours/category/city-walks/"},
+          {"@type": "ListItem", "position": 6, "name": "Food & Craft", "url": "https://jahongirtravel.com/tours/category/food-craft-tours/"}
+        ]
+      }
+      </script>
+
       <div class="container">
 
         <!-- Section Header -->
@@ -262,7 +279,7 @@
         <div class="activities__grid">
 
           <!-- Card 1: Cultural & Historical -->
-          <a href="/tours/category/cultural-tours/" class="activity-card">
+          <a href="/tours/category/cultural-tours/" class="activity-card" aria-label="Explore Cultural & Historical tours">
             <div class="activity-card__media">
               <img src="https://placehold.co/400x300/0D4C92/FFFFFF?text=Cultural+Tours"
                    alt="Ancient Silk Road monuments and Islamic architecture in Uzbekistan"
@@ -271,6 +288,7 @@
                    loading="lazy"
                    decoding="async">
               <div class="activity-card__overlay"></div>
+              <span class="activity-card__badge">12 tours</span>
             </div>
             <div class="activity-card__content">
               <i class="activity-card__icon fas fa-landmark" aria-hidden="true"></i>
@@ -281,7 +299,7 @@
           </a>
 
           <!-- Card 2: Mountain & Adventure -->
-          <a href="/tours/category/adventure-tours/" class="activity-card">
+          <a href="/tours/category/adventure-tours/" class="activity-card" aria-label="Explore Mountain & Adventure tours">
             <div class="activity-card__media">
               <img src="https://placehold.co/400x300/0D4C92/FFFFFF?text=Mountain+Adventure"
                    alt="Trekking through stunning mountain ranges in Uzbekistan"
@@ -290,6 +308,7 @@
                    loading="lazy"
                    decoding="async">
               <div class="activity-card__overlay"></div>
+              <span class="activity-card__badge">8 tours</span>
             </div>
             <div class="activity-card__content">
               <i class="activity-card__icon fas fa-mountain" aria-hidden="true"></i>
@@ -300,7 +319,7 @@
           </a>
 
           <!-- Card 3: Family & Educational -->
-          <a href="/tours/category/family-tours/" class="activity-card">
+          <a href="/tours/category/family-tours/" class="activity-card" aria-label="Explore Family & Educational tours">
             <div class="activity-card__media">
               <img src="https://placehold.co/400x300/0D4C92/FFFFFF?text=Family+Tours"
                    alt="Family-friendly cultural experiences in Uzbekistan"
@@ -309,6 +328,7 @@
                    loading="lazy"
                    decoding="async">
               <div class="activity-card__overlay"></div>
+              <span class="activity-card__badge">6 tours</span>
             </div>
             <div class="activity-card__content">
               <i class="activity-card__icon fas fa-users" aria-hidden="true"></i>
@@ -319,7 +339,7 @@
           </a>
 
           <!-- Card 4: Desert & Nomadic -->
-          <a href="/tours/category/desert-tours/" class="activity-card">
+          <a href="/tours/category/desert-tours/" class="activity-card" aria-label="Explore Desert & Nomadic tours">
             <div class="activity-card__media">
               <img src="https://placehold.co/400x300/0D4C92/FFFFFF?text=Desert+Tours"
                    alt="Authentic yurt stays and desert landscapes in Uzbekistan"
@@ -328,6 +348,7 @@
                    loading="lazy"
                    decoding="async">
               <div class="activity-card__overlay"></div>
+              <span class="activity-card__badge">5 tours</span>
             </div>
             <div class="activity-card__content">
               <i class="activity-card__icon fas fa-sun" aria-hidden="true"></i>
@@ -338,7 +359,7 @@
           </a>
 
           <!-- Card 5: City Walks & Local Life -->
-          <a href="/tours/category/city-walks/" class="activity-card">
+          <a href="/tours/category/city-walks/" class="activity-card" aria-label="Explore City Walks & Local Life tours">
             <div class="activity-card__media">
               <img src="https://placehold.co/400x300/0D4C92/FFFFFF?text=City+Walks"
                    alt="Discover hidden gems and local markets with expert guides"
@@ -347,6 +368,7 @@
                    loading="lazy"
                    decoding="async">
               <div class="activity-card__overlay"></div>
+              <span class="activity-card__badge">10 tours</span>
             </div>
             <div class="activity-card__content">
               <i class="activity-card__icon fas fa-walking" aria-hidden="true"></i>
@@ -357,7 +379,7 @@
           </a>
 
           <!-- Card 6: Food & Craft -->
-          <a href="/tours/category/food-craft-tours/" class="activity-card">
+          <a href="/tours/category/food-craft-tours/" class="activity-card" aria-label="Explore Food & Craft tours">
             <div class="activity-card__media">
               <img src="https://placehold.co/400x300/0D4C92/FFFFFF?text=Food+%26+Craft"
                    alt="Authentic Uzbek cuisine and traditional craftsmanship tours"
@@ -366,6 +388,7 @@
                    loading="lazy"
                    decoding="async">
               <div class="activity-card__overlay"></div>
+              <span class="activity-card__badge">7 tours</span>
             </div>
             <div class="activity-card__content">
               <i class="activity-card__icon fas fa-utensils" aria-hidden="true"></i>
@@ -376,6 +399,15 @@
           </a>
 
         </div>
+
+        <!-- View All Tours Link -->
+        <div class="activities__cta">
+          <a href="/tours/" class="btn btn--ghost btn--large">
+            <i class="fas fa-compass" aria-hidden="true"></i>
+            View All Tours
+          </a>
+        </div>
+
       </div>
     </section>
 
