@@ -1,0 +1,145 @@
+/**
+ * JAHONGIR TRAVEL - Main JavaScript
+ * Purpose: Navigation, counter animations, and interactions
+ */
+
+// ==========================================
+// 1. STICKY NAVIGATION ON SCROLL
+// ==========================================
+const nav = document.querySelector('.nav');
+let lastScrollY = window.scrollY;
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 100) {
+    nav.classList.add('nav--sticky');
+  } else {
+    nav.classList.remove('nav--sticky');
+  }
+});
+
+// ==========================================
+// 2. MOBILE MENU TOGGLE
+// ==========================================
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+
+if (navToggle && navMenu) {
+  navToggle.addEventListener('click', () => {
+    const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+
+    // Toggle aria-expanded
+    navToggle.setAttribute('aria-expanded', !isExpanded);
+
+    // Toggle menu visibility
+    navMenu.classList.toggle('nav__menu--open');
+
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = !isExpanded ? 'hidden' : '';
+  });
+
+  // Close menu when clicking on a link
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navMenu.classList.remove('nav__menu--open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!nav.contains(e.target) && navMenu.classList.contains('nav__menu--open')) {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navMenu.classList.remove('nav__menu--open');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// ==========================================
+// 3. COUNTER ANIMATION (Intersection Observer)
+// ==========================================
+const animateCounter = (element, target, duration = 2000) => {
+  const start = 0;
+  const increment = target / (duration / 16); // 60 FPS
+  let current = start;
+
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      element.textContent = target.toLocaleString();
+      clearInterval(timer);
+    } else {
+      element.textContent = Math.floor(current).toLocaleString();
+    }
+  }, 16);
+};
+
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const counters = entry.target.querySelectorAll('.stat__number');
+
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        animateCounter(counter, target);
+      });
+
+      // Unobserve after animation (run only once)
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.5 // Trigger when 50% visible
+});
+
+// Observe stats section
+const statsSection = document.querySelector('.hero__stats');
+if (statsSection) {
+  statsObserver.observe(statsSection);
+}
+
+// ==========================================
+// 4. SMOOTH SCROLL FOR ANCHOR LINKS
+// ==========================================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+
+    // Only prevent default if it's not just "#"
+    if (href !== '#' && href !== '') {
+      e.preventDefault();
+      const target = document.querySelector(href);
+
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+  });
+});
+
+// ==========================================
+// 5. PAGE LOAD PERFORMANCE TRACKING (OPTIONAL)
+// ==========================================
+window.addEventListener('load', () => {
+  // Log Core Web Vitals (optional - for development)
+  if ('performance' in window && 'getEntriesByType' in performance) {
+    const paint = performance.getEntriesByType('paint');
+    const navigation = performance.getEntriesByType('navigation')[0];
+
+    console.log('Performance Metrics:');
+    paint.forEach(entry => {
+      console.log(`${entry.name}: ${entry.startTime.toFixed(2)}ms`);
+    });
+
+    if (navigation) {
+      console.log(`DOM Content Loaded: ${navigation.domContentLoadedEventEnd.toFixed(2)}ms`);
+      console.log(`Page Load Complete: ${navigation.loadEventEnd.toFixed(2)}ms`);
+    }
+  }
+});
+
+console.log('Jahongir Travel - JavaScript Loaded Successfully ✓');

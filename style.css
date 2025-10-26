@@ -1,0 +1,605 @@
+/* ======================================================
+   JAHONGIR TRAVEL - BASE STYLESHEET
+   Author: Jahongir Travel Team
+   Purpose: Core layout, typography, colors, and utilities
+   ====================================================== */
+
+/* --------------------------------------
+   1. CSS VARIABLES / DESIGN TOKENS
+-----------------------------------------*/
+:root {
+  /* Brand Colors */
+  --color-primary: #0D4C92;       /* Samarkand Blue */
+  --color-primary-dark: #093870;  /* Hover/Active */
+  --color-accent: #F4B400;        /* Silk Road Gold */
+  --color-success: #34B67A;       /* TripAdvisor Green */
+  --color-bg: #FAF8F4;            /* Warm Beige Background */
+  --color-surface: #FFFFFF;       /* Panels / Cards */
+  --color-text: #1E1E1E;
+  --color-text-muted: #555555;
+  --color-border: #E3E3E3;
+  --color-error: #E53935;
+
+  /* Typography */
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-accent: "Playfair Display", serif;
+
+  /* Spacing scale (8px base) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+
+  /* Container widths */
+  --container-max: 1200px;
+  --container-wide: 1400px;
+}
+
+/* --------------------------------------
+   2. RESET & BASE
+-----------------------------------------*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Images & Media */
+img, picture, video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* --------------------------------------
+   3. TYPOGRAPHY
+-----------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  margin-top: 0;
+  color: var(--color-text);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; }
+h2 { font-size: clamp(1.75rem, 3.5vw, 2.25rem); line-height: 1.3; }
+h3 { font-size: 1.5rem; }
+
+p { margin-bottom: 1rem; color: var(--color-text-muted); }
+
+/* --------------------------------------
+   4. CONTAINERS
+-----------------------------------------*/
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.container--wide {
+  max-width: var(--container-wide);
+}
+
+/* --------------------------------------
+   5. BUTTONS
+-----------------------------------------*/
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: none;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  background: var(--color-primary-dark);
+}
+
+.btn--ghost {
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  background: transparent;
+}
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* --------------------------------------
+   6. HERO SECTION
+-----------------------------------------*/
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #fff;
+}
+.hero__media img {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  z-index: 0;
+}
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: var(--space-5) 1rem;
+  max-width: 800px;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.2) 0%, rgba(0,0,0,.7) 100%);
+  z-index: 1;
+}
+.hero__sub {
+  color: rgba(255,255,255,.9);
+  margin-bottom: var(--space-3);
+}
+.hero__cta {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: var(--space-3);
+}
+
+/* Hero search bar */
+.hero-search {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-1);
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: var(--space-2);
+}
+.hero-search label {
+  display: block;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,.9);
+  margin-bottom: 4px;
+}
+.hero-search input,
+.hero-search select {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255,255,255,.2);
+  color: #fff;
+}
+.hero-search button {
+  grid-column: span 1;
+  background: #fff;
+  color: var(--color-primary);
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+.hero-search button:hover {
+  filter: brightness(.9);
+}
+
+/* --------------------------------------
+   7. WHY-US SECTION
+-----------------------------------------*/
+.why-us {
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: 80px 0;
+}
+.why-us__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  align-items: center;
+}
+.why-us__intro .eyebrow {
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+}
+.why-us__contacts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+}
+.benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+.benefits li {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+  background: var(--color-surface);
+  padding: var(--space-2);
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+.benefits__icon {
+  font-size: 1.5rem;
+  color: var(--color-accent);
+}
+.why-us__media {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+.why-us__photo {
+  overflow: hidden;
+  border-radius: 12px;
+}
+.why-us__photo img {
+  width: 100%;
+  height: auto;
+  transition: transform .3s ease;
+}
+.why-us__photo:hover img {
+  transform: scale(1.05);
+}
+.why-us__badge {
+  position: absolute;
+  bottom: var(--space-2);
+  right: var(--space-2);
+}
+
+/* --------------------------------------
+   8. UTILITIES
+-----------------------------------------*/
+.text-center { text-align: center; }
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.section {
+  padding-block: var(--space-5);
+}
+@media (max-width: 900px) {
+  .why-us__grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-search {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ======================================================
+   NAVIGATION - ENHANCED
+   ====================================================== */
+
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: var(--space-3) 0;
+  transition: all 0.3s ease;
+}
+
+.nav.nav--sticky {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: var(--space-2) 0;
+}
+
+.nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.nav__logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav--sticky .nav__logo-text {
+  color: var(--color-primary);
+}
+
+.nav__logo-text strong {
+  color: var(--color-accent);
+}
+
+.nav__menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-4);
+  flex: 1;
+  justify-content: center;
+}
+
+.nav__menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav--sticky .nav__menu a {
+  color: var(--color-text);
+}
+
+.nav__menu a:hover,
+.nav__menu a:focus {
+  color: var(--color-accent);
+}
+
+.nav__menu a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.nav__menu a:hover::after {
+  width: 100%;
+}
+
+.nav__cta {
+  flex-shrink: 0;
+}
+
+.nav__toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-1);
+  z-index: 101;
+}
+
+.nav__toggle-icon {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: #fff;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.nav--sticky .nav__toggle-icon {
+  background: var(--color-text);
+}
+
+.nav__toggle-icon::before,
+.nav__toggle-icon::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 2px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.nav--sticky .nav__toggle-icon::before,
+.nav--sticky .nav__toggle-icon::after {
+  background: var(--color-text);
+}
+
+.nav__toggle-icon::before {
+  top: -8px;
+}
+
+.nav__toggle-icon::after {
+  bottom: -8px;
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-icon {
+  background: transparent;
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-icon::after {
+  bottom: 0;
+  transform: rotate(-45deg);
+}
+
+/* ======================================================
+   HERO SECTION - ENHANCED
+   ====================================================== */
+
+.hero__title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  margin-bottom: var(--space-2);
+  font-weight: 700;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  padding: var(--space-4);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stat {
+  text-align: center;
+  padding: var(--space-2);
+  transition: transform 0.3s ease;
+}
+
+.stat:hover {
+  transform: translateY(-5px);
+}
+
+.stat__number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  font-family: var(--font-heading);
+  line-height: 1;
+  margin-bottom: var(--space-1);
+}
+
+.stat__label {
+  display: block;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.hero__cta {
+  gap: var(--space-3);
+}
+
+.btn--large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.btn i {
+  margin-right: var(--space-1);
+}
+
+/* ======================================================
+   RESPONSIVE - MOBILE & TABLET
+   ====================================================== */
+
+@media (max-width: 900px) {
+  .nav__menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--color-surface);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 80px var(--space-4) var(--space-4);
+    gap: var(--space-3);
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease;
+  }
+
+  .nav__menu.nav__menu--open {
+    right: 0;
+  }
+
+  .nav__menu a {
+    color: var(--color-text);
+    font-size: 1.125rem;
+  }
+
+  .nav__toggle {
+    display: block;
+  }
+
+  .nav__cta {
+    display: none;
+  }
+
+  .hero__stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+    padding: var(--space-3);
+  }
+
+  .stat__number {
+    font-size: 2rem;
+  }
+
+  .stat__label {
+    font-size: 0.75rem;
+  }
+
+  .hero__cta {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .btn--large {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__stats {
+    padding: var(--space-2);
+  }
+
+  .stat {
+    padding: var(--space-1);
+  }
+
+  .stat__number {
+    font-size: 1.75rem;
+  }
+}
+
+/* Focus styles for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
