@@ -1,0 +1,305 @@
+Jahongir Travel — Mobile Footer Redesign Spec
+=================================================
+
+Purpose
+-------
+Make the footer compact, scannable, and action‑oriented on mobile while preserving SEO and accessibility.
+
+Key Principles
+--------------
+1) Prioritize brand + primary actions (email/phone/social).
+2) Collapse secondary navigation into accordions.
+3) Keep legal + locale minimal and at the end.
+4) Accessible by default (keyboard & screen readers).
+
+Color & Type Tokens (Dark Theme)
+--------------------------------
+--bg:            #0B1321        /* Deep navy */
+--text:          rgba(255,255,255,0.88)
+--text-dim:      rgba(255,255,255,0.72)
+--muted:         rgba(255,255,255,0.10)
+--accent:        #FFB703        /* Gold accent */
+--accent-press:  #E49D00
+--link:          #A4C4FF
+--focus:         #1FA3FF
+--success:       #2ECC71
+--danger:        #FF4D4F
+
+Font sizes (mobile)
+-------------------
+.title-sm:   0.9375rem  (15px)  600
+.body:       0.9375rem  (15px)  400
+.meta:       0.8125rem  (13px)  400
+.badge:      0.75rem    (12px)  600
+
+Spacing scale
+-------------
+8, 12, 16, 20, 24, 32
+
+Information Architecture (Mobile)
+---------------------------------
+1. Brand + tagline + contact (always visible)
+2. Social actions (buttons/chips)
+3. Accordion groups:
+   - Company
+   - Services
+   - Need help?
+4. Locale switcher (language / currency)
+5. Bottom legal row
+
+HTML Structure (framework-agnostic)
+-----------------------------------
+<footer class="site-footer" role="contentinfo" data-theme="dark">
+  <div class="footer__container">
+
+    <!-- Brand / Contact -->
+    <div class="footer-brand">
+      <a href="/" class="footer-brand__logo">
+        <img src="images/logo-white.svg" alt="Jahongir Travel" width="28" height="28">
+        <span class="footer-brand__name">Jahongir Travel</span>
+      </a>
+      <p class="footer-brand__tagline">Tailor-made Uzbekistan tours since 2012.</p>
+      <address class="footer-brand__contact">
+        <a href="mailto:info@jahongirtravel.com" class="contact-link">info@jahongirtravel.com</a>
+        <a href="tel:+998991234567" class="contact-link">+998 99 123 4567</a>
+      </address>
+
+      <ul class="footer-social">
+        <li><a class="chip" href="https://wa.me/998991234567" aria-label="WhatsApp"><i class="i i-whatsapp" aria-hidden="true"></i> WhatsApp</a></li>
+        <li><a class="chip" href="https://instagram.com/jahongirtravel" aria-label="Instagram"><i class="i i-instagram"></i> Instagram</a></li>
+        <li><a class="chip" href="https://facebook.com/jahongirtravel" aria-label="Facebook"><i class="i i-facebook"></i> Facebook</a></li>
+      </ul>
+    </div>
+
+    <hr class="footer__divider" />
+
+    <!-- Accordions -->
+    <section class="accordion" aria-label="Footer navigation">
+      <details class="accordion__item">
+        <summary class="accordion__summary">Company</summary>
+        <nav class="accordion__panel" aria-label="Company">
+          <a href="/about">About us</a>
+          <a href="/careers">Careers</a>
+          <a href="/blog">Blog</a>
+          <a href="/partners">Partner</a>
+          <a href="/contact">Contact</a>
+        </nav>
+      </details>
+
+      <details class="accordion__item">
+        <summary class="accordion__summary">Services</summary>
+        <nav class="accordion__panel" aria-label="Services">
+          <a href="/tours">Tour booking</a>
+          <a href="/visa">Visa online</a>
+          <a href="/guides">Travel guide</a>
+          <a href="/car-service">Car service</a>
+          <a href="/sim">SIM &amp; eSIM</a>
+        </nav>
+      </details>
+
+      <details class="accordion__item">
+        <summary class="accordion__summary">Need help?</summary>
+        <nav class="accordion__panel" aria-label="Support">
+          <a href="/faqs">FAQs</a>
+          <a href="/support">Customer care</a>
+          <a href="/safety">Safety tips</a>
+          <a href="/privacy">Privacy policy</a>
+          <a href="/terms">Terms of use</a>
+        </nav>
+      </details>
+    </section>
+
+    <hr class="footer__divider" />
+
+    <!-- Locale -->
+    <button class="locale" type="button" aria-haspopup="menu" aria-expanded="false">
+      <span class="locale__icon" aria-hidden="true">🌐</span>
+      <span class="locale__label">EN / USD</span>
+      <span class="locale__chev" aria-hidden="true">▾</span>
+    </button>
+
+    <!-- Legal -->
+    <div class="footer-legal">
+      <p>© 2025 Jahongir Travel. All rights reserved.</p>
+      <nav aria-label="Legal">
+        <a href="/privacy">Privacy</a>
+        <span aria-hidden="true">•</span>
+        <a href="/terms">Terms</a>
+        <span aria-hidden="true">•</span>
+        <a href="/cookies">Cookies</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+CSS (mobile-first, scoped)
+--------------------------
+.site-footer {
+  --bg: #0B1321;
+  --text: rgba(255,255,255,.88);
+  --text-dim: rgba(255,255,255,.72);
+  --muted: rgba(255,255,255,.10);
+  --accent: #FFB703;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+.site-footer a { color: var(--text); text-decoration: none; }
+.site-footer a:focus-visible { outline: 2px solid var(--focus, #1FA3FF); outline-offset: 2px; }
+.footer__container { padding: 24px 16px; max-width: 720px; margin: 0 auto; }
+.footer-brand__logo { display:flex; align-items:center; gap:10px; font-weight:700; }
+.footer-brand__tagline { color: var(--text-dim); margin: 8px 0 12px; }
+.footer-brand__contact { display:flex; flex-direction:column; gap:6px; margin-bottom:12px; }
+.contact-link { padding: 6px 0; }
+.footer-social { display:flex; gap:8px; flex-wrap:wrap; margin: 8px 0 4px; padding:0; list-style:none; }
+
+/* Social chip */
+.chip {
+  display:inline-flex; align-items:center; gap:8px;
+  background: var(--muted); border:1px solid rgba(255,255,255,0.14);
+  padding:8px 12px; border-radius:999px; font-size:0.875rem;
+}
+.chip:active { transform: translateY(1px); }
+.footer__divider { border:0; height:1px; background: var(--muted); margin: 20px 0; }
+
+/* Accordion */
+.accordion__item { border-bottom:1px solid var(--muted); }
+.accordion__summary {
+  list-style:none; cursor:pointer; padding:16px 0; font-weight:600; position:relative;
+}
+.accordion__summary::-webkit-details-marker { display:none; }
+.accordion__item[open] .accordion__summary { color: var(--accent); }
+.accordion__panel { display:flex; flex-direction:column; gap:12px; padding: 0 0 16px; }
+.accordion__panel a { color: var(--text-dim); }
+.accordion__panel a:hover { color: var(--text); }
+
+/* Locale */
+.locale {
+  width:100%; display:flex; justify-content:center; align-items:center; gap:8px;
+  background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14);
+  color: var(--text); padding: 10px 12px; border-radius: 12px;
+}
+.locale:active { transform: translateY(1px); }
+
+/* Legal */
+.footer-legal { text-align:center; margin-top:16px; color: var(--text-dim); }
+.footer-legal nav { display:flex; gap:8px; justify-content:center; align-items:center; margin-top:6px; }
+.footer-legal a { color: var(--text-dim); }
+.footer-legal a:hover { color: var(--text); }
+
+/* Tablet+ enhancement */
+@media (min-width: 640px) {
+  .footer__container { padding: 32px 20px; }
+  .footer-legal { display:flex; justify-content:space-between; align-items:center; }
+}
+
+Minimal JS (optional, enhance details + GA events)
+--------------------------------------------------
+// If you prefer buttons instead of <details>, use this pattern.
+// With <details> above, JS is not required. Below adds analytics.
+document.querySelectorAll('.accordion__item').forEach((d) => {
+  d.addEventListener('toggle', () => {
+    if (d.open && window.gtag) {
+      gtag('event', 'footer_accordion_open', { section: d.querySelector('.accordion__summary').textContent.trim() });
+    }
+  });
+});
+
+Accessibility Notes
+-------------------
+- Use <details>/<summary> for native, keyboard-accessible accordions.
+- Ensure focus states are visible on links and controls.
+- Icon-only elements must include aria-label or hidden text.
+- Maintain a 44x44px min tap target for links and controls.
+- Color contrast ≥ 4.5:1 (current palette meets this).
+
+Performance
+-----------
+- Inline the footer CSS into the page’s main CSS bundle.
+- SVG icon sprites for the social icons; avoid heavy icon fonts on mobile.
+- Lazy-load locale modal JS on first interaction (click).
+
+Tailwind Variant (if using Tailwind)
+------------------------------------
+<footer class="bg-[#0B1321] text-white/90">
+  <div class="mx-auto max-w-screen-sm px-4 py-6 sm:py-8">
+    <div>
+      <a href="/" class="flex items-center gap-2 font-semibold">
+        <img src="/images/logo-white.svg" class="h-7 w-7" alt="Jahongir Travel">
+        <span>Jahongir Travel</span>
+      </a>
+      <p class="mt-2 text-white/70">Tailor-made Uzbekistan tours since 2012.</p>
+      <div class="mt-3 flex flex-col gap-2">
+        <a class="hover:text-white" href="mailto:info@jahongirtravel.com">info@jahongirtravel.com</a>
+        <a class="hover:text-white" href="tel:+998991234567">+998 99 123 4567</a>
+      </div>
+      <div class="mt-3 flex flex-wrap gap-2">
+        <a class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-sm" href="https://wa.me/998991234567">WhatsApp</a>
+        <a class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-sm" href="https://instagram.com/jahongirtravel">Instagram</a>
+        <a class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-sm" href="https://facebook.com/jahongirtravel">Facebook</a>
+      </div>
+    </div>
+
+    <hr class="my-5 border-white/10" />
+
+    <section>
+      <details class="border-b border-white/10 py-3" open>
+        <summary class="cursor-pointer font-semibold">Company</summary>
+        <nav class="mt-2 flex flex-col gap-2 text-white/70">
+          <a href="/about" class="hover:text-white">About us</a>
+          <a href="/careers" class="hover:text-white">Careers</a>
+          <a href="/blog" class="hover:text-white">Blog</a>
+          <a href="/partners" class="hover:text-white">Partner</a>
+          <a href="/contact" class="hover:text-white">Contact</a>
+        </nav>
+      </details>
+
+      <details class="border-b border-white/10 py-3">
+        <summary class="cursor-pointer font-semibold">Services</summary>
+        <nav class="mt-2 flex flex-col gap-2 text-white/70">
+          <a href="/tours" class="hover:text-white">Tour booking</a>
+          <a href="/visa" class="hover:text-white">Visa online</a>
+          <a href="/guides" class="hover:text-white">Travel guide</a>
+          <a href="/car-service" class="hover:text-white">Car service</a>
+          <a href="/sim" class="hover:text-white">SIM & eSIM</a>
+        </nav>
+      </details>
+
+      <details class="border-b border-white/10 py-3">
+        <summary class="cursor-pointer font-semibold">Need help?</summary>
+        <nav class="mt-2 flex flex-col gap-2 text-white/70">
+          <a href="/faqs" class="hover:text-white">FAQs</a>
+          <a href="/support" class="hover:text-white">Customer care</a>
+          <a href="/safety" class="hover:text-white">Safety tips</a>
+          <a href="/privacy" class="hover:text-white">Privacy policy</a>
+          <a href="/terms" class="hover:text-white">Terms of use</a>
+        </nav>
+      </details>
+    </section>
+
+    <hr class="my-5 border-white/10" />
+
+    <button class="flex w-full items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-3 py-2">EN / USD</button>
+
+    <div class="mt-4 text-center text-white/70 sm:flex sm:items-center sm:justify-between">
+      <p>© 2025 Jahongir Travel. All rights reserved.</p>
+      <nav class="mt-2 flex justify-center gap-3 sm:mt-0">
+        <a href="/privacy" class="hover:text-white">Privacy</a>
+        <span aria-hidden="true" class="text-white/50">•</span>
+        <a href="/terms" class="hover:text-white">Terms</a>
+        <span aria-hidden="true" class="text-white/50">•</span>
+        <a href="/cookies" class="hover:text-white">Cookies</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+QA Checklist
+------------
+[ ] All links keyboard-focusable & visible focus rings
+[ ] Contrast passes WCAG AA on dark background
+[ ] Tap targets ≥ 44x44px
+[ ] Accordion animation ≤ 200ms, no layout shift
+[ ] RTL mirroring verified
+[ ] Analytics events for accordion open & social clicks
+[ ] Locale button wired to modal or dropdown

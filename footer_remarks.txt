@@ -1,0 +1,99 @@
+Jahongir Travel — Footer Remarks (Dark Theme)
+================================================
+
+Summary
+-------
+This file lists actionable remarks for the new dark footer you shared. It covers
+visual/UX polish, accessibility, responsiveness, content copy, and performance.
+Use it as a handoff checklist for the front‑end dev.
+
+1) Visual & UX
+--------------
+- Use a single dark surface token (e.g., --footer-bg: #0b1321) with a subtle top
+  border (--footer-border: #111a2a) to separate from page content.
+- Establish color roles for hierarchy:
+  • Headings (75% white): --footer-head
+  • Links/body (85% white): --footer-link / --footer-text
+  • Meta text (65% white): --footer-text-dim
+  • Accent (brand): --footer-link-hover = #FFB703
+- Harmonize spacing: 64px top/bottom padding desktop, 40px tablet, 28px mobile.
+- Align icons and labels via inline-flex + gap. Ensure social rows have min 44px
+  height for comfortable tapping.
+- Add strong hover/active states using the accent token; don’t rely on opacity
+  alone. Keep underline off by default, but show a visible focus outline.
+- Keep logo + brand text as one clickable target; inline the SVG if possible so
+  it can inherit color and avoids an extra request.
+
+2) Accessibility
+----------------
+- Ensure all interactive items have a visible :focus-visible outline that meets
+  3:1 contrast on the dark background (recommend 2px outline in accent color).
+- Provide explicit aria-labels for social links (e.g., “Follow on Instagram”).
+- The locale switcher should be a real button with aria-haspopup="menu" and an
+  accessible menu pattern when implemented. For now, a stub is acceptable.
+- Minimum tap targets: 44x44px for links/buttons (social, locale, list items).
+- Use semantic grouping: keep nav columns inside <nav aria-labelledby="...">;
+  Brand contact stays in <address>. This is already good—keep it.
+
+3) Responsiveness (Grid)
+------------------------
+- Grid breakpoints for five→three→two→one columns:
+  • ≥1280px: grid-template-columns: 1.4fr repeat(4, 1fr)
+  • 1024–1279px: 4 columns (brand may span 2 if needed)
+  • 640–1023px: 2 columns
+  • <640px: 1 column with stacked groups and larger tap targets
+- Keep bottom bar flexible and wrap: copyright left, legal links right; stack
+  on small screens with 12–16px gaps.
+
+4) Content & Copy
+-----------------
+- “Career” → “Careers” (plural) in nav.
+- Add city/country line to the <address> for trust (e.g., Samarkand, Uzbekistan).
+- Optional: Add WhatsApp support link under contact (wa.me/998991234567).
+- Legal links in bottom bar: Privacy • Terms • Cookies (keep short labels).
+- Confirm social handles and replace placeholders with final URLs.
+
+5) Performance
+--------------
+- Inline the logo SVG to avoid an extra request and allow color control.
+- Font Awesome: defer or preload to reduce render-blocking; consider using a
+  small icon sprite for just the footer if Lighthouse flags FA as heavy.
+- Prefer CSS over JS for hover/focus effects. Keep the locale button JS lazy.
+- Use system fonts for the footer if you want to shave bytes; otherwise reuse
+  existing site font stack to avoid a new FOIT/FOUT path.
+
+6) CSS Tokens (suggested)
+-------------------------
+:root {
+  --footer-bg:#0b1321;
+  --footer-border:#111a2a;
+  --footer-text:#e5eaf3;       /* 85% white */
+  --footer-text-dim:#b9c2d3;   /* 65% white */
+  --footer-head:#cdd6e6;       /* 75% white */
+  --footer-link:#dce3f1;
+  --footer-link-hover:#ffb703; /* brand accent */
+}
+
+7) Interaction (Locale Stub)
+----------------------------
+- Button: <button class="footer-locale" aria-haspopup="menu" aria-expanded="false">
+- Minimal JS: on click, toggle aria-expanded; later replace alert with a real
+  popover or a dialog for language/currency selection.
+
+8) QA Checklist
+---------------
+- [ ] Keyboard only: tab through all links, visible focus on dark background
+- [ ] Screen reader: headings announce each nav; links have clear names
+- [ ] Hover/active colors meet contrast on #0b1321
+- [ ] Links all valid and target the correct paths
+- [ ] Mobile: columns collapse cleanly at 1024, 640, <640
+- [ ] Social/tap targets ≥44px height
+- [ ] No layout shift when icons load (reserve space)
+
+Notes on the Page Context
+-------------------------
+- Footer aligns well with the established site accent and typography used in
+  hero/sections. Keep consistent spacing scale and corner radius (10px) for
+  chips/buttons used in footer elements (locale).
+
+End of remarks.

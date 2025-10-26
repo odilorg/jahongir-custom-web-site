@@ -1,0 +1,204 @@
+
+FOOTER DESIGN REMARKS – JAHONGIR TRAVEL (LARAVEL + FILAMENT V4 BACKEND)
+
+======================================================================
+1. GENERAL REVIEW
+======================================================================
+✓ Layout is clean and readable across screen widths.
+✓ Good hierarchy between brand, navigation, and contact info.
+✓ Locale switcher adds functionality but needs proper button semantics.
+
+Recommended improvements:
+- Correct spelling: Career, YouTube, SIM & eSIM, Safety tips.
+- Keep link text in sentence case, not Title Case.
+- Increase spacing between column groups to 48–56px (desktop) / 24px (tablet).
+- Add hover underline for all links.
+- Maintain visible focus outline for accessibility.
+- Add aria-labels for all social links.
+- Ensure external links use rel="noopener noreferrer".
+- Divider should be 1px, semi-transparent for subtle separation.
+- Include physical address and quick 1-line brand statement for trust.
+- Add newsletter or quick contact form for engagement.
+
+======================================================================
+2. COLOR SYSTEM
+======================================================================
+Light Theme:
+  • Background: #FFFFFF
+  • Headings: #0F172A
+  • Body text: #334155
+  • Muted: #64748B
+  • Link: #0B5FFF
+  • Link hover: #0845C9
+  • Divider: rgba(15,23,42,0.08)
+  • Brand accent (orange): #FF6A3D
+
+Dark Theme:
+  • Background: #0B1220
+  • Headings: #E2E8F0
+  • Body text: #E2E8F0
+  • Muted: #94A3B8
+  • Link: #60A5FA
+  • Link hover: #93C5FD
+  • Divider: rgba(255,255,255,0.08)
+  • Brand accent (orange): #FF6A3D
+
+Contrast:
+- All colors meet WCAG AA for text contrast.
+- Brand orange reserved for logos/icons only.
+
+======================================================================
+3. CONTENT STRUCTURE
+======================================================================
+Left column:
+- Brand logo + tagline: “Tailor-made Uzbekistan tours since 2012.”
+- Email and phone (clickable links).
+
+Middle columns:
+- Company: About, Career, Blog, Partner, Contact.
+- Services: Tour booking, Visa, Travel guide, Car service, SIM & eSIM.
+- Help: FAQs, Support, Safety, Privacy, Terms.
+
+Right column:
+- Social links with icons (Facebook, Instagram, Twitter, YouTube, Pinterest).
+- Locale switcher button (EN / USD).
+
+Bottom row:
+- 1px divider line.
+- © {current year} Jahongir Travel. All rights reserved.
+- Secondary legal links (Privacy, Terms, Cookies).
+
+======================================================================
+4. ACCESSIBILITY & INTERACTION
+======================================================================
+- aria-labelledby for column headings.
+- aria-labels for social icons.
+- Keyboard navigation support (tab focus rings visible).
+- Use <button> for language selector with proper aria-haspopup & aria-expanded.
+- Open social links in new tab with rel="noopener noreferrer".
+- Screen reader label for divider (“separator”) if needed.
+
+======================================================================
+5. HTML STRUCTURE
+======================================================================
+<footer class="site-footer" data-theme="dark">
+  <div class="footer-wrap">
+    <div class="footer-brand">
+      <a href="/" class="brand">
+        <img src="/images/logo.svg" alt="Jahongir Travel logo" width="28" height="28">
+        <span class="brand-text">Jahongir Travel</span>
+      </a>
+      <p class="blurb">Tailor-made Uzbekistan tours since 2012.</p>
+      <p><a href="mailto:info@jahongirtravel.com">info@jahongirtravel.com</a><br>
+         <a href="tel:+998991234567">+998 99 123 4567</a></p>
+    </div>
+
+    <nav aria-labelledby="footer-company">
+      <h3 id="footer-company">Company</h3>
+      <ul>
+        <li><a href="/about">About us</a></li>
+        <li><a href="/careers">Career</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/partners">Partner</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <nav aria-labelledby="footer-services">
+      <h3 id="footer-services">Services</h3>
+      <ul>
+        <li><a href="/tours">Tour booking</a></li>
+        <li><a href="/visa">Visa online</a></li>
+        <li><a href="/guides">Travel guide</a></li>
+        <li><a href="/car-service">Car service</a></li>
+        <li><a href="/sim">SIM & eSIM</a></li>
+      </ul>
+    </nav>
+
+    <nav aria-labelledby="footer-help">
+      <h3 id="footer-help">Need help?</h3>
+      <ul>
+        <li><a href="/faqs">FAQs</a></li>
+        <li><a href="/support">Customer care</a></li>
+        <li><a href="/safety">Safety tips</a></li>
+        <li><a href="/privacy">Privacy policy</a></li>
+        <li><a href="/terms">Terms of use</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-social">
+      <h3>Connect</h3>
+      <ul>
+        <li><a href="#" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+        <li><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="#" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+        <li><a href="#" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+        <li><a href="#" target="_blank" rel="noopener noreferrer">Pinterest</a></li>
+      </ul>
+      <button class="locale-btn" aria-haspopup="menu" aria-expanded="false">EN / USD ▾</button>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="divider"></div>
+    <p>© 2025 Jahongir Travel. All rights reserved.</p>
+  </div>
+</footer>
+
+======================================================================
+6. CSS HIGHLIGHTS
+======================================================================
+.site-footer {
+  --bg: #FFFFFF;
+  --text: #334155;
+  --heading: #0F172A;
+  --muted: #64748B;
+  --link: #0B5FFF;
+  --hover: #0845C9;
+  --divider: rgba(15,23,42,.08);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+}
+.site-footer[data-theme="dark"] {
+  --bg: #0B1220;
+  --text: #E2E8F0;
+  --heading: #E2E8F0;
+  --muted: #94A3B8;
+  --link: #60A5FA;
+  --hover: #93C5FD;
+  --divider: rgba(255,255,255,.08);
+}
+.footer-wrap {
+  display: grid;
+  grid-template-columns: 1.2fr repeat(3,1fr) 1fr;
+  gap: 48px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 56px 24px;
+}
+.footer-col h3 {
+  color: var(--heading);
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.footer-col a {
+  color: var(--text);
+  text-decoration: none;
+}
+.footer-col a:hover {
+  color: var(--hover);
+  text-decoration: underline;
+}
+.divider {
+  height: 1px;
+  background: var(--divider);
+  margin: 24px 0;
+}
+@media (max-width: 1024px) {
+  .footer-wrap { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 640px) {
+  .footer-wrap { grid-template-columns: 1fr; gap: 24px; padding: 40px 20px; }
+}
