@@ -1673,6 +1673,315 @@ button:focus-visible {
 }
 
 /* =================================================================
+   SECTION 7: BLOG PREVIEW
+   ================================================================= */
+
+/* 7.1 Section Layout */
+.blog-preview {
+  background: var(--color-bg);
+  padding: 72px 0;
+  margin-top: 80px;
+}
+
+.blog-preview__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.blog-preview__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 16px;
+}
+
+/* 7.2 Blog Grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+/* 7.3 Blog Card */
+.blog-card {
+  background: var(--color-surface);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.blog-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px);
+}
+
+.blog-card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 7.4 Blog Card Media */
+.blog-card__media {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.blog-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.blog-card:hover .blog-card__media img {
+  transform: scale(1.08);
+}
+
+/* 7.5 Category Badge */
+.blog-card__category {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1e293b;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+.blog-card__category[data-category="travel-tips"] {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+}
+
+.blog-card__category[data-category="destination"] {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: #ffffff;
+}
+
+.blog-card__category[data-category="culture"] {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: #ffffff;
+}
+
+.blog-card__category[data-category="food"] {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  color: #1e293b;
+}
+
+/* 7.6 Blog Card Content */
+.blog-card__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 24px;
+}
+
+.blog-card__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color 0.2s ease;
+}
+
+.blog-card:hover .blog-card__title {
+  color: var(--color-accent);
+}
+
+.blog-card__excerpt {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 7.7 Blog Card Meta */
+.blog-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.blog-card__date {
+  display: inline-flex;
+  align-items: center;
+}
+
+.blog-card__reading-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.blog-card__reading-time i {
+  font-size: 0.875rem;
+}
+
+/* 7.8 Blog Preview Footer CTA */
+.blog-preview__footer {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.btn--blog-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: transparent;
+  border: 2px solid var(--color-accent);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn--blog-cta:hover {
+  background: var(--color-accent);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(14, 116, 144, 0.3);
+}
+
+/* 7.9 Responsive Design */
+
+/* Tablet (768px - 1023px): 2 columns */
+@media (max-width: 1023px) {
+  .blog-preview {
+    padding: 56px 0;
+    margin-top: 64px;
+  }
+
+  .blog-preview__title {
+    font-size: 2rem;
+  }
+
+  .blog-preview__header {
+    margin-bottom: 40px;
+  }
+
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-bottom: 40px;
+  }
+
+  .blog-card__media {
+    height: 220px;
+  }
+
+  .blog-card__title {
+    font-size: 1.125rem;
+  }
+}
+
+/* Mobile (640px - 767px): 2 columns with smaller gap */
+@media (max-width: 767px) {
+  .blog-preview {
+    padding: 48px 0;
+    margin-top: 48px;
+  }
+
+  .blog-preview__title {
+    font-size: 1.75rem;
+  }
+
+  .blog-grid {
+    gap: 20px;
+  }
+
+  .blog-card__content {
+    padding: 20px;
+  }
+
+  .blog-card__media {
+    height: 200px;
+  }
+}
+
+/* Small Mobile (max 639px): 1 column */
+@media (max-width: 639px) {
+  .blog-preview {
+    padding: 40px 0;
+    margin-top: 40px;
+  }
+
+  .blog-preview__title {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .blog-preview__header {
+    margin-bottom: 32px;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .blog-card__media {
+    height: 240px;
+  }
+
+  .blog-card__title {
+    font-size: 1.125rem;
+    -webkit-line-clamp: 3;
+  }
+
+  .blog-card__excerpt {
+    font-size: 0.875rem;
+    -webkit-line-clamp: 4;
+  }
+
+  .blog-card__content {
+    padding: 20px 16px;
+  }
+
+  .btn--blog-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 24px;
+  }
+}
+
+/* =================================================================
    SECTION 8: FOOTER
    ================================================================= */
 
