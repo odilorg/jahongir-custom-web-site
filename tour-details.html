@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <!-- SEO Meta Tags -->
   <title>Samarkand City Tour: Registan Square | Jahongir Travel</title>
   <meta name="description" content="Explore Samarkand's UNESCO World Heritage sites on a 4-hour private tour. Visit Registan Square, Shah-i-Zinda, and Bibi-Khanym Mosque with an expert local guide.">
+  <link rel="canonical" href="https://jahongirtravel.com/tours/samarkand-city-tour">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Jahongir Travel">
+  <meta property="og:locale" content="en_US">
   <meta property="og:title" content="Samarkand City Tour: Registan Square | Jahongir Travel">
   <meta property="og:description" content="Explore Samarkand's UNESCO World Heritage sites on a 4-hour private tour.">
   <meta property="og:image" content="https://jahongirtravel.com/images/tours/samarkand/hero-main.webp">
@@ -119,29 +121,6 @@
         "name": "Jahongir Travel"
       }
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "47",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Jason Fey"
-        },
-        "datePublished": "2024-10-06",
-        "reviewBody": "Every minute was amazing. Our guide was knowledgeable and the historical sites were breathtaking."
-      }
-    ],
     "includesObject": [
       {
         "@type": "Thing",
@@ -219,10 +198,16 @@
         <!-- Main Image (Left) -->
         <div class="tour-hero__main">
           <img
-            src="images/tours/samarkand/hero-main.webp"
+            src="images/tours/samarkand/hero-main-1200.webp"
+            srcset="images/tours/samarkand/hero-main-800.webp 800w,
+                    images/tours/samarkand/hero-main-1200.webp 1200w,
+                    images/tours/samarkand/hero-main-1600.webp 1600w"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 66vw, 60vw"
             alt="Magnificent view of Registan Square in Samarkand with three madrasahs"
             width="1200"
             height="800"
+            loading="eager"
+            fetchpriority="high"
             decoding="async"
             class="hero-image"
             id="main-gallery-image">
@@ -354,6 +339,15 @@
           <span>English, Russian, French</span>
         </span>
       </div>
+
+      <!-- Mini Table of Contents -->
+      <nav class="section-toc" aria-label="On this page">
+        <a href="#overview" class="toc-link">Overview</a>
+        <a href="#highlights" class="toc-link">Highlights</a>
+        <a href="#includes" class="toc-link">Included</a>
+        <a href="#cancellation" class="toc-link">Cancellation</a>
+        <a href="#faq" class="toc-link">FAQ</a>
+      </nav>
 
     </div>
   </section>
@@ -641,16 +635,6 @@
                 <span class="price-amount" data-base-price="50.00">$50.00</span>
                 <span class="price-unit">per person</span>
               </div>
-              <div class="booking-rating">
-                <div class="stars">
-                  <i class="fas fa-star" aria-hidden="true"></i>
-                  <i class="fas fa-star" aria-hidden="true"></i>
-                  <i class="fas fa-star" aria-hidden="true"></i>
-                  <i class="fas fa-star" aria-hidden="true"></i>
-                  <i class="fas fa-star" aria-hidden="true"></i>
-                </div>
-                <span class="rating-text">5.0 (47 reviews)</span>
-              </div>
             </div>
 
             <!-- Booking Form -->
@@ -732,6 +716,33 @@
               <p class="breakdown-note">Free cancellation up to 24 hours before the tour</p>
             </div>
 
+            <!-- Trust Badges -->
+            <div class="trust-badges">
+              <div class="badge-item">
+                <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                <span>Secure payments</span>
+              </div>
+              <div class="badge-item">
+                <i class="fas fa-headset" aria-hidden="true"></i>
+                <span>24/7 support</span>
+              </div>
+              <div class="badge-item">
+                <i class="fas fa-undo-alt" aria-hidden="true"></i>
+                <span>Free cancellation</span>
+              </div>
+            </div>
+
+            <!-- Booking Clarification -->
+            <div class="booking-clarification">
+              <p class="clarification-text">
+                <i class="fas fa-clock" aria-hidden="true"></i>
+                <strong>Confirmation within 24 hours</strong> — we'll verify availability and send you a confirmation.
+              </p>
+              <p class="clarification-note">
+                No payment required now. Pay after confirmation.
+              </p>
+            </div>
+
             <!-- Request to Book Button -->
             <button type="button" class="btn btn--accent btn--block btn--large" id="request-booking">
               <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -775,6 +786,21 @@
         </aside>
 
       </div>
+    </div>
+  </div>
+
+  <!-- Mobile Floating CTA (Task 13) -->
+  <!-- Hidden on desktop, visible on mobile/tablet only via CSS -->
+  <div class="mobile-booking-cta" data-mobile-only="true">
+    <div class="mobile-cta__container">
+      <div class="mobile-cta__price">
+        <span class="mobile-cta__amount" data-mobile-price="50.00">$50.00</span>
+        <span class="mobile-cta__unit">per person</span>
+      </div>
+      <button type="button" class="btn btn--accent mobile-cta__button" data-scroll-to="booking-form" aria-label="Scroll to booking form">
+        <i class="fas fa-calendar-check" aria-hidden="true"></i>
+        Book Now
+      </button>
     </div>
   </div>
 
