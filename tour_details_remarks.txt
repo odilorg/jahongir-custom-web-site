@@ -1,0 +1,43 @@
+TOUR DETAILS PAGE PLAN — REVIEW REMARKS FOR AI CODER
+
+GENERAL OVERVIEW
+- Excellent overall structure and sequencing: clearly separated frontend, backend, and QA phases.
+- Keep the document as the single source of truth for UI → data → schema mapping.
+
+CONTENT FIXES
+- Replace all mentions of “Yagoz” with “Jahongir Travel” for brand consistency.
+- Correct inconsistent phone/WhatsApp numbers (use +998 format across sections).
+- Align pricing: the booking box shows $50 while the breakdown lists $250 — unify price logic.
+
+ACCESSIBILITY & SEMANTICS
+- Add BreadcrumbList JSON-LD to complement visible breadcrumbs.
+- Implement FAQPage schema for the FAQ section using existing <details>/<summary> structure.
+- Ensure ARIA roles and keyboard navigation for gallery controls and booking form.
+
+PERFORMANCE & UX
+- Optimize image loading in galleries: lazy-load all except the first, define width/height to prevent layout shifts.
+- Use prefers-reduced-motion for gallery transitions and animations.
+- Add skeleton loaders for gallery and booking panel to maintain perceived performance.
+- Keep the booking sidebar sticky only on desktop, and implement a floating CTA for mobile.
+
+DATA & SCHEMA
+- Add TouristTrip + Offer JSON-LD on the tour detail page.
+- Include fields: includes/excludes, duration, languages, and availability in the schema.
+- Mirror FAQ and breadcrumbs into schema markup.
+
+CODE STRUCTURE
+- Centralize price calculation logic in one JS function (`recalculate()`), called from guest/date change handlers.
+- Store static JSON data for a tour inside a <script type="application/json" id="tour-data"> element for faster hydration.
+- Prepare for currency and i18n formatting hooks early (don’t hardcode $).
+
+EDGE CASE TESTS
+- Gallery keyboard navigation (arrows, focus on thumbnails).
+- Long tour titles wrapping gracefully on small screens.
+- Sidebar overlap with footer on very short pages.
+- FAQ toggle animations with multiple open items.
+
+NEXT STEPS
+1. Build Hero Gallery section (Section 2) with aspect-ratio boxes and lazy loading.
+2. Implement Booking Sidebar (Section 10) — ensure brand, price sync, and responsive sticky/floating logic.
+3. Add structured data: TouristTrip, Offer, BreadcrumbList, and FAQPage.
+4. Verify accessibility and schema in Rich Results Test before backend integration.
