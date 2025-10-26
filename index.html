@@ -1358,7 +1358,9 @@
        SECTION 8: FOOTER
        ===================================================== -->
   <footer class="site-footer" role="contentinfo" data-theme="dark">
-    <div class="footer-main">
+
+    <!-- Desktop/Tablet Grid Layout (≥640px) -->
+    <div class="footer-main footer-main--desktop">
 
       <!-- Brand Column -->
       <div class="footer-brand">
@@ -1459,16 +1461,110 @@
 
     </div>
 
-    <!-- Bottom Section -->
+    <!-- Mobile Compact Layout (<640px) -->
+    <div class="footer-main footer-main--mobile">
+
+      <!-- Brand & Contact -->
+      <div class="footer-brand">
+        <a href="/" class="footer-brand__link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28" fill="none" aria-hidden="true" class="footer-brand__logo">
+            <circle cx="14" cy="8" r="4" fill="#F4B400" opacity="0.9"/>
+            <path d="M 4 24 L 10 14 L 14 20 L 18 14 L 24 24 Z" fill="#E2E8F0"/>
+            <path d="M 8 24 L 14 16 L 20 24 Z" fill="#FFFFFF"/>
+            <rect x="2" y="24" width="24" height="2" fill="#E2E8F0" opacity="0.6"/>
+          </svg>
+          <span class="footer-brand__text">Jahongir Travel</span>
+        </a>
+        <p class="footer-brand__tagline">Tailor-made Uzbekistan tours since 2012.</p>
+        <address class="footer-brand__contact">
+          <a href="mailto:info@jahongirtravel.com" class="footer-brand__contact-link">info@jahongirtravel.com</a>
+          <a href="tel:+998991234567" class="footer-brand__contact-link">+998 99 123 4567</a>
+        </address>
+
+        <!-- Social Action Chips -->
+        <ul class="footer-chips">
+          <li>
+            <a href="https://wa.me/998991234567" target="_blank" rel="noopener noreferrer" class="footer-chip" aria-label="Contact via WhatsApp">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              <span>WhatsApp</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://instagram.com/jahongirtravel" target="_blank" rel="noopener noreferrer" class="footer-chip" aria-label="Follow on Instagram">
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+              <span>Instagram</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://facebook.com/jahongirtravel" target="_blank" rel="noopener noreferrer" class="footer-chip" aria-label="Follow on Facebook">
+              <i class="fab fa-facebook" aria-hidden="true"></i>
+              <span>Facebook</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <hr class="footer-divider" aria-hidden="true">
+
+      <!-- Accordion Navigation -->
+      <section class="footer-accordion" aria-label="Footer navigation">
+
+        <details class="footer-accordion__item">
+          <summary class="footer-accordion__summary">Company</summary>
+          <nav class="footer-accordion__panel" aria-label="Company">
+            <a href="/about">About us</a>
+            <a href="/careers">Careers</a>
+            <a href="/blog">Blog</a>
+            <a href="/partners">Partner</a>
+            <a href="/contact">Contact</a>
+          </nav>
+        </details>
+
+        <details class="footer-accordion__item">
+          <summary class="footer-accordion__summary">Services</summary>
+          <nav class="footer-accordion__panel" aria-label="Services">
+            <a href="/tours">Tour booking</a>
+            <a href="/visa">Visa online</a>
+            <a href="/guides">Travel guide</a>
+            <a href="/car-service">Car service</a>
+            <a href="/sim">SIM &amp; eSIM</a>
+          </nav>
+        </details>
+
+        <details class="footer-accordion__item">
+          <summary class="footer-accordion__summary">Need help?</summary>
+          <nav class="footer-accordion__panel" aria-label="Support">
+            <a href="/faqs">FAQs</a>
+            <a href="/support">Customer care</a>
+            <a href="/safety">Safety tips</a>
+            <a href="/privacy">Privacy policy</a>
+            <a href="/terms">Terms of use</a>
+          </nav>
+        </details>
+
+      </section>
+
+      <hr class="footer-divider" aria-hidden="true">
+
+      <!-- Locale Switcher (Mobile Full-Width) -->
+      <button type="button" class="footer-locale footer-locale--mobile" aria-haspopup="menu" aria-expanded="false">
+        <span class="footer-locale__icon" aria-hidden="true">🌐</span>
+        <span class="footer-locale__label">EN / USD</span>
+        <i class="fas fa-chevron-down footer-locale__chevron" aria-hidden="true"></i>
+      </button>
+
+    </div>
+
+    <!-- Bottom Section (Shared) -->
     <div class="footer-bottom">
       <div class="footer-bottom__wrap">
         <p class="footer-bottom__copyright">© 2025 Jahongir Travel. All rights reserved.</p>
         <nav class="footer-bottom__legal" aria-label="Legal information">
-          <a href="/privacy">Privacy policy</a>
+          <a href="/privacy">Privacy</a>
           <span class="footer-bottom__separator" aria-hidden="true">•</span>
-          <a href="/terms">Terms of use</a>
+          <a href="/terms">Terms</a>
           <span class="footer-bottom__separator" aria-hidden="true">•</span>
-          <a href="/cookies">Cookie policy</a>
+          <a href="/cookies">Cookies</a>
         </nav>
       </div>
     </div>

@@ -174,4 +174,26 @@ if (copyrightEl) {
   copyrightEl.textContent = `© ${currentYear} Jahongir Travel. All rights reserved.`;
 }
 
+// ==========================================
+// 8. FOOTER - MOBILE ACCORDION ANALYTICS
+// ==========================================
+document.querySelectorAll('.footer-accordion__item').forEach((accordionItem) => {
+  accordionItem.addEventListener('toggle', () => {
+    if (accordionItem.open) {
+      const sectionName = accordionItem.querySelector('.footer-accordion__summary').textContent.trim();
+
+      // Google Analytics 4 tracking (if gtag is available)
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'footer_accordion_open', {
+          'event_category': 'engagement',
+          'event_label': sectionName
+        });
+      }
+
+      // Console log for development
+      console.log(`Footer accordion opened: ${sectionName}`);
+    }
+  });
+});
+
 console.log('Jahongir Travel - JavaScript Loaded Successfully ✓');
