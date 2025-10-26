@@ -1726,6 +1726,12 @@ button:focus-visible {
   height: 100%;
   text-decoration: none;
   color: inherit;
+  border-radius: 16px;
+}
+
+.blog-card__link:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
 }
 
 /* 7.4 Blog Card Media */
@@ -1878,7 +1884,30 @@ button:focus-visible {
   box-shadow: 0 4px 12px rgba(14, 116, 144, 0.3);
 }
 
-/* 7.9 Responsive Design */
+/* 7.9 Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .blog-card,
+  .blog-card__media img,
+  .blog-card__title,
+  .btn--blog-cta {
+    transition: none;
+    transform: none;
+  }
+
+  .blog-card:hover {
+    transform: none;
+  }
+
+  .blog-card:hover .blog-card__media img {
+    transform: none;
+  }
+
+  .btn--blog-cta:hover {
+    transform: none;
+  }
+}
+
+/* 7.10 Responsive Design */
 
 /* Tablet (768px - 1023px): 2 columns */
 @media (max-width: 1023px) {

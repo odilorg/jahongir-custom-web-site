@@ -1,0 +1,39 @@
+SECTION 7: TRAVEL INSIGHTS & BLOG PREVIEW — REVIEW REMARKS
+
+A. SEMANTICS & ACCESSIBILITY
+- ✅ Section labeled with aria-labelledby for accessibility.
+- ✅ Each blog post is wrapped in <article> for semantic clarity.
+- 🔧 Add mainEntityOfPage and wordCount in JSON-LD for each BlogPosting.
+- ✅ Distinct and descriptive alt attributes for images.
+- 🔧 Ensure focus outlines on blog-card__link for keyboard accessibility.
+- ✅ time element includes datetime (good for SEO).
+
+B. PERFORMANCE
+- ✅ Images include width, height, and loading="lazy".
+- 🔧 Add fetchpriority="low" to prevent layout shifts.
+- ✅ Use responsive sizes attribute for better performance on mobile.
+- 🔧 If animations exist, add prefers-reduced-motion to respect user settings.
+
+C. LAYOUT & UI POLISH
+- 🔧 Add responsive grid:
+  - 1 col (<640px), 2 cols (≥640px), 3 cols (≥1024px).
+- 🔧 Use -webkit-line-clamp: 3 on excerpts for uniform height.
+- ✅ Category badges look readable—assign soft background tones per category.
+- ✅ Ensure clear hover/focus feedback for accessibility.
+
+D. SEO DETAILS
+- ✅ Uses JSON-LD structured data for ItemList and BlogPosting.
+- 🔧 Add fields: mainEntityOfPage, articleSection, wordCount, inLanguage.
+- 🔧 Optionally add breadcrumb markup on /blog page.
+- ✅ Titles match semantic expectations for good CTR and consistency.
+
+E. REUSABILITY & CMS HOOKS
+- 🔧 Treat section as a reusable component with props (title, excerpt, image, date, category, etc.).
+- ✅ Provide CTA linking to blog index.
+- 🔧 Consider adding skeleton cards for loading states.
+
+F. QA CHECKLIST
+- ✅ Works on 320–1440px viewports.
+- ✅ Keyboard navigation order correct.
+- ✅ Lighthouse accessibility/performance ≥ 90.
+- 🔧 Validate JSON-LD using Rich Results Test.
