@@ -196,6 +196,253 @@
     </nav>
   </header>
 
+  <!-- =====================================================
+       SECTION 2: TOUR HERO GALLERY
+       ===================================================== -->
+  <section class="tour-hero">
+    <div class="container">
+
+      <!-- Skeleton Loader (hidden once loaded) -->
+      <div class="tour-hero__skeleton" aria-hidden="true">
+        <div class="skeleton skeleton--hero"></div>
+        <div class="skeleton skeleton--thumbnails">
+          <div class="skeleton skeleton--thumb"></div>
+          <div class="skeleton skeleton--thumb"></div>
+          <div class="skeleton skeleton--thumb"></div>
+          <div class="skeleton skeleton--thumb"></div>
+        </div>
+      </div>
+
+      <!-- Actual Gallery -->
+      <div class="tour-hero__gallery" style="display: none;">
+
+        <!-- Main Image (Left) -->
+        <div class="tour-hero__main">
+          <img
+            src="images/tours/samarkand/hero-main.webp"
+            alt="Magnificent view of Registan Square in Samarkand with three madrasahs"
+            width="1200"
+            height="800"
+            decoding="async"
+            class="hero-image"
+            id="main-gallery-image">
+
+          <!-- Navigation Arrows -->
+          <button class="gallery-nav gallery-nav--prev" aria-label="Previous image">
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button class="gallery-nav gallery-nav--next" aria-label="Next image">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- Thumbnail Grid (Right) -->
+        <div class="tour-hero__thumbnails">
+
+          <button class="thumbnail thumbnail--active" data-index="0" aria-label="View image 1">
+            <img
+              src="images/tours/samarkand/registan-1.webp"
+              alt="Registan Square detail view"
+              width="400"
+              height="300"
+              loading="lazy"
+              decoding="async">
+          </button>
+
+          <button class="thumbnail" data-index="1" aria-label="View image 2">
+            <img
+              src="images/tours/samarkand/shah-i-zinda.webp"
+              alt="Shah-i-Zinda necropolis blue domes"
+              width="400"
+              height="300"
+              loading="lazy"
+              decoding="async">
+          </button>
+
+          <button class="thumbnail" data-index="2" aria-label="View image 3">
+            <img
+              src="images/tours/samarkand/bibi-khanym.webp"
+              alt="Bibi-Khanym Mosque entrance"
+              width="400"
+              height="300"
+              loading="lazy"
+              decoding="async">
+          </button>
+
+          <button class="thumbnail thumbnail--overlay" data-index="3" aria-label="View all 8 photos">
+            <img
+              src="images/tours/samarkand/street-view.webp"
+              alt="Traditional street in old Samarkand"
+              width="400"
+              height="300"
+              loading="lazy"
+              decoding="async">
+            <div class="thumbnail__overlay">
+              <i class="fas fa-images" aria-hidden="true"></i>
+              <span>+4 photos</span>
+            </div>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       SECTION 3: TOUR HEADER INFO
+       ===================================================== -->
+  <section class="tour-header">
+
+    <!-- BreadcrumbList JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://jahongirtravel.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tours",
+          "item": "https://jahongirtravel.com/tours"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Samarkand City Tour",
+          "item": "https://jahongirtravel.com/tours/samarkand-city-tour"
+        }
+      ]
+    }
+    </script>
+
+    <div class="container">
+
+      <!-- Breadcrumb Navigation -->
+      <nav class="tour-breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a href="/tours">Tours</a></li>
+          <li class="breadcrumb-item" aria-current="page">Samarkand City Tour</li>
+        </ol>
+      </nav>
+
+      <!-- Tour Title -->
+      <h1 class="tour-title">Samarkand City Tour: Registan Square and Historic Monuments</h1>
+
+      <!-- Tour Meta Bar -->
+      <div class="tour-meta-bar">
+        <span class="tour-meta-item">
+          <i class="fas fa-tag" aria-hidden="true"></i>
+          <span>Private Activity</span>
+        </span>
+        <span class="tour-meta-item">
+          <i class="far fa-clock" aria-hidden="true"></i>
+          <span>Duration: 4 hours</span>
+        </span>
+        <span class="tour-meta-item">
+          <i class="fas fa-users" aria-hidden="true"></i>
+          <span>Max Group: 8 guests</span>
+        </span>
+        <span class="tour-meta-item">
+          <i class="fas fa-language" aria-hidden="true"></i>
+          <span>English, Russian, French</span>
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================
+       TWO-COLUMN LAYOUT: MAIN CONTENT + BOOKING SIDEBAR
+       ===================================================== -->
+  <div class="tour-content-wrapper">
+    <div class="container">
+      <div class="tour-layout">
+
+        <!-- LEFT COLUMN: Main Tour Content -->
+        <main class="tour-main-content">
+
+          <!-- Overview Section -->
+          <section class="tour-overview" id="overview">
+            <h2 class="section-title">Overview</h2>
+
+            <div class="tour-overview__content" data-expanded="false">
+              <p>
+                Come and spend your day discovering the beauty, history, and culture of Samarkand, one of the oldest continuously inhabited cities in Central Asia. This comprehensive walking tour takes you through the heart of this ancient Silk Road city, where Persian and Turkic cultures have blended for over 2,500 years.
+              </p>
+              <p>
+                Our journey begins at the magnificent Registan Square, the centerpiece of Samarkand and one of the most iconic architectural ensembles in the Islamic world. You'll explore three grand madrasahs dating from the 15th-17th centuries, adorned with intricate tilework, towering minarets, and stunning geometric patterns.
+              </p>
+              <p class="overview-collapsible">
+                Next, we'll visit the Shah-i-Zinda necropolis, a stunning collection of mausoleums featuring some of the finest tile work in the Islamic world. Walk through the corridor of azure blue domes and discover the burial site of Kusam ibn Abbas, cousin of Prophet Muhammad.
+              </p>
+              <p class="overview-collapsible">
+                Finally, we'll explore the grand Bibi-Khanym Mosque, once one of the largest mosques in the Islamic world, built by Timur (Tamerlane) after his Indian campaign. Learn about its fascinating history, tragic love story, and recent restoration efforts.
+              </p>
+              <p class="overview-collapsible">
+                Throughout the tour, your expert local guide will share stories about Timur's empire, the Silk Road trade, and the daily life of Samarkand's artisans and traders. You'll have plenty of time for photos, questions, and to soak in the atmosphere of this UNESCO World Heritage Site.
+              </p>
+            </div>
+
+            <button class="btn-read-more" data-toggle="overview" aria-expanded="false">
+              <span class="read-more-text">Read more</span>
+              <i class="fas fa-chevron-down" aria-hidden="true"></i>
+            </button>
+          </section>
+
+          <!-- Highlights Section -->
+          <section class="tour-highlights" id="highlights">
+            <h2 class="section-title">Highlights</h2>
+
+            <ul class="highlights-list">
+              <li class="highlight-item">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                <span>Explore the legendary Registan Square with three magnificent madrasahs from the 15th-17th centuries</span>
+              </li>
+              <li class="highlight-item">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                <span>Walk through the stunning Shah-i-Zinda necropolis with its corridor of azure blue domes</span>
+              </li>
+              <li class="highlight-item">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                <span>Visit the grand Bibi-Khanym Mosque, once among the largest mosques in the Islamic world</span>
+              </li>
+              <li class="highlight-item">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                <span>Learn about Timur's empire and the Silk Road trade from an expert local guide</span>
+              </li>
+              <li class="highlight-item">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                <span>Discover intricate tile work, geometric patterns, and Persian-Turkic architectural fusion</span>
+              </li>
+              <li class="highlight-item">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                <span>Enjoy plenty of time for photography at UNESCO World Heritage sites</span>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Content sections will be added here in Tasks 9-11 -->
+
+        </main>
+
+        <!-- RIGHT COLUMN: Booking Sidebar -->
+        <aside class="booking-sidebar" data-sticky="true">
+
+          <!-- Booking sidebar will be added in Task 12 -->
+
+        </aside>
+
+      </div>
+    </div>
+  </div>
+
   <!-- Content will be added in subsequent tasks -->
 
 </body>
