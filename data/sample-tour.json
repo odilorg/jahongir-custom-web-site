@@ -1,0 +1,43 @@
+{
+  "id": "samarkand-city-tour",
+  "name": "Samarkand City Tour: Registan Square and Historic Monuments",
+  "description": "Explore the magnificent Registan Square, Shah-i-Zinda necropolis, and Bibi-Khanym Mosque on this comprehensive 4-hour walking tour of Samarkand's UNESCO World Heritage sites.",
+  "pricePerPerson": 50.00,
+  "currency": "USD",
+  "duration": "4 hours",
+  "maxGuests": 10,
+  "languages": ["English", "Russian", "French"],
+  "rating": 5.0,
+  "reviewCount": 47,
+  "images": {
+    "hero": "images/tours/samarkand/hero-main.webp",
+    "gallery": [
+      "images/tours/samarkand/registan-1.webp",
+      "images/tours/samarkand/shah-i-zinda.webp",
+      "images/tours/samarkand/bibi-khanym.webp",
+      "images/tours/samarkand/street-view.webp",
+      "images/tours/samarkand/sunset.webp"
+    ]
+  },
+  "highlights": [
+    "Explore the legendary Registan Square with three magnificent madrasahs from the 15th-17th centuries",
+    "Walk through the stunning Shah-i-Zinda necropolis with its corridor of azure blue domes",
+    "Visit the grand Bibi-Khanym Mosque, once among the largest mosques in the Islamic world",
+    "Learn about Timur's empire and the Silk Road trade from an expert local guide",
+    "Discover intricate tile work, geometric patterns, and Persian-Turkic architectural fusion",
+    "Enjoy plenty of time for photography at UNESCO World Heritage sites"
+  ],
+  "included": [
+    "Hotel pickup and drop-off (Samarkand city hotels)",
+    "Professional English-speaking guide",
+    "Entrance fees to all monuments (Registan, Shah-i-Zinda, Bibi-Khanym)",
+    "Bottled water",
+    "Small group tour (max 8 guests)"
+  ],
+  "excluded": [
+    "Tips and gratuities for guide (optional)",
+    "Lunch (available for purchase at local restaurants)",
+    "Personal expenses and souvenirs",
+    "Photography fees inside certain monuments (if applicable)"
+  ]
+}
