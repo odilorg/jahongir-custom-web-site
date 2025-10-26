@@ -1,0 +1,130 @@
+AI_CODER_HERO_REMARKS.txt
+=================================
+
+**Project:** Jahongir Travel – SEO‑friendly hero section (Phase 1)
+
+---
+
+### ✅ 1. General Objective
+Reproduce the Togo‑style hero section exactly, using Jahongir Travel’s branding, while maintaining SEO, accessibility, and performance best practices.
+
+---
+
+### 🧠 2. Design & Layout
+- Full‑width hero with background image of Registan Square.
+- Left‑aligned headline, subtext, and CTA; badges horizontally aligned beneath.
+- Maintain consistent padding (≈ 5 vw) and vertical centering within viewport.
+- Responsive:  
+  • Desktop ≥ 1366 px → left‑aligned text, width ≤ 720 px.  
+  • Tablet 768–1199 px → center‑aligned text.  
+  • Mobile < 768 px → stacked layout with 32 px padding and full‑width CTA.
+
+---
+
+### 🎨 3. Typography & Colors
+- Fonts:  
+  • Playfair Display 600 for headlines.  
+  • Inter 400–500 for body/subtext.  
+  • Poppins 600 for nav & buttons.
+- Colors:  
+  • Primary blue `#003366` (background/brand base)  
+  • Accent gold `#F4B400` (buttons/icons)  
+  • Neutral gray `#F5F5F5`, text white `#FFFFFF`
+- Maintain contrast ≥ 4.5:1 for accessibility.
+
+---
+
+### 🌅 4. Hero Background & Overlay
+```css
+background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.65) 100%);
+background-size: cover;
+background-position: center;
+```
+Z‑index order: image (0) → overlay (1) → content (2).
+
+---
+
+### 🧩 5. Navigation Bar
+- Sticky / translucent header on scroll (`rgba(0,0,0,.35)` + blur).
+- Accessible toggle button (`aria-controls="navMenu"` + `aria-expanded` toggle in JS).
+- CTA button with phone number uses accent color and shadow for contrast.
+
+---
+
+### 💬 6. Content Structure (HTML)
+```html
+<header class="hero" role="banner" aria-labelledby="hero-heading">
+  <h1 id="hero-heading">Discover the Magic of Uzbekistan</h1>
+  <p>Experience the ancient Silk Road with expert local guides.</p>
+  <a href="/tours/" class="btn btn--accent">Choose a Destination</a>
+  <section class="hero__badges">
+    Trusted • Worldwide • Sustainable
+  </section>
+</header>
+```
+All icons should include `aria-hidden="true"` if decorative.
+
+---
+
+### ⚙️ 7. Performance / SEO
+- Hero image uses `<picture>` with WebP + JPEG fallback and `fetchpriority="high"`.
+- Add `<link rel="canonical" href="https://jahongirtravel.com/">`.
+- Preload main font WOFF2 weights for Playfair and Poppins.
+- JSON‑LD:
+  * TravelAgency + WebSite (SearchAction) schemas.  
+  * Add aggregateRating and contact info.
+- Lighthouse targets: Perf ≥ 85, A11y ≥ 95, SEO ≥ 90.
+
+---
+
+### 🧱 8. CSS Snippet
+```css
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  align-items: center;
+  color:#fff;
+}
+.hero__title {
+  font-family:"Playfair Display", serif;
+  font-weight:600;
+  font-size:clamp(32px, 5vw, 64px);
+  line-height:1.2;
+  max-width:720px;
+}
+.btn--accent {
+  background:#F4B400;
+  color:#1E1E1E;
+  box-shadow:0 2px 12px rgba(0,0,0,.25);
+}
+```
+Badges: flex layout, gap 32 px; icon color #F4B400.
+
+---
+
+### ⚡ 9. JS for Navigation Toggle
+```js
+const toggle = document.getElementById('navToggle');
+const menu = document.getElementById('navMenu');
+toggle.addEventListener('click', () => {
+  const open = toggle.getAttribute('aria-expanded') === 'true';
+  toggle.setAttribute('aria-expanded', String(!open));
+  menu.classList.toggle('is-open', !open);
+});
+```
+
+---
+
+### 🔎 10. QA Checklist for Coder
+- Desktop layout matches reference pixel‑for‑pixel.  
+- Text alignment and padding exact to design.  
+- Responsive breakpoints tested (1366, 1024, 768, 480).  
+- Gradient and contrast visually identical to reference.  
+- Icons and fonts optimized with proper loading attributes.  
+- Run Lighthouse and share summary scores.  
+- **Always wait for Odil to review and approve before coding next section.**
+
+---
+
+End of document.
