@@ -1110,7 +1110,264 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 }
 
 /* --------------------------------------
-   11. UTILITIES
+   11. REVIEWS SECTION (SECTION 6)
+-----------------------------------------*/
+
+.reviews {
+  background: var(--color-bg);
+  padding: var(--space-5) 0;
+}
+
+.reviews__header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--space-5);
+}
+
+.reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: var(--space-5);
+}
+
+/* Review Card */
+.review-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Review Card Header */
+.review-card__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.review-card__avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--color-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review-card__author {
+  flex: 1;
+}
+
+.review-card__name {
+  margin: 0 0 4px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+.review-card__location {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.review-card__location i {
+  color: var(--color-primary);
+  font-size: 0.8rem;
+}
+
+/* Review Card Rating */
+.review-card__rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.review-card__date {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* Review Card Content */
+.review-card__content {
+  position: relative;
+  flex-grow: 1;
+}
+
+.review-card__quote {
+  position: absolute;
+  top: -8px;
+  left: -4px;
+  font-size: 2rem;
+  color: rgba(13, 76, 146, 0.1);
+  pointer-events: none;
+}
+
+.review-card__title {
+  margin: 0 0 12px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  line-height: 1.4;
+}
+
+.review-card__text {
+  margin: 0 0 16px;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.review-card__source {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.review-card__source i {
+  color: #00af87;
+  font-size: 1rem;
+}
+
+/* Reviews Footer */
+.reviews__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: var(--space-4);
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  flex-wrap: wrap;
+}
+
+.reviews__badge {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.reviews__badge > i {
+  font-size: 3.5rem;
+  color: #00af87;
+  flex-shrink: 0;
+}
+
+.reviews__badge-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reviews__badge-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+.reviews__badge-stats {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* Responsive: Reviews Section */
+@media (max-width: 991px) {
+  .reviews__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .review-card {
+    padding: 24px;
+  }
+
+  .reviews__footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .reviews__badge {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .reviews {
+    padding: var(--space-4) 0;
+  }
+
+  .reviews__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .reviews__header {
+    margin-bottom: var(--space-4);
+  }
+
+  .review-card {
+    padding: 24px;
+    gap: 16px;
+  }
+
+  .review-card__avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .review-card__name {
+    font-size: 1rem;
+  }
+
+  .review-card__rating {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .review-card__title {
+    font-size: 1rem;
+  }
+
+  .review-card__text {
+    font-size: 0.875rem;
+  }
+
+  .reviews__badge > i {
+    font-size: 2.5rem;
+  }
+
+  .reviews__badge-title {
+    font-size: 1rem;
+  }
+}
+
+/* --------------------------------------
+   12. UTILITIES
 -----------------------------------------*/
 .text-center { text-align: center; }
 .mt-0 { margin-top: 0; }

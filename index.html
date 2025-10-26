@@ -1163,6 +1163,284 @@
       </div>
     </section>
 
+    <!-- ========================================
+         SECTION 6: TRAVELLER REVIEWS
+    ========================================= -->
+    <section class="reviews" id="reviews">
+
+      <!-- JSON-LD Schema: Reviews -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Jahongir Travel Customer Reviews",
+        "itemListElement": [
+          {
+            "@type": "Review",
+            "position": 1,
+            "author": {
+              "@type": "Person",
+              "name": "Sarah Johnson",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "London",
+                "addressCountry": "GB"
+              }
+            },
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5"
+            },
+            "datePublished": "2024-09-15",
+            "reviewBody": "Jahongir and his team exceeded all our expectations. The attention to detail, local knowledge, and genuine hospitality made our 7-day tour truly magical. The guides were professional, the accommodations were excellent, and every moment was thoughtfully planned.",
+            "itemReviewed": {
+              "@type": "TravelAgency",
+              "name": "Jahongir Travel"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "TripAdvisor"
+            }
+          },
+          {
+            "@type": "Review",
+            "position": 2,
+            "author": {
+              "@type": "Person",
+              "name": "Michael Chen",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "San Francisco",
+                "addressCountry": "US"
+              }
+            },
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5"
+            },
+            "datePublished": "2024-10-08",
+            "reviewBody": "As a solo traveler, I felt completely safe and well-cared for. The small group size was perfect, and our guide's knowledge of Uzbek history and culture brought every monument to life. The food tour in Bukhara was an unexpected highlight!",
+            "itemReviewed": {
+              "@type": "TravelAgency",
+              "name": "Jahongir Travel"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "TripAdvisor"
+            }
+          },
+          {
+            "@type": "Review",
+            "position": 3,
+            "author": {
+              "@type": "Person",
+              "name": "Marie Dubois",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Paris",
+                "addressCountry": "FR"
+              }
+            },
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5"
+            },
+            "datePublished": "2024-08-22",
+            "reviewBody": "This was my third visit to Central Asia, and Jahongir Travel stands out for their authentic approach. They took us beyond the typical tourist spots and introduced us to local artisans and families. Highly recommend for anyone seeking genuine cultural immersion.",
+            "itemReviewed": {
+              "@type": "TravelAgency",
+              "name": "Jahongir Travel"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "TripAdvisor"
+            }
+          }
+        ]
+      }
+      </script>
+
+      <div class="container">
+
+        <!-- Section Header -->
+        <div class="reviews__header">
+          <p class="section-eyebrow">What Travelers Say</p>
+          <h2 class="section-title">Traveller Reviews</h2>
+          <p class="section-subtitle">
+            Real experiences from travelers who explored Uzbekistan with us
+          </p>
+        </div>
+
+        <!-- Reviews Grid -->
+        <div class="reviews__grid">
+
+          <!-- Review Card 1 -->
+          <article class="review-card">
+            <div class="review-card__header">
+              <img
+                src="images/avatar-sarah.webp"
+                alt="Sarah Johnson"
+                class="review-card__avatar"
+                width="60"
+                height="60"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="review-card__author">
+                <h3 class="review-card__name">Sarah Johnson</h3>
+                <p class="review-card__location">
+                  <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                  London, UK
+                </p>
+              </div>
+            </div>
+            <div class="review-card__rating">
+              <div class="stars" aria-label="Rated 5 out of 5 stars">
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+              </div>
+              <p class="review-card__date">Traveled in September 2024</p>
+            </div>
+            <div class="review-card__content">
+              <i class="fas fa-quote-left review-card__quote" aria-hidden="true"></i>
+              <h4 class="review-card__title">Unforgettable Silk Road Experience</h4>
+              <p class="review-card__text">
+                Jahongir and his team exceeded all our expectations. The attention to detail,
+                local knowledge, and genuine hospitality made our 7-day tour truly magical.
+                The guides were professional, the accommodations were excellent, and every
+                moment was thoughtfully planned.
+              </p>
+              <p class="review-card__source">
+                <i class="fab fa-tripadvisor" aria-hidden="true"></i>
+                Reviewed on TripAdvisor
+              </p>
+            </div>
+          </article>
+
+          <!-- Review Card 2 -->
+          <article class="review-card">
+            <div class="review-card__header">
+              <img
+                src="images/avatar-michael.webp"
+                alt="Michael Chen"
+                class="review-card__avatar"
+                width="60"
+                height="60"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="review-card__author">
+                <h3 class="review-card__name">Michael Chen</h3>
+                <p class="review-card__location">
+                  <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                  San Francisco, USA
+                </p>
+              </div>
+            </div>
+            <div class="review-card__rating">
+              <div class="stars" aria-label="Rated 5 out of 5 stars">
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+              </div>
+              <p class="review-card__date">Traveled in October 2024</p>
+            </div>
+            <div class="review-card__content">
+              <i class="fas fa-quote-left review-card__quote" aria-hidden="true"></i>
+              <h4 class="review-card__title">Best Travel Decision Ever</h4>
+              <p class="review-card__text">
+                As a solo traveler, I felt completely safe and well-cared for. The small group
+                size was perfect, and our guide's knowledge of Uzbek history and culture brought
+                every monument to life. The food tour in Bukhara was an unexpected highlight!
+              </p>
+              <p class="review-card__source">
+                <i class="fab fa-tripadvisor" aria-hidden="true"></i>
+                Reviewed on TripAdvisor
+              </p>
+            </div>
+          </article>
+
+          <!-- Review Card 3 -->
+          <article class="review-card">
+            <div class="review-card__header">
+              <img
+                src="images/avatar-marie.webp"
+                alt="Marie Dubois"
+                class="review-card__avatar"
+                width="60"
+                height="60"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="review-card__author">
+                <h3 class="review-card__name">Marie Dubois</h3>
+                <p class="review-card__location">
+                  <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                  Paris, France
+                </p>
+              </div>
+            </div>
+            <div class="review-card__rating">
+              <div class="stars" aria-label="Rated 5 out of 5 stars">
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+              </div>
+              <p class="review-card__date">Traveled in August 2024</p>
+            </div>
+            <div class="review-card__content">
+              <i class="fas fa-quote-left review-card__quote" aria-hidden="true"></i>
+              <h4 class="review-card__title">Authentic & Professional</h4>
+              <p class="review-card__text">
+                This was my third visit to Central Asia, and Jahongir Travel stands out for
+                their authentic approach. They took us beyond the typical tourist spots and
+                introduced us to local artisans and families. Highly recommend for anyone
+                seeking genuine cultural immersion.
+              </p>
+              <p class="review-card__source">
+                <i class="fab fa-tripadvisor" aria-hidden="true"></i>
+                Reviewed on TripAdvisor
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- TripAdvisor Badge and CTA -->
+        <div class="reviews__footer">
+          <div class="reviews__badge">
+            <i class="fab fa-tripadvisor" aria-hidden="true"></i>
+            <div class="reviews__badge-content">
+              <p class="reviews__badge-title">Rated Excellent on TripAdvisor</p>
+              <div class="stars" aria-label="Rated 4.9 out of 5 stars">
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+              </div>
+              <p class="reviews__badge-stats">4.9 / 5 based on 2,400+ reviews</p>
+            </div>
+          </div>
+          <a href="https://www.tripadvisor.com/jahongir-travel" target="_blank" rel="noopener" class="btn btn--primary btn--large">
+            <i class="fab fa-tripadvisor" aria-hidden="true"></i>
+            Read All Reviews
+          </a>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer (to be added in future phases) -->
