@@ -1,0 +1,82 @@
+REMARKS – HOMEPAGE SECTIONS (Trending Activities, Popular Tours, Top Places, Traveller Reviews)
+Role: Oversight notes for AI coder (Laravel + Filament v4). Dev executes the changes.
+-----------------------------------------------------------------------------------------------
+
+TOP PRIORITIES (FIX NOW)
+1) Trending Activities: Remove duplicated “watermark” headings that overlay titles.
+   - If created via ::after pseudo-element, disable or keep behind overlay.
+     CSS:
+       .activity-card::after { content: none; }  /* or keep but ensure layering */
+       .activity-card__content { position: relative; z-index: 2; }
+       .activity-card__overlay { z-index: 1; }
+2) Badge contrast (cards): Ensure white count pill maintains ≥4.5:1 contrast on gradients.
+   - CSS:
+       .activity-card__badge { background: rgba(255,255,255,.92); border: 1px solid rgba(0,0,0,.06); }
+3) Currency formatting: Use consistent thousands separators across Popular Tours (e.g., $890 → $890, $1,290 → $1,290).
+4) JSON-LD on list pages:
+   - For TouristTrip items, include "url" in each Offer, use numeric "price", keep organization/provider consistent.
+   - Remove third‑party Review schema (TripAdvisor) from the Reviews section to comply with Google guidelines (only mark up first‑party reviews hosted on our domain). Keep the visible content and badge.
+
+TRENDING ACTIVITIES (Grid)
+- Keep hybrid card (photo + gradient + icon + title + description + CTA + count).
+- Cards must be single clickable anchors with aria-labels.
+- Image handling: object-fit: cover; aspect-ratio: 16/10; explicit width/height.
+- Hover/focus: translateY(-3px) and stronger shadow (≤250ms). Ensure :focus-visible outline on entire card.
+- Dynamic order: sort by tours_count DESC (backend).
+- Count pill: top-right; semi-transparent or frosted glass effect.
+- Performance: add srcset/sizes, lazy-load all but first 1–2 visible cards.
+
+EXPLORE POPULAR TOURS (Cards)
+- Add srcset/sizes to all images; lazy-load all but first visible card.
+- Offers: numeric price, priceCurrency "USD", availability InStock, add offer url.
+- Ratings: aria-label="Rated X out of 5". Do not add Review/Rating schema to list page unless eligible.
+- Consistent casing (e.g., “Charvak Lake” vs “Charvak”). Pick one style and keep it.
+
+TOP PLACES TO TRAVEL (Destinations)
+- Verify geo coordinates for each city (Samarkand, Bukhara, Khiva, Tashkent).
+- If “X tours available” is not dynamic, remove or switch to “Popular destination” to avoid stale data.
+- Mobile: ensure text does not push CTA off-screen; truncate long lines if necessary.
+
+TRAVELLER REVIEWS
+- Keep visible testimonials and TripAdvisor link/badge.
+- Remove Review JSON-LD sourced from TripAdvisor (third‑party review markup on our domain is discouraged).
+- If later collecting on-site reviews, then add first‑party Review/aggregateRating schema on the relevant page.
+
+ACCESSIBILITY (Global)
+- Section headings: H2; card titles: H3.
+- Ensure keyboard focus is visible on:
+  - activity cards, tour cards, city cards, buttons (ghost and primary).
+- Alt text: keep descriptive and contextual (not file names).
+- Color contrast: verify all foreground text over gradients meets WCAG AA (≥4.5:1).
+
+PERFORMANCE
+- Explicit width/height on all images (done). Add decoding="async" (done) and srcset/sizes (todo).
+- Use WebP/AVIF where available; target ≤120 KB per image (≤80 KB ideal).
+- Defer icon fonts or switch to inline SVG for the six activity icons to cut blocking time.
+- Lighthouse target: CLS ≤ 0.05; LCP ≤ 2.5s on 3G/slow 4G.
+
+SEO
+- ItemList schema for Trending Activities is good—keep.
+- TouristTrip ItemList is fine; prefer including "url" fields; prices numeric.
+- Canonical URL: confirm final production domain before launch.
+- Internal anchor text should be descriptive (“Explore Cultural Tours”) for the CTA spans.
+
+QA CHECKLIST (MARK WHEN DONE)
+[ ] Watermark text removed or layered correctly on all 6 activity cards.
+[ ] Count pill contrast and border updated.
+[ ] Currency formatting consistent across all tour cards.
+[ ] TouristTrip schema validates (prices numeric, offer URLs present).
+[ ] Third‑party Review schema removed; page validates without warnings.
+[ ] Images use srcset/sizes and lazy‑loading strategy verified.
+[ ] Focus-visible works on every interactive element.
+[ ] Contrast over gradients passes WCAG AA.
+[ ] Grid breaks 3→2→1 at 1200/768 px as expected.
+[ ] Links route correctly; canonical verified.
+
+NOTES FOR DEV (Laravel + Filament v4)
+- Provide tours_count via Eloquent with withCount('tours'), sort DESC.
+- Expose category icon class and image path via fields; ensure null-safe fallbacks (gradient-only card).
+- Blade components: build <x-activity-card>, <x-tour-card>, <x-city-card> for reuse and consistent a11y.
+- Centralize gradient, radius, shadow tokens to stay consistent with Section 2.
+
+END OF REMARKS

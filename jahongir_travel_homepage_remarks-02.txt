@@ -1,0 +1,66 @@
+WebP-only fallback
+
+You’re serving only .webp. Add a JPEG fallback for broader compatibility:
+
+<picture>
+  <source srcset="images/guide-tourists.webp" type="image/webp">
+  <img src="images/guide-tourists.jpg" alt="Jahongir Travel guide with tourists at Registan Square" width="400" height="300" loading="lazy" decoding="async">
+</picture>
+
+
+(Do similarly for hero and other critical images.)
+
+sizes for responsive images
+
+Help the browser pick better candidates (especially hero and grid images):
+
+<img
+  src="images/tour-silk-road-classic.webp"
+  alt="Registan Square in Samarkand during Silk Road Classic tour"
+  width="400" height="300"
+  loading="lazy" decoding="async"
+  sizes="(min-width: 1200px) 400px, (min-width: 768px) 33vw, 90vw">
+
+
+defer main JS
+
+Prevent render blocking:
+
+<script src="js/main.js" defer></script>
+
+
+External link hardening
+
+You already add rel="noopener" on WhatsApp—add noreferrer too, and do the same for TripAdvisor:
+
+<a href="https://wa.me/998991234567" target="_blank" rel="noopener noreferrer" ...>
+<a href="https://www.tripadvisor.com/jahongir-travel" target="_blank" rel="noopener noreferrer" ...>
+
+
+ARIA & focus polish
+
+The “View All Tours / Explore All Destinations” buttons are anchors—perfect. Add aria-label with context for screen readers:
+
+<a href="/tours/" class="btn btn--ghost btn--large" aria-label="View all Uzbekistan tours"> ... </a>
+<a href="/destinations/" class="btn btn--ghost btn--large" aria-label="Explore all destinations in Uzbekistan"> ... </a>
+
+
+Nav toggle a11y
+
+Ensure your script toggles aria-expanded on the button and aria-hidden on the menu for mobile.
+
+Canonical + organization JSON-LD
+
+Optional: add an Organization JSON-LD with sameAs (Facebook/Instagram/TripAdvisor) if you have them; helps entity match.
+
+Keep only one primary meta description per page (yours is good).
+
+Hero LCP optimization
+
+Add sizes="100vw" and consider a 2–3 step srcset for the hero to reduce bytes on mobile.
+
+Keep fetchpriority="high" only on the hero image.
+
+Consistent number formatting
+
+In UI text, you mix 2,400+ and numeric strings in JSON-LD (which is fine). For visible UI, stick to one style (e.g., 2,400+ everywhere).

@@ -1,0 +1,163 @@
+COMBINED REMARKS – HOMEPAGE FIXES (CRITICAL)
+Sections: Explore Popular Uzbekistan Tours, Top Places to Travel, Traveller Reviews
+Role: Oversight notes for AI coder (Laravel + Filament v4). Implement immediately.
+==================================================================================
+
+SECTION A — EXPLORE POPULAR UZBEKISTAN TOURS (HOTFIX)
+Status: Cards appear tiny; massive whitespace; layout scale off.
+
+TOP SYMPTOMS
+- Micro-sized cards/CTAs; huge empty space between sections.
+- Images look collapsed or missing height; grid not using full width.
+- Section header looks undersized and too tight.
+
+LIKELY ROOT CAUSES
+1) Shrinking ancestor width or transform/scale.
+2) Grid not spanning container (bad max-width / wrong grid template).
+3) Missing explicit heights/aspect-ratio on media; cards not equal height.
+4) Mobile spacing applied at desktop breakpoints.
+
+HOTFIX SPECS
+1) Container & Spacing
+   .tours { padding: 80px 0; background: var(--color-bg,#FAF8F4); }
+   @media (max-width:1200px){ .tours{ padding:56px 0; } }
+   @media (max-width:768px){ .tours{ padding:40px 0; } }
+   .container--wide { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+2) Grid
+   .tours__grid{
+     display:grid;
+     grid-template-columns: repeat(3, minmax(0,1fr));
+     gap:24px; align-items: stretch;
+   }
+   @media (max-width:1024px){ .tours__grid{ grid-template-columns: repeat(2,1fr); gap:20px; } }
+   @media (max-width:640px){ .tours__grid{ grid-template-columns: 1fr; gap:16px; } }
+
+3) Cards (equal height)
+   .tour-card{ display:flex; flex-direction:column; min-height:420px; border-radius:16px;
+               background:#fff; box-shadow:0 8px 24px rgba(0,0,0,.08); overflow:hidden; }
+   .tour-card__media{ position:relative; aspect-ratio:4/3; background:#eaeaea; }
+   .tour-card__media img{ width:100%; height:100%; object-fit:cover; display:block; }
+   .tour-card__content{ flex:1; display:flex; flex-direction:column; gap:12px; padding:16px; }
+   .tour-card__footer{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+
+4) Typography & Buttons (scale)
+   .section-title{ font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem); }
+   .tour-card__title a{ font-weight:600; font-size: clamp(1rem, .9rem + .5vw, 1.125rem); line-height:1.35; }
+   .tour-card__price-amount{ font-weight:700; font-size: clamp(1.1rem, 1rem + .6vw, 1.35rem); }
+   .btn{ font-size: clamp(.9rem, .85rem + .2vw, 1rem); padding:.65rem 1rem; border-radius:10px; }
+
+5) Remove unintended transforms/scales; ensure no ancestor sets font-size:10px or transform:scale(.5).
+
+6) Images: add srcset/sizes + width/height to prevent CLS.
+
+QA — ACCEPTANCE
+[ ] ≥1280px: 3 cols; equal heights; no huge whitespace.
+[ ] 1024px: 2 cols; <640px: 1 col; spacing 24/20/16px.
+[ ] Readable title/price/CTA scale; images fill area (object-fit:cover).
+[ ] CLS ≤ 0.05; currency formatting consistent ($450, $680, $890, $1,290, $1,850).
+
+----------------------------------------------------------------------------------
+
+SECTION B — TOP PLACES TO TRAVEL (HOTFIX)
+Status: Cards look washed/low-contrast; CTAs small; uneven spacing.
+
+TOP SYMPTOMS
+- Grey overlay too opaque, reducing readability and image appeal.
+- CTA line can wrap awkwardly; stats line may push CTA off.
+- Grid scale smaller than Activities; inconsistent spacing.
+
+LIKELY ROOT CAUSES
+1) Overlay opacity set too high; text shadows missing.
+2) Grid gaps or container width mismatched to other sections.
+3) Typography sizes not scaled with clamp; mobile rules leaking in.
+4) Stats/CTA block not flexed; causing push/wrap on mobile.
+
+HOTFIX SPECS
+1) Grid & Container
+   .places { padding: 72px 0; }
+   .places__grid{
+     display:grid; grid-template-columns: repeat(4, minmax(0,1fr));
+     gap:24px; align-items: stretch;
+   }
+   @media (max-width:1200px){ .places__grid{ grid-template-columns: repeat(3,1fr); } }
+   @media (max-width:900px){ .places__grid{ grid-template-columns: repeat(2,1fr); } }
+   @media (max-width:600px){ .places__grid{ grid-template-columns: 1fr; gap:16px; } }
+
+2) City Card
+   .city-card{ border-radius:18px; overflow:hidden; background:#000; }
+   .city-card__media{ position:relative; aspect-ratio: 3/4; }
+   .city-card__media img{ width:100%; height:100%; object-fit:cover; display:block; }
+   .city-card__overlay{
+     position:absolute; inset:0;
+     background: linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,.6) 100%);
+   }
+   .city-card__content{ position:absolute; inset:auto 0 0 0; padding:16px; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.5); }
+   .city-card__title{ font-size: clamp(1.125rem, 1rem + .6vw, 1.5rem); font-weight:700; }
+   .city-card__cta{ display:inline-flex; align-items:center; gap:8px; margin-top:6px;
+                    background: rgba(255,255,255,.12); backdrop-filter: blur(2px);
+                    padding:8px 12px; border-radius:10px; }
+   .city-card__stats{ display:flex; align-items:center; gap:8px; opacity:.9; }
+
+3) Prevent CTA overflow on mobile:
+   .city-card__content{ display:flex; flex-direction:column; gap:6px; }
+   .city-card__cta{ white-space:nowrap; font-size: clamp(.9rem, .85rem + .2vw, 1rem); }
+
+QA — ACCEPTANCE
+[ ] Overlay shows image detail; text easily readable (contrast AA).
+[ ] Grid: 4→3→2→1 columns at stated breakpoints; consistent gaps.
+[ ] CTA does not wrap or push off-screen on small devices.
+[ ] Images fill area; no distortion; equal heights across row.
+
+----------------------------------------------------------------------------------
+
+SECTION C — TRAVELLER REVIEWS (HOTFIX)
+Status: Cards okay but scale/spacing can feel cramped relative to other sections; schema compliance issue.
+
+TOP SYMPTOMS
+- Review cards look slightly small; header spacing tight.
+- Third‑party Review JSON-LD included (TripAdvisor) — not recommended.
+
+LIKELY ROOT CAUSES
+1) Typography scale set smaller than global tokens.
+2) Section paddings at mobile values on desktop.
+3) Marking up reviews not collected on-site.
+
+HOTFIX SPECS
+1) Section & Grid
+   .reviews { padding: 72px 0; }
+   .reviews__grid{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:24px; }
+   @media (max-width:1024px){ .reviews__grid{ grid-template-columns: repeat(2,1fr); } }
+   @media (max-width:640px){ .reviews__grid{ grid-template-columns: 1fr; gap:16px; } }
+
+2) Card Scale
+   .review-card{ border-radius:16px; background:#fff; box-shadow:0 8px 24px rgba(0,0,0,.08); padding:16px; }
+   .review-card__title{ font-size: clamp(1rem, .95rem + .3vw, 1.125rem); font-weight:600; }
+   .review-card__text{ line-height:1.55; }
+   .review-card__avatar{ border-radius:50%; }
+
+3) Schema Compliance
+   - Remove Review JSON-LD for TripAdvisor quotes. Keep visual content and badge.
+   - Only add Review/aggregateRating schema if reviews are collected on our domain.
+
+QA — ACCEPTANCE
+[ ] 3→2→1 responsive grid with even spacing.
+[ ] Readable text scale; cards align with rest of page design system.
+[ ] No third‑party review markup present; badge and outbound link intact.
+
+----------------------------------------------------------------------------------
+
+GLOBAL CHECKS
+- Add srcset/sizes on all images; keep width/height attributes; use WebP/AVIF where possible.
+- Ensure :focus-visible rings on all interactive elements (cards, links, buttons).
+- Confirm consistent blue gradient, shadows, and radii with Section 2 for cohesion.
+- Validate ItemList/TouristTrip JSON-LD (numeric prices; include offer URLs).
+- Lighthouse targets: CLS ≤ 0.05; LCP ≤ 2.5s; color-contrast AA everywhere.
+
+DEBUGGING TIPS
+- Use DevTools Grid overlay to verify actual column widths.
+- Temporarily add: * { outline:1px solid rgba(255,0,0,.05); } to spot shrinking parents.
+- Check computed font-size at .tours, .places, .reviews ancestors.
+- Search CSS for stray transform: scale(), zoom, or extremely small base font sizes.
+
+END OF REMARKS
