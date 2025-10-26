@@ -142,7 +142,72 @@
         "name": "Bottled water"
       }
     ],
-    "additionalInfo": "Not included: Tips, personal expenses, lunch"
+    "additionalInfo": "Not included: Tips, personal expenses, lunch",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "47",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Sarah Mitchell"
+        },
+        "datePublished": "2024-10-15",
+        "reviewBody": "Absolutely breathtaking! Our guide was incredibly knowledgeable about the history of Samarkand and made every monument come alive with stories. The Registan Square at sunset was magical. Highly recommend this tour to anyone visiting Uzbekistan."
+      },
+      {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "James Chen"
+        },
+        "datePublished": "2024-09-28",
+        "reviewBody": "Perfect tour for photography enthusiasts! Our guide knew all the best spots and angles for photos. The Shah-i-Zinda necropolis was stunning with its blue tiles. Great pace, not rushed at all. Worth every penny!"
+      },
+      {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Emma Dubois"
+        },
+        "datePublished": "2024-08-12",
+        "reviewBody": "An unforgettable experience! The guide spoke excellent French and English. The small group size meant we could ask lots of questions. Bibi-Khanym Mosque was incredible. Hotel pickup was punctual. Thank you, Jahongir Travel!"
+      },
+      {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Michael O'Brien"
+        },
+        "datePublished": "2024-07-22",
+        "reviewBody": "Best tour we did in Central Asia! The architecture is mind-blowing and our guide's passion for Samarkand's history was contagious. Four hours flew by. Great value for money. Would definitely book with Jahongir Travel again."
+      }
+    ]
   }
   </script>
 </head>
@@ -762,6 +827,283 @@
             </div>
           </section>
 
+          <!-- Extra Services Section -->
+          <section class="tour-extras" id="extras">
+            <h2 class="section-title">Optional Add-Ons</h2>
+
+            <p class="section-intro">Enhance your tour experience with these optional services. Select any add-ons when booking.</p>
+
+            <div class="extras-grid">
+
+              <!-- Service 1: Private Transport -->
+              <div class="extra-service-card">
+                <div class="extra-service__icon">
+                  <i class="fas fa-car" aria-hidden="true"></i>
+                </div>
+                <div class="extra-service__content">
+                  <h3 class="extra-service__title">Private Transport Upgrade</h3>
+                  <p class="extra-service__description">
+                    Upgrade to a private, air-conditioned vehicle for your group only. Includes flexible pickup times and the option to customize the route.
+                  </p>
+                  <div class="extra-service__price">
+                    <span class="price-label">From</span>
+                    <span class="price-value" data-service-price="30.00">$30.00</span>
+                    <span class="price-unit">per group</span>
+                  </div>
+                </div>
+                <div class="extra-service__action">
+                  <input
+                    type="checkbox"
+                    id="extra-transport"
+                    name="extra-transport"
+                    value="30.00"
+                    class="extra-checkbox"
+                    aria-label="Add private transport upgrade">
+                  <label for="extra-transport" class="extra-label">Add to booking</label>
+                </div>
+              </div>
+
+              <!-- Service 2: Traditional Lunch -->
+              <div class="extra-service-card">
+                <div class="extra-service__icon">
+                  <i class="fas fa-utensils" aria-hidden="true"></i>
+                </div>
+                <div class="extra-service__content">
+                  <h3 class="extra-service__title">Traditional Uzbek Lunch</h3>
+                  <p class="extra-service__description">
+                    Enjoy an authentic 3-course Uzbek meal at a traditional restaurant. Includes plov (pilaf), fresh salads, samsa, and green tea. Vegetarian options available.
+                  </p>
+                  <div class="extra-service__price">
+                    <span class="price-label">From</span>
+                    <span class="price-value" data-service-price="15.00">$15.00</span>
+                    <span class="price-unit">per person</span>
+                  </div>
+                </div>
+                <div class="extra-service__action">
+                  <input
+                    type="checkbox"
+                    id="extra-lunch"
+                    name="extra-lunch"
+                    value="15.00"
+                    class="extra-checkbox"
+                    aria-label="Add traditional Uzbek lunch">
+                  <label for="extra-lunch" class="extra-label">Add to booking</label>
+                </div>
+              </div>
+
+              <!-- Service 3: Professional Photographer -->
+              <div class="extra-service-card">
+                <div class="extra-service__icon">
+                  <i class="fas fa-camera" aria-hidden="true"></i>
+                </div>
+                <div class="extra-service__content">
+                  <h3 class="extra-service__title">Professional Photography Service</h3>
+                  <p class="extra-service__description">
+                    Capture your memories with a professional photographer. Receive 50+ high-resolution edited photos delivered within 48 hours via digital download.
+                  </p>
+                  <div class="extra-service__price">
+                    <span class="price-label">From</span>
+                    <span class="price-value" data-service-price="80.00">$80.00</span>
+                    <span class="price-unit">per session</span>
+                  </div>
+                </div>
+                <div class="extra-service__action">
+                  <input
+                    type="checkbox"
+                    id="extra-photographer"
+                    name="extra-photographer"
+                    value="80.00"
+                    class="extra-checkbox"
+                    aria-label="Add professional photography service">
+                  <label for="extra-photographer" class="extra-label">Add to booking</label>
+                </div>
+              </div>
+
+              <!-- Service 4: Souvenirs & Shopping -->
+              <div class="extra-service-card">
+                <div class="extra-service__icon">
+                  <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+                </div>
+                <div class="extra-service__content">
+                  <h3 class="extra-service__title">Guided Shopping Experience</h3>
+                  <p class="extra-service__description">
+                    Visit authentic local markets and artisan workshops. Your guide will help you find quality souvenirs, textiles, and ceramics at fair prices. Includes transport to 3 recommended shops.
+                  </p>
+                  <div class="extra-service__price">
+                    <span class="price-label">From</span>
+                    <span class="price-value" data-service-price="20.00">$20.00</span>
+                    <span class="price-unit">per group</span>
+                  </div>
+                </div>
+                <div class="extra-service__action">
+                  <input
+                    type="checkbox"
+                    id="extra-shopping"
+                    name="extra-shopping"
+                    value="20.00"
+                    class="extra-checkbox"
+                    aria-label="Add guided shopping experience">
+                  <label for="extra-shopping" class="extra-label">Add to booking</label>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="extras-note">
+              <i class="fas fa-info-circle" aria-hidden="true"></i>
+              <p>All add-ons must be selected at booking time. Prices are subject to change based on group size and availability. Contact us for custom packages.</p>
+            </div>
+          </section>
+
+          <!-- Customer Reviews Section -->
+          <section class="tour-reviews" id="reviews">
+            <div class="reviews-header">
+              <h2 class="section-title">Customer Reviews</h2>
+              <div class="reviews-summary">
+                <div class="reviews-rating">
+                  <span class="rating-score">5.0</span>
+                  <div class="rating-stars">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                  </div>
+                  <span class="rating-count">Based on 47 reviews</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="reviews-list">
+
+              <!-- Review 1 -->
+              <article class="review-card">
+                <div class="review-header">
+                  <div class="reviewer-info">
+                    <img src="images/reviewers/avatar-placeholder.jpg" alt="" class="reviewer-avatar" width="48" height="48" loading="lazy">
+                    <div class="reviewer-details">
+                      <h3 class="reviewer-name">Sarah Mitchell</h3>
+                      <div class="review-meta">
+                        <span class="review-location">United States</span>
+                        <span class="review-separator">•</span>
+                        <time class="review-date" datetime="2024-10-15">October 2024</time>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-rating">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <span class="sr-only">5 out of 5 stars</span>
+                  </div>
+                </div>
+                <div class="review-content">
+                  <p class="review-text">
+                    Absolutely breathtaking! Our guide was incredibly knowledgeable about the history of Samarkand and made every monument come alive with stories. The Registan Square at sunset was magical. Highly recommend this tour to anyone visiting Uzbekistan.
+                  </p>
+                </div>
+              </article>
+
+              <!-- Review 2 -->
+              <article class="review-card">
+                <div class="review-header">
+                  <div class="reviewer-info">
+                    <img src="images/reviewers/avatar-placeholder.jpg" alt="" class="reviewer-avatar" width="48" height="48" loading="lazy">
+                    <div class="reviewer-details">
+                      <h3 class="reviewer-name">James Chen</h3>
+                      <div class="review-meta">
+                        <span class="review-location">Singapore</span>
+                        <span class="review-separator">•</span>
+                        <time class="review-date" datetime="2024-09-28">September 2024</time>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-rating">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <span class="sr-only">5 out of 5 stars</span>
+                  </div>
+                </div>
+                <div class="review-content">
+                  <p class="review-text">
+                    Perfect tour for photography enthusiasts! Our guide knew all the best spots and angles for photos. The Shah-i-Zinda necropolis was stunning with its blue tiles. Great pace, not rushed at all. Worth every penny!
+                  </p>
+                </div>
+              </article>
+
+              <!-- Review 3 -->
+              <article class="review-card">
+                <div class="review-header">
+                  <div class="reviewer-info">
+                    <img src="images/reviewers/avatar-placeholder.jpg" alt="" class="reviewer-avatar" width="48" height="48" loading="lazy">
+                    <div class="reviewer-details">
+                      <h3 class="reviewer-name">Emma Dubois</h3>
+                      <div class="review-meta">
+                        <span class="review-location">France</span>
+                        <span class="review-separator">•</span>
+                        <time class="review-date" datetime="2024-08-12">August 2024</time>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-rating">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <span class="sr-only">5 out of 5 stars</span>
+                  </div>
+                </div>
+                <div class="review-content">
+                  <p class="review-text">
+                    An unforgettable experience! The guide spoke excellent French and English. The small group size meant we could ask lots of questions. Bibi-Khanym Mosque was incredible. Hotel pickup was punctual. Thank you, Jahongir Travel!
+                  </p>
+                </div>
+              </article>
+
+              <!-- Review 4 -->
+              <article class="review-card">
+                <div class="review-header">
+                  <div class="reviewer-info">
+                    <img src="images/reviewers/avatar-placeholder.jpg" alt="" class="reviewer-avatar" width="48" height="48" loading="lazy">
+                    <div class="reviewer-details">
+                      <h3 class="reviewer-name">Michael O'Brien</h3>
+                      <div class="review-meta">
+                        <span class="review-location">Australia</span>
+                        <span class="review-separator">•</span>
+                        <time class="review-date" datetime="2024-07-22">July 2024</time>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-rating">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <span class="sr-only">5 out of 5 stars</span>
+                  </div>
+                </div>
+                <div class="review-content">
+                  <p class="review-text">
+                    Best tour we did in Central Asia! The architecture is mind-blowing and our guide's passion for Samarkand's history was contagious. Four hours flew by. Great value for money. Would definitely book with Jahongir Travel again.
+                  </p>
+                </div>
+              </article>
+
+            </div>
+
+            <div class="reviews-cta">
+              <p class="reviews-cta-text">Have you taken this tour? Share your experience!</p>
+              <a href="#booking-form" class="btn btn--secondary">Write a Review</a>
+            </div>
+          </section>
+
         </main>
 
         <!-- RIGHT COLUMN: Booking Sidebar -->
@@ -976,7 +1318,228 @@
     </div>
   </div>
 
-  <!-- Content will be added in subsequent tasks -->
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+  <footer class="site-footer" role="contentinfo" data-theme="dark">
+
+    <!-- Desktop/Tablet Grid Layout (≥640px) -->
+    <div class="footer-main footer-main--desktop">
+
+      <!-- Brand Column -->
+      <div class="footer-brand">
+        <a href="/" class="footer-brand__link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28" fill="none" aria-hidden="true" class="footer-brand__logo">
+            <circle cx="14" cy="8" r="4" fill="#F4B400" opacity="0.9"/>
+            <path d="M 4 24 L 10 14 L 14 20 L 18 14 L 24 24 Z" fill="#E2E8F0"/>
+            <path d="M 8 24 L 14 16 L 20 24 Z" fill="#FFFFFF"/>
+            <rect x="2" y="24" width="24" height="2" fill="#E2E8F0" opacity="0.6"/>
+          </svg>
+          <span class="footer-brand__text">Jahongir Travel</span>
+        </a>
+        <p class="footer-brand__tagline">Tailor-made Uzbekistan tours since 2012.</p>
+        <address class="footer-brand__contact">
+          <a href="mailto:info@jahongirtravel.com">info@jahongirtravel.com</a><br>
+          <a href="tel:+998991234567">+998 99 123 4567</a><br>
+          <span class="footer-brand__location">Samarkand, Uzbekistan</span>
+        </address>
+      </div>
+
+      <!-- Company Navigation -->
+      <nav class="footer-nav" aria-labelledby="footer-company">
+        <h3 id="footer-company" class="footer-nav__title">Company</h3>
+        <ul class="footer-nav__list">
+          <li><a href="/about">About us</a></li>
+          <li><a href="/careers">Careers</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/partners">Partner</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Services Navigation -->
+      <nav class="footer-nav" aria-labelledby="footer-services">
+        <h3 id="footer-services" class="footer-nav__title">Services</h3>
+        <ul class="footer-nav__list">
+          <li><a href="/tours">Tour booking</a></li>
+          <li><a href="/visa">Visa online</a></li>
+          <li><a href="/guides">Travel guide</a></li>
+          <li><a href="/car-service">Car service</a></li>
+          <li><a href="/sim">SIM &amp; eSIM</a></li>
+        </ul>
+      </nav>
+
+      <!-- Help Navigation -->
+      <nav class="footer-nav" aria-labelledby="footer-help">
+        <h3 id="footer-help" class="footer-nav__title">Need help?</h3>
+        <ul class="footer-nav__list">
+          <li><a href="/faqs">FAQs</a></li>
+          <li><a href="/support">Customer care</a></li>
+          <li><a href="/safety">Safety tips</a></li>
+          <li><a href="/privacy">Privacy policy</a></li>
+          <li><a href="/terms">Terms of use</a></li>
+        </ul>
+      </nav>
+
+      <!-- Social & Locale Column -->
+      <div class="footer-social">
+        <h3 class="footer-social__title">Connect</h3>
+        <ul class="footer-social__list">
+          <li>
+            <a href="https://facebook.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Follow Jahongir Travel on Facebook">
+              <i class="fab fa-facebook" aria-hidden="true"></i>
+              <span>Facebook</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://instagram.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Follow Jahongir Travel on Instagram">
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+              <span>Instagram</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://twitter.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Follow Jahongir Travel on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+              <span>Twitter</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://youtube.com/@jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to Jahongir Travel on YouTube">
+              <i class="fab fa-youtube" aria-hidden="true"></i>
+              <span>YouTube</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://pinterest.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Follow Jahongir Travel on Pinterest">
+              <i class="fab fa-pinterest" aria-hidden="true"></i>
+              <span>Pinterest</span>
+            </a>
+          </li>
+        </ul>
+        <button type="button" class="footer-locale" aria-haspopup="menu" aria-expanded="false">
+          <i class="fas fa-globe" aria-hidden="true"></i>
+          <span>EN / USD</span>
+          <i class="fas fa-chevron-down" aria-hidden="true"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Compact Layout (<640px) -->
+    <div class="footer-main footer-main--mobile">
+
+      <!-- Brand & Contact -->
+      <div class="footer-brand">
+        <a href="/" class="footer-brand__link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28" fill="none" aria-hidden="true" class="footer-brand__logo">
+            <circle cx="14" cy="8" r="4" fill="#F4B400" opacity="0.9"/>
+            <path d="M 4 24 L 10 14 L 14 20 L 18 14 L 24 24 Z" fill="#E2E8F0"/>
+            <path d="M 8 24 L 14 16 L 20 24 Z" fill="#FFFFFF"/>
+            <rect x="2" y="24" width="24" height="2" fill="#E2E8F0" opacity="0.6"/>
+          </svg>
+          <span class="footer-brand__text">Jahongir Travel</span>
+        </a>
+        <p class="footer-brand__tagline">Tailor-made Uzbekistan tours since 2012.</p>
+        <address class="footer-brand__contact">
+          <a href="mailto:info@jahongirtravel.com" class="footer-brand__contact-link">info@jahongirtravel.com</a>
+          <a href="tel:+998991234567" class="footer-brand__contact-link">+998 99 123 4567</a>
+        </address>
+
+        <!-- Social Action Chips -->
+        <ul class="footer-chips">
+          <li>
+            <a href="https://wa.me/998991234567" target="_blank" rel="noopener noreferrer" class="footer-chip" aria-label="Contact via WhatsApp">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              <span>WhatsApp</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://instagram.com/jahongirtravel" target="_blank" rel="noopener noreferrer" class="footer-chip" aria-label="Follow on Instagram">
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+              <span>Instagram</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://facebook.com/jahongirtravel" target="_blank" rel="noopener noreferrer" class="footer-chip" aria-label="Follow on Facebook">
+              <i class="fab fa-facebook" aria-hidden="true"></i>
+              <span>Facebook</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <hr class="footer-divider" aria-hidden="true">
+
+      <!-- Accordion Navigation -->
+      <section class="footer-accordion" aria-label="Footer navigation">
+
+        <details class="footer-accordion__item">
+          <summary class="footer-accordion__summary">Company</summary>
+          <nav class="footer-accordion__panel" aria-label="Company">
+            <a href="/about">About us</a>
+            <a href="/careers">Careers</a>
+            <a href="/blog">Blog</a>
+            <a href="/partners">Partner</a>
+            <a href="/contact">Contact</a>
+          </nav>
+        </details>
+
+        <details class="footer-accordion__item">
+          <summary class="footer-accordion__summary">Services</summary>
+          <nav class="footer-accordion__panel" aria-label="Services">
+            <a href="/tours">Tour booking</a>
+            <a href="/visa">Visa online</a>
+            <a href="/guides">Travel guide</a>
+            <a href="/car-service">Car service</a>
+            <a href="/sim">SIM &amp; eSIM</a>
+          </nav>
+        </details>
+
+        <details class="footer-accordion__item">
+          <summary class="footer-accordion__summary">Need help?</summary>
+          <nav class="footer-accordion__panel" aria-label="Support">
+            <a href="/faqs">FAQs</a>
+            <a href="/support">Customer care</a>
+            <a href="/safety">Safety tips</a>
+            <a href="/privacy">Privacy policy</a>
+            <a href="/terms">Terms of use</a>
+          </nav>
+        </details>
+
+      </section>
+
+      <hr class="footer-divider" aria-hidden="true">
+
+      <!-- Locale Switcher (Mobile Full-Width) -->
+      <button type="button" class="footer-locale footer-locale--mobile" aria-haspopup="menu" aria-expanded="false">
+        <span class="footer-locale__icon" aria-hidden="true">🌐</span>
+        <span class="footer-locale__label">EN / USD</span>
+        <i class="fas fa-chevron-down footer-locale__chevron" aria-hidden="true"></i>
+      </button>
+
+    </div>
+
+    <!-- Bottom Section (Shared) -->
+    <div class="footer-bottom">
+      <div class="footer-bottom__wrap">
+        <p class="footer-bottom__copyright">© 2025 Jahongir Travel. All rights reserved.</p>
+        <nav class="footer-bottom__legal" aria-label="Legal information">
+          <a href="/privacy">Privacy</a>
+          <span class="footer-bottom__separator" aria-hidden="true">•</span>
+          <a href="/terms">Terms</a>
+          <span class="footer-bottom__separator" aria-hidden="true">•</span>
+          <a href="/cookies">Cookies</a>
+        </nav>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+  <!-- Main JavaScript -->
+  <script src="js/main.js" defer></script>
 
 </body>
 </html>
