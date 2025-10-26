@@ -142,4 +142,36 @@ window.addEventListener('load', () => {
   }
 });
 
+// ==========================================
+// 6. FOOTER - LOCALE SWITCHER
+// ==========================================
+const localeBtn = document.querySelector('.footer-locale');
+
+if (localeBtn) {
+  localeBtn.addEventListener('click', () => {
+    const expanded = localeBtn.getAttribute('aria-expanded') === 'true';
+    localeBtn.setAttribute('aria-expanded', !expanded);
+
+    // TODO: Show dropdown menu with language/currency options
+    // This will be connected to Laravel backend in Phase 2
+    console.log('Locale switcher clicked - awaiting backend integration');
+  });
+
+  // Close on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && localeBtn.getAttribute('aria-expanded') === 'true') {
+      localeBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+// ==========================================
+// 7. FOOTER - DYNAMIC COPYRIGHT YEAR
+// ==========================================
+const copyrightEl = document.querySelector('.footer-bottom__copyright');
+if (copyrightEl) {
+  const currentYear = new Date().getFullYear();
+  copyrightEl.textContent = `© ${currentYear} Jahongir Travel. All rights reserved.`;
+}
+
 console.log('Jahongir Travel - JavaScript Loaded Successfully ✓');
