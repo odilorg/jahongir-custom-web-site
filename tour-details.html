@@ -8,6 +8,8 @@
   <title>Samarkand City Tour: Registan Square | Jahongir Travel</title>
   <meta name="description" content="Explore Samarkand's UNESCO World Heritage sites on a 4-hour private tour. Visit Registan Square, Shah-i-Zinda, and Bibi-Khanym Mosque with an expert local guide.">
   <link rel="canonical" href="https://jahongirtravel.com/tours/samarkand-city-tour">
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -778,6 +780,9 @@
             }
           </script>
 
+          <!-- Screen Reader Live Region for Dynamic Updates -->
+          <div aria-live="polite" aria-atomic="true" class="sr-only" id="booking-status"></div>
+
           <!-- Skeleton Loader -->
           <div class="booking-sidebar__skeleton" aria-hidden="true">
             <div class="skeleton skeleton--sidebar-top"></div>
@@ -803,7 +808,7 @@
               <div class="form-group">
                 <label for="tour-date" class="form-label">
                   <i class="far fa-calendar-alt" aria-hidden="true"></i>
-                  Select Date
+                  Select Date *
                 </label>
                 <input
                   type="date"
@@ -812,15 +817,19 @@
                   class="form-input"
                   required
                   aria-required="true"
+                  aria-describedby="date-hint date-error"
+                  autocomplete="off"
                   min=""
                   data-min-date-offset="1">
+                <span id="date-hint" class="form-hint">Select your preferred tour date (at least 24 hours in advance)</span>
+                <span id="date-error" class="form-error" role="alert"></span>
               </div>
 
               <!-- Guest Selector -->
               <div class="form-group">
                 <label for="tour-guests" class="form-label">
                   <i class="fas fa-users" aria-hidden="true"></i>
-                  Number of Guests
+                  Number of Guests *
                 </label>
                 <select
                   id="tour-guests"
@@ -828,6 +837,8 @@
                   class="form-input"
                   required
                   aria-required="true"
+                  aria-describedby="guests-hint guests-error"
+                  autocomplete="off"
                   data-price-calculator="true">
                   <option value="1">1 guest</option>
                   <option value="2" selected>2 guests</option>
@@ -840,6 +851,8 @@
                   <option value="9">9 guests</option>
                   <option value="10">10 guests</option>
                 </select>
+                <span id="guests-hint" class="form-hint">Maximum 10 guests per booking</span>
+                <span id="guests-error" class="form-error" role="alert"></span>
               </div>
 
               <!-- Action Buttons -->
