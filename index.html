@@ -411,6 +411,527 @@
       </div>
     </section>
 
+    <!-- ========================================
+         SECTION 4: EXPLORE POPULAR TOURS
+    ========================================= -->
+    <section class="tours" id="tours">
+
+      <!-- JSON-LD Schema: TouristTrip for Featured Tours -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Popular Uzbekistan Tours",
+        "itemListElement": [
+          {
+            "@type": "TouristTrip",
+            "position": 1,
+            "name": "5-Day Silk Road Classic: Samarkand, Bukhara & Khiva",
+            "description": "Experience the iconic cities of the Silk Road with expert local guides. Visit UNESCO World Heritage sites in Samarkand, Bukhara, and Khiva.",
+            "touristType": "Cultural & Historical",
+            "itinerary": {
+              "@type": "ItemList",
+              "itemListElement": [
+                {"@type": "City", "name": "Samarkand"},
+                {"@type": "City", "name": "Bukhara"},
+                {"@type": "City", "name": "Khiva"}
+              ]
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "890",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "890",
+                "priceCurrency": "USD",
+                "referenceQuantity": {"@type": "QuantitativeValue", "value": "1", "unitText": "person"}
+              }
+            },
+            "provider": {
+              "@type": "TravelAgency",
+              "name": "Jahongir Travel"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "5",
+              "reviewCount": "148"
+            }
+          },
+          {
+            "@type": "TouristTrip",
+            "position": 2,
+            "name": "3-Day Chimgan Mountain Adventure & Charvak Lake",
+            "description": "Escape to the mountains for trekking, nature, and outdoor adventures in Uzbekistan's stunning Chimgan region.",
+            "touristType": "Mountain & Adventure",
+            "itinerary": {
+              "@type": "ItemList",
+              "itemListElement": [
+                {"@type": "City", "name": "Chimgan"},
+                {"@type": "City", "name": "Charvak"}
+              ]
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "450",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            },
+            "provider": {
+              "@type": "TravelAgency",
+              "name": "Jahongir Travel"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.5",
+              "reviewCount": "92"
+            }
+          },
+          {
+            "@type": "TouristTrip",
+            "position": 3,
+            "name": "7-Day Cultural Immersion: Crafts, Cuisine & Traditions",
+            "description": "Deep dive into Uzbek culture through hands-on craft workshops, traditional cooking classes, and immersive local experiences.",
+            "touristType": "Cultural Immersion",
+            "itinerary": {
+              "@type": "ItemList",
+              "itemListElement": [
+                {"@type": "City", "name": "Samarkand"},
+                {"@type": "City", "name": "Bukhara"}
+              ]
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "1290",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            },
+            "provider": {
+              "@type": "TravelAgency",
+              "name": "Jahongir Travel"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "5",
+              "reviewCount": "215"
+            }
+          },
+          {
+            "@type": "TouristTrip",
+            "position": 4,
+            "name": "4-Day Fergana Valley: Pottery, Silk & Ancient Cities",
+            "description": "Discover the lesser-known Fergana Valley, famous for traditional pottery, silk weaving, and authentic Uzbek hospitality.",
+            "touristType": "Cultural & Crafts",
+            "itinerary": {
+              "@type": "ItemList",
+              "itemListElement": [
+                {"@type": "City", "name": "Tashkent"},
+                {"@type": "City", "name": "Fergana"},
+                {"@type": "City", "name": "Kokand"}
+              ]
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "680",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            },
+            "provider": {
+              "@type": "TravelAgency",
+              "name": "Jahongir Travel"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.5",
+              "reviewCount": "78"
+            }
+          },
+          {
+            "@type": "TouristTrip",
+            "position": 5,
+            "name": "10-Day Grand Silk Road: Complete Uzbekistan Experience",
+            "description": "The ultimate Uzbekistan journey covering all major cities and UNESCO sites along the ancient Silk Road.",
+            "touristType": "Grand Tour",
+            "offers": {
+              "@type": "Offer",
+              "price": "1850",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            },
+            "provider": {
+              "@type": "TravelAgency",
+              "name": "Jahongir Travel"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "5",
+              "reviewCount": "320"
+            }
+          },
+          {
+            "@type": "TouristTrip",
+            "position": 6,
+            "name": "3-Day Express: Samarkand & Bukhara Highlights",
+            "description": "Perfect for travelers with limited time. See the highlights of Samarkand and Bukhara in just 3 days.",
+            "touristType": "Express Tour",
+            "itinerary": {
+              "@type": "ItemList",
+              "itemListElement": [
+                {"@type": "City", "name": "Samarkand"},
+                {"@type": "City", "name": "Bukhara"}
+              ]
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "540",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            },
+            "provider": {
+              "@type": "TravelAgency",
+              "name": "Jahongir Travel"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.5",
+              "reviewCount": "164"
+            }
+          }
+        ]
+      }
+      </script>
+
+      <div class="container--wide">
+
+        <!-- Section Header -->
+        <div class="tours__header">
+          <p class="section-eyebrow">Featured Adventures</p>
+          <h2 class="section-title">Explore Popular Uzbekistan Tours</h2>
+          <p class="section-subtitle">
+            Handcrafted journeys through the heart of the Silk Road
+          </p>
+        </div>
+
+        <!-- Tours Grid -->
+        <div class="tours__grid">
+
+          <!-- Tour Card 1: Silk Road Classic -->
+          <article class="tour-card">
+            <div class="tour-card__media">
+              <img
+                src="images/tour-silk-road-classic.webp"
+                alt="Registan Square in Samarkand during Silk Road Classic tour"
+                width="400"
+                height="300"
+                loading="lazy"
+                decoding="async"
+              >
+              <span class="tour-card__badge tour-card__badge--featured">Featured</span>
+            </div>
+            <div class="tour-card__content">
+              <div class="tour-card__tags">
+                <span class="tag">Samarkand</span>
+                <span class="tag">Bukhara</span>
+                <span class="tag">Khiva</span>
+              </div>
+              <h3 class="tour-card__title">
+                <a href="/tours/silk-road-classic/">5-Day Silk Road Classic: Samarkand, Bukhara & Khiva</a>
+              </h3>
+              <div class="tour-card__meta">
+                <div class="tour-card__duration">
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span>5 days / 4 nights</span>
+                </div>
+                <div class="tour-card__rating">
+                  <div class="stars" aria-label="Rated 5 out of 5 stars">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                  </div>
+                  <span class="tour-card__reviews">(148 reviews)</span>
+                </div>
+              </div>
+              <div class="tour-card__footer">
+                <div class="tour-card__price">
+                  <span class="tour-card__price-label">From</span>
+                  <span class="tour-card__price-amount">$890</span>
+                  <span class="tour-card__price-unit">per person</span>
+                </div>
+                <a href="/tours/silk-road-classic/" class="btn btn--primary">
+                  View Tour Details
+                  <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tour Card 2: Mountain Adventure -->
+          <article class="tour-card">
+            <div class="tour-card__media">
+              <img
+                src="images/tour-mountain-adventure.webp"
+                alt="Trekking in Chimgan Mountains during adventure tour"
+                width="400"
+                height="300"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="tour-card__content">
+              <div class="tour-card__tags">
+                <span class="tag">Chimgan</span>
+                <span class="tag">Charvak</span>
+              </div>
+              <h3 class="tour-card__title">
+                <a href="/tours/mountain-adventure/">3-Day Chimgan Mountain Adventure & Charvak Lake</a>
+              </h3>
+              <div class="tour-card__meta">
+                <div class="tour-card__duration">
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span>3 days / 2 nights</span>
+                </div>
+                <div class="tour-card__rating">
+                  <div class="stars" aria-label="Rated 4.5 out of 5 stars">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star-half-alt" aria-hidden="true"></i>
+                  </div>
+                  <span class="tour-card__reviews">(92 reviews)</span>
+                </div>
+              </div>
+              <div class="tour-card__footer">
+                <div class="tour-card__price">
+                  <span class="tour-card__price-label">From</span>
+                  <span class="tour-card__price-amount">$450</span>
+                  <span class="tour-card__price-unit">per person</span>
+                </div>
+                <a href="/tours/mountain-adventure/" class="btn btn--primary">
+                  View Tour Details
+                  <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tour Card 3: Cultural Immersion -->
+          <article class="tour-card">
+            <div class="tour-card__media">
+              <img
+                src="images/tour-cultural-immersion.webp"
+                alt="Traditional craft workshop in Bukhara cultural tour"
+                width="400"
+                height="300"
+                loading="lazy"
+                decoding="async"
+              >
+              <span class="tour-card__badge tour-card__badge--featured">Featured</span>
+            </div>
+            <div class="tour-card__content">
+              <div class="tour-card__tags">
+                <span class="tag">Samarkand</span>
+                <span class="tag">Bukhara</span>
+              </div>
+              <h3 class="tour-card__title">
+                <a href="/tours/cultural-immersion/">7-Day Cultural Immersion: Crafts, Cuisine & Traditions</a>
+              </h3>
+              <div class="tour-card__meta">
+                <div class="tour-card__duration">
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span>7 days / 6 nights</span>
+                </div>
+                <div class="tour-card__rating">
+                  <div class="stars" aria-label="Rated 5 out of 5 stars">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                  </div>
+                  <span class="tour-card__reviews">(215 reviews)</span>
+                </div>
+              </div>
+              <div class="tour-card__footer">
+                <div class="tour-card__price">
+                  <span class="tour-card__price-label">From</span>
+                  <span class="tour-card__price-amount">$1,290</span>
+                  <span class="tour-card__price-unit">per person</span>
+                </div>
+                <a href="/tours/cultural-immersion/" class="btn btn--primary">
+                  View Tour Details
+                  <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tour Card 4: Tashkent to Fergana Valley -->
+          <article class="tour-card">
+            <div class="tour-card__media">
+              <img
+                src="images/tour-fergana-valley.webp"
+                alt="Fergana Valley scenic landscape and traditional pottery"
+                width="400"
+                height="300"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="tour-card__content">
+              <div class="tour-card__tags">
+                <span class="tag">Tashkent</span>
+                <span class="tag">Fergana</span>
+                <span class="tag">Kokand</span>
+              </div>
+              <h3 class="tour-card__title">
+                <a href="/tours/fergana-valley/">4-Day Fergana Valley: Pottery, Silk & Ancient Cities</a>
+              </h3>
+              <div class="tour-card__meta">
+                <div class="tour-card__duration">
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span>4 days / 3 nights</span>
+                </div>
+                <div class="tour-card__rating">
+                  <div class="stars" aria-label="Rated 4.5 out of 5 stars">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star-half-alt" aria-hidden="true"></i>
+                  </div>
+                  <span class="tour-card__reviews">(78 reviews)</span>
+                </div>
+              </div>
+              <div class="tour-card__footer">
+                <div class="tour-card__price">
+                  <span class="tour-card__price-label">From</span>
+                  <span class="tour-card__price-amount">$680</span>
+                  <span class="tour-card__price-unit">per person</span>
+                </div>
+                <a href="/tours/fergana-valley/" class="btn btn--primary">
+                  View Tour Details
+                  <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tour Card 5: Grand Silk Road -->
+          <article class="tour-card">
+            <div class="tour-card__media">
+              <img
+                src="images/tour-grand-silk-road.webp"
+                alt="Complete Silk Road journey across Uzbekistan's historic cities"
+                width="400"
+                height="300"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="tour-card__content">
+              <div class="tour-card__tags">
+                <span class="tag">All Cities</span>
+              </div>
+              <h3 class="tour-card__title">
+                <a href="/tours/grand-silk-road/">10-Day Grand Silk Road: Complete Uzbekistan Experience</a>
+              </h3>
+              <div class="tour-card__meta">
+                <div class="tour-card__duration">
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span>10 days / 9 nights</span>
+                </div>
+                <div class="tour-card__rating">
+                  <div class="stars" aria-label="Rated 5 out of 5 stars">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                  </div>
+                  <span class="tour-card__reviews">(320 reviews)</span>
+                </div>
+              </div>
+              <div class="tour-card__footer">
+                <div class="tour-card__price">
+                  <span class="tour-card__price-label">From</span>
+                  <span class="tour-card__price-amount">$1,850</span>
+                  <span class="tour-card__price-unit">per person</span>
+                </div>
+                <a href="/tours/grand-silk-road/" class="btn btn--primary">
+                  View Tour Details
+                  <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tour Card 6: Samarkand & Bukhara Express -->
+          <article class="tour-card">
+            <div class="tour-card__media">
+              <img
+                src="images/tour-express-highlights.webp"
+                alt="Quick highlights tour of Samarkand and Bukhara"
+                width="400"
+                height="300"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="tour-card__content">
+              <div class="tour-card__tags">
+                <span class="tag">Samarkand</span>
+                <span class="tag">Bukhara</span>
+              </div>
+              <h3 class="tour-card__title">
+                <a href="/tours/express-highlights/">3-Day Express: Samarkand & Bukhara Highlights</a>
+              </h3>
+              <div class="tour-card__meta">
+                <div class="tour-card__duration">
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span>3 days / 2 nights</span>
+                </div>
+                <div class="tour-card__rating">
+                  <div class="stars" aria-label="Rated 4.5 out of 5 stars">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star-half-alt" aria-hidden="true"></i>
+                  </div>
+                  <span class="tour-card__reviews">(164 reviews)</span>
+                </div>
+              </div>
+              <div class="tour-card__footer">
+                <div class="tour-card__price">
+                  <span class="tour-card__price-label">From</span>
+                  <span class="tour-card__price-amount">$540</span>
+                  <span class="tour-card__price-unit">per person</span>
+                </div>
+                <a href="/tours/express-highlights/" class="btn btn--primary">
+                  View Tour Details
+                  <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- View All CTA -->
+        <div class="tours__cta">
+          <a href="/tours/" class="btn btn--accent btn--large">
+            <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
+            Browse All Uzbekistan Tours
+          </a>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer (to be added in future phases) -->
