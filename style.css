@@ -324,12 +324,28 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   justify-content: center;
 }
 
+/* Micro-proof text */
+.micro-proof {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.9375rem;
+  color: var(--color-success);
+  font-weight: 500;
+  margin-top: var(--space-2);
+  margin-bottom: 0;
+}
+
+.micro-proof i {
+  color: var(--color-success);
+}
+
 /* Section divider */
 .section-divider {
   border: none;
   height: 1px;
   background: linear-gradient(90deg, var(--color-accent) 0%, transparent 100%);
-  margin: var(--space-4) 0;
+  margin: var(--space-4) 0 var(--space-4) 0;
   opacity: 0.3;
 }
 
@@ -346,6 +362,12 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   font-family: var(--font-heading);
   flex-wrap: wrap;
   justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.trust-badge:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .trust-badge i {

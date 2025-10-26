@@ -1,0 +1,71 @@
+POST-IMPLEMENTATION REMARKS — SECTION 2 (“Why We're Your Perfect Travel Partner”)
+Project: Jahongir Travel
+Date: [insert date]
+
+Overall status: ✅ Looks great and matches the approved plan. Minor polish items below.
+
+A. CONTENT & COPY
+1) Great headline and eyebrow. Approved.
+2) Benefit #3 correctly mentions languages (EN, FR, RU, UZ). 👍
+3) Consider adding a short micro-proof below the intro paragraph (e.g., “Trusted by 2,400+ travelers since 2012”).
+
+B. ACCESSIBILITY & UX
+1) Add aria-labels to contact links for screen readers:
+   - WhatsApp: aria-label="Chat with Jahongir Travel on WhatsApp"
+   - Email: aria-label="Email Jahongir Travel"
+   - Phone: aria-label="Call Jahongir Travel"
+2) Icons already have aria-hidden="true" — good.
+3) Ensure visible :focus styles exist on .contact-link, .btn, and .nav links (WCAG 2.4.7).
+
+C. SEO & STRUCTURED DATA
+1) You currently output two JSON-LD blocks:
+   - <head> uses "@type": "TravelAgency"
+   - <section> uses "@type": "LocalBusiness"
+   Recommendation: Keep ONE consolidated block (prefer “TravelAgency”) with aggregateRating + same telephone/email to avoid mixed signals.
+2) Canonical URL points to https://jahongirtravel.com/ — verify final production domain (likely https://jahongir-travel.uz/). Use the real canonical to prevent duplicate-content issues.
+3) Page <title> and meta description look good. Consider adding “Samarkand, Bukhara, Khiva” keywords to the on-page copy as internal links to /tours/ or /destinations/.
+
+D. PERFORMANCE
+1) Font preloads use hard-coded woff2 URLs. These can 404 if Google updates paths. Safer options:
+   - Remove the manual <link rel="preload"> lines and rely on the Google Fonts stylesheet with display=swap (already present), or
+   - Self-host fonts and preload local files.
+2) Hero image uses fetchpriority="high" — good. Consider <link rel="preload" as="image" imagesrcset="..." imagesizes="..."> for the hero if CLS budget allows.
+3) All 3 right-column images are lazy — good. Keep explicit width/height (already done).
+
+E. UI / VISUAL POLISH
+1) Card shadows: If not yet in CSS, use a very soft shadow for .why-us__photo and .benefits li:
+   box-shadow: 0 4px 20px rgba(0,0,0,.06);  (and hover: 0 8px 28px rgba(0,0,0,.10))
+2) Section divider (<hr>): Add top/bottom margin to create breathing room (e.g., margin: 24px 0;).
+3) CTA hierarchy: "Plan My Trip" looks good. Consider a secondary ghost button (“Browse Tours”) linking to /tours/.
+4) Right-column badge: Slight scale/opacity hover for trust emphasis (e.g., transform: translateY(-2px) scale(1.02);).
+
+F. RESPONSIVE BEHAVIOR
+1) On mobile (<768px), stack benefits as 2 cards and 1 collapsed (“More benefits…”) OR reduce copy length to avoid long scrolling.
+2) Ensure image grid keeps a 2x2 layout or gracefully stacks 2/1/1 with consistent gutter (8–12px).
+
+G. CONSISTENCY CHECKS
+1) Phone number consistency:
+   - Tel link: +998 99 123 4567
+   - JSON-LD: +998-99-123-4567
+   - Make them identical (prefer international format with spaces or dashes consistently).
+2) Email in JSON-LD and visible link should match the final production address.
+3) Verify brand color tokens used here match global palette (accent, primary, surface, text-muted).
+
+H. OPTIONAL ENHANCEMENTS
+1) Add small proof cluster below contacts: badges for “10+ years”, “Licensed local operator”, “Secure payments”.
+2) AOS/scroll animation:
+   - why-us__intro: data-aos="fade-right" (100ms delay)
+   - why-us__media: data-aos="fade-up" (150–250ms stagger on .why-us__photo)
+3) Add /contact/ UTM parameters to “Plan My Trip” to attribute conversions from this section (optional).
+
+I. QA CHECKLIST (RE-RUN AFTER CHANGES)
+- [ ] Single consolidated JSON-LD (“TravelAgency”) validates in Rich Results Test
+- [ ] Canonical URL set to final production domain
+- [ ] Links: tel/mail/wa open correctly (+ target + rel where needed)
+- [ ] Focus states visible, sufficient contrast ≥ 4.5:1
+- [ ] No CLS introduced after font/image changes
+- [ ] Works at 1440 / 1366 / 1024 / 768 / 480 / 375 widths
+
+Notes:
+• Design and copy are already strong; these are polish-level improvements.
+• Once the domain and ratings are confirmed, we can lock the structured data and ship.
