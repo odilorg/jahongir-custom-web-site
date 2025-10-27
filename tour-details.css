@@ -2386,13 +2386,17 @@
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
-  width: 100%;
   text-align: center;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   box-shadow: 0 2px 8px rgba(244, 180, 0, 0.2);
+}
+
+/* Full width when used with .btn--block */
+.btn--accent.btn--block {
+  width: 100%;
 }
 
 .btn--accent:hover {
