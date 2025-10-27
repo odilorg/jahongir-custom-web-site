@@ -399,6 +399,32 @@ function initSectionNavigation() {
 
   if (!scroller) return;
 
+  // Get sticky offset from CSS variable
+  const OFFSET = parseInt(
+    getComputedStyle(document.documentElement).getPropertyValue('--sticky-offset') || '88',
+    10
+  );
+
+  // Add shadow when nav is stuck (desktop only)
+  const nav = document.querySelector('.section-nav');
+  if (nav && window.innerWidth >= 992) {
+    // Create a sentinel element to detect when nav becomes sticky
+    const sentinel = document.createElement('div');
+    sentinel.className = 'sticky-sentinel';
+    sentinel.style.height = '1px';
+    sentinel.style.visibility = 'hidden';
+    nav.parentElement.insertBefore(sentinel, nav);
+
+    const stickyObserver = new IntersectionObserver(
+      ([entry]) => {
+        nav.classList.toggle('is-stuck', !entry.isIntersecting);
+      },
+      { rootMargin: `-${OFFSET}px 0px 0px 0px`, threshold: 0 }
+    );
+
+    stickyObserver.observe(sentinel);
+  }
+
   // Update button visibility based on scroll position
   const updateButtons = () => {
     const { scrollLeft, scrollWidth, clientWidth } = scroller;
@@ -445,7 +471,7 @@ function initSectionNavigation() {
     const targetSection = document.getElementById(targetId);
 
     if (targetSection) {
-      const offsetTop = targetSection.offsetTop - 120; // Account for sticky header
+      const offsetTop = targetSection.offsetTop - OFFSET - 8; // Account for sticky header + padding
       window.scrollTo({
         top: offsetTop,
         behavior: prefersReducedMotion() ? 'auto' : 'smooth'
@@ -463,33 +489,36 @@ function initSectionNavigation() {
     centerLink(a);
   });
 
-  // TEMPORARILY DISABLED IntersectionObserver to debug scroll issue
-  /*
+  // Scroll-spy: Update active tab based on scroll position
   const links = [...scroller.querySelectorAll('a')];
-  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const linkMap = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
 
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(({ isIntersecting, target }) => {
-      if (!isIntersecting) return;
+  const scrollSpyObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(({ isIntersecting, target }) => {
+        if (!isIntersecting) return;
 
-      links.forEach(x => x.classList.remove('is-active'));
-      const a = map.get(target.id);
-      if (a) {
-        a.classList.add('is-active');
-        centerLink(a);
-      }
-    });
-  }, {
-    rootMargin: '-20% 0% -60% 0%',
-    threshold: 0
-  });
+        // Update active state
+        links.forEach(link => link.classList.remove('is-active'));
+        const activeLink = linkMap.get(target.id);
+        if (activeLink) {
+          activeLink.classList.add('is-active');
+          centerLink(activeLink);
+        }
+      });
+    },
+    {
+      rootMargin: `-${OFFSET + 40}px 0px -60% 0px`,
+      threshold: 0
+    }
+  );
 
-  document.querySelectorAll('section[id]').forEach(sec => {
-    if (map.has(sec.id)) {
-      obs.observe(sec);
+  // Observe all sections that have corresponding nav links
+  document.querySelectorAll('section[id]').forEach(section => {
+    if (linkMap.has(section.id)) {
+      scrollSpyObserver.observe(section);
     }
   });
-  */
 }
 
 // Initialize when DOM is ready

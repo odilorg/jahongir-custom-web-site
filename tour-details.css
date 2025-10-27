@@ -35,6 +35,14 @@
    ====================================================== */
 
 /* ======================================================
+   CSS VARIABLES
+   ====================================================== */
+
+:root {
+  --sticky-offset: 88px; /* Offset for sticky navigation (header height + padding) */
+}
+
+/* ======================================================
    1. HEADER & NAVIGATION
    ====================================================== */
 
@@ -2029,8 +2037,7 @@
 
 /* Section Navigation with Arrows & Fade Edges */
 .section-nav {
-  position: sticky;
-  top: 64px;
+  position: relative; /* Non-sticky on mobile */
   z-index: 20;
   background: #fff;
   border-top: 1px solid #F0F0F0;
@@ -2041,6 +2048,20 @@
   padding: 0.75rem 0.5rem;
   margin-top: 2rem;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.02);
+}
+
+/* Desktop: Make sticky */
+@media (min-width: 992px) {
+  .section-nav {
+    position: sticky;
+    top: var(--sticky-offset, 88px);
+  }
+}
+
+/* Add shadow when stuck (toggled via JS) */
+.section-nav.is-stuck {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid #ddd;
 }
 
 /* Scroller strip with fade edges */
