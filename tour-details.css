@@ -1541,6 +1541,41 @@
     margin-bottom: 2rem;
   }
 
+  /* Section Navigation - Mobile Optimized */
+  .section-toc {
+    position: relative; /* Not sticky on mobile - saves space */
+    top: auto;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0;
+    padding-right: 2rem; /* Space for fade gradient */
+    gap: 0.25rem;
+    /* Smooth horizontal scrolling */
+    scroll-snap-type: x proximity;
+    scroll-padding-left: 0.5rem;
+  }
+
+  .section-toc::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to right, transparent, #fff);
+    pointer-events: none;
+  }
+
+  .toc-link {
+    font-size: 0.875rem; /* Smaller on mobile */
+    padding: 0.5rem 0.875rem; /* Tighter padding */
+    border-radius: 6px;
+    scroll-snap-align: start; /* Snap to links when scrolling */
+  }
+
+  .toc-link.active {
+    font-weight: 600;
+  }
+
   /* Smaller text */
   .section-title {
     font-size: 1.5rem;

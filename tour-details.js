@@ -417,6 +417,15 @@ function initScrollSpy() {
       link.classList.remove('active');
       if (link.getAttribute('href') === '#' + current) {
         link.classList.add('active');
+
+        // Auto-scroll active link into view (especially useful on mobile)
+        if (window.innerWidth < 768) {
+          link.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center'
+          });
+        }
       }
     });
   }
