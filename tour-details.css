@@ -385,9 +385,9 @@
   font-size: 1.75rem;
   font-family: var(--font-heading, "Poppins", sans-serif);
   color: var(--color-text, #1E1E1E);
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 3px solid var(--color-primary, #0D4C92);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-primary, #0D4C92);
   display: inline-block;
 }
 
@@ -464,13 +464,7 @@
   margin-bottom: 3rem;
 }
 
-/* Section title - refined and delicate */
-.section-title {
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid #0D4C92;
-  display: inline-block;
-}
+/* Section title styling defined above in overview section */
 
 .highlights-list,
 .highlights-grid {
@@ -981,7 +975,7 @@
 }
 
 .faq-item:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   border-color: #D0D0D0;
 }
 
@@ -1105,7 +1099,7 @@
 
 .extra-service-card:hover {
   border-color: #C0C0C0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   transform: translateY(-2px);
 }
 
@@ -1152,22 +1146,10 @@
   margin-bottom: 1.25rem;
 }
 
-.price-label {
-  font-size: 0.875rem;
-  color: #777;
-  font-weight: 400;
-}
-
 .price-value {
   font-size: 1.25rem;
   font-weight: 700;
   color: #1E1E1E;
-}
-
-.price-unit {
-  font-size: 0.875rem;
-  color: #777;
-  font-weight: 400;
 }
 
 /* Action section - checkbox + label */
@@ -1270,7 +1252,7 @@
 }
 
 .review-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   border-color: #C0C0C0;
   transform: translateY(-2px);
 }
@@ -1370,11 +1352,7 @@
    ====================================================== */
 
 .booking-sidebar {
-  background: var(--color-surface, #fff);
-  border: 2px solid var(--color-border, #E3E3E3);
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  /* Just a sticky container - no visual styling */
 }
 
 .booking-sidebar__header {
@@ -1674,7 +1652,7 @@
   right: 0;
   background: var(--color-surface, #fff);
   padding: 1rem 1.5rem;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
   z-index: 90;
 }
 
@@ -2256,7 +2234,7 @@
 .tour-hero__gallery {
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .tour-hero__main,
@@ -2280,13 +2258,11 @@
   border: 1px solid #DEDEDE;
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .booking-card__header {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #F0F0F0;
+  margin-bottom: 1.25rem;
 }
 
 .booking-price {
