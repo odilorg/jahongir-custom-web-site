@@ -1,0 +1,1507 @@
+/* ======================================================
+   TOUR DETAILS PAGE STYLESHEET
+   Jahongir Travel
+   Purpose: Complete styling for tour detail pages
+   ====================================================== */
+
+/* This file extends the base style.css with tour-specific components.
+   It inherits CSS variables from the main stylesheet. */
+
+/* ======================================================
+   TABLE OF CONTENTS
+   ======================================================
+   1. Header & Navigation
+   2. Breadcrumbs
+   3. Tour Hero Gallery
+   4. Tour Header (Title, Rating, Meta)
+   5. Two-Column Layout
+   6. Tour Overview
+   7. Tour Highlights
+   8. Includes & Excludes
+   9. Cancellation Policy
+   10. Itinerary Timeline
+   11. Meeting Point & Pickup
+   12. Know Before You Go
+   13. FAQ Accordion
+   14. Extra Services
+   15. Customer Reviews
+   16. Booking Sidebar
+   17. Price Breakdown
+   18. Trust Badges
+   19. Mobile Floating CTA
+   20. Footer
+   21. Utilities & Helpers
+   22. Responsive Breakpoints
+   ====================================================== */
+
+/* ======================================================
+   1. HEADER & NAVIGATION
+   ====================================================== */
+
+.site-header {
+  background: var(--color-surface, #fff);
+  border-bottom: 1px solid var(--color-border, #E3E3E3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.site-header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.site-header__logo img {
+  height: 40px;
+  width: auto;
+}
+
+.site-nav__list {
+  display: none; /* Hidden on mobile, shown on desktop */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+.site-nav__link {
+  color: var(--color-text, #1E1E1E);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.site-nav__link:hover,
+.site-nav__link:focus {
+  color: var(--color-primary, #0D4C92);
+}
+
+.site-header__contact {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary, #0D4C92);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ======================================================
+   2. BREADCRUMBS
+   ====================================================== */
+
+.breadcrumbs {
+  padding: 1rem 0;
+  font-size: 0.875rem;
+  background: var(--color-bg, #FAF8F4);
+}
+
+.breadcrumbs__list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.breadcrumbs__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumbs__link {
+  color: var(--color-text-muted, #555);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumbs__link:hover {
+  color: var(--color-primary, #0D4C92);
+  text-decoration: underline;
+}
+
+.breadcrumbs__separator {
+  color: var(--color-border, #E3E3E3);
+}
+
+.breadcrumbs__current {
+  color: var(--color-text, #1E1E1E);
+  font-weight: 500;
+}
+
+/* ======================================================
+   3. TOUR HERO GALLERY
+   ====================================================== */
+
+.tour-hero {
+  margin: 2rem 0;
+}
+
+.tour-hero__gallery {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 0.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  max-height: 500px;
+}
+
+.tour-hero__main {
+  position: relative;
+  overflow: hidden;
+}
+
+.tour-hero__main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.tour-hero__main:hover img {
+  transform: scale(1.05);
+}
+
+.tour-hero__thumbnails {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.tour-hero__thumb {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-border, #E3E3E3);
+}
+
+.tour-hero__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.tour-hero__thumb:hover img {
+  transform: scale(1.1);
+}
+
+.tour-hero__thumb:last-child {
+  position: relative;
+}
+
+.tour-hero__more {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 76, 146, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  font-weight: 600;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.tour-hero__more:hover {
+  background: rgba(13, 76, 146, 0.95);
+}
+
+.tour-hero__more .icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Skeleton Loader */
+.tour-hero__skeleton {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 0.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  max-height: 500px;
+}
+
+.skeleton--main {
+  background: linear-gradient(90deg, #E3E3E3 0%, #F5F5F5 50%, #E3E3E3 100%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+.tour-hero__skeleton-thumbs {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ======================================================
+   4. TOUR HEADER (Title, Rating, Meta)
+   ====================================================== */
+
+.tour-header {
+  margin: 2rem 0;
+}
+
+.tour-header__top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.tour-header__title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-family: var(--font-heading, "Poppins", sans-serif);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+  color: var(--color-text, #1E1E1E);
+}
+
+.tour-header__rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.rating-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.rating-stars .icon--star {
+  width: 16px;
+  height: 16px;
+  color: var(--color-accent, #F4B400);
+}
+
+.rating-score {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--color-text, #1E1E1E);
+}
+
+.rating-count {
+  color: var(--color-text-muted, #555);
+}
+
+.tour-header__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--color-border, #E3E3E3);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-muted, #555);
+  font-size: 0.9375rem;
+}
+
+.meta-item .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-primary, #0D4C92);
+}
+
+.meta-item strong {
+  color: var(--color-text, #1E1E1E);
+  font-weight: 600;
+}
+
+/* ======================================================
+   5. TWO-COLUMN LAYOUT
+   ====================================================== */
+
+.tour-main-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin: 3rem 0;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.tour-content {
+  min-width: 0; /* Prevent overflow */
+}
+
+.tour-sidebar {
+  position: relative;
+}
+
+/* ======================================================
+   6. TOUR OVERVIEW
+   ====================================================== */
+
+.tour-overview {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-family: var(--font-heading, "Poppins", sans-serif);
+  color: var(--color-text, #1E1E1E);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--color-primary, #0D4C92);
+  display: inline-block;
+}
+
+.tour-overview__text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-muted, #555);
+}
+
+.tour-overview__text p {
+  margin-bottom: 1rem;
+}
+
+.tour-overview__text a {
+  color: var(--color-primary, #0D4C92);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.tour-overview__text a:hover {
+  color: var(--color-primary-dark, #093870);
+}
+
+/* Mini Table of Contents */
+.mini-toc {
+  background: #F0F7FF;
+  border-left: 4px solid var(--color-primary, #0D4C92);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.mini-toc__title {
+  font-weight: 700;
+  color: var(--color-primary, #0D4C92);
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+}
+
+.mini-toc__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mini-toc__link {
+  color: var(--color-text, #1E1E1E);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s;
+}
+
+.mini-toc__link::before {
+  content: "→";
+  color: var(--color-primary, #0D4C92);
+  font-weight: 700;
+}
+
+.mini-toc__link:hover {
+  color: var(--color-primary, #0D4C92);
+  text-decoration: underline;
+}
+
+/* ======================================================
+   7. TOUR HIGHLIGHTS
+   ====================================================== */
+
+.tour-highlights {
+  margin-bottom: 3rem;
+}
+
+.highlights-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--color-surface, #fff);
+  border-radius: 8px;
+  border: 1px solid var(--color-border, #E3E3E3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.highlight-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-item .icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-primary, #0D4C92);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.highlight-item p {
+  margin: 0;
+  color: var(--color-text, #1E1E1E);
+  line-height: 1.6;
+}
+
+/* ======================================================
+   8. INCLUDES & EXCLUDES
+   ====================================================== */
+
+.tour-includes-excludes {
+  margin-bottom: 3rem;
+}
+
+.includes-excludes-grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.includes-section,
+.excludes-section {
+  background: var(--color-surface, #fff);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border, #E3E3E3);
+}
+
+.includes-section__title,
+.excludes-section__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text, #1E1E1E);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.includes-section__title .icon,
+.excludes-section__title .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.includes-section__title .icon {
+  color: var(--color-success, #34B67A);
+}
+
+.excludes-section__title .icon {
+  color: var(--color-error, #E53935);
+}
+
+.includes-list,
+.excludes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.includes-list li,
+.excludes-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  line-height: 1.6;
+}
+
+.includes-list .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-success, #34B67A);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.excludes-list .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-error, #E53935);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ======================================================
+   9. CANCELLATION POLICY
+   ====================================================== */
+
+.tour-cancellation {
+  margin-bottom: 3rem;
+}
+
+.cancellation-box {
+  background: #FFF9E6;
+  border: 2px solid var(--color-accent, #F4B400);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 1.5rem;
+}
+
+.cancellation-box__title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text, #1E1E1E);
+  margin-bottom: 1rem;
+}
+
+.cancellation-box__title .icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-accent, #F4B400);
+}
+
+.cancellation-box__highlight {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text, #1E1E1E);
+  margin-bottom: 1.5rem;
+}
+
+.cancellation-list {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cancellation-list li {
+  color: var(--color-text-muted, #555);
+  line-height: 1.6;
+}
+
+/* ======================================================
+   10. ITINERARY TIMELINE
+   ====================================================== */
+
+.tour-itinerary {
+  margin-bottom: 3rem;
+}
+
+.itinerary-timeline {
+  position: relative;
+  padding-left: 3rem;
+  margin-top: 2rem;
+}
+
+.itinerary-timeline::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--color-primary, #0D4C92), var(--color-accent, #F4B400));
+}
+
+.itinerary-item {
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.itinerary-item:last-child {
+  padding-bottom: 0;
+}
+
+.itinerary-item__marker {
+  position: absolute;
+  left: -2.5rem;
+  top: 0.25rem;
+  width: 28px;
+  height: 28px;
+  background: var(--color-surface, #fff);
+  border: 4px solid var(--color-primary, #0D4C92);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.itinerary-item__marker .icon {
+  width: 14px;
+  height: 14px;
+  color: var(--color-primary, #0D4C92);
+}
+
+.itinerary-item__time {
+  display: inline-block;
+  background: var(--color-primary, #0D4C92);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.itinerary-item__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text, #1E1E1E);
+  margin-bottom: 0.5rem;
+}
+
+.itinerary-item__description {
+  color: var(--color-text-muted, #555);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.itinerary-item__duration {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted, #555);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* ======================================================
+   11. MEETING POINT & PICKUP
+   ====================================================== */
+
+.tour-meeting {
+  margin-bottom: 3rem;
+}
+
+.meeting-grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.meeting-info {
+  background: var(--color-surface, #fff);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border, #E3E3E3);
+}
+
+.meeting-info__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.meeting-info__item:last-child {
+  margin-bottom: 0;
+}
+
+.meeting-info__item .icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-primary, #0D4C92);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.meeting-info__item h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text, #1E1E1E);
+  margin: 0 0 0.5rem 0;
+}
+
+.meeting-info__item p {
+  color: var(--color-text-muted, #555);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.meeting-map {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-border, #E3E3E3);
+  height: 300px;
+}
+
+.meeting-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ======================================================
+   12. KNOW BEFORE YOU GO
+   ====================================================== */
+
+.tour-know-before {
+  margin-bottom: 3rem;
+}
+
+.know-before-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.know-before-item {
+  background: var(--color-surface, #fff);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border, #E3E3E3);
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.know-before-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.know-before-item__icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem;
+  color: var(--color-primary, #0D4C92);
+}
+
+.know-before-item h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text, #1E1E1E);
+  margin: 0 0 0.75rem 0;
+}
+
+.know-before-item p {
+  color: var(--color-text-muted, #555);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ======================================================
+   13. FAQ ACCORDION
+   ====================================================== */
+
+.tour-faq {
+  margin-bottom: 3rem;
+}
+
+.faq-list {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-border, #E3E3E3);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.faq-item summary {
+  padding: 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text, #1E1E1E);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+  user-select: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary:hover {
+  background: #F8FAFB;
+}
+
+.faq-item summary .icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-primary, #0D4C92);
+  transition: transform 0.3s ease;
+}
+
+.faq-item[open] summary .icon {
+  transform: rotate(180deg);
+}
+
+.faq-item__answer {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--color-text-muted, #555);
+  line-height: 1.8;
+  border-top: 1px solid var(--color-border, #E3E3E3);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ======================================================
+   14. EXTRA SERVICES
+   ====================================================== */
+
+.tour-extras {
+  margin-bottom: 3rem;
+}
+
+.extras-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.extra-service-card {
+  background: var(--color-surface, #fff);
+  border: 2px solid var(--color-border, #E3E3E3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.extra-service-card:hover {
+  border-color: var(--color-primary, #0D4C92);
+  transform: translateY(-4px);
+}
+
+.extra-service-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.extra-service-card__icon {
+  width: 40px;
+  height: 40px;
+  color: var(--color-primary, #0D4C92);
+  flex-shrink: 0;
+}
+
+.extra-service-card__info h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text, #1E1E1E);
+  margin: 0 0 0.25rem 0;
+}
+
+.extra-service-card__price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary, #0D4C92);
+}
+
+.extra-service-card__description {
+  color: var(--color-text-muted, #555);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.extra-service-card__cta {
+  width: 100%;
+  padding: 0.75rem;
+  background: transparent;
+  border: 2px solid var(--color-primary, #0D4C92);
+  color: var(--color-primary, #0D4C92);
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.extra-service-card__cta:hover {
+  background: var(--color-primary, #0D4C92);
+  color: white;
+}
+
+/* ======================================================
+   15. CUSTOMER REVIEWS
+   ====================================================== */
+
+.tour-reviews {
+  margin-bottom: 3rem;
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.reviews-summary {
+  text-align: right;
+}
+
+.reviews-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.reviews-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.review-card {
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-border, #E3E3E3);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: box-shadow 0.2s;
+}
+
+.review-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.reviewer-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.reviewer-info img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.reviewer-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text, #1E1E1E);
+  margin: 0 0 0.25rem 0;
+}
+
+.review-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted, #555);
+}
+
+.review-separator {
+  color: var(--color-border, #E3E3E3);
+}
+
+.review-rating .icon--star {
+  width: 18px;
+  height: 18px;
+  color: var(--color-accent, #F4B400);
+}
+
+.review-text {
+  color: var(--color-text-muted, #555);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ======================================================
+   16. BOOKING SIDEBAR
+   ====================================================== */
+
+.booking-sidebar {
+  background: var(--color-surface, #fff);
+  border: 2px solid var(--color-border, #E3E3E3);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.booking-sidebar__header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border, #E3E3E3);
+}
+
+.booking-sidebar__header h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text, #1E1E1E);
+  margin: 0 0 0.5rem 0;
+}
+
+.booking-sidebar__price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-primary, #0D4C92);
+  line-height: 1;
+}
+
+.booking-sidebar__price-unit {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-text-muted, #555);
+}
+
+/* Booking Form */
+.booking-form {
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--color-text, #1E1E1E);
+  margin-bottom: 0.5rem;
+  font-size: 0.9375rem;
+}
+
+.form-label .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-primary, #0D4C92);
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--color-border, #E3E3E3);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  min-height: 44px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary, #0D4C92);
+}
+
+.form-input[aria-invalid="true"] {
+  border-color: var(--color-error, #E53935);
+}
+
+.form-hint {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted, #555);
+  margin-top: 0.25rem;
+}
+
+.form-error {
+  display: none;
+  color: var(--color-error, #E53935);
+  font-size: 0.8125rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ======================================================
+   17. PRICE BREAKDOWN
+   ====================================================== */
+
+.price-breakdown {
+  background: #F8FAFB;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.breakdown-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text, #1E1E1E);
+  margin: 0 0 1rem 0;
+}
+
+.breakdown-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9375rem;
+}
+
+.breakdown-label {
+  color: var(--color-text-muted, #555);
+}
+
+.breakdown-value {
+  font-weight: 600;
+  color: var(--color-text, #1E1E1E);
+}
+
+.breakdown-item--total {
+  padding-top: 0.75rem;
+  border-top: 2px solid var(--color-border, #E3E3E3);
+  margin-top: 0.5rem;
+}
+
+.breakdown-item--total .breakdown-label {
+  font-weight: 700;
+  color: var(--color-text, #1E1E1E);
+  font-size: 1rem;
+}
+
+.breakdown-total {
+  font-size: 1.5rem;
+  color: var(--color-primary, #0D4C92);
+}
+
+.breakdown-note {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted, #555);
+  margin: 1rem 0 0 0;
+  text-align: center;
+}
+
+/* ======================================================
+   18. TRUST BADGES
+   ====================================================== */
+
+.booking-benefits {
+  margin-bottom: 1.5rem;
+}
+
+.benefits-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text, #1E1E1E);
+  margin: 0 0 1rem 0;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.benefit-item .icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-success, #34B67A);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.benefit-item span {
+  color: var(--color-text-muted, #555);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.booking-clarification {
+  background: #FFF9E6;
+  border: 1px solid var(--color-accent, #F4B400);
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted, #555);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* ======================================================
+   19. MOBILE FLOATING CTA
+   ====================================================== */
+
+.mobile-booking-cta {
+  display: none; /* Hidden by default, shown on mobile */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-surface, #fff);
+  padding: 1rem 1.5rem;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 90;
+}
+
+.mobile-booking-cta__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mobile-booking-cta__price {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-booking-cta__amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary, #0D4C92);
+  line-height: 1;
+}
+
+.mobile-booking-cta__unit {
+  font-size: 0.875rem;
+  color: var(--color-text-muted, #555);
+}
+
+.mobile-booking-cta .btn {
+  flex-shrink: 0;
+}
+
+/* ======================================================
+   20. FOOTER
+   ====================================================== */
+/* Footer styles are shared from main stylesheet */
+
+/* ======================================================
+   21. UTILITIES & HELPERS
+   ====================================================== */
+
+.btn--block {
+  width: 100%;
+}
+
+.btn--large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.btn--secondary {
+  background: transparent;
+  border: 2px solid var(--color-primary, #0D4C92);
+  color: var(--color-primary, #0D4C92);
+}
+
+.btn--secondary:hover {
+  background: var(--color-primary, #0D4C92);
+  color: white;
+}
+
+.btn--whatsapp {
+  background: #25D366;
+  color: white;
+  gap: 0.5rem;
+}
+
+.btn--whatsapp:hover {
+  background: #1EBE57;
+}
+
+.btn--whatsapp .icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ======================================================
+   22. RESPONSIVE BREAKPOINTS
+   ====================================================== */
+
+/* Tablet: 768px and up */
+@media (min-width: 768px) {
+  /* Two-column layout */
+  .tour-main-content {
+    grid-template-columns: 1fr 380px;
+  }
+
+  /* Sidebar becomes sticky */
+  .booking-sidebar {
+    position: sticky;
+    top: 100px; /* Below fixed header */
+    align-self: flex-start;
+  }
+
+  /* Hero gallery responsive */
+  .tour-hero__gallery {
+    max-height: 450px;
+  }
+
+  /* Includes/Excludes side by side */
+  .includes-excludes-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Meeting grid */
+  .meeting-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Navigation visible */
+  .site-nav__list {
+    display: flex;
+  }
+}
+
+/* Desktop: 1024px and up */
+@media (min-width: 1024px) {
+  /* Larger hero */
+  .tour-hero__gallery {
+    max-height: 500px;
+  }
+
+  /* More columns for highlights */
+  .highlights-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Know before you go 3 columns */
+  .know-before-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Extra services 2 columns */
+  .extras-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Reviews 2 columns */
+  .reviews-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 767px and below */
+@media (max-width: 767px) {
+  /* Hero gallery stacked */
+  .tour-hero__gallery {
+    grid-template-columns: 1fr;
+    max-height: none;
+  }
+
+  .tour-hero__thumbnails {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+  }
+
+  /* Mobile floating CTA shown */
+  .mobile-booking-cta {
+    display: block;
+  }
+
+  /* Add padding to body to account for fixed CTA */
+  body {
+    padding-bottom: 80px;
+  }
+
+  /* Single column layout */
+  .tour-main-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Sidebar comes after content */
+  .tour-sidebar {
+    order: 2;
+  }
+
+  .tour-content {
+    order: 1;
+  }
+
+  /* Smaller text */
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .tour-header__title {
+    font-size: 1.75rem;
+  }
+
+  /* Itinerary smaller padding */
+  .itinerary-timeline {
+    padding-left: 2.5rem;
+  }
+
+  .itinerary-item__marker {
+    left: -2.25rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .site-header,
+  .breadcrumbs,
+  .booking-sidebar,
+  .mobile-booking-cta,
+  .tour-extras,
+  footer {
+    display: none;
+  }
+
+  body {
+    background: white;
+    padding-bottom: 0;
+  }
+}
