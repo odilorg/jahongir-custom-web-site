@@ -24,19 +24,26 @@
 
 ### The Problem We Solved
 
-**Issue 1:** Desktop sticky navigation wasn't working despite `position: sticky` being applied.
-**Issue 2:** Page scrolling got stuck when mouse hovered over horizontal tab scroller.
+**Issue 1 (Desktop):** Desktop sticky navigation wasn't working despite `position: sticky` being applied.
+**Issue 2 (Desktop):** Page scrolling got stuck when mouse hovered over horizontal tab scroller.
+**Issue 3 (Mobile):** Page jumped back to Overview section when scrolling past Highlights (like hitting a wall and bouncing back).
 
 ### The Solution
 
 1. **Separated sticky positioning from layout responsibilities** - Applied `position: sticky` to a wrapper div, not the flex container
-2. **Added wheel event handler** - Detected scroll direction and only trapped horizontal scroll, letting vertical scroll pass through
+2. **Added wheel event handler (desktop only)** - Detected scroll direction and only trapped horizontal scroll, letting vertical scroll pass through
+3. **Removed custom touch handlers (mobile)** - Let browser handle touch naturally with CSS only
+4. **Fixed scrollIntoView page jumps (mobile)** - Replaced with manual scrollBy() to only scroll horizontal tabs, never the page
 
 ### Key Takeaways
 
 > **Golden Rule #1:** Never apply `position: sticky` directly to flex/grid containers. Use a wrapper.
 >
-> **Golden Rule #2:** All horizontal scrollers with `overflow-x: auto` MUST have a wheel event handler to prevent scroll traps.
+> **Golden Rule #2:** All horizontal scrollers with `overflow-x: auto` MUST have a wheel event handler (desktop) to prevent scroll traps.
+>
+> **Golden Rule #3:** Never use custom touch event handlers on horizontal scrollers - let CSS and native browser behavior handle it.
+>
+> **Golden Rule #4:** Never use `scrollIntoView()` in scroll-spy code - it causes page jumps on mobile. Use manual `scrollBy()` instead.
 
 ---
 
@@ -174,6 +181,177 @@ scroller.addEventListener('wheel', (e) => {
 - Only prevents default for horizontal scroll intent
 - Lets vertical scroll events pass through to the page
 - Browser can now scroll the page normally
+
+---
+
+### Problem 3: Mobile Page Jumps (The "Bouncing Wall" Effect)
+
+#### What We Did Wrong
+
+```javascript
+// ❌ BAD: Custom touch event handlers interfering with native scrolling
+scroller.addEventListener('touchmove', (e) => {
+  const deltaX = touchStartX - e.touches[0].pageX;
+  const deltaY = touchStartY - e.touches[0].pageY;
+
+  if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    scroller.scrollLeft = scrollStartLeft + deltaX;
+    e.preventDefault(); // Blocks native touch handling
+  }
+}, { passive: false });
+```
+
+#### Why It Failed
+
+1. **Custom Touch Handlers Block Native Optimization**
+   ```
+   User scrolls down on mobile past Highlights section
+         ↓
+   Custom touchmove handler captures event (passive: false)
+         ↓
+   Handler tries to determine scroll intent
+         ↓
+   Conflicts with browser's native touch scrolling
+         ↓
+   Page scroll becomes jerky, unreliable, or stops working
+   ```
+
+2. **The Problem with `passive: false`**
+   - Blocks browser's scroll optimization
+   - Prevents momentum scrolling
+   - Causes janky, non-native feel
+   - Interferes with gesture recognition
+
+3. **Why CSS Is Better for Mobile**
+   - Browsers have highly optimized native touch handling
+   - CSS properties like `overflow-y: visible` and `overscroll-behavior-x: contain` work perfectly
+   - Native handling respects system gestures
+   - No JavaScript = better performance
+
+#### The Correct Approach
+
+```javascript
+// ✅ GOOD: Let browser handle touch naturally
+// NO custom touch event handlers needed!
+
+// Desktop wheel handler remains (mouse/trackpad only)
+scroller.addEventListener('wheel', (e) => {
+  if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+    scroller.scrollLeft += e.deltaY || e.deltaX;
+    e.preventDefault();
+  }
+}, { passive: false });
+
+// Mobile: CSS handles everything
+```
+
+```css
+/* ✅ GOOD: CSS-only mobile scrolling */
+.section-nav__scroller {
+  overflow-x: auto;
+  overflow-y: visible;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: auto; /* Let browser handle naturally */
+}
+
+.section-nav-wrapper,
+.section-nav {
+  touch-action: pan-y; /* Allow vertical page scroll */
+}
+```
+
+**Why This Works:**
+- Browser handles touch events natively (fast, smooth)
+- CSS properties guide the behavior
+- No JavaScript interference
+- Native momentum scrolling preserved
+- Better performance and battery life
+
+---
+
+### Problem 4: scrollIntoView() Causing Page Jumps
+
+#### What We Did Wrong
+
+```javascript
+// ❌ BAD: scrollIntoView causes unwanted page scroll on mobile
+const centerLink = (el) => el?.scrollIntoView({
+  behavior: 'smooth',
+  inline: 'center',
+  block: 'nearest'  // Still causes page jumps on mobile!
+});
+
+// Scroll-spy calls this when Highlights becomes visible
+scrollSpyObserver = new IntersectionObserver((entries) => {
+  entries.forEach(({ isIntersecting, target }) => {
+    if (isIntersecting) {
+      const activeLink = linkMap.get(target.id);
+      centerLink(activeLink); // ← Causes page to jump!
+    }
+  });
+});
+```
+
+#### Why It Failed
+
+1. **scrollIntoView Affects Page Scroll**
+   ```
+   User scrolls down past Highlights section
+         ↓
+   IntersectionObserver detects "Highlights is visible"
+         ↓
+   Calls centerLink() to center the "Highlights" tab
+         ↓
+   scrollIntoView(block: 'nearest') runs
+         ↓
+   Mobile browser interprets this as "scroll the PAGE"
+         ↓
+   Page jumps back to Overview section
+         ↓
+   Effect: User hits an invisible wall and bounces back!
+   ```
+
+2. **Why `block: 'nearest'` Doesn't Help on Mobile**
+   - Desktop browsers respect `block: 'nearest'` and keep page steady
+   - Mobile browsers (especially Safari, Chrome on Android) are more aggressive
+   - They try to bring the element into view by scrolling the page
+   - Even with sticky positioning, page scroll is affected
+
+3. **The Root Issue**
+   - `scrollIntoView()` is designed to scroll BOTH axes if needed
+   - Cannot guarantee it won't affect page scroll
+   - Behavior varies between browsers and devices
+   - Not reliable for horizontal-only scrolling
+
+#### The Correct Approach
+
+```javascript
+// ✅ GOOD: Manual scrollBy() only scrolls the horizontal scroller
+const centerLink = (el) => {
+  if (!el) return;
+
+  // Calculate offset to center the link in the scroller
+  const scrollerRect = scroller.getBoundingClientRect();
+  const linkRect = el.getBoundingClientRect();
+  const scrollerCenter = scrollerRect.left + (scrollerRect.width / 2);
+  const linkCenter = linkRect.left + (linkRect.width / 2);
+  const offset = linkCenter - scrollerCenter;
+
+  // Scroll ONLY the horizontal scroller, never the page
+  scroller.scrollBy({
+    left: offset,
+    behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+  });
+};
+```
+
+**Why This Works:**
+- `scrollBy()` on a specific element only scrolls that element
+- Never affects page scroll position
+- Precise control over what scrolls
+- Works consistently across all browsers and devices
+- Respects `prefers-reduced-motion` for accessibility
 
 ---
 
