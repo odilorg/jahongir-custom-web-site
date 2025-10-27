@@ -339,6 +339,67 @@ horizontalScroller.addEventListener('wheel', (e) => {
 - Only preventDefault() for horizontal intent
 - Let vertical scroll bubble naturally
 
+### Rule 1b: Prevent Touch Scroll Trap on Mobile
+
+**Mobile devices use touch events, not wheel events. You need both handlers.**
+
+```javascript
+// ✅ REQUIRED FOR MOBILE/TOUCH DEVICES
+let touchStartX = 0;
+let touchStartY = 0;
+let scrollStartLeft = 0;
+let isTouchScrolling = false;
+
+scroller.addEventListener('touchstart', (e) => {
+  touchStartX = e.touches[0].pageX;
+  touchStartY = e.touches[0].pageY;
+  scrollStartLeft = scroller.scrollLeft;
+  isTouchScrolling = false;
+}, { passive: true });
+
+scroller.addEventListener('touchmove', (e) => {
+  const touchX = e.touches[0].pageX;
+  const touchY = e.touches[0].pageY;
+  const deltaX = touchStartX - touchX;
+  const deltaY = touchStartY - touchY;
+
+  // Determine scroll intent on first significant movement
+  if (!isTouchScrolling && (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5)) {
+    isTouchScrolling = true;
+
+    // If horizontal intent (more horizontal than vertical movement)
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      // User wants to scroll tabs horizontally
+      scroller.scrollLeft = scrollStartLeft + deltaX;
+      e.preventDefault(); // Prevent page scroll
+    }
+    // If vertical intent, don't preventDefault - let page scroll
+  } else if (isTouchScrolling && Math.abs(deltaX) > Math.abs(deltaY)) {
+    // Continue horizontal scrolling
+    scroller.scrollLeft = scrollStartLeft + deltaX;
+    e.preventDefault();
+  }
+}, { passive: false });
+
+scroller.addEventListener('touchend', () => {
+  isTouchScrolling = false;
+}, { passive: true });
+```
+
+**Critical Points:**
+- Track touch start position to calculate delta
+- Wait for 5px movement before determining intent
+- Only set `isTouchScrolling` once direction is determined
+- `touchstart` and `touchend` can be passive for better performance
+- `touchmove` MUST be `{ passive: false }` to allow preventDefault()
+
+**Add CSS to Help:**
+```css
+.horizontal-scroller {
+  touch-action: pan-y; /* Allow vertical page scroll, handle horizontal in JS */
+}
+```
+
 ### Rule 2: Use CSS Overflow Carefully
 
 ```css
@@ -1205,7 +1266,7 @@ scroller.addEventListener('wheel', (e) => {
 4. ✅ Active tab should update
 5. ✅ URL hash should update
 
-#### Scenario 4: Scroll Trap Prevention
+#### Scenario 4: Scroll Trap Prevention (Desktop)
 
 1. Place mouse over tab scroller
 2. Use mouse wheel to scroll down
@@ -1214,6 +1275,17 @@ scroller.addEventListener('wheel', (e) => {
 5. ✅ Tabs should scroll horizontally
 6. Use arrow buttons
 7. ✅ Tabs should scroll horizontally
+
+#### Scenario 4b: Scroll Trap Prevention (Mobile)
+
+1. Open page on mobile device or use DevTools device mode
+2. Place finger on tab scroller
+3. Swipe vertically (up/down)
+4. ✅ Page should scroll vertically (not stuck)
+5. Swipe horizontally (left/right) on tabs
+6. ✅ Tabs should scroll horizontally
+7. Swipe diagonally
+8. ✅ Should follow primary direction of swipe
 
 #### Scenario 5: Window Resize
 
@@ -1248,13 +1320,26 @@ When adding a sticky element, verify:
 When adding a horizontal scroller, verify:
 
 ```
+Desktop (wheel events):
 ✅ Has wheel event handler to prevent scroll trap
 ✅ Handler uses { passive: false }
 ✅ Compares Math.abs(deltaX) vs Math.abs(deltaY)
 ✅ Only preventDefault() for horizontal intent
+
+Mobile (touch events):
+✅ Has touch event handlers (touchstart, touchmove, touchend)
+✅ Tracks touch start position
+✅ Determines intent based on first 5px+ movement
+✅ touchmove uses { passive: false }
+✅ touchstart/touchend use { passive: true }
+
+CSS:
 ✅ Has overflow-y: visible in CSS
 ✅ Has overscroll-behavior-x: contain
+✅ Has touch-action: pan-y for mobile
 ✅ Scrollbar hidden with scrollbar-width: none
+
+UI/UX:
 ✅ Has arrow buttons for alternative navigation
 ✅ Wraps on very small screens (<380px)
 ```
@@ -1270,7 +1355,7 @@ When adding a horizontal scroller, verify:
 </div>
 ```
 
-**Wheel Handler:**
+**Wheel Handler (Desktop):**
 ```javascript
 element.addEventListener('wheel', (e) => {
   if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
@@ -1278,6 +1363,36 @@ element.addEventListener('wheel', (e) => {
     e.preventDefault();
   }
 }, { passive: false });
+```
+
+**Touch Handler (Mobile):**
+```javascript
+let touchStartX = 0, touchStartY = 0, scrollStartLeft = 0, isTouchScrolling = false;
+
+element.addEventListener('touchstart', (e) => {
+  touchStartX = e.touches[0].pageX;
+  touchStartY = e.touches[0].pageY;
+  scrollStartLeft = element.scrollLeft;
+  isTouchScrolling = false;
+}, { passive: true });
+
+element.addEventListener('touchmove', (e) => {
+  const deltaX = touchStartX - e.touches[0].pageX;
+  const deltaY = touchStartY - e.touches[0].pageY;
+
+  if (!isTouchScrolling && (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5)) {
+    isTouchScrolling = true;
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      element.scrollLeft = scrollStartLeft + deltaX;
+      e.preventDefault();
+    }
+  } else if (isTouchScrolling && Math.abs(deltaX) > Math.abs(deltaY)) {
+    element.scrollLeft = scrollStartLeft + deltaX;
+    e.preventDefault();
+  }
+}, { passive: false });
+
+element.addEventListener('touchend', () => { isTouchScrolling = false; }, { passive: true });
 ```
 
 **Stuck Detection:**
