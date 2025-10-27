@@ -2097,6 +2097,7 @@
   overflow-y: visible; /* Don't create vertical scroll context - prevents scroll trap */
   overscroll-behavior-x: contain; /* Keep horizontal bounce contained without blocking vertical */
   -webkit-overflow-scrolling: touch;
+  touch-action: auto; /* Let browser handle both horizontal and vertical touch naturally */
   scroll-snap-type: x proximity;
   padding: 0.5rem 1rem;
   white-space: nowrap;

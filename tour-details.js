@@ -435,46 +435,9 @@ function initSectionNavigation() {
     // If vertical scroll (deltaY > deltaX), don't preventDefault - let it scroll the page
   }, { passive: false });
 
-  // Prevent horizontal scroller from trapping vertical page scroll (mobile/touch)
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let scrollStartLeft = 0;
-  let isTouchScrolling = false;
-
-  scroller.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].pageX;
-    touchStartY = e.touches[0].pageY;
-    scrollStartLeft = scroller.scrollLeft;
-    isTouchScrolling = false;
-  }, { passive: true });
-
-  scroller.addEventListener('touchmove', (e) => {
-    const touchX = e.touches[0].pageX;
-    const touchY = e.touches[0].pageY;
-    const deltaX = touchStartX - touchX;
-    const deltaY = touchStartY - touchY;
-
-    // Determine scroll intent on first significant movement
-    if (!isTouchScrolling && (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5)) {
-      isTouchScrolling = true;
-
-      // If horizontal intent (more horizontal than vertical movement)
-      if (Math.abs(deltaX) > Math.abs(deltaY)) {
-        // User wants to scroll tabs horizontally - allow it
-        scroller.scrollLeft = scrollStartLeft + deltaX;
-        e.preventDefault(); // Prevent page scroll
-      }
-      // If vertical intent, don't preventDefault - let page scroll naturally
-    } else if (isTouchScrolling && Math.abs(deltaX) > Math.abs(deltaY)) {
-      // Continue horizontal scrolling
-      scroller.scrollLeft = scrollStartLeft + deltaX;
-      e.preventDefault();
-    }
-  }, { passive: false });
-
-  scroller.addEventListener('touchend', () => {
-    isTouchScrolling = false;
-  }, { passive: true });
+  // Mobile/touch: Let browser handle naturally with CSS
+  // The CSS properties (overflow-y: visible, overscroll-behavior-x: contain)
+  // allow vertical page scroll while enabling horizontal tab scrolling
 
   // Update button visibility based on scroll position
   const updateButtons = () => {
