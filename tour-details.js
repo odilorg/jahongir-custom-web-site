@@ -473,15 +473,22 @@ function initSectionNavigation() {
 
       links.forEach(x => x.classList.remove('is-active'));
       const a = map.get(target.id);
-      a?.classList.add('is-active');
-      centerLink(a);
+      if (a) {
+        a.classList.add('is-active');
+        centerLink(a);
+      }
     });
   }, {
-    rootMargin: '-40% 0% -55% 0%',
+    rootMargin: '-20% 0% -60% 0%', // Less aggressive top margin
     threshold: 0
   });
 
-  document.querySelectorAll('section[id]').forEach(sec => obs.observe(sec));
+  // Only observe sections that have matching nav links
+  document.querySelectorAll('section[id]').forEach(sec => {
+    if (map.has(sec.id)) {
+      obs.observe(sec);
+    }
+  });
 }
 
 // Initialize when DOM is ready
