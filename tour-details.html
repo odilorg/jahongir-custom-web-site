@@ -299,7 +299,7 @@
         </ul>
 
         <a href="tel:+998991234567" class="btn btn--accent nav__cta">
-          <svg class="icon icon--phone" width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true"><path d="M3.654 1.328a.678.678 0 00-.95-.059L.7 3.003a1.369 1.369 0 00-.3 1.723c1.18 2.267 3.375 5.735 6.95 9.309 3.574 3.575 7.042 5.77 9.31 6.95a1.369 1.369 0 001.723-.3l1.734-2.003a.678.678 0 00-.059-.95l-2.546-2.255a.678.678 0 00-.784-.062l-1.527.876a.338.338 0 01-.434-.07 21.1 21.1 0 01-4.178-4.178.338.338 0 01-.07-.434l.876-1.527a.678.678 0 00-.062-.784L3.654 1.328z"/></svg> +998 99 123 4567
+          <i class="fas fa-phone" aria-hidden="true"></i> +998 99 123 4567
         </a>
 
         <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -443,11 +443,19 @@
     <div class="container">
 
       <!-- Breadcrumb Navigation -->
-      <nav class="tour-breadcrumb" aria-label="Breadcrumb">
-        <ol class="breadcrumb-list">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item"><a href="/tours">Tours</a></li>
-          <li class="breadcrumb-item" aria-current="page">Samarkand City Tour</li>
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol class="breadcrumbs__list">
+          <li class="breadcrumbs__item">
+            <a href="/" class="breadcrumbs__link">Home</a>
+            <span class="breadcrumbs__separator" aria-hidden="true">/</span>
+          </li>
+          <li class="breadcrumbs__item">
+            <a href="/tours" class="breadcrumbs__link">Tours</a>
+            <span class="breadcrumbs__separator" aria-hidden="true">/</span>
+          </li>
+          <li class="breadcrumbs__item">
+            <span class="breadcrumbs__current" aria-current="page">Samarkand City Tour</span>
+          </li>
         </ol>
       </nav>
 
@@ -717,30 +725,28 @@
           <section class="tour-meeting" id="meeting-point">
             <h2 class="section-title">Meeting Point & Pickup</h2>
 
-            <div class="meeting-content">
+            <div class="meeting-grid">
               <div class="meeting-info">
-                <div class="meeting-option">
+                <div class="meeting-info__item">
                   <svg class="icon icon--hotel" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M3 2a2 2 0 00-2 2v12a2 2 0 002 2h14a2 2 0 002-2V4a2 2 0 00-2-2H3zm0 2h14v10H3V4zm2 2v6h10V6H5zm2 2h6v2H7V8z"/></svg>
                   <div>
-                    <h3 class="meeting-subtitle">Hotel Pickup Included</h3>
+                    <h3>Hotel Pickup Included</h3>
                     <p>Free pickup from any hotel within Samarkand city center (5km radius). Please provide your hotel name when booking.</p>
                   </div>
                 </div>
 
-                <div class="meeting-option">
+                <div class="meeting-info__item">
                   <svg class="icon icon--map-marker" width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.589 0 0 3.589 0 8c0 7 8 12 8 12s8-5 8-12c0-4.411-3.589-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z"/></svg>
                   <div>
-                    <h3 class="meeting-subtitle">Alternative Meeting Point</h3>
+                    <h3>Alternative Meeting Point</h3>
                     <p>If you prefer, you can meet us at <strong>Registan Square West Gate</strong> at 09:30 AM. Look for your guide holding a "Jahongir Travel" sign.</p>
-                    <p class="meeting-address">
-                      <strong>Address:</strong> Registan Street, Samarkand 140100, Uzbekistan
-                    </p>
+                    <p><strong>Address:</strong> Registan Street, Samarkand 140100, Uzbekistan</p>
                   </div>
                 </div>
               </div>
 
               <!-- Google Map Embed -->
-              <div class="map-embed" aria-label="Map to meeting point">
+              <div class="meeting-map" aria-label="Map to meeting point">
                 <iframe
                   loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"
@@ -1453,39 +1459,39 @@
         <ul class="footer-social__list">
           <li>
             <a href="https://facebook.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Follow Jahongir Travel on Facebook">
-              <svg class="icon icon--facebook" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z"/></svg>
+              <i class="fab fa-facebook" aria-hidden="true"></i>
               <span>Facebook</span>
             </a>
           </li>
           <li>
             <a href="https://instagram.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Follow Jahongir Travel on Instagram">
-              <svg class="icon icon--instagram" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0C7.284 0 6.944.012 5.877.06 4.813.11 4.086.278 3.45.525a4.902 4.902 0 00-1.772 1.153A4.902 4.902 0 00.525 3.45C.278 4.086.109 4.813.06 5.877.012 6.944 0 7.284 0 10s.012 3.056.06 4.123c.05 1.064.218 1.791.465 2.427a4.902 4.902 0 001.153 1.772 4.902 4.902 0 001.772 1.153c.636.247 1.363.416 2.427.465C6.944 19.988 7.284 20 10 20s3.056-.012 4.123-.06c1.064-.05 1.791-.218 2.427-.465a4.902 4.902 0 001.772-1.153 4.902 4.902 0 001.153-1.772c.247-.636.416-1.363.465-2.427C19.988 13.056 20 12.716 20 10s-.012-3.056-.06-4.123c-.05-1.064-.218-1.791-.465-2.427a4.902 4.902 0 00-1.153-1.772A4.902 4.902 0 0016.55.525C15.914.278 15.187.109 14.123.06 13.056.012 12.716 0 10 0zm0 1.802c2.67 0 2.987.01 4.04.058.975.045 1.504.207 1.857.344.467.181.8.398 1.15.748.35.35.567.683.748 1.15.137.353.3.882.344 1.857.048 1.053.058 1.37.058 4.04s-.01 2.987-.058 4.04c-.045.975-.207 1.504-.344 1.857-.181.467-.398.8-.748 1.15-.35.35-.683.567-1.15.748-.353.137-.882.3-1.857.344-1.053.048-1.37.058-4.04.058s-2.987-.01-4.04-.058c-.975-.045-1.504-.207-1.857-.344a3.097 3.097 0 01-1.15-.748 3.097 3.097 0 01-.748-1.15c-.137-.353-.3-.882-.344-1.857-.048-1.053-.058-1.37-.058-4.04s.01-2.987.058-4.04c.045-.975.207-1.504.344-1.857.181-.467.398-.8.748-1.15.35-.35.683-.567 1.15-.748.353-.137.882-.3 1.857-.344 1.053-.048 1.37-.058 4.04-.058zM10 4.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 8.468a3.333 3.333 0 110-6.666 3.333 3.333 0 010 6.666zm5.338-8.67a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/></svg>
+              <i class="fab fa-instagram" aria-hidden="true"></i>
               <span>Instagram</span>
             </a>
           </li>
           <li>
             <a href="https://twitter.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Follow Jahongir Travel on Twitter">
-              <svg class="icon icon--twitter" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M6.29 18.25c7.55 0 11.67-6.25 11.67-11.67 0-.18 0-.35-.01-.53A8.35 8.35 0 0020 3.92a8.18 8.18 0 01-2.36.65 4.12 4.12 0 001.8-2.27 8.22 8.22 0 01-2.61 1 4.1 4.1 0 00-6.98 3.74 11.65 11.65 0 01-8.46-4.29 4.1 4.1 0 001.27 5.48A4.07 4.07 0 01.8 7.7v.05a4.1 4.1 0 003.3 4.03 4.09 4.09 0 01-1.86.07 4.11 4.11 0 003.83 2.85A8.23 8.23 0 010 16.37a11.62 11.62 0 006.29 1.84"/></svg>
+              <i class="fab fa-twitter" aria-hidden="true"></i>
               <span>Twitter</span>
             </a>
           </li>
           <li>
             <a href="https://youtube.com/@jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to Jahongir Travel on YouTube">
-              <svg class="icon icon--youtube" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M19.58 4.5s-.19-1.36-.79-1.96c-.75-.79-1.6-.79-1.98-.84C14.25 1.5 10 1.5 10 1.5s-4.25 0-6.81.2c-.38.05-1.23.05-1.98.84-.6.6-.79 1.96-.79 1.96S.23 6.09.23 7.68v1.49c0 1.59.19 3.18.19 3.18s.19 1.36.79 1.96c.75.79 1.74.76 2.18.85 1.58.15 6.62.2 6.62.2s4.25-.01 6.81-.21c.38-.05 1.23-.05 1.98-.84.6-.6.79-1.96.79-1.96s.19-1.59.19-3.18V7.68c0-1.59-.19-3.18-.19-3.18zM7.96 12.5V6.25l5.27 3.13-5.27 3.12z"/></svg>
+              <i class="fab fa-youtube" aria-hidden="true"></i>
               <span>YouTube</span>
             </a>
           </li>
           <li>
             <a href="https://pinterest.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Follow Jahongir Travel on Pinterest">
-              <svg class="icon icon--pinterest" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0a10 10 0 00-3.95 19.19c-.07-.63-.13-1.6.03-2.29l1.15-4.86s-.29-.59-.29-1.46c0-1.37.79-2.39 1.78-2.39.84 0 1.24.63 1.24 1.38 0 .84-.54 2.1-.81 3.27-.23.98.49 1.78 1.46 1.78 1.75 0 3.1-1.85 3.1-4.51 0-2.36-1.7-4.01-4.12-4.01-2.81 0-4.46 2.1-4.46 4.28 0 .85.33 1.75.74 2.24.08.1.09.19.07.29l-.27 1.12c-.04.17-.14.21-.32.13-1.23-.57-2-2.36-2-3.8 0-3.1 2.25-5.95 6.49-5.95 3.41 0 6.06 2.43 6.06 5.67 0 3.38-2.13 6.1-5.09 6.1-.99 0-1.93-.52-2.25-1.13l-.61 2.33c-.22.85-.82 1.92-1.22 2.57A10 10 0 1010 0z"/></svg>
+              <i class="fab fa-pinterest" aria-hidden="true"></i>
               <span>Pinterest</span>
             </a>
           </li>
         </ul>
         <button type="button" class="footer-locale" aria-haspopup="menu" aria-expanded="false">
-          <svg class="icon icon--globe" width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true"><path d="M9 0a9 9 0 100 18A9 9 0 009 0zM7.5 2.09c-.89.38-1.67 1.23-2.25 2.41H3.09A7.5 7.5 0 017.5 2.09zM2.5 9a7.48 7.48 0 01.35-2.25h2.4A15.6 15.6 0 005 9c0 .77.09 1.52.25 2.25h-2.4A7.48 7.48 0 012.5 9zm.59 3.75h2.16c.58 1.18 1.36 2.03 2.25 2.41a7.5 7.5 0 01-4.41-2.41zM5.75 9c0-.83.1-1.63.29-2.4h5.92c.19.77.29 1.57.29 2.4s-.1 1.63-.29 2.4H6.04A13.8 13.8 0 015.75 9zM9 16.5c-1.03 0-2.04-1.37-2.61-3.75h5.22C11.04 15.13 10.03 16.5 9 16.5zm-2.61-11.25C7.96 2.87 8.97 1.5 9 1.5s1.04 1.37 1.61 3.75H6.39zM10.5 15.91c.89-.38 1.67-1.23 2.25-2.41h2.16a7.5 7.5 0 01-4.41 2.41zm2.75-3.91c.16-.73.25-1.48.25-2.25s-.09-1.52-.25-2.25h2.4A7.48 7.48 0 0115.5 9c0 .77-.12 1.52-.35 2.25h-2.4zm1.66-5.5h-2.16c-.58-1.18-1.36-2.03-2.25-2.41a7.5 7.5 0 014.41 2.41z"/></svg>
+          <i class="fas fa-globe" aria-hidden="true"></i>
           <span>EN / USD</span>
-          <svg class="icon icon--chevron-down" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.646 5.646a.5.5 0 01.708 0L8 9.293l3.646-3.647a.5.5 0 01.708.708l-4 4a.5.5 0 01-.708 0l-4-4a.5.5 0 010-.708z"/></svg>
+          <i class="fas fa-chevron-down" aria-hidden="true"></i>
         </button>
       </div>
 
@@ -1515,19 +1521,19 @@
         <ul class="footer-chips">
           <li>
             <a href="https://wa.me/998991234567" target="_blank" rel="noopener noreferrer" class="footer-chip" aria-label="Contact via WhatsApp">
-              <svg class="icon icon--whatsapp" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10.05 0C4.5 0 0 4.48 0 10c0 1.77.46 3.43 1.27 4.87L.05 19.1l4.35-1.14A9.95 9.95 0 0010.05 20c5.52 0 10-4.48 10-10s-4.48-10-10-10zm5.89 14.21c-.24.68-1.41 1.28-1.95 1.35-.51.06-1.02.24-3.44-.74-3.11-1.25-5.11-4.39-5.27-4.59-.15-.2-1.24-1.65-1.24-3.15s.78-2.23 1.06-2.53c.28-.3.61-.38.81-.38.2 0 .41.01.59.01.19 0 .44-.07.69.52.25.61.86 2.1.93 2.25.08.15.13.33.03.53-.1.2-.15.33-.3.51-.15.18-.32.4-.46.54-.15.15-.31.31-.13.61.18.3.79 1.31 1.7 2.12 1.17 1.04 2.16 1.37 2.46 1.52.3.15.48.13.66-.08.18-.2.76-.89.96-1.19.2-.3.41-.25.69-.15.28.1 1.78.84 2.08.99.3.15.5.23.58.35.07.13.07.74-.17 1.42z"/></svg>
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
               <span>WhatsApp</span>
             </a>
           </li>
           <li>
             <a href="https://instagram.com/jahongirtravel" target="_blank" rel="noopener noreferrer" class="footer-chip" aria-label="Follow on Instagram">
-              <svg class="icon icon--instagram" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0C7.284 0 6.944.012 5.877.06 4.813.11 4.086.278 3.45.525a4.902 4.902 0 00-1.772 1.153A4.902 4.902 0 00.525 3.45C.278 4.086.109 4.813.06 5.877.012 6.944 0 7.284 0 10s.012 3.056.06 4.123c.05 1.064.218 1.791.465 2.427a4.902 4.902 0 001.153 1.772 4.902 4.902 0 001.772 1.153c.636.247 1.363.416 2.427.465C6.944 19.988 7.284 20 10 20s3.056-.012 4.123-.06c1.064-.05 1.791-.218 2.427-.465a4.902 4.902 0 001.772-1.153 4.902 4.902 0 001.153-1.772c.247-.636.416-1.363.465-2.427C19.988 13.056 20 12.716 20 10s-.012-3.056-.06-4.123c-.05-1.064-.218-1.791-.465-2.427a4.902 4.902 0 00-1.153-1.772A4.902 4.902 0 0016.55.525C15.914.278 15.187.109 14.123.06 13.056.012 12.716 0 10 0zm0 1.802c2.67 0 2.987.01 4.04.058.975.045 1.504.207 1.857.344.467.181.8.398 1.15.748.35.35.567.683.748 1.15.137.353.3.882.344 1.857.048 1.053.058 1.37.058 4.04s-.01 2.987-.058 4.04c-.045.975-.207 1.504-.344 1.857-.181.467-.398.8-.748 1.15-.35.35-.683.567-1.15.748-.353.137-.882.3-1.857.344-1.053.048-1.37.058-4.04.058s-2.987-.01-4.04-.058c-.975-.045-1.504-.207-1.857-.344a3.097 3.097 0 01-1.15-.748 3.097 3.097 0 01-.748-1.15c-.137-.353-.3-.882-.344-1.857-.048-1.053-.058-1.37-.058-4.04s.01-2.987.058-4.04c.045-.975.207-1.504.344-1.857.181-.467.398-.8.748-1.15.35-.35.683-.567 1.15-.748.353-.137.882-.3 1.857-.344 1.053-.048 1.37-.058 4.04-.058zM10 4.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 8.468a3.333 3.333 0 110-6.666 3.333 3.333 0 010 6.666zm5.338-8.67a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/></svg>
+              <i class="fab fa-instagram" aria-hidden="true"></i>
               <span>Instagram</span>
             </a>
           </li>
           <li>
             <a href="https://facebook.com/jahongirtravel" target="_blank" rel="noopener noreferrer" class="footer-chip" aria-label="Follow on Facebook">
-              <svg class="icon icon--facebook" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z"/></svg>
+              <i class="fab fa-facebook" aria-hidden="true"></i>
               <span>Facebook</span>
             </a>
           </li>
@@ -1580,7 +1586,7 @@
       <button type="button" class="footer-locale footer-locale--mobile" aria-haspopup="menu" aria-expanded="false">
         <span class="footer-locale__icon" aria-hidden="true">🌐</span>
         <span class="footer-locale__label">EN / USD</span>
-        <svg class="icon icon--chevron-down footer-locale__chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.646 5.646a.5.5 0 01.708 0L8 9.293l3.646-3.647a.5.5 0 01.708.708l-4 4a.5.5 0 01-.708 0l-4-4a.5.5 0 010-.708z"/></svg>
+        <i class="fas fa-chevron-down footer-locale__chevron" aria-hidden="true"></i>
       </button>
 
     </div>
