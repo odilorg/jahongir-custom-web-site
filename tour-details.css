@@ -340,6 +340,7 @@
 /* Content wrapper */
 .tour-content-wrapper {
   background: var(--color-background, #FAF9F6);
+  touch-action: pan-y; /* Always allow vertical scroll on mobile */
 }
 
 /* Container for layout */
@@ -354,12 +355,14 @@
   display: block; /* Single column on mobile */
   gap: 2.5rem;
   margin: 3rem 0;
+  touch-action: pan-y; /* Always allow vertical scroll on mobile */
 }
 
 /* Main content area (contains sections) */
 .tour-main-content {
   /* Simple block container - sections flow vertically */
   margin-bottom: 3rem;
+  touch-action: pan-y; /* Always allow vertical scroll on mobile */
 }
 
 /* Section spacing */
@@ -889,6 +892,17 @@
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+/* Mobile: prevent map from trapping scroll */
+@media (max-width: 767px) {
+  .meeting-map iframe {
+    pointer-events: none; /* Disable map interaction on mobile to prevent scroll trap */
+  }
+
+  .meeting-map:active iframe {
+    pointer-events: auto; /* Re-enable when user taps/holds on map */
+  }
 }
 
 /* ======================================================
@@ -1660,6 +1674,7 @@
   padding: 1rem 1.5rem;
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
   z-index: 90;
+  pointer-events: none; /* Don't intercept page scroll */
 }
 
 .mobile-booking-cta__content {
@@ -1668,11 +1683,13 @@
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
+  pointer-events: auto; /* Content is interactive */
 }
 
 .mobile-booking-cta__price {
   display: flex;
   flex-direction: column;
+  pointer-events: auto; /* Price text is interactive */
 }
 
 .mobile-booking-cta__amount {
@@ -1689,6 +1706,7 @@
 
 .mobile-booking-cta .btn {
   flex-shrink: 0;
+  pointer-events: auto; /* Button is interactive */
 }
 
 /* ======================================================
