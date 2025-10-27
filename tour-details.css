@@ -40,11 +40,9 @@
 
 .site-header {
   background: var(--color-surface, #fff);
-  border-bottom: 1px solid var(--color-border, #E3E3E3);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .site-header__container {
