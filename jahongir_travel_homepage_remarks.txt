@@ -1,0 +1,141 @@
+
+Jahongir Travel – Homepage Sections: Consolidated Remarks (for Laravel + Filament v4 backend)
+
+Scope
+- Covers: Why Choose Us, Trending Activities, Popular Tours, Top Places to Travel, Traveller Reviews.
+- Tech context: Laravel + Filament v4 (no WordPress). Keep markup semantic; expose repeatable content as Filament resources.
+
+======================================================================
+GLOBAL (Performance, SEO, Accessibility, Consistency)
+======================================================================
+1) Image strategy
+   - Add JPEG fallbacks via <picture> for all critical images currently .webp-only (hero, cards, avatars).
+   - Provide responsive sizes/srcset:
+     • Hero: sizes="100vw" with 480/960/1440/1920 variants. Keep fetchpriority="high" ONLY on hero.
+     • Grid/card images: sizes="(min-width:1200px) 400px, (min-width:768px) 33vw, 90vw".
+   - Ensure correct filename: rename images/uzbek-cuizine.webp → images/uzbek-cuisine.webp.
+
+2) JS & CSS loading
+   - Add defer to main.js to avoid render blocking: <script src="js/main.js" defer></script>.
+   - Consider preloading critical CSS if splitting later; otherwise keep a single minified CSS.
+
+3) Link hygiene
+   - External links with target="_blank": add rel="noopener noreferrer" (WhatsApp + TripAdvisor + any future externals).
+
+4) Navigation toggle a11y
+   - Ensure the mobile toggle script updates aria-expanded on the button and toggles hidden state on the menu (e.g., [aria-hidden] or .is-open class).
+
+5) Copy & numerics
+   - Use a consistent visible format for counts: "2,400+" across badges and UI text.
+   - Keep JSON-LD numeric values unformatted (2400) — already OK.
+
+6) Structured Data (JSON-LD)
+   - Current types look good: TravelAgency + ItemList (Activities) + TouristTrip (Popular Tours) + Place (Top Destinations).
+   - Optional: add Organization JSON-LD with logo + sameAs (TripAdvisor/Instagram/Facebook) if available to strengthen entity matching.
+   - For TouristTrip.offers include validUrl and currency (already present).
+
+7) SEO
+   - Page <title> and meta description are strong; avoid duplicates across other pages.
+   - Keep canonical set to final domain.
+   - Ensure internal links are crawlable (no onclick-only navigation).
+
+8) Filament (content modeling)
+   - Create Resources: TourCategory, Tour, Destination, Review, Badge/Testimonial.
+   - Seed counts per category (e.g., "12 tours") programmatically from Tour → TourCategory relationship.
+   - Expose slugs and SEO fields (title, description) per entity.
+   - Media: store webp + jpg (fallback) and generate responsive variants via a media library (e.g., spatie/laravel-medialibrary + glide/imagine).
+
+======================================================================
+SECTION: WHY CHOOSE US
+======================================================================
+UI/Content
+- Good hierarchy: eyebrow → H2 → paragraph → contact CTAs → benefits list.
+- Add picture fallbacks for the three photos.
+- Trust badge: keep “4.9 | 2,400+ Happy Travelers” — ensure single source of truth (pulled from Reviews count).
+
+Accessibility
+- Contact links already have aria-labels — retain.
+- Check icon-only separators (the vertical bar “|”) maintain contrast; consider using <span class="sr-only">separator</span> if needed.
+
+Data/Backend
+- Benefits list, contact phone, and WhatsApp number should be CMS-editable in Filament Settings page.
+
+======================================================================
+SECTION: TRENDING ACTIVITIES
+======================================================================
+UI/Content
+- Cards look consistent; tour counts shown as badges.
+- Replace placeholder images with brand-consistent category artwork or real photography.
+- Ensure hover/focus states are obvious (box-shadow/scale).
+
+Accessibility
+- Each card has aria-label. Keep link text “Explore Tours →” visible and focusable.
+
+Data/Backend
+- Tour counts should be derived from TourCategory::withCount('tours').
+- Slugs and URLs are correct; keep them dynamic in Blade.
+
+======================================================================
+SECTION: POPULAR TOURS
+======================================================================
+UI/Content
+- Cards: media, tags, title, meta (duration + rating), price, CTA. Looks good.
+- Ensure prices format via localized helper (e.g., number_format with currency).
+
+Accessibility
+- Star ratings: include aria-label="Rated X out of 5". Already present — keep it consistent on all cards.
+
+Data/Backend
+- Tour entity fields: title, slug, summary, duration_days, duration_nights, cities[], price_from, rating_value, review_count, featured (bool), hero_image, gallery[].
+- Tags displayed from related City/Destination pivot.
+- JSON-LD offers “url” is present — keep it the canonical tour URL.
+
+Performance
+- Add <picture> with JPG fallback and srcset variants for each tour image.
+
+======================================================================
+SECTION: TOP PLACES TO TRAVEL
+======================================================================
+UI/Content
+- Overlay and CTAs are clear; stats show tours per destination.
+- Ensure imagery is authentic (Registan, Bukhara minarets, Khiva Itchan Kala, Tashkent metro/bazaar).
+
+Accessibility
+- Link aria-labels include destination names — good.
+
+Data/Backend
+- Destination Resource fields: name, slug, tagline, geo (lat/long), description, image, tours_count (computed), ordering.
+- Compute tours_count via relationship; avoid hardcoding numbers in Blade.
+
+======================================================================
+SECTION: TRAVELLER REVIEWS
+======================================================================
+UI/Content
+- Three review cards + TripAdvisor badge and CTA work well.
+- If you plan to rotate reviews, create a simple “published” toggle and optional source icon (TripAdvisor).
+
+Accessibility
+- Avatars need meaningful alt (already the reviewer’s name). Good.
+- Quote icon should be aria-hidden="true".
+
+Data/Backend
+- Review entity: author_name, location_city, location_country, avatar, rating (1–5), traveled_at (date), source (TripAdvisor/Google), body, published (bool).
+- Aggregate rating (4.9 / 2400+) should be calculated from Reviews and cached (or allow a manual override setting that falls back to computed).
+
+======================================================================
+FINAL QUICK-FIX CHECKLIST
+======================================================================
+[ ] Rename images/uzbek-cuizine.webp → images/uzbek-cuisine.webp and update references.
+[ ] Add <picture> + JPG fallback and srcset/sizes for hero + all card images.
+[ ] Defer main.js.
+[ ] Add rel="noopener noreferrer" on all target="_blank" links (WhatsApp, TripAdvisor).
+[ ] Mobile nav toggle updates aria-expanded + menu visibility.
+[ ] Normalize visible numeric formatting to “2,400+” across UI.
+[ ] Ensure all counts (tour/destination) are computed server-side (Laravel) not hardcoded.
+[ ] Confirm JSON-LD validates in Rich Results Test after deployment.
+[ ] Ensure consistent focus outlines and hover states for accessibility.
+[ ] Media pipeline in Laravel generates responsive WebP+JPEG variants automatically.
+
+Notes
+- Keep this page as the canonical “home” experience; split subsequent pages for categories, tours, and destinations using the same component patterns.
+- No WordPress references; backend is Laravel + Filament v4 throughout.

@@ -1,0 +1,119 @@
+<nav class="section-nav" aria-label="Tour sections">
+  <button class="section-nav__btn section-nav__btn--prev" aria-label="Scroll left" hidden>
+    ‹
+  </button>
+
+  <div class="section-nav__scroller" id="sectionScroller" tabindex="0">
+    <a href="#overview"   class="is-active">Overview</a>
+    <a href="#highlights">Highlights</a>
+    <a href="#included">Included</a>
+    <a href="#itinerary">Itinerary</a>
+    <a href="#meeting">Meeting Point</a>
+    <a href="#know">Know Before</a>
+    <a href="#cancel">Cancellation</a>
+    <a href="#faq">FAQ</a>
+  </div>
+
+  <button class="section-nav__btn section-nav__btn--next" aria-label="Scroll right" hidden>
+    ›
+  </button>
+</nav>
+css
+
+.section-nav{
+  position: sticky; top: 64px; z-index: 20;
+  background:#fff; border-bottom:1px solid #eee;
+  display:flex; align-items:center; gap:.25rem; padding:.5rem .5rem;
+}
+
+/* scroller strip */
+.section-nav__scroller{
+  display:flex; gap:1.25rem; align-items:center;
+  overflow-x:auto; -webkit-overflow-scrolling:touch;
+  scroll-snap-type:x proximity; padding:.5rem 1rem;
+  white-space:nowrap; flex:1 1 auto; position:relative;
+  /* fade edges to indicate scrollability */
+  --fade: 24px;
+  mask-image: linear-gradient(to right, transparent 0, #000 var(--fade),
+                               #000 calc(100% - var(--fade)), transparent 100%);
+}
+
+/* links ("chips") */
+.section-nav__scroller a{
+  scroll-snap-align:center;
+  text-decoration:none; color:#555; font-weight:500;
+  padding:.4rem .75rem; border-radius:999px;
+  border:1px solid transparent;
+}
+.section-nav__scroller a:hover{ color:#0d47a1; }
+.section-nav__scroller a.is-active{
+  color:#0d47a1; background:#eef4ff; border-color:#dbe7ff;
+}
+
+/* arrows */
+.section-nav__btn{
+  flex:0 0 auto; width:32px; height:32px; border-radius:999px;
+  border:1px solid #e5e5e5; background:#fff; cursor:pointer;
+  display:grid; place-items:center; color:#555;
+  box-shadow:0 1px 3px rgba(0,0,0,.06);
+}
+.section-nav__btn[hidden]{ display:none; }
+
+/* very small screens: allow wrap as fallback */
+@media (max-width:380px){
+  .section-nav__scroller{ white-space:normal; flex-wrap:wrap; gap:.5rem; overflow-x:visible; mask-image:none; }
+  .section-nav__scroller a{ display:inline-block; }
+  .section-nav__btn{ display:none; }
+}
+
+
+js
+
+<script>
+(function(){
+  const scroller = document.getElementById('sectionScroller');
+  const prevBtn  = document.querySelector('.section-nav__btn--prev');
+  const nextBtn  = document.querySelector('.section-nav__btn--next');
+
+  if (!scroller) return;
+
+  const updateButtons = () => {
+    const {scrollLeft, scrollWidth, clientWidth} = scroller;
+    prevBtn.hidden = scrollLeft <= 2;
+    nextBtn.hidden = scrollLeft + clientWidth >= scrollWidth - 2;
+  };
+
+  const smoothScroll = (dir=1) => {
+    scroller.scrollBy({ left: dir * Math.round(scroller.clientWidth * 0.7), behavior: 'smooth' });
+  };
+
+  // show/hide arrows based on overflow
+  updateButtons();
+  scroller.addEventListener('scroll', updateButtons);
+  window.addEventListener('resize', updateButtons);
+
+  prevBtn.addEventListener('click', ()=>smoothScroll(-1));
+  nextBtn.addEventListener('click', ()=>smoothScroll(1));
+
+  // center the active link when page loads or when clicking
+  const centerLink = (el) => el?.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+  centerLink(scroller.querySelector('.is-active'));
+  scroller.addEventListener('click', e=>{
+    const a = e.target.closest('a'); if(!a) return;
+    scroller.querySelectorAll('a').forEach(x=>x.classList.remove('is-active'));
+    a.classList.add('is-active'); centerLink(a);
+  });
+
+  // optional: update active link via IntersectionObserver on sections
+  const links = [...scroller.querySelectorAll('a')];
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(({isIntersecting, target})=>{
+      if (!isIntersecting) return;
+      links.forEach(x=>x.classList.remove('is-active'));
+      const a = map.get(target.id); a?.classList.add('is-active'); centerLink(a);
+    });
+  }, {rootMargin:'-40% 0% -55% 0%', threshold:0});
+  document.querySelectorAll('section[id]').forEach(sec=>obs.observe(sec));
+})();
+</script>

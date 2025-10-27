@@ -1,0 +1,102 @@
+
+Evaluation Report — tour-details.html
+=====================================
+
+Summary
+-------
+This evaluation reviews your uploaded tour-details.html file. It is already close to production quality and well-structured for SEO and user experience, with only a few performance and content optimization areas remaining.
+
+
+SEO & Technical (A-)
+--------------------
+✔ Canonical and OG tags correctly implemented.
+✔ Title and meta description concise and descriptive.
+✔ JSON-LD for FAQPage and BreadcrumbList correctly added.
+⚠ Replace “TouristTrip” schema with “Tour” for improved Google interpretation.
+⚠ Add `priceValidUntil` and ensure `aggregateRating` appears only when visible on page.
+⚠ Add hreflang tags if multilingual pages exist.
+
+
+Content & Information Architecture (B+)
+---------------------------------------
+✔ H1–H2–H3 hierarchy is consistent.
+✔ Clear structure: Overview, Highlights, Included, Cancellation, FAQ.
+⚠ Missing “Itinerary,” “Meeting Point & Pickup,” and “Know Before You Go” sections—important for completeness and user clarity.
+⚠ Add internal links to related posts (/cities/samarkand/, /insights/Registan).
+
+
+Accessibility & UX (B)
+----------------------
+✔ Buttons labeled and icons marked aria-hidden where decorative.
+⚠ Mobile navigation toggle should update aria-expanded dynamically.
+⚠ Maintain focus outlines for all interactive elements.
+⚠ Add aria-live region for booking form validation messages.
+
+
+Performance & Core Web Vitals (B)
+---------------------------------
+✔ Images use width/height and WebP format.
+⚠ Font Awesome adds ~90KB render-blocking resource.
+⚠ Inline 10–14KB critical CSS and defer the rest.
+⚠ Use `fetchpriority="high"` for hero; lazy-load all other images.
+⚠ Replace FA icons with inline SVGs.
+⚠ Compress and preload main CSS.
+
+
+Conversion UX (A-)
+------------------
+✔ Booking card is well-structured with price breakdown and mobile sticky CTA.
+⚠ Add trust badges (“Free cancellation,” “Secure payments,” “24/7 support”). 
+⚠ Show “Instant confirmation” or “24h confirmation” near CTA for clarity.
+✔ WhatsApp contact visible (great for conversions).
+
+
+Internal Linking & Crawl Depth (B+)
+-----------------------------------
+✔ Breadcrumbs implemented correctly.
+⚠ Add descriptive internal anchors within body text (e.g., “Read about Registan Square in our Samarkand Guide”).
+
+
+Structured Data & Rich Results (A)
+----------------------------------
+✔ FAQ and Breadcrumb schemas valid.
+⚠ For Tour schema, ensure “offers” section includes:
+   - price
+   - priceCurrency
+   - availability
+   - priceValidUntil
+⚠ Only include review markup if reviews appear visually.
+
+
+Internationalization (C+)
+-------------------------
+⚠ No hreflang tags found.
+⚠ Add alternate links if other languages (RU, FR) exist:
+<link rel="alternate" hreflang="ru" href="https://jahongirtravel.com/ru/tours/samarkand-city-tour">
+<link rel="alternate" hreflang="fr" href="https://jahongirtravel.com/fr/tours/samarkand-city-tour">
+<link rel="alternate" hreflang="x-default" href="https://jahongirtravel.com/tours/samarkand-city-tour">
+
+
+Priority Fixes
+--------------
+P0 — Critical
+• Remove Font Awesome, use inline SVGs.
+• Inline critical CSS, defer full CSS file.
+• Verify robots.txt and sitemap presence and accessibility.
+
+P1 — High
+• Add “Itinerary,” “Meeting Point & Pickup,” and “Know Before You Go” sections.
+• Add internal links and GA4 event tracking.
+• Implement structured data upgrade from TouristTrip → Tour.
+
+P2 — Medium
+• Add language hreflang alternates.
+• Add trust badges under booking form.
+• Improve lightbox accessibility (ESC close, arrow keys).
+
+
+Overall Assessment
+------------------
+Grade: **A- (Excellent foundation, 80–85/100 overall)**
+Your page already follows Google’s core SEO and UX principles very well.
+Focus next on removing heavy dependencies, adding missing sections, and improving structured data alignment to reach 95+/100 Lighthouse scores.

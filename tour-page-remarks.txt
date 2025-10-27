@@ -1,0 +1,169 @@
+
+Jahongir Travel — Tour Detail Page Review (UI/UX, SEO, Performance)
+====================================================================
+
+Summary
+-------
+This file lists actionable recommendations to improve UI/UX, SEO, structured data, and performance for the “Samarkand City Tour” detail page. Follow these to reach Lighthouse 90+ in Performance/SEO/Accessibility/Best Practices and improve conversions.
+
+1) UI/UX & Conversion
+---------------------
+- Add four core blocks users expect and link them from a mini TOC under the title:
+  • Itinerary (timeline style: 3–5 stops with approximate times)
+  • Meeting Point & Pickup (Google Map embed + pickup radius / fees)
+  • Price & Discounts (child pricing, private group, seasonal)
+  • Know Before You Go (dress code, cash/ATM, photography rules, steps)
+- Insert a compact CTA bar under Overview: [Check availability] [WhatsApp] [Call].
+- Mobile: keep sticky price bar (present) and add a second sticky button “WhatsApp” next to “Book Now.”
+- Gallery:
+  • Open thumbnails in an accessible lightbox (keyboard esc/arrow navigation).
+  • Enable swipe on mobile; ensure focus trapping in the lightbox.
+  • Maintain aspect ratios and declare width/height to avoid CLS.
+- Trust & reassurance near the booking card:
+  • Add badges: “Secure payments”, “24/7 support”, “Free cancellation (24h)”. 
+  • Add short microcopy under total: “No payment now — pay after confirmation” (or your true rule).
+- Forms:
+  • Date min = today + 1; validate guests ≤ maxGuests; disable Request button until valid.
+  • Add inline error messaging and aria-live region for validation feedback.
+- Accessibility:
+  • Keep visible focus outlines; don’t remove `outline` in CSS.
+  • All decorative icons: `aria-hidden="true"`. Action icons must have visible text.
+  • `nav__toggle` must toggle `aria-expanded` and focus first menu item when opened.
+  • Ensure color contrast ≥ 4.5:1 for all text on buttons and overlays.
+
+2) Information Architecture & Content
+-------------------------------------
+- Heading hierarchy: H1 (tour title) → H2 (Overview/Highlights/Included/Cancellation/FAQ/Itinerary/Meeting Point) → H3 (subsections like Included/Not Included).
+- Above-the-fold copy: keep 300–600 words of unique, scannable text. Use short paragraphs and bullets.
+- Internal links in body text:
+  • /cities/samarkand/
+  • /insights/ articles (Registan, Shah-i-Zinda, Bibi-Khanym guides)
+  • /about/ and /contact/ for trust & conversion.
+- Add concise persona cues:
+  • “Perfect for: history lovers, short-stay visitors, families 6+.”
+  • Accessibility note: stairs at Shah-i-Zinda, uneven surfaces, etc.
+
+3) SEO: Head & SERP Enhancements
+--------------------------------
+- Add/confirm canonical:
+  <link rel="canonical" href="https://jahongirtravel.com/tours/samarkand-city-tour">
+- Add OG enhancements:
+  <meta property="og:site_name" content="Jahongir Travel">
+  <meta property="og:locale" content="en_US">
+- Remove legacy header:
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+- Keep unique title and meta description (already good). Avoid keyword stuffing.
+- Multilingual support (if pages exist):
+  • Add hreflang alternates for /ru/ and /fr/ versions.
+- Breadcrumbs:
+  • Keep both visible breadcrumbs and BreadcrumbList JSON-LD (already present).
+
+4) Structured Data
+------------------
+- You can keep `FAQPage` JSON-LD (valid). 
+- Prefer `Tour` (or keep `TouristTrip`) with `Offer`. Include:
+  • price, priceCurrency, availability, priceValidUntil
+  • provider Organization with logo/telephone
+  • itinerary as ItemList with TouristAttraction items.
+- IMPORTANT: Only include `aggregateRating` and `review` in JSON-LD if the same rating/reviews are displayed on the page to meet Google’s policy.
+- Keep URLs absolute and images HTTPS; ensure images are 1200px+ for rich sharing cards.
+
+5) Performance (Core Web Vitals)
+--------------------------------
+Targets: LCP < 2.5s, CLS ≈ 0, INP < 200ms.
+
+- CSS:
+  • Inline critical CSS (~10–14 KB) for above-the-fold; load rest as regular stylesheet (or `media="print" onload="this.media='all'"` pattern).
+  • Minify and hash file names; serve with long-cache headers.
+- Fonts & Icons:
+  • Drop Font Awesome (heavy, render-blocking). Use inline SVG icons or a tiny custom icon set.
+  • If using webfonts, add `font-display: swap` and preload the primary font.
+- Images:
+  • Hero image: do NOT lazy-load; set `loading="eager"` and `fetchpriority="high"`. Provide `srcset` + `sizes` responsive variants.
+  • Thumbnails and non-critical images: `loading="lazy"` with explicit `width`/`height` to avoid layout shifts.
+  • Use modern formats (WebP/AVIF). Keep compression ~85–90% quality visually.
+- JS:
+  • Defer non-critical scripts. Avoid inline `style="display:none"` to control load; use a CSS `is-loading` class toggled by JS.
+  • Add GA4 events for `check_availability`, `request_booking`, `whatsapp_click`.
+- Server:
+  • Enable Brotli/Gzip compression, HTTP/2 or HTTP/3, and proper cache-control for static assets.
+  • Serve images via CDN with caching if available.
+
+6) Booking Widget UX
+--------------------
+- Clarify confirmation type: “Instant confirmation” or “Reply within 2–24h” (choose the real one).
+- Validate guest count and date before enabling the Request button; show accessible error text.
+- Display price breakdown updates live as guests change (already designed — ensure calculation and currency format).
+- Provide alternative contact actions: WhatsApp deep link and a visible phone link; repeat at bottom of page.
+
+7) Code Hygiene & A11y Details
+------------------------------
+- Buttons: ensure all actionable elements are <button type="button"> (you already do).
+- External links: add `rel="nofollow"` for purely commercial outbound links where appropriate; always keep `rel="noopener noreferrer"`.
+- Gallery visibility: avoid inline `style="display:none"`; apply a CSS class like `.is-hidden` and toggle with JS to prevent FOUC.
+- Maintain consistent aria-labels; do not duplicate labels when visible text exists.
+- Keep keyboard focus states on modals/lightboxes and return focus to the trigger on close.
+
+8) Ready-to-Paste Snippets (for convenience)
+--------------------------------------------
+A) Head additions:
+<link rel="canonical" href="https://jahongirtravel.com/tours/samarkand-city-tour">
+<meta property="og:site_name" content="Jahongir Travel">
+<meta property="og:locale" content="en_US">
+
+B) Hero image example:
+<img
+  src="/images/tours/samarkand/hero-main-1600.webp"
+  srcset="/images/tours/samarkand/hero-main-800.webp 800w,
+          /images/tours/samarkand/hero-main-1200.webp 1200w,
+          /images/tours/samarkand/hero-main-1600.webp 1600w"
+  sizes="(max-width: 1024px) 100vw, 66vw"
+  alt="Registan Square panoramic view with three madrasahs"
+  width="1200" height="800"
+  loading="eager" fetchpriority="high">
+
+C) Mini Table of Contents under H1:
+<nav class="section-toc" aria-label="On this page">
+  <a href="#overview">Overview</a>
+  <a href="#highlights">Highlights</a>
+  <a href="#includes">Included</a>
+  <a href="#cancellation">Cancellation</a>
+  <a href="#faq">FAQ</a>
+</nav>
+
+D) Meeting point block:
+<section class="tour-meeting" id="meeting-point">
+  <h2 class="section-title">Meeting Point & Pickup</h2>
+  <p>Hotel pickup within Samarkand city. Otherwise, meet at <strong>Registan West Gate</strong> (see map).</p>
+  <div class="map-embed" aria-label="Map to meeting point">
+    <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps/embed?pb=..."
+      width="600" height="360" style="border:0" allowfullscreen></iframe>
+  </div>
+</section>
+
+E) Know before you go:
+<section class="tour-know" id="know-before">
+  <h2 class="section-title">Know Before You Go</h2>
+  <ul class="checklist">
+    <li>Moderate walking; wear comfortable shoes.</li>
+    <li>Shoulders/knees covered for some sites.</li>
+    <li>Cash for small purchases (UZS).</li>
+  </ul>
+</section>
+
+9) Multilingual & Schema Alignment (optional if applicable)
+----------------------------------------------------------
+- Add <link rel="alternate" hreflang="ru" href="https://jahongirtravel.com/ru/tours/samarkand-city-tour"> (and FR).
+- Duplicate key content in RU/FR pages with localized JSON-LD (same @id URLs per language version if you use them).
+
+10) QA Checklist Before Publish
+-------------------------------
+- Lighthouse desktop & mobile ≥ 90 (Performance, SEO, A11y, Best Practices).
+- No console errors; no 404s on images/CSS/JS.
+- CLS < 0.05 on real devices; hero image has width/height set.
+- Schema validated (Rich Results Test): Tour, FAQPage pass; aggregateRating only if reviews rendered.
+- Forms: server-side validation mirrors client-side; spam protection (honeypot/reCAPTCHA) on inquiry.
+- Analytics: GA4 events firing; conversions attributed to WhatsApp clicks via UTM parameters.
+
+— End of file —

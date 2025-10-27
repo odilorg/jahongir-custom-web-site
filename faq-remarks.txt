@@ -1,0 +1,139 @@
+Quick verdict
+
+Professional? Yes.
+
+Alignment with site style? ~80%. Cards don’t quite match the Highlights/Included cards.
+
+Main issues: uneven padding, long line length, icon weight, and inactive/active color not aligned to your brand blue.
+
+What to tweak
+
+Card rhythm (padding & radius)
+
+Match the Highlights cards: border-radius: 12px, inner padding 16–20px.
+
+Reduce the gap between items and remove the “double rounded” look from stacked cards (use a uniform border with subtle divider).
+
+Typography
+
+Question: font-weight: 600; font-size: 1.05rem; line-height: 1.35
+
+Answer: font-weight: 400; line-height: 1.6; max-width: 68ch (prevents extra-long lines)
+
+Title spacing: add margin-bottom: 1rem below “Frequently Asked Questions”.
+
+Icon & affordance
+
+Use an outlined chevron (inline SVG) that rotates on open; current glyph is a bit heavy and dark.
+
+Increase hit area: at least 44px height on the summary row.
+
+Color & borders
+
+Neutral card: background: #fff; border: 1px solid #E7EAF0
+
+Hover/focus: soft shadow 0 2px 8px rgba(0,0,0,.04)
+
+Active/open: left accent bar 3px solid #0D47A1 or light background #EEF4FF
+
+Keep text color #1A1A1A (body) and #0D47A1 (brand accents) for consistency.
+
+Accessibility
+
+If you’re using <details><summary>, you’re good. Add a visible :focus-visible outline to the summary row.
+
+Ensure the chevron has aria-hidden="true" and the summary text has a clear accessible name.
+
+/* Section Heading */
+.faq h2 {
+  margin-bottom: 1rem;
+}
+
+/* Container spacing */
+.faq-list {
+  display: grid;
+  gap: .75rem;
+}
+
+/* Card (details element) */
+.faq-item {
+  background: #fff;
+  border: 1px solid #E7EAF0;
+  border-radius: 12px;
+  overflow: hidden; /* merges borders when stacked */
+}
+
+/* Summary row */
+.faq-item > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  color: #111;
+}
+
+/* Remove native marker */
+.faq-item > summary::-webkit-details-marker { display:none; }
+
+/* Chevron */
+.faq-item > summary .chev {
+  margin-left: auto;
+  transition: transform .2s ease;
+  flex: 0 0 20px;
+}
+
+/* Open state */
+.faq-item[open] {
+  border-left: 3px solid #0D47A1;
+  background: #fff;
+}
+.faq-item[open] > summary .chev { transform: rotate(180deg); }
+
+/* Answer body */
+.faq-body {
+  padding: 0 1.25rem 1rem 1.25rem;
+  color: #1a1a1a;
+  line-height: 1.6;
+  max-width: 68ch; /* improves readability */
+}
+
+/* Hover & focus */
+.faq-item > summary:hover { background: #F9FAFB; }
+.faq-item > summary:focus-visible {
+  outline: 2px solid #0D47A1;
+  outline-offset: 2px;
+}
+
+/* Compact stack on mobile */
+@media (max-width: 640px){
+  .faq-item > summary { padding: .9rem 1rem; }
+  .faq-body { padding: 0 1rem 1rem 1rem; }
+}
+
+
+Example HTML (one item)
+
+<details class="faq-item">
+  <summary>
+    <span>What should I bring?</span>
+    <svg class="chev" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6 9l6 6 6-6" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </summary>
+  <div class="faq-body">
+    Comfortable walking shoes, sun protection (hat, sunscreen, sunglasses)...
+  </div>
+</details>
+
+Why this matches your design system
+
+Same radius, border, and soft shadow as Highlights/Included.
+
+Brand accent blue used only for active state + focus—clean and modern.
+
+Type scale and spacing match your other sections, so the FAQ no longer feels “heavier.”

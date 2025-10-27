@@ -1,0 +1,241 @@
+
+Samarkand Tour Page — SEO/UX/Performance Audit
+Timestamp: 2025-10-26 13:31
+Reference: Google SEO Starter Guide Checklist (user-provided) 【23†google_seo_best_practices_checklist.txt】
+
+Scope
+-----
+Audited the provided HTML mockup for the “Samarkand City Tour” detail page. Focus: Technical SEO, content, structured data, accessibility, and Core Web Vitals readiness.
+
+
+Scorecard (0–100)
+-----------------
+A) Technical Discovery & Indexing .......... 62
+B) Rendering & Access to Resources ......... 70
+C) IA & URLs ................................ 86
+D) Duplicates & Canonicalization ........... 90
+E) Content Quality .......................... 84
+F) Intent & Terminology ..................... 88
+G) Ads & Intrusiveness ...................... 100
+H) Internal & External Linking ............. 78
+I) SERP Appearance (Titles, Meta, Schema) .. 88
+J) Images (alt, compression, CLS) .......... 82
+K) Video (n/a) .............................. n/a
+L) Internationalization (hreflang) ......... 60
+M) Performance & UX (CWV) .................. 76
+N) Monitoring & Maintenance ................ 55
+
+Overall (non-weighted): 80/100
+
+
+Findings & Recommendations (mapped to checklist)
+------------------------------------------------
+
+A) Technical Discovery & Indexing
+- ✅ Canonical present and correct for the tour URL.
+- ⚠ robots.txt, XML sitemap, HTTP status verification not shown in code; ensure they exist and list canonical URLs only.
+- ➜ Action:
+  1. Ensure /robots.txt allows crawling of CSS/JS and links to /sitemap.xml.
+  2. Generate sitemap with stable, lowercase, trailing-slash-safe URLs for /tours/.*
+  3. Avoid soft 404s on removed tours; return 410 or 301 to parent category.
+
+B) Rendering & Access to Resources
+- ⚠ Font Awesome is included via CDN (render-blocking and heavy).
+- ⚠ Gallery container uses inline style display:none; prefer CSS class toggled by JS to avoid FOUC.
+- ➜ Action:
+  1. Replace FA with inline SVGs or a tiny sprite.
+  2. Defer non-critical JS; use class-based loading flags.
+
+C) Information Architecture & URLs
+- ✅ Clean, descriptive URL pattern /tours/samarkand-city-tour.
+- ✅ Breadcrumbs (visible + JSON-LD) match hierarchy.
+- ➜ Action:
+  1. Ensure page linked from /tours/ and /cities/samarkand/ within ≤3 clicks.
+  2. Keep consistent trailing slash policy and lowercase URLs.
+
+D) Duplicate Content & Canonicalization
+- ✅ Canonical tag aligns with the visible URL.
+- ➜ Action: 301 redirect alternate paths (with/without trailing slash; HTTP→HTTPS; uppercase variants; parameters without value).
+
+E) Content Quality (Helpful, People-first)
+- ✅ Unique, helpful copy with clear overview and highlights.
+- ⚠ Add “Meeting point & pickup”, “Itinerary”, and “Know before you go” sections for completeness and scannability.
+- ➜ Action:
+  1. Add 3–5 step itinerary with approximate times.
+  2. Meeting point map embed + pickup radius note.
+  3. Short personas (“Perfect for…”) + accessibility notes (stairs at Shah-i-Zinda).
+
+F) Search Intent & Terminology
+- ✅ Good match for “Samarkand city tour / Registan tour” transactional intent.
+- ➜ Action: Sprinkle natural synonyms (guided tour, private tour, walking tour, UNESCO sites) within headings/bullets—no stuffing.
+
+G) Ads & Intrusiveness
+- ✅ No intrusive interstitials.
+
+H) Internal & External Linking
+- ⚠ Body lacks internal links to /cities/samarkand/ and related insights.
+- ➜ Action: Add 3–5 internal links with descriptive anchors. Set rel="nofollow" when linking to purely commercial third-parties if applicable.
+
+I) SERP Appearance (Titles, Meta, Schema)
+- ✅ Title & description strong and unique.
+- ✅ FAQPage JSON-LD valid.
+- ⚠ OG site_name/locale missing; legacy X-UA-Compatible present.
+- ⚠ AggregateRating/Review in schema must only be included if rendered on page.
+- ➜ Action:
+  1. Add <meta property="og:site_name" content="Jahongir Travel"> and <meta property="og:locale" content="en_US">.
+  2. Remove X-UA-Compatible meta.
+  3. If ratings are not visibly displayed, remove rating markup or add a visible review module.
+  4. Consider switching TouristTrip → Tour with Offer (priceValidUntil, availability).
+
+J) Images (Alt, Compression, CLS)
+- ✅ Alt text present; dimensions set.
+- ⚠ Hero should be eager and high priority; add srcset/sizes.
+- ⚠ Thumbs should be lazy; all images should declare width/height to prevent CLS.
+- ➜ Action:
+  1. Preload hero, use fetchpriority=high; add srcset/sizes.
+  2. Keep thumbnails/loading images lazy; compress WebP/AVIF.
+
+K) Video (if applicable)
+- n/a for this page.
+
+L) Internationalization (hreflang)
+- ⚠ No hreflang present. If RU/FR variants exist, add self and reciprocal hreflang.
+- ➜ Action: Provide alternate link tags and language switcher; avoid IP-based redirects.
+
+M) Performance & UX (Core Web Vitals)
+- ⚠ External icon font blocks rendering; CSS not optimized for critical path.
+- ⚠ Potential CLS from gallery show/hide via inline styles.
+- ➜ Action:
+  1. Inline ~10–14KB critical CSS; load remainder as a single minified CSS file.
+  2. Drop Font Awesome; inline SVG icons.
+  3. Defer non-critical JS; keep hero image eager and next-gen.
+  4. GA4 events: check_availability, request_booking, whatsapp_click.
+  5. Ensure color contrast ≥ 4.5:1; maintain focus outlines.
+
+N) Monitoring & Maintenance
+- ⚠ Not visible in code: Search Console, analytics, 404 monitoring.
+- ➜ Action:
+  1. Verify property in Google Search Console; submit sitemap.
+  2. Add GA4 with event tracking; monitor Core Web Vitals field data (CrUX, if traffic allows).
+  3. Log 404s/5xx; maintain redirect map for retired tours.
+
+
+Copy-Paste Snippets (ready to implement)
+----------------------------------------
+HEAD additions/removals:
+<link rel="canonical" href="https://jahongirtravel.com/tours/samarkand-city-tour">
+<meta property="og:site_name" content="Jahongir Travel">
+<meta property="og:locale" content="en_US">
+<!-- Remove: <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+
+Hero image (responsive + priority):
+<img
+  src="/images/tours/samarkand/hero-main-1600.webp"
+  srcset="/images/tours/samarkand/hero-main-800.webp 800w,
+          /images/tours/samarkand/hero-main-1200.webp 1200w,
+          /images/tours/samarkand/hero-main-1600.webp 1600w"
+  sizes="(max-width: 1024px) 100vw, 66vw"
+  alt="Registan Square panoramic view with three madrasahs"
+  width="1200" height="800"
+  loading="eager" fetchpriority="high">
+
+Inline SVG icon (replace Font Awesome):
+<button class="gallery-nav" aria-label="Next image" type="button">
+  <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3l6 7-6 7"/></svg>
+</button>
+
+Mini TOC under H1:
+<nav class="section-toc" aria-label="On this page">
+  <a href="#overview">Overview</a>
+  <a href="#highlights">Highlights</a>
+  <a href="#includes">Included</a>
+  <a href="#cancellation">Cancellation</a>
+  <a href="#faq">FAQ</a>
+</nav>
+
+Meeting point section:
+<section class="tour-meeting" id="meeting-point">
+  <h2 class="section-title">Meeting Point & Pickup</h2>
+  <p>Hotel pickup within Samarkand city. Otherwise, meet at <strong>Registan West Gate</strong> (see map).</p>
+  <div class="map-embed" aria-label="Map to meeting point">
+    <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps/embed?pb=..." width="600" height="360" style="border:0" allowfullscreen></iframe>
+  </div>
+</section>
+
+Know before you go:
+<section class="tour-know" id="know-before">
+  <h2 class="section-title">Know Before You Go</h2>
+  <ul class="checklist">
+    <li>Moderate walking; wear comfortable shoes.</li>
+    <li>Shoulders/knees covered for some sites.</li>
+    <li>Cash for small purchases (UZS).</li>
+  </ul>
+</section>
+
+JSON-LD (Tour + Offer):
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Tour",
+  "name": "Samarkand City Tour: Registan Square and Historic Monuments",
+  "description": "4-hour guided walking tour covering Registan, Shah-i-Zinda, and Bibi-Khanym in Samarkand.",
+  "touristType": "Private",
+  "inLanguage": ["en","ru","fr"],
+  "image": [
+    "https://jahongirtravel.com/images/tours/samarkand/hero-main.webp",
+    "https://jahongirtravel.com/images/tours/samarkand/registan-1.webp",
+    "https://jahongirtravel.com/images/tours/samarkand/shah-i-zinda.webp"
+  ],
+  "itinerary": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"item":{"@type":"TouristAttraction","name":"Registan Square"}},
+      {"@type":"ListItem","position":2,"item":{"@type":"TouristAttraction","name":"Shah-i-Zinda"}},
+      {"@type":"ListItem","position":3,"item":{"@type":"TouristAttraction","name":"Bibi-Khanym Mosque"}}
+    ]
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "50.00",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "priceValidUntil": "2026-12-31",
+    "url": "https://jahongirtravel.com/tours/samarkand-city-tour"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Jahongir Travel",
+    "url": "https://jahongirtravel.com",
+    "telephone": "+998-99-123-45-67",
+    "logo": "https://jahongirtravel.com/images/logo.png",
+    "address": {"@type":"PostalAddress","addressLocality":"Samarkand","addressCountry":"UZ"}
+  }
+}
+</script>
+
+Hreflang (if multilingual):
+<link rel="alternate" hreflang="en" href="https://jahongirtravel.com/tours/samarkand-city-tour">
+<link rel="alternate" hreflang="ru" href="https://jahongirtravel.com/ru/tours/samarkand-city-tour">
+<link rel="alternate" hreflang="fr" href="https://jahongirtravel.com/fr/tours/samarkand-city-tour">
+<link rel="alternate" hreflang="x-default" href="https://jahongirtravel.com/tours/samarkand-city-tour">
+
+
+Priority Fix List (P0 → P2)
+---------------------------
+P0 (Critical)
+- Replace Font Awesome with inline SVGs; inline critical CSS; set hero image eager + responsive (LCP).
+- Ensure robots.txt and sitemap.xml are correct and live; verify canonicalization and redirects.
+- Remove schema ratings unless you visibly render reviews; otherwise add a review module.
+
+P1 (High)
+- Add Meeting Point, Itinerary, Know Before You Go; insert internal links to /cities/samarkand/ and related insights.
+- GA4 events for booking, inquiry, WhatsApp; ensure accessible validation for forms.
+- Add OG site_name/locale; remove X-UA-Compatible.
+
+P2 (Nice-to-have)
+- Implement lightbox with keyboard support; swipe on mobile.
+- Hreflang alternates if multilingual; add language switcher.
+- Add trust badges and a compact CTA row under Overview.
+
+End of report.

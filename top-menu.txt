@@ -1,0 +1,86 @@
+Drop-in markup (accessible)
+
+
+<section id="itinerary" aria-label="Tour itinerary" class="itinerary">
+  <h2>Tour Itinerary</h2>
+
+  <div class="itinerary-controls" aria-controls="itinerary-list">
+    <button type="button" id="expandAll">Expand all</button>
+    <button type="button" id="collapseAll">Collapse all</button>
+  </div>
+
+  <ol id="itinerary-list" class="itinerary-list">
+    <li id="stop-pickup">
+      <details open>
+        <summary>
+          <time datetime="09:00">09:00 AM</time>
+          <span class="stop-title">Hotel Pickup & Departure</span>
+        </summary>
+        <div class="stop-body">
+          <p>Your guide will pick you up from your hotel in Samarkand…</p>
+          <p class="stop-duration">Duration: ~30 minutes</p>
+        </div>
+      </details>
+    </li>
+
+    <li id="stop-registan">
+      <details>
+        <summary>
+          <time datetime="09:30">09:30 AM</time>
+          <span class="stop-title">Registan Square</span>
+        </summary>
+        <div class="stop-body">
+          <p>Explore the magnificent Registan Square…</p>
+          <p class="stop-duration">Duration: ~90 minutes</p>
+        </div>
+      </details>
+    </li>
+
+    <!-- Repeat for other stops -->
+  </ol>
+</section>
+
+
+Minimal CSS (keeps your timeline feel)
+
+.itinerary-list {
+  border-left: 3px solid #0d47a1; /* timeline bar */
+  margin: 1rem 0 0 1rem;
+  padding-left: 1rem;
+}
+.itinerary-list li { margin: 0 0 1rem 0; list-style: none; }
+details { background:#fff; border:1px solid #eee; border-radius:10px; padding:.5rem .75rem; }
+summary { display:flex; align-items:center; gap:.75rem; cursor:pointer; }
+summary time { font-size:.9rem; color:#666; min-width:5.5rem; }
+.stop-title { font-weight:600; }
+.stop-body { margin-top:.5rem; color:#333; line-height:1.55; }
+.stop-duration { color:#666; font-size:.9rem; margin-top:.25rem; }
+
+@media (min-width: 769px) {
+  /* Desktop: mostly expanded timeline look */
+  details { padding:.75rem 1rem; }
+  details[open] { box-shadow:0 2px 10px rgba(0,0,0,.04); }
+}
+
+@media (max-width: 768px) {
+  /* Mobile: start collapsed for brevity */
+  details:not(:first-of-type) { /* keep first one open if you like */ }
+}
+
+/* Print: open all */
+@media print { details { open: open; } }
+
+Tiny JS (expand/collapse all)
+
+<script>
+const all = Array.from(document.querySelectorAll('#itinerary-list details'));
+document.getElementById('expandAll')?.addEventListener('click',()=>all.forEach(d=>d.open=true));
+document.getElementById('collapseAll')?.addEventListener('click',()=>all.forEach(d=>d.open=false));
+
+// Optional: open a specific stop when hash matches
+if (location.hash) {
+  const d = document.querySelector(location.hash + ' details');
+  if (d) d.open = true;
+}
+</script>
+

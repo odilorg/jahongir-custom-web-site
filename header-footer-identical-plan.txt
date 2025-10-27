@@ -1,0 +1,103 @@
+
+Are the headers and footers identical?
+======================================
+Short answer: No.
+
+Evidence of differences
+-----------------------
+• The HOME page wraps the nav in a <header class="hero"> block and uses Font Awesome <i> icons. It links to 'style.css' and does not inline critical nav/footer CSS.  (See index.html) 
+• The TOUR DETAILS page uses a dedicated <header class="site-header"> with a sticky nav, includes a Skip link, and ships unified critical CSS for both the header and footer. It also mixes inline SVG icons and Font Awesome.  (See tour-details.html)
+
+Why this matters
+----------------
+Different HTML structure + different CSS sources cause: layout mismatches, “bulleted list” fallback when CSS delays, and inconsistent icon rendering.
+
+Unification Target
+------------------
+Adopt ONE canonical header and ONE canonical footer, shared identically by all pages via partials + a shared CSS and JS.
+
+Deliverables
+------------
+1) /partials/header.html  (identical markup for all pages)
+2) /partials/footer.html  (identical markup for all pages)
+3) /css/common-header-footer.css  (shared styles; loaded on all pages before page-specific CSS)
+4) /js/nav.js  (shared accessible toggle)
+5) Remove Font Awesome from ALL pages; switch to inline SVGs.
+
+Step-by-step Plan
+-----------------
+P0 — Structure & Assets
+1. Replace the HOME page header block:
+   - Change <header class="hero"> that contains the nav into:
+     <header class="site-header" role="banner">…nav…</header>
+   - Move the “hero image” into a separate section below the site-header.
+   - Ensure IDs/classes match the tour page (navMenu, navToggle, nav__logo, nav__menu, nav__cta).
+
+2. Add the “Skip to main content” link to ALL pages (present on tour page, missing on home).
+
+3. Create /partials/header.html and /partials/footer.html using the tour page’s current markup as the source of truth.
+   - Phone CTA: tel:+998991234567
+   - Menu items: Home / Tours / Destinations / About Us / Contact
+   - Footer columns: Company, Services, Help, Connect, brand block, and same legal bar.
+
+P1 — Styles
+4. Create /css/common-header-footer.css from the tour page’s critical CSS:
+   - Nav wrapper, container, menu layout, sticky behavior, CTA button
+   - Footer grid, link styles, legal bar
+   - Mobile menu state (.is-open) and breakpoints
+   - Include this file BEFORE any page-specific CSS on all pages.
+
+5. Remove duplicated header/footer styles from style.css and tour-details.css to avoid conflicts.
+
+P1 — Icons & Performance
+6. Delete ALL Font Awesome <link> tags on every page.
+7. Replace <i class="fa..."> icons with inline SVGs:
+   - Phone icon in nav CTA
+   - Map/route/check/star/etc icons in hero and cards
+   - Social icons in footer (or keep simple text links)
+
+P1 — Behavior & A11y
+8. Add /js/nav.js (one tiny script) to toggle the mobile menu and update aria-expanded:
+   (Same script on all pages; no page-specific variants.)
+
+9. Ensure focus management:
+   - When opening the menu, move focus to the first link.
+   - Provide :focus-visible outlines via CSS.
+
+P2 — Consistency Checks
+10. Ensure identical contact details and links (URLs, casing) in both header and footer.
+11. Confirm container widths, spacing (gap, padding) and colors match at breakpoints (≥1200, 900, 560).
+12. Add the same favicon and theme-color meta to all pages.
+
+Drop-in Code Snippets
+---------------------
+Shared CSS include (in <head>):
+<link rel="stylesheet" href="/css/common-header-footer.css">
+
+Shared JS (before </body>):
+<script>
+(function(){
+  const toggle=document.getElementById('navToggle');
+  const menu=document.getElementById('navMenu');
+  if(!toggle||!menu) return;
+  toggle.addEventListener('click',()=>{
+    const open = toggle.getAttribute('aria-expanded')==='true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    menu.classList.toggle('is-open', !open);
+    if(!open){ menu.querySelector('a')?.focus(); }
+  });
+})();
+</script>
+
+Inline SVG example (replace FA phone icon):
+<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M6.62 10.79a15.09 15.09 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.24 11.72 11.72 0 003.67.59 1 1 0 011 1v3.54a1 1 0 01-1 1A18.5 18.5 0 013 5a1 1 0 011-1h3.55a1 1 0 011 1 11.72 11.72 0 00.59 3.67 1 1 0 01-.25 1.11z"/>
+</svg>
+
+Definition of Done (QA)
+----------------------
+• Visual parity desktop + mobile (no bullets, no layout jumps). 
+• Lighthouse: CLS < 0.1, A11y ≥ 95. 
+• No FA requests; only one shared CSS + one shared JS control header/footer.
+• “Skip to main content” works; nav toggle updates aria-expanded and is keyboard navigable.
+• Markup in both pages is byte-for-byte identical in header and footer blocks.

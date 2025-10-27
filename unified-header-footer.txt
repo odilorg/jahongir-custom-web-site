@@ -1,0 +1,142 @@
+
+Unified Header & Footer Implementation Guide
+=============================================
+
+Goal
+----
+Make the header and footer of index.html and tour-details.html visually and functionally identical across the website.
+
+Steps Summary
+--------------
+1. Create shared header and footer HTML partials.
+2. Create a common stylesheet `/css/common-header-footer.css`.
+3. Create shared JS for navigation toggle `/js/nav.js`.
+4. Remove Font Awesome and use inline SVG icons.
+5. Include all above in both index.html and tour-details.html.
+
+------------------------------------------------------------
+Shared HEADER HTML
+------------------------------------------------------------
+<header class="site-header" role="banner">
+  <nav class="nav" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav__logo">
+        <span class="nav__logo-text">Jahongir <strong>Travel</strong></span>
+      </a>
+
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/tours/">Tours</a></li>
+        <li><a href="/destinations/">Destinations</a></li>
+        <li><a href="/about/">About Us</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+
+      <a href="tel:+998991234567" class="btn btn--accent nav__cta">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.62 10.79a15.09 15.09 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.24 11.72 11.72 0 003.67.59 1 1 0 011 1v3.54a1 1 0 01-1 1A18.5 18.5 0 013 5a1 1 0 011-1h3.55a1 1 0 011 1 11.72 11.72 0 00.59 3.67 1 1 0 01-.25 1.11z"/>
+        </svg>
+        +998 99 123 4567
+      </a>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="nav__toggle-icon"></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+------------------------------------------------------------
+Shared FOOTER HTML
+------------------------------------------------------------
+<footer class="site-footer">
+  <div class="container footer-main footer-main--desktop">
+    <div class="footer-brand">
+      <div class="footer-brand__text">Jahongir Travel</div>
+      <p>Tailor-made Uzbekistan tours since 2012.</p>
+    </div>
+
+    <nav class="footer-col footer-nav" aria-label="Company">
+      <div class="footer-nav__title">Company</div>
+      <ul class="footer-nav__list">
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li><a href="/blog/">Blog</a></li>
+      </ul>
+    </nav>
+
+    <nav class="footer-col footer-nav" aria-label="Services">
+      <div class="footer-nav__title">Services</div>
+      <ul class="footer-nav__list">
+        <li><a href="/tours/">All tours</a></li>
+        <li><a href="/destinations/">Destinations</a></li>
+        <li><a href="/custom-itineraries/">Custom itineraries</a></li>
+      </ul>
+    </nav>
+
+    <nav class="footer-col footer-nav" aria-label="Help">
+      <div class="footer-nav__title">Need help?</div>
+      <ul class="footer-nav__list">
+        <li><a href="/faqs/">FAQs</a></li>
+        <li><a href="/safety/">Safety tips</a></li>
+        <li><a href="/privacy/">Privacy policy</a></li>
+        <li><a href="/terms/">Terms of use</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-col">
+      <div class="footer-nav__title">Connect</div>
+      <ul class="footer-social__list">
+        <li><a href="https://facebook.com/" rel="me">Facebook</a></li>
+        <li><a href="https://instagram.com/" rel="me">Instagram</a></li>
+        <li><a href="https://twitter.com/" rel="me">Twitter</a></li>
+        <li><a href="https://youtube.com/" rel="me">YouTube</a></li>
+        <li><a href="https://pinterest.com/" rel="me">Pinterest</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <div class="footer-bottom__wrap">
+      <div>© 2025 Jahongir Travel. All rights reserved.</div>
+      <div class="footer-bottom__legal">
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/cookies/">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+------------------------------------------------------------
+Shared CSS (common-header-footer.css)
+------------------------------------------------------------
+- Add all header/footer layout, grid, and color styles.
+- Ensure same spacing, fonts, and colors on both pages.
+- Include before page-specific CSS.
+
+------------------------------------------------------------
+Shared JS (nav.js)
+------------------------------------------------------------
+<script>
+(function(){
+  const toggle=document.getElementById('navToggle');
+  const menu=document.getElementById('navMenu');
+  if(!toggle||!menu) return;
+  toggle.addEventListener('click',()=>{
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    menu.classList.toggle('is-open', !open);
+    if(!open){ menu.querySelector('a')?.focus(); }
+  });
+})();
+</script>
+
+------------------------------------------------------------
+Final Checklist
+------------------------------------------------------------
+✅ Header and footer code identical in both pages
+✅ Same CSS/JS imports
+✅ Removed Font Awesome, replaced with SVG icons
+✅ Mobile menu works and accessible
+✅ Identical spacing and styling across all breakpoints

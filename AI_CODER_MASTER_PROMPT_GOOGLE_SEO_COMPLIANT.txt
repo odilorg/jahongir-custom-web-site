@@ -202,6 +202,81 @@ ACCEPTANCE CRITERIA (DONE)
 ✅ Schema + alt text + canonical links present  
 ✅ Accessible keyboard focus & labels
 
+TASK: HERO SECTION — RECREATE EXACTLY AS REFERENCE (TOGO STYLE)
+
+Objective:
+Rebuild Jahongir Travel’s hero section to visually and structurally match the Togo template’s hero (“Experience Southern Africa”), using our content and branding.
+
+❗ Remove the “stats box” completely.  
+❗ Use the same layout spacing, background image proportions, and overlay balance as shown in the reference.  
+❗ Deliver pixel-perfect structure before coding—Odil must approve your plan first.
+
+------------------------------------------
+CONTENT
+------------------------------------------
+Headline: “Discover the Magic of Uzbekistan”
+Subtext: “Experience the ancient Silk Road with expert local guides.”
+Primary Button: “Choose a Destination” → link `/tours/`
+(Secondary button optional; hide for now)
+
+------------------------------------------
+DESIGN SPECS
+------------------------------------------
+• Full-width hero with **100vh height**
+• Background: full-bleed image of **Registan Square** with subtle dark gradient overlay  
+  → gradient: `linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.65) 100%)`
+• Text aligned **left**, vertically centered
+• Font:
+  - Headline → `Playfair Display`, weight 600
+  - Body → `Inter`, weight 400
+• Font color → `#FFFFFF`
+• Button:
+  - Rounded (border-radius: 50px)
+  - Background → `#F4B400` (our accent “Silk Road Gold”)
+  - Hover → darker shade `#DA9E00`
+  - Text → `#1E1E1E`
+  - Padding → `12px 24px`
+• Button icon (optional): small airplane or location icon
+
+------------------------------------------
+RESPONSIVENESS
+------------------------------------------
+• Desktop (≥1200px): headline max-width 720px, font-size 64px
+• Tablet (768–1199px): center-align text, font-size 48px
+• Mobile (<768px): text center, font-size 32px, full-width button
+• Ensure no text overlaps with dome area in Registan image
+
+------------------------------------------
+ACCESSIBILITY + SEO
+------------------------------------------
+• Use `<section role="banner">` with `<h1>`
+• Add descriptive alt text:  
+  `"Registan Square at sunset, Samarkand, Uzbekistan."`
+• Preload hero image (`fetchpriority="high"`)
+• Maintain LCP < 2.5s and CLS < 0.1
+• Semantic HTML5 + valid hierarchy
+
+------------------------------------------
+PLACEHOLDER IMAGE
+------------------------------------------
+Until real assets are ready, use:
+`https://placehold.co/1920x1080/0D4C92/FFFFFF?text=Registan+Square+Hero`
+with correct alt text and `width/height` attributes.
+
+------------------------------------------
+QA CHECKLIST
+------------------------------------------
+✅ 100% match in spacing, font size, and alignment with Togo reference  
+✅ No “stats” or watermark text  
+✅ Gradient overlay + button placement identical  
+✅ Responsive scaling confirmed on 1440, 1366, 1024, 768, 480  
+✅ Lighthouse scores: Perf ≥85, A11y ≥95, SEO ≥90  
+✅ Semantic `<h1>` + image alt included
+
+END THE PLAN WITH:
+“Let Odil approve this plan before coding.”
+
+
 -----------------------------------------------------------
 END OF MASTER PROMPT
 -----------------------------------------------------------
