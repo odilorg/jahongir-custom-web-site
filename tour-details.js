@@ -433,11 +433,31 @@ function initSectionNavigation() {
   // Center active link on load
   centerLink(scroller.querySelector('.is-active'));
 
-  // Handle link clicks - update active and center
+  // Handle link clicks - scroll to section, update active, and center
   scroller.addEventListener('click', e => {
     const a = e.target.closest('a');
     if (!a) return;
 
+    e.preventDefault();
+
+    // Scroll to the target section
+    const targetId = a.getAttribute('href').substring(1);
+    const targetSection = document.getElementById(targetId);
+
+    if (targetSection) {
+      const offsetTop = targetSection.offsetTop - 120; // Account for sticky header
+      window.scrollTo({
+        top: offsetTop,
+        behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+      });
+
+      // Update URL hash without jumping
+      if (window.history && window.history.pushState) {
+        window.history.pushState(null, '', '#' + targetId);
+      }
+    }
+
+    // Update active state and center in nav
     scroller.querySelectorAll('a').forEach(x => x.classList.remove('is-active'));
     a.classList.add('is-active');
     centerLink(a);
