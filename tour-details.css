@@ -1734,8 +1734,8 @@
 
 /* Section Navigation with Arrows & Fade Edges */
 .section-nav {
-  position: sticky;
-  top: 64px;
+  position: relative; /* Changed from sticky to test */
+  /* top: 64px; */
   z-index: 20;
   background: #fff;
   border-bottom: 1px solid #eee;

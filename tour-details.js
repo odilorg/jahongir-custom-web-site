@@ -463,7 +463,8 @@ function initSectionNavigation() {
     centerLink(a);
   });
 
-  // Update active link via IntersectionObserver on sections
+  // TEMPORARILY DISABLED IntersectionObserver to debug scroll issue
+  /*
   const links = [...scroller.querySelectorAll('a')];
   const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
 
@@ -479,16 +480,16 @@ function initSectionNavigation() {
       }
     });
   }, {
-    rootMargin: '-20% 0% -60% 0%', // Less aggressive top margin
+    rootMargin: '-20% 0% -60% 0%',
     threshold: 0
   });
 
-  // Only observe sections that have matching nav links
   document.querySelectorAll('section[id]').forEach(sec => {
     if (map.has(sec.id)) {
       obs.observe(sec);
     }
   });
+  */
 }
 
 // Initialize when DOM is ready
