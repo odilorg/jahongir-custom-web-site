@@ -463,12 +463,23 @@ function initSectionNavigation() {
   prevBtn.addEventListener('click', () => smoothScroll(-1));
   nextBtn.addEventListener('click', () => smoothScroll(1));
 
-  // Center link helper
-  const centerLink = (el) => el?.scrollIntoView({
-    behavior: 'smooth',
-    inline: 'center',
-    block: 'nearest'
-  });
+  // Center link helper - only scroll the horizontal scroller, never the page
+  const centerLink = (el) => {
+    if (!el) return;
+
+    // Calculate position to center the link in the scroller
+    const scrollerRect = scroller.getBoundingClientRect();
+    const linkRect = el.getBoundingClientRect();
+    const scrollerCenter = scrollerRect.left + (scrollerRect.width / 2);
+    const linkCenter = linkRect.left + (linkRect.width / 2);
+    const offset = linkCenter - scrollerCenter;
+
+    // Scroll the horizontal scroller only (not the page)
+    scroller.scrollBy({
+      left: offset,
+      behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+    });
+  };
 
   // Center active link on load
   centerLink(scroller.querySelector('.is-active'));
