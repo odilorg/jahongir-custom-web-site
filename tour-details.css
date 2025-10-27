@@ -1603,39 +1603,9 @@
     margin-bottom: 2rem;
   }
 
-  /* Section Navigation - Mobile Optimized */
-  .section-toc {
-    position: relative; /* Not sticky on mobile - saves space */
-    top: auto;
-    margin-bottom: 1.5rem;
-    padding: 0.5rem 0;
-    padding-right: 2rem; /* Space for fade gradient */
-    gap: 0.25rem;
-    /* Smooth horizontal scrolling */
-    scroll-snap-type: x proximity;
-    scroll-padding-left: 0.5rem;
-  }
-
-  .section-toc::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 40px;
-    background: linear-gradient(to right, transparent, #fff);
-    pointer-events: none;
-  }
-
-  .toc-link {
-    font-size: 0.875rem; /* Smaller on mobile */
-    padding: 0.5rem 0.875rem; /* Tighter padding */
-    border-radius: 6px;
-    scroll-snap-align: start; /* Snap to links when scrolling */
-  }
-
-  .toc-link.active {
-    font-weight: 600;
+  /* Section Navigation - kept sticky on mobile with arrows */
+  .section-nav {
+    /* Keep sticky and arrows visible - they help with discoverability */
   }
 
   /* Itinerary - mobile optimized */
@@ -1758,49 +1728,118 @@
   line-height: 1.4;
 }
 
-/* Section Navigation (Overview, Highlights, etc.) - Sticky with Scroll Spy */
-.section-toc {
+/* Section Navigation with Arrows & Fade Edges */
+.section-nav {
   position: sticky;
-  top: 72px;
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-  padding: 0.75rem 0;
+  top: 64px;
+  z-index: 20;
   background: #fff;
-  border-bottom: 1px solid #F0F0F0;
-  z-index: 50;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.5rem;
+}
+
+/* Scroller strip with fade edges */
+.section-nav__scroller {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+  flex: 1 1 auto;
+  position: relative;
   scrollbar-width: none; /* Firefox */
+  /* Fade edges to indicate scrollability */
+  --fade: 24px;
+  mask-image: linear-gradient(to right,
+    transparent 0,
+    #000 var(--fade),
+    #000 calc(100% - var(--fade)),
+    transparent 100%);
+  -webkit-mask-image: linear-gradient(to right,
+    transparent 0,
+    #000 var(--fade),
+    #000 calc(100% - var(--fade)),
+    transparent 100%);
 }
 
-.section-toc::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
+.section-nav__scroller::-webkit-scrollbar {
+  display: none;
 }
 
-.toc-link {
-  color: #6B6B6B;
+/* Links (chips) */
+.section-nav__scroller a {
+  scroll-snap-align: center;
   text-decoration: none;
-  font-size: 0.9375rem;
+  color: #555;
   font-weight: 500;
-  padding: 0.75rem 1.25rem;
-  border-radius: 8px;
-  border-bottom: 2px solid transparent;
+  font-size: 0.9375rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
   transition: all 0.2s ease;
   white-space: nowrap;
-  flex-shrink: 0;
 }
 
-.toc-link:hover {
-  color: #1E1E1E;
-  background: #FAFAFA;
+.section-nav__scroller a:hover {
+  color: #0d4c92;
 }
 
-.toc-link.active {
-  color: #0D4C92;
-  background: #F0F7FF;
-  border-bottom-color: #0D4C92;
-  font-weight: 600;
+.section-nav__scroller a.is-active {
+  color: #0d4c92;
+  background: #eef4ff;
+  border-color: #dbe7ff;
+}
+
+/* Arrow buttons */
+.section-nav__btn {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  color: #555;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  font-size: 20px;
+  line-height: 1;
+}
+
+.section-nav__btn[hidden] {
+  display: none;
+}
+
+.section-nav__btn:hover {
+  background: #f5f5f5;
+  color: #0d4c92;
+}
+
+/* Very small screens: allow wrap as fallback */
+@media (max-width: 380px) {
+  .section-nav__scroller {
+    white-space: normal;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    overflow-x: visible;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .section-nav__scroller a {
+    display: inline-block;
+  }
+
+  .section-nav__btn {
+    display: none;
+  }
 }
 
 /* Tour Header Rating & Actions */

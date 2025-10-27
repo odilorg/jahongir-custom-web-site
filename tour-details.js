@@ -386,90 +386,89 @@ function prefersReducedMotion() {
 }
 
 // =============================================================================
-// SECTION NAVIGATION SCROLL SPY
+// SECTION NAVIGATION with Arrows & Auto-Center
 // =============================================================================
 
 /**
- * Highlight active section in navigation as user scrolls
+ * Initialize section navigation with arrow buttons and auto-centering
  */
-function initScrollSpy() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.section-toc .toc-link');
+function initSectionNavigation() {
+  const scroller = document.getElementById('sectionScroller');
+  const prevBtn = document.querySelector('.section-nav__btn--prev');
+  const nextBtn = document.querySelector('.section-nav__btn--next');
 
-  if (!sections.length || !navLinks.length) return;
+  if (!scroller) return;
 
-  function updateActiveLink() {
-    let current = '';
-    const scrollPosition = window.pageYOffset;
+  // Update button visibility based on scroll position
+  const updateButtons = () => {
+    const { scrollLeft, scrollWidth, clientWidth } = scroller;
+    prevBtn.hidden = scrollLeft <= 2;
+    nextBtn.hidden = scrollLeft + clientWidth >= scrollWidth - 2;
+  };
 
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 150; // Account for sticky header
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute('id');
-
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        current = sectionId;
-      }
+  // Smooth scroll left/right
+  const smoothScroll = (dir = 1) => {
+    scroller.scrollBy({
+      left: dir * Math.round(scroller.clientWidth * 0.7),
+      behavior: 'smooth'
     });
+  };
 
-    // Update active class on nav links
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
-        link.classList.add('active');
+  // Show/hide arrows based on overflow
+  updateButtons();
+  scroller.addEventListener('scroll', updateButtons);
+  window.addEventListener('resize', updateButtons);
 
-        // Auto-scroll active link into view (especially useful on mobile)
-        if (window.innerWidth < 768) {
-          link.scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'center'
-          });
-        }
-      }
-    });
-  }
+  // Arrow button clicks
+  prevBtn.addEventListener('click', () => smoothScroll(-1));
+  nextBtn.addEventListener('click', () => smoothScroll(1));
 
-  // Throttle scroll event for performance
-  let scrollTimeout;
-  window.addEventListener('scroll', () => {
-    if (scrollTimeout) {
-      window.cancelAnimationFrame(scrollTimeout);
-    }
-    scrollTimeout = window.requestAnimationFrame(updateActiveLink);
+  // Center link helper
+  const centerLink = (el) => el?.scrollIntoView({
+    behavior: 'smooth',
+    inline: 'center',
+    block: 'nearest'
   });
 
-  // Add smooth scroll behavior to navigation links
-  navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetId = link.getAttribute('href').substring(1);
-      const targetSection = document.getElementById(targetId);
+  // Center active link on load
+  centerLink(scroller.querySelector('.is-active'));
 
-      if (targetSection) {
-        const offsetTop = targetSection.offsetTop - 120; // Account for sticky elements
-        window.scrollTo({
-          top: offsetTop,
-          behavior: prefersReducedMotion() ? 'auto' : 'smooth'
-        });
+  // Handle link clicks - update active and center
+  scroller.addEventListener('click', e => {
+    const a = e.target.closest('a');
+    if (!a) return;
 
-        // Update URL hash without jumping
-        if (window.history && window.history.pushState) {
-          window.history.pushState(null, '', '#' + targetId);
-        }
-      }
-    });
+    scroller.querySelectorAll('a').forEach(x => x.classList.remove('is-active'));
+    a.classList.add('is-active');
+    centerLink(a);
   });
 
-  // Initial check on page load
-  updateActiveLink();
+  // Update active link via IntersectionObserver on sections
+  const links = [...scroller.querySelectorAll('a')];
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(({ isIntersecting, target }) => {
+      if (!isIntersecting) return;
+
+      links.forEach(x => x.classList.remove('is-active'));
+      const a = map.get(target.id);
+      a?.classList.add('is-active');
+      centerLink(a);
+    });
+  }, {
+    rootMargin: '-40% 0% -55% 0%',
+    threshold: 0
+  });
+
+  document.querySelectorAll('section[id]').forEach(sec => obs.observe(sec));
 }
 
-// Initialize scroll spy when DOM is ready
+// Initialize when DOM is ready
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initScrollSpy);
+  document.addEventListener('DOMContentLoaded', initSectionNavigation);
 } else {
-  initScrollSpy();
+  initSectionNavigation();
 }
 
 // =============================================================================
