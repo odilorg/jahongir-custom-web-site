@@ -123,30 +123,34 @@
       .nav__cta{display:none}
     }
 
-    /* Footer - Critical */
+    /* Footer - Critical (Unified Simple Design) */
     .site-footer{background:#2c3e50;color:#fff;padding:3rem 0 1rem}
-    .footer-main{padding-bottom:2rem}
-    .footer-main--desktop{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:2rem}
-    .footer-main--mobile{display:none}
-    .footer-brand__text{font-size:1.125rem;font-weight:600}
-    .footer-nav__title{font-size:1rem;font-weight:600;margin-bottom:1rem}
+    .footer-main{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:2rem;padding-bottom:2rem}
+    .footer-brand{color:rgba(255,255,255,0.9)}
+    .footer-brand__text{font-size:1.25rem;font-weight:600;margin-bottom:0.75rem}
+    .footer-brand p{margin:0.5rem 0;font-size:0.875rem;line-height:1.6}
+    .footer-brand a{color:rgba(255,255,255,0.8);text-decoration:none;transition:color .2s}
+    .footer-brand a:hover{color:#fff}
+    .footer-col{color:rgba(255,255,255,0.9)}
+    .footer-nav__title{font-size:1rem;font-weight:600;margin-bottom:1rem;color:#fff}
     .footer-nav__list{list-style:none;margin:0;padding:0}
-    .footer-nav__list li{margin-bottom:.5rem}
-    .footer-nav__list a{color:rgba(255,255,255,0.8);text-decoration:none;transition:color .2s}
+    .footer-nav__list li{margin-bottom:0.5rem}
+    .footer-nav__list a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.875rem;transition:color .2s}
     .footer-nav__list a:hover{color:#fff}
-    .footer-social__list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.75rem}
-    .footer-social__list a{color:rgba(255,255,255,0.8);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .2s}
+    .footer-social__list{list-style:none;margin:0;padding:0}
+    .footer-social__list li{margin-bottom:0.5rem}
+    .footer-social__list a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.875rem;transition:color .2s}
     .footer-social__list a:hover{color:#fff}
-    .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem;margin-top:1rem}
-    .footer-bottom__wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-    .footer-bottom__legal{display:flex;gap:1rem;align-items:center}
-    .footer-bottom__legal a{color:rgba(255,255,255,0.7);text-decoration:none}
-    @media (max-width:768px){
-      .footer-main--desktop{display:none}
-      .footer-main--mobile{display:block}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,0.15);padding-top:1.5rem;margin-top:1rem}
+    .footer-bottom__wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:0.875rem}
+    .footer-bottom__legal{display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap}
+    .footer-bottom__legal a{color:rgba(255,255,255,0.7);text-decoration:none;transition:color .2s}
+    .footer-bottom__legal a:hover{color:#fff}
+    @media (max-width:900px){
+      .footer-main{grid-template-columns:1fr 1fr;gap:2rem}
     }
-    @media (max-width:640px){
-      .footer-main--desktop{grid-template-columns:1fr 1fr}
+    @media (max-width:560px){
+      .footer-main{grid-template-columns:1fr;gap:2rem}
     }
 
     /* Loading State */
@@ -1458,218 +1462,73 @@
   <!-- =====================================================
        FOOTER
        ===================================================== -->
-  <footer class="site-footer" role="contentinfo" data-theme="dark">
-
-    <!-- Desktop/Tablet Grid Layout (≥640px) -->
-    <div class="footer-main footer-main--desktop">
-
-      <!-- Brand Column -->
+  <footer class="site-footer">
+    <div class="container footer-main footer-main--desktop">
       <div class="footer-brand">
-        <a href="/" class="footer-brand__link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28" fill="none" aria-hidden="true" class="footer-brand__logo">
-            <circle cx="14" cy="8" r="4" fill="#F4B400" opacity="0.9"/>
-            <path d="M 4 24 L 10 14 L 14 20 L 18 14 L 24 24 Z" fill="#E2E8F0"/>
-            <path d="M 8 24 L 14 16 L 20 24 Z" fill="#FFFFFF"/>
-            <rect x="2" y="24" width="24" height="2" fill="#E2E8F0" opacity="0.6"/>
-          </svg>
-          <span class="footer-brand__text">Jahongir Travel</span>
-        </a>
-        <p class="footer-brand__tagline">Tailor-made Uzbekistan tours since 2012.</p>
-        <address class="footer-brand__contact">
-          <a href="mailto:info@jahongirtravel.com">info@jahongirtravel.com</a><br>
-          <a href="tel:+998991234567">+998 99 123 4567</a><br>
-          <span class="footer-brand__location">Samarkand, Uzbekistan</span>
-        </address>
+        <div class="footer-brand__text">Jahongir Travel</div>
+        <p>Tailor-made Uzbekistan tours since 2012.</p>
+        <p><a href="mailto:info@jahongirtravel.com">info@jahongirtravel.com</a></p>
+        <p><a href="tel:+998991234567">+998 99 123 4567</a></p>
+        <p>Samarkand, Uzbekistan</p>
       </div>
 
-      <!-- Company Navigation -->
-      <nav class="footer-nav" aria-labelledby="footer-company">
-        <h3 id="footer-company" class="footer-nav__title">Company</h3>
+      <nav class="footer-col footer-nav" aria-label="Company">
+        <div class="footer-nav__title">Company</div>
         <ul class="footer-nav__list">
-          <li><a href="/about">About us</a></li>
-          <li><a href="/careers">Careers</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/partners">Partner</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="/about/">About us</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/partners/">Partner</a></li>
+          <li><a href="/contact/">Contact</a></li>
         </ul>
       </nav>
 
-      <!-- Services Navigation -->
-      <nav class="footer-nav" aria-labelledby="footer-services">
-        <h3 id="footer-services" class="footer-nav__title">Services</h3>
+      <nav class="footer-col footer-nav" aria-label="Services">
+        <div class="footer-nav__title">Services</div>
         <ul class="footer-nav__list">
-          <li><a href="/tours">Tour booking</a></li>
-          <li><a href="/visa">Visa online</a></li>
-          <li><a href="/guides">Travel guide</a></li>
-          <li><a href="/car-service">Car service</a></li>
-          <li><a href="/sim">SIM &amp; eSIM</a></li>
+          <li><a href="/tours/">Tour booking</a></li>
+          <li><a href="/visa/">Visa online</a></li>
+          <li><a href="/guides/">Travel guide</a></li>
+          <li><a href="/car-service/">Car service</a></li>
+          <li><a href="/sim/">SIM &amp; eSIM</a></li>
         </ul>
       </nav>
 
-      <!-- Help Navigation -->
-      <nav class="footer-nav" aria-labelledby="footer-help">
-        <h3 id="footer-help" class="footer-nav__title">Need help?</h3>
+      <nav class="footer-col footer-nav" aria-label="Help">
+        <div class="footer-nav__title">Need help?</div>
         <ul class="footer-nav__list">
-          <li><a href="/faqs">FAQs</a></li>
-          <li><a href="/support">Customer care</a></li>
-          <li><a href="/safety">Safety tips</a></li>
-          <li><a href="/privacy">Privacy policy</a></li>
-          <li><a href="/terms">Terms of use</a></li>
+          <li><a href="/faqs/">FAQs</a></li>
+          <li><a href="/support/">Customer care</a></li>
+          <li><a href="/safety/">Safety tips</a></li>
+          <li><a href="/privacy/">Privacy policy</a></li>
+          <li><a href="/terms/">Terms of use</a></li>
         </ul>
       </nav>
 
-      <!-- Social & Locale Column -->
-      <div class="footer-social">
-        <h3 class="footer-social__title">Connect</h3>
+      <div class="footer-col">
+        <div class="footer-nav__title">Connect</div>
         <ul class="footer-social__list">
-          <li>
-            <a href="https://facebook.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Follow Jahongir Travel on Facebook">
-              <i class="fab fa-facebook" aria-hidden="true"></i>
-              <span>Facebook</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://instagram.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Follow Jahongir Travel on Instagram">
-              <i class="fab fa-instagram" aria-hidden="true"></i>
-              <span>Instagram</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Follow Jahongir Travel on Twitter">
-              <i class="fab fa-twitter" aria-hidden="true"></i>
-              <span>Twitter</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://youtube.com/@jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to Jahongir Travel on YouTube">
-              <i class="fab fa-youtube" aria-hidden="true"></i>
-              <span>YouTube</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://pinterest.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Follow Jahongir Travel on Pinterest">
-              <i class="fab fa-pinterest" aria-hidden="true"></i>
-              <span>Pinterest</span>
-            </a>
-          </li>
-        </ul>
-        <button type="button" class="footer-locale" aria-haspopup="menu" aria-expanded="false">
-          <i class="fas fa-globe" aria-hidden="true"></i>
-          <span>EN / USD</span>
-          <i class="fas fa-chevron-down" aria-hidden="true"></i>
-        </button>
-      </div>
-
-    </div>
-
-    <!-- Mobile Compact Layout (<640px) -->
-    <div class="footer-main footer-main--mobile">
-
-      <!-- Brand & Contact -->
-      <div class="footer-brand">
-        <a href="/" class="footer-brand__link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28" fill="none" aria-hidden="true" class="footer-brand__logo">
-            <circle cx="14" cy="8" r="4" fill="#F4B400" opacity="0.9"/>
-            <path d="M 4 24 L 10 14 L 14 20 L 18 14 L 24 24 Z" fill="#E2E8F0"/>
-            <path d="M 8 24 L 14 16 L 20 24 Z" fill="#FFFFFF"/>
-            <rect x="2" y="24" width="24" height="2" fill="#E2E8F0" opacity="0.6"/>
-          </svg>
-          <span class="footer-brand__text">Jahongir Travel</span>
-        </a>
-        <p class="footer-brand__tagline">Tailor-made Uzbekistan tours since 2012.</p>
-        <address class="footer-brand__contact">
-          <a href="mailto:info@jahongirtravel.com" class="footer-brand__contact-link">info@jahongirtravel.com</a>
-          <a href="tel:+998991234567" class="footer-brand__contact-link">+998 99 123 4567</a>
-        </address>
-
-        <!-- Social Action Chips -->
-        <ul class="footer-chips">
-          <li>
-            <a href="https://wa.me/998991234567" target="_blank" rel="noopener noreferrer" class="footer-chip" aria-label="Contact via WhatsApp">
-              <i class="fab fa-whatsapp" aria-hidden="true"></i>
-              <span>WhatsApp</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://instagram.com/jahongirtravel" target="_blank" rel="noopener noreferrer" class="footer-chip" aria-label="Follow on Instagram">
-              <i class="fab fa-instagram" aria-hidden="true"></i>
-              <span>Instagram</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://facebook.com/jahongirtravel" target="_blank" rel="noopener noreferrer" class="footer-chip" aria-label="Follow on Facebook">
-              <i class="fab fa-facebook" aria-hidden="true"></i>
-              <span>Facebook</span>
-            </a>
-          </li>
+          <li><a href="https://facebook.com/jahongirtravel" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://instagram.com/jahongirtravel" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://twitter.com/jahongirtravel" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+          <li><a href="https://youtube.com/@jahongirtravel" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+          <li><a href="https://pinterest.com/jahongirtravel" target="_blank" rel="noopener noreferrer">Pinterest</a></li>
         </ul>
       </div>
-
-      <hr class="footer-divider" aria-hidden="true">
-
-      <!-- Accordion Navigation -->
-      <section class="footer-accordion" aria-label="Footer navigation">
-
-        <details class="footer-accordion__item">
-          <summary class="footer-accordion__summary">Company</summary>
-          <nav class="footer-accordion__panel" aria-label="Company">
-            <a href="/about">About us</a>
-            <a href="/careers">Careers</a>
-            <a href="/blog">Blog</a>
-            <a href="/partners">Partner</a>
-            <a href="/contact">Contact</a>
-          </nav>
-        </details>
-
-        <details class="footer-accordion__item">
-          <summary class="footer-accordion__summary">Services</summary>
-          <nav class="footer-accordion__panel" aria-label="Services">
-            <a href="/tours">Tour booking</a>
-            <a href="/visa">Visa online</a>
-            <a href="/guides">Travel guide</a>
-            <a href="/car-service">Car service</a>
-            <a href="/sim">SIM &amp; eSIM</a>
-          </nav>
-        </details>
-
-        <details class="footer-accordion__item">
-          <summary class="footer-accordion__summary">Need help?</summary>
-          <nav class="footer-accordion__panel" aria-label="Support">
-            <a href="/faqs">FAQs</a>
-            <a href="/support">Customer care</a>
-            <a href="/safety">Safety tips</a>
-            <a href="/privacy">Privacy policy</a>
-            <a href="/terms">Terms of use</a>
-          </nav>
-        </details>
-
-      </section>
-
-      <hr class="footer-divider" aria-hidden="true">
-
-      <!-- Locale Switcher (Mobile Full-Width) -->
-      <button type="button" class="footer-locale footer-locale--mobile" aria-haspopup="menu" aria-expanded="false">
-        <span class="footer-locale__icon" aria-hidden="true">🌐</span>
-        <span class="footer-locale__label">EN / USD</span>
-        <i class="fas fa-chevron-down footer-locale__chevron" aria-hidden="true"></i>
-      </button>
-
     </div>
 
-    <!-- Bottom Section (Shared) -->
-    <div class="footer-bottom">
+    <div class="container footer-bottom">
       <div class="footer-bottom__wrap">
-        <p class="footer-bottom__copyright">© 2025 Jahongir Travel. All rights reserved.</p>
-        <nav class="footer-bottom__legal" aria-label="Legal information">
-          <a href="/privacy">Privacy</a>
-          <span class="footer-bottom__separator" aria-hidden="true">•</span>
-          <a href="/terms">Terms</a>
-          <span class="footer-bottom__separator" aria-hidden="true">•</span>
-          <a href="/cookies">Cookies</a>
-        </nav>
+        <div>© 2025 Jahongir Travel. All rights reserved.</div>
+        <div class="footer-bottom__legal">
+          <a href="/privacy/">Privacy</a>
+          <span> • </span>
+          <a href="/terms/">Terms</a>
+          <span> • </span>
+          <a href="/cookies/">Cookies</a>
+        </div>
       </div>
     </div>
-
   </footer>
 
   <!-- =====================================================
