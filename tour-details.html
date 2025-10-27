@@ -528,8 +528,33 @@
         </ol>
       </nav>
 
-      <!-- Tour Title -->
-      <h1 class="tour-title">Samarkand City Tour: Registan Square and Historic Monuments</h1>
+      <!-- Rating and Location -->
+      <div class="tour-header__rating">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="#F4B400" aria-hidden="true">
+          <path d="M8 0l2.163 5.238 5.837.423-4.462 3.662 1.338 5.677L8 12.236 3.124 15l1.338-5.677L0 5.661l5.837-.423z"/>
+        </svg>
+        <span class="rating-score">5</span>
+        <span class="rating-count">(28 reviews)</span>
+        <span class="rating-separator">•</span>
+        <span class="tour-location">Samarkand, Uzbekistan</span>
+      </div>
+
+      <!-- Tour Title with Actions -->
+      <div class="tour-header__title-row">
+        <h1 class="tour-title">Samarkand City Tour: Registan Square and Historic Monuments</h1>
+        <div class="tour-header__actions">
+          <button class="btn-icon" aria-label="Share this tour" title="Share">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M15 7a2 2 0 100-4 2 2 0 000 4zM5 13a2 2 0 100-4 2 2 0 000 4zM15 17a2 2 0 100-4 2 2 0 000 4zM6.5 11.5l7-3M6.5 11.5l7 3"/>
+            </svg>
+          </button>
+          <button class="btn-icon" aria-label="Add to favorites" title="Save to wishlist">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M10 17.5l-1.45-1.32C3.4 11.36 0 8.27 0 4.5 0 1.42 2.42 0 5 0c1.74 0 3.41.81 4.5 2.08C10.59.81 12.26 0 14 0c2.58 0 5 1.42 5 4.5 0 3.77-3.4 6.86-8.55 11.68L10 17.5z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
 
       <!-- Tour Meta Bar -->
       <div class="tour-meta-bar">
@@ -1279,8 +1304,9 @@
             <!-- Price Header -->
             <div class="booking-card__header">
               <div class="booking-price">
+                <span class="price-label">from</span>
                 <span class="price-amount" data-base-price="50.00">$50.00</span>
-                <span class="price-unit">per person</span>
+                <span class="price-unit">/person</span>
               </div>
             </div>
 
@@ -1290,8 +1316,7 @@
               <!-- Date Picker -->
               <div class="form-group">
                 <label for="tour-date" class="form-label">
-                  <svg class="icon icon--calendar" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="3" width="14" height="13" rx="2"/><path d="M2 7h14M5.5 1.5v3M12.5 1.5v3"/></svg>
-                  Select Date *
+                  Date
                 </label>
                 <input
                   type="date"
@@ -1311,8 +1336,7 @@
               <!-- Guest Selector -->
               <div class="form-group">
                 <label for="tour-guests" class="form-label">
-                  <svg class="icon icon--users" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7 8a3 3 0 100-6 3 3 0 000 6zm0 2a7 7 0 00-7 7 1 1 0 001 1h12a1 1 0 001-1 7 7 0 00-7-7zm6-2a2 2 0 100-4 2 2 0 000 4zm0 2a5.997 5.997 0 014.917 9H14a8.97 8.97 0 00-2-5.708A5.98 5.98 0 0113 10z"/></svg>
-                  Number of Guests *
+                  Guest
                 </label>
                 <select
                   id="tour-guests"
@@ -1341,12 +1365,10 @@
               <!-- Action Buttons -->
               <div class="form-actions">
                 <button type="button" class="btn btn--primary btn--block" id="check-availability">
-                  <svg class="icon icon--calendar-check" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="3" width="14" height="13" rx="2"/><path d="M2 7h14M5.5 1.5v3M12.5 1.5v3M6 10l2 2 4-4"/></svg>
-                  Check Availability
+                  Check availability
                 </button>
                 <button type="button" class="btn btn--secondary btn--block" id="make-inquiry">
-                  <svg class="icon icon--envelope" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="4" width="14" height="10" rx="2"/><path d="M2 6l7 4 7-4"/></svg>
-                  Make Inquiry
+                  Make enquiry
                 </button>
               </div>
 

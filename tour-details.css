@@ -1489,6 +1489,244 @@
   }
 }
 
+/* ======================================================
+   GETYOURGUIDE-STYLE UPDATES (Reference Design Match)
+   ====================================================== */
+
+/* Tour Header Rating & Actions */
+.tour-header__rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9375rem;
+  color: #6B6B6B;
+}
+
+.tour-header__rating svg {
+  flex-shrink: 0;
+}
+
+.rating-score {
+  font-weight: 600;
+  color: #1E1E1E;
+}
+
+.rating-count {
+  color: #6B6B6B;
+}
+
+.rating-separator {
+  color: #DEDEDE;
+  margin: 0 0.25rem;
+}
+
+.tour-location {
+  color: #6B6B6B;
+}
+
+/* Title Row with Actions */
+.tour-header__title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tour-title {
+  flex: 1;
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #1E1E1E;
+}
+
+.tour-header__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: #fff;
+  border: 1px solid #DEDEDE;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #1E1E1E;
+}
+
+.btn-icon:hover {
+  background: #F8F8F8;
+  border-color: #1E1E1E;
+}
+
+.btn-icon:focus {
+  outline: 2px solid #F4B400;
+  outline-offset: 2px;
+}
+
+.btn-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Hero Gallery - Rounded Corners */
+.tour-hero__gallery {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.tour-hero__main,
+.thumbnail {
+  border-radius: 0;
+}
+
+.thumbnail:first-child {
+  border-radius: 0;
+}
+
+/* Booking Card - Reference Style */
+.booking-sidebar {
+  position: sticky;
+  top: 120px;
+  align-self: flex-start;
+}
+
+.booking-card {
+  background: #fff;
+  border: 1px solid #DEDEDE;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+}
+
+.booking-card__header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.booking-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.375rem;
+}
+
+.price-label {
+  font-size: 0.875rem;
+  color: #6B6B6B;
+  font-weight: 400;
+}
+
+.price-amount {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1E1E1E;
+}
+
+.price-unit {
+  font-size: 0.875rem;
+  color: #6B6B6B;
+  font-weight: 400;
+}
+
+/* Form Labels - Clean Style */
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1E1E1E;
+}
+
+.form-label svg {
+  display: none;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #DEDEDE;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #1E1E1E;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #1E1E1E;
+  box-shadow: 0 0 0 3px rgba(30, 30, 30, 0.05);
+}
+
+.form-hint {
+  display: none;
+}
+
+/* Primary CTA - Coral/Red */
+.btn--primary {
+  background: #FF6B6B;
+  color: #fff;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.btn--primary:hover {
+  background: #E85555;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.btn--primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button - Outline */
+.btn--secondary {
+  background: #fff;
+  color: #1E1E1E;
+  border: 1px solid #DEDEDE;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.btn--secondary:hover {
+  background: #F8F8F8;
+  border-color: #1E1E1E;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
 /* Print styles */
 @media print {
   .site-header,
