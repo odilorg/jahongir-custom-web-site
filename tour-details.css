@@ -331,14 +331,38 @@
    5. TWO-COLUMN LAYOUT
    ====================================================== */
 
-.tour-main-content {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
-  margin: 3rem 0;
+/* Content wrapper */
+.tour-content-wrapper {
+  background: var(--color-background, #FAF9F6);
+}
+
+/* Container for layout */
+.tour-content-wrapper .container {
   max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 1.5rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Grid container for main content + sidebar */
+.tour-layout {
+  display: block; /* Single column on mobile */
+  gap: 2.5rem;
+  margin: 3rem 0;
+}
+
+/* Main content area (contains sections) */
+.tour-main-content {
+  /* Simple block container - sections flow vertically */
+  margin-bottom: 3rem;
+}
+
+/* Section spacing */
+.tour-main-content > section {
+  margin-bottom: 3rem;
+}
+
+.tour-main-content > section:last-child {
+  margin-bottom: 0;
 }
 
 .tour-content {
@@ -1420,9 +1444,12 @@
 
 /* Tablet: 768px and up */
 @media (min-width: 768px) {
-  /* Two-column layout */
-  .tour-main-content {
+  /* Two-column layout: main content + sidebar */
+  .tour-layout {
+    display: grid;
     grid-template-columns: 1fr 380px;
+    gap: 2.5rem;
+    align-items: start; /* Align both columns to top */
   }
 
   /* Sidebar becomes sticky */
@@ -1504,19 +1531,14 @@
     padding-bottom: 80px;
   }
 
-  /* Single column layout */
+  /* Single column layout - tour-layout is just a block on mobile */
+  .tour-layout {
+    display: block; /* Stack vertically */
+  }
+
+  /* Add spacing between sections */
   .tour-main-content {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  /* Sidebar comes after content */
-  .tour-sidebar {
-    order: 2;
-  }
-
-  .tour-content {
-    order: 1;
+    margin-bottom: 2rem;
   }
 
   /* Smaller text */
