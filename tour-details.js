@@ -385,6 +385,84 @@ function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
+// =============================================================================
+// SECTION NAVIGATION SCROLL SPY
+// =============================================================================
+
+/**
+ * Highlight active section in navigation as user scrolls
+ */
+function initScrollSpy() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.section-toc .toc-link');
+
+  if (!sections.length || !navLinks.length) return;
+
+  function updateActiveLink() {
+    let current = '';
+    const scrollPosition = window.pageYOffset;
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 150; // Account for sticky header
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        current = sectionId;
+      }
+    });
+
+    // Update active class on nav links
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  // Throttle scroll event for performance
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    if (scrollTimeout) {
+      window.cancelAnimationFrame(scrollTimeout);
+    }
+    scrollTimeout = window.requestAnimationFrame(updateActiveLink);
+  });
+
+  // Add smooth scroll behavior to navigation links
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+
+      if (targetSection) {
+        const offsetTop = targetSection.offsetTop - 120; // Account for sticky elements
+        window.scrollTo({
+          top: offsetTop,
+          behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+        });
+
+        // Update URL hash without jumping
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, '', '#' + targetId);
+        }
+      }
+    });
+  });
+
+  // Initial check on page load
+  updateActiveLink();
+}
+
+// Initialize scroll spy when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initScrollSpy);
+} else {
+  initScrollSpy();
+}
+
 // Export for testing (if using modules)
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
