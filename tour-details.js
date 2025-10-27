@@ -425,6 +425,16 @@ function initSectionNavigation() {
     stickyObserver.observe(sentinel);
   }
 
+  // Prevent horizontal scroller from trapping vertical page scroll
+  scroller.addEventListener('wheel', (e) => {
+    // Only translate horizontal scroll; let vertical pass through
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      scroller.scrollLeft += e.deltaY || e.deltaX;
+      e.preventDefault();
+    }
+    // If vertical scroll (deltaY > deltaX), don't preventDefault - let it scroll the page
+  }, { passive: false });
+
   // Update button visibility based on scroll position
   const updateButtons = () => {
     const { scrollLeft, scrollWidth, clientWidth } = scroller;
