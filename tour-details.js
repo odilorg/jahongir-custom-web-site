@@ -472,6 +472,87 @@ if (document.readyState === 'loading') {
   initScrollSpy();
 }
 
+// =============================================================================
+// ITINERARY ACCORDION
+// =============================================================================
+
+/**
+ * Initialize itinerary accordion controls
+ */
+function initItineraryAccordion() {
+  const expandBtn = document.querySelector('.btn-expand-all');
+  const collapseBtn = document.querySelector('.btn-collapse-all');
+  const stops = document.querySelectorAll('.itinerary-stop');
+
+  if (!expandBtn || !collapseBtn || !stops.length) return;
+
+  // Expand all stops
+  expandBtn.addEventListener('click', () => {
+    stops.forEach(stop => stop.setAttribute('open', ''));
+    expandBtn.style.display = 'none';
+    collapseBtn.style.display = 'inline-flex';
+  });
+
+  // Collapse all stops
+  collapseBtn.addEventListener('click', () => {
+    stops.forEach(stop => stop.removeAttribute('open'));
+    collapseBtn.style.display = 'none';
+    expandBtn.style.display = 'inline-flex';
+  });
+
+  // Update button visibility based on stop states
+  function updateButtonVisibility() {
+    const openCount = document.querySelectorAll('.itinerary-stop[open]').length;
+    const totalCount = stops.length;
+
+    if (openCount === totalCount) {
+      expandBtn.style.display = 'none';
+      collapseBtn.style.display = 'inline-flex';
+    } else if (openCount === 0) {
+      collapseBtn.style.display = 'none';
+      expandBtn.style.display = 'inline-flex';
+    } else {
+      // Some open, some closed - show both or default to expand
+      expandBtn.style.display = 'inline-flex';
+      collapseBtn.style.display = 'none';
+    }
+  }
+
+  // Listen to toggle events on individual stops
+  stops.forEach(stop => {
+    stop.addEventListener('toggle', updateButtonVisibility);
+  });
+
+  // Initial state
+  updateButtonVisibility();
+
+  // Deep link support - open stop if hash matches
+  if (window.location.hash) {
+    const targetId = window.location.hash.substring(1);
+    const targetStop = document.getElementById(targetId);
+
+    if (targetStop && targetStop.classList.contains('itinerary-stop')) {
+      targetStop.setAttribute('open', '');
+      setTimeout(() => {
+        targetStop.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+  }
+
+  // Close stops on mobile by default (on page load)
+  if (window.innerWidth < 768) {
+    stops.forEach(stop => stop.removeAttribute('open'));
+    updateButtonVisibility();
+  }
+}
+
+// Initialize itinerary when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initItineraryAccordion);
+} else {
+  initItineraryAccordion();
+}
+
 // Export for testing (if using modules)
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
