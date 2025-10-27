@@ -97,6 +97,49 @@
     /* Accessibility - Focus visible */
     *:focus-visible{outline:2px solid #0D4C92;outline-offset:2px}
 
+    /* Navigation - Critical */
+    .nav{background:#fff;position:relative}
+    .nav .container{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.5rem}
+    .nav__logo-text{font-size:1.25rem;color:#0D4C92;font-weight:600}
+    .nav__menu{display:flex;gap:1.25rem;list-style:none;margin:0;padding:0;align-items:center}
+    .nav__menu li{margin:0}
+    .nav__menu a{display:inline-block;padding:.5rem 0;color:#333;text-decoration:none;transition:color .2s}
+    .nav__menu a:hover{color:#0D4C92}
+    .nav__cta{margin-left:auto;display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#F4B400;color:#1E1E1E;border-radius:6px;text-decoration:none;font-weight:500;min-height:44px}
+    .nav__toggle{display:none;border:none;background:transparent;cursor:pointer;padding:8px;min-height:44px;min-width:44px}
+    @media (max-width:900px){
+      .nav__toggle{display:inline-flex;align-items:center;justify-content:center}
+      .nav__menu{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;gap:.75rem;padding:1rem;box-shadow:0 4px 6px rgba(0,0,0,0.1)}
+      .nav__menu.is-open{display:flex}
+      .nav__cta{display:none}
+    }
+
+    /* Footer - Critical */
+    .site-footer{background:#2c3e50;color:#fff;padding:3rem 0 1rem}
+    .footer-main{padding-bottom:2rem}
+    .footer-main--desktop{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:2rem}
+    .footer-main--mobile{display:none}
+    .footer-brand__text{font-size:1.125rem;font-weight:600}
+    .footer-nav__title{font-size:1rem;font-weight:600;margin-bottom:1rem}
+    .footer-nav__list{list-style:none;margin:0;padding:0}
+    .footer-nav__list li{margin-bottom:.5rem}
+    .footer-nav__list a{color:rgba(255,255,255,0.8);text-decoration:none;transition:color .2s}
+    .footer-nav__list a:hover{color:#fff}
+    .footer-social__list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.75rem}
+    .footer-social__list a{color:rgba(255,255,255,0.8);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .2s}
+    .footer-social__list a:hover{color:#fff}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem;margin-top:1rem}
+    .footer-bottom__wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .footer-bottom__legal{display:flex;gap:1rem;align-items:center}
+    .footer-bottom__legal a{color:rgba(255,255,255,0.7);text-decoration:none}
+    @media (max-width:768px){
+      .footer-main--desktop{display:none}
+      .footer-main--mobile{display:block}
+    }
+    @media (max-width:640px){
+      .footer-main--desktop{grid-template-columns:1fr 1fr}
+    }
+
     /* Loading State */
     @media (prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}}
   </style>
@@ -104,9 +147,9 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- Async load tour details stylesheet -->
-  <link rel="preload" href="tour-details.css" as="style" onload="this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="tour-details.css"></noscript>
+  <!-- Tour details stylesheet - guaranteed load -->
+  <link rel="preload" href="tour-details.css" as="style">
+  <link rel="stylesheet" href="tour-details.css">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/favicon.png">
