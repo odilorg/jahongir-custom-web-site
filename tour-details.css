@@ -673,7 +673,7 @@
 }
 
 /* ======================================================
-   10. ITINERARY TIMELINE (Accordion)
+   10. ITINERARY TIMELINE (Semantic Accordion)
    ====================================================== */
 
 .tour-itinerary {
@@ -695,11 +695,10 @@
   gap: 0.5rem;
 }
 
-.btn-expand-all,
-.btn-collapse-all {
+.itinerary-controls button {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
   font-weight: 500;
@@ -711,154 +710,115 @@
   transition: all 0.2s ease;
 }
 
-.btn-expand-all:hover,
-.btn-collapse-all:hover {
+.itinerary-controls button:hover {
   background: #E0EFFF;
   border-color: #0D4C92;
 }
 
-.btn-expand-all svg,
-.btn-collapse-all svg {
-  width: 14px;
-  height: 14px;
+/* Timeline list - ordered list with left border as timeline */
+.itinerary-list {
+  border-left: 3px solid #0D4C92;
+  margin: 2rem 0 0 1.5rem;
+  padding-left: 2rem;
+  list-style: none;
 }
 
-/* Timeline container with vertical line */
-.itinerary-timeline {
+.itinerary-list li {
+  margin: 0 0 1.5rem 0;
   position: relative;
-  padding-left: 2.5rem;
-  margin-top: 2rem;
 }
 
-/* Vertical timeline bar - always visible */
-.itinerary-timeline::before {
-  content: "";
-  position: absolute;
-  left: 10px;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, #0D4C92, #F4B400);
-}
-
-/* Individual accordion stop */
-.itinerary-stop {
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-.itinerary-stop:last-child {
+.itinerary-list li:last-child {
   margin-bottom: 0;
 }
 
-/* Dot on timeline - always visible even when collapsed */
-.itinerary-stop::before {
+/* Timeline dot on each stop */
+.itinerary-list li::before {
   content: "";
   position: absolute;
-  left: -2.25rem;
-  top: 0.75rem;
-  width: 20px;
-  height: 20px;
+  left: -2.375rem;
+  top: 0.5rem;
+  width: 16px;
+  height: 16px;
   background: #fff;
   border: 3px solid #0D4C92;
   border-radius: 50%;
-  z-index: 2;
   transition: all 0.3s ease;
 }
 
-.itinerary-stop[open]::before {
+.itinerary-list li:has(details[open])::before {
   background: #0D4C92;
-  border-color: #0D4C92;
 }
 
-/* Summary (clickable header: time + title + chevron) */
-.stop-summary {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.5rem;
+/* Details element (accordion container) */
+.itinerary-list details {
   background: linear-gradient(180deg, #ffffff, #f9fafb);
   border: 1px solid #E8E8E8;
   border-radius: 10px;
-  cursor: pointer;
-  list-style: none; /* Remove default arrow */
+  padding: 0.75rem 1rem;
   transition: all 0.2s ease;
 }
 
-.stop-summary:hover {
+.itinerary-list details:hover {
   background: #F0F7FF;
-  border-color: #0D4C92;
+  border-color: #D0E7FF;
 }
 
-/* Remove default details marker */
-.stop-summary::-webkit-details-marker {
+.itinerary-list details[open] {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* Summary (clickable: time + title) */
+.itinerary-list summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  list-style: none; /* Remove default marker */
+}
+
+.itinerary-list summary::-webkit-details-marker {
   display: none;
 }
 
-/* Time badge */
-.stop-time {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
+/* Time element */
+.itinerary-list time {
+  font-size: 0.9rem;
   font-weight: 600;
   color: #0D4C92;
+  min-width: 5.5rem;
   flex-shrink: 0;
-  white-space: nowrap;
-}
-
-.stop-time svg {
-  width: 16px;
-  height: 16px;
-  color: #0D4C92;
 }
 
 /* Stop title */
 .stop-title {
-  flex: 1;
-  font-size: 1rem;
   font-weight: 600;
+  font-size: 1rem;
   color: #1E1E1E;
+  flex: 1;
 }
 
-/* Chevron icon */
-.icon--chevron {
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  color: #6B6B6B;
-  transition: transform 0.2s ease;
-}
-
-.itinerary-stop[open] .icon--chevron {
-  transform: rotate(180deg);
-}
-
-/* Content (details description) */
-.stop-content {
-  padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+/* Stop body (expandable content) */
+.stop-body {
+  margin-top: 0.75rem;
+  padding-left: 6.25rem; /* Align with title */
   color: #555;
   line-height: 1.6;
 }
 
-.stop-content p {
-  margin: 0 0 1rem 0;
+.stop-body p {
+  margin: 0 0 0.75rem 0;
 }
 
-.stop-content p:last-child {
+.stop-body p:last-child {
   margin-bottom: 0;
 }
 
 .stop-duration {
-  display: inline-block;
-  margin-top: 0.75rem;
-  padding: 0.25rem 0.75rem;
-  background: #F0F7FF;
-  color: #0D4C92;
-  font-size: 0.875rem;
-  font-weight: 500;
-  border-radius: 4px;
+  color: #666;
+  font-size: 0.9rem;
   font-style: italic;
+  margin-top: 0.5rem;
 }
 
 /* ======================================================
@@ -1678,31 +1638,32 @@
     font-weight: 600;
   }
 
-  /* Itinerary - collapsed on mobile */
-  .itinerary-stop[open] {
-    /* Keep open attribute for accessibility but user can toggle */
-  }
-
+  /* Itinerary - mobile optimized */
   .itinerary-header {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .stop-summary {
-    padding: 0.875rem 1rem;
-    gap: 0.75rem;
+  .itinerary-list {
+    margin-left: 1rem;
+    padding-left: 1.5rem;
   }
 
-  .stop-time {
+  .itinerary-list details {
+    padding: 0.625rem 0.875rem;
+  }
+
+  .itinerary-list time {
     font-size: 0.8125rem;
+    min-width: 4.5rem;
   }
 
   .stop-title {
     font-size: 0.9375rem;
   }
 
-  .stop-content {
-    padding: 1rem 1rem 1rem 2rem;
+  .stop-body {
+    padding-left: 5rem;
     font-size: 0.9375rem;
   }
 
@@ -2094,25 +2055,16 @@
   }
 
   /* Open all itinerary stops for printing */
-  .itinerary-stop {
+  .itinerary-list details {
     display: block !important;
   }
 
-  .itinerary-stop summary {
+  .itinerary-list summary {
     display: block;
-  }
-
-  .stop-content {
-    display: block !important;
-  }
-
-  /* Remove interactive hover states */
-  .stop-summary {
     cursor: default;
-    border: 1px solid #E8E8E8;
   }
 
-  .icon--chevron {
-    display: none;
+  .stop-body {
+    display: block !important;
   }
 }

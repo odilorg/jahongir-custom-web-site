@@ -477,72 +477,40 @@ if (document.readyState === 'loading') {
 // =============================================================================
 
 /**
- * Initialize itinerary accordion controls
+ * Initialize itinerary accordion - minimal implementation
  */
 function initItineraryAccordion() {
-  const expandBtn = document.querySelector('.btn-expand-all');
-  const collapseBtn = document.querySelector('.btn-collapse-all');
-  const stops = document.querySelectorAll('.itinerary-stop');
+  const allDetails = Array.from(document.querySelectorAll('#itinerary-list details'));
 
-  if (!expandBtn || !collapseBtn || !stops.length) return;
+  if (!allDetails.length) return;
 
-  // Expand all stops
-  expandBtn.addEventListener('click', () => {
-    stops.forEach(stop => stop.setAttribute('open', ''));
-    expandBtn.style.display = 'none';
-    collapseBtn.style.display = 'inline-flex';
+  // Expand all
+  document.getElementById('expandAll')?.addEventListener('click', () => {
+    allDetails.forEach(d => d.open = true);
   });
 
-  // Collapse all stops
-  collapseBtn.addEventListener('click', () => {
-    stops.forEach(stop => stop.removeAttribute('open'));
-    collapseBtn.style.display = 'none';
-    expandBtn.style.display = 'inline-flex';
+  // Collapse all
+  document.getElementById('collapseAll')?.addEventListener('click', () => {
+    allDetails.forEach(d => d.open = false);
   });
 
-  // Update button visibility based on stop states
-  function updateButtonVisibility() {
-    const openCount = document.querySelectorAll('.itinerary-stop[open]').length;
-    const totalCount = stops.length;
-
-    if (openCount === totalCount) {
-      expandBtn.style.display = 'none';
-      collapseBtn.style.display = 'inline-flex';
-    } else if (openCount === 0) {
-      collapseBtn.style.display = 'none';
-      expandBtn.style.display = 'inline-flex';
-    } else {
-      // Some open, some closed - show both or default to expand
-      expandBtn.style.display = 'inline-flex';
-      collapseBtn.style.display = 'none';
-    }
-  }
-
-  // Listen to toggle events on individual stops
-  stops.forEach(stop => {
-    stop.addEventListener('toggle', updateButtonVisibility);
-  });
-
-  // Initial state
-  updateButtonVisibility();
-
-  // Deep link support - open stop if hash matches
-  if (window.location.hash) {
-    const targetId = window.location.hash.substring(1);
-    const targetStop = document.getElementById(targetId);
-
-    if (targetStop && targetStop.classList.contains('itinerary-stop')) {
-      targetStop.setAttribute('open', '');
+  // Deep link support - open specific stop when hash matches
+  if (location.hash) {
+    const targetStop = document.querySelector(location.hash + ' details');
+    if (targetStop) {
+      targetStop.open = true;
       setTimeout(() => {
-        targetStop.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.querySelector(location.hash)?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
       }, 100);
     }
   }
 
-  // Close stops on mobile by default (on page load)
+  // Close all on mobile by default
   if (window.innerWidth < 768) {
-    stops.forEach(stop => stop.removeAttribute('open'));
-    updateButtonVisibility();
+    allDetails.forEach(d => d.open = false);
   }
 }
 
