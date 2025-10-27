@@ -2056,7 +2056,6 @@
 /* Section Navigation Wrapper - Sticky Container */
 .section-nav-wrapper {
   position: relative; /* Non-sticky on mobile */
-  z-index: 20;
 }
 
 /* Desktop: Make wrapper sticky */
@@ -2064,6 +2063,7 @@
   .section-nav-wrapper {
     position: sticky;
     top: var(--sticky-offset, 88px);
+    z-index: 20;
   }
 }
 
