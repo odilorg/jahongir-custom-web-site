@@ -2060,14 +2060,12 @@
   touch-action: pan-y; /* Allow vertical page scroll on mobile */
 }
 
-/* Desktop: Make wrapper sticky and constrain width to left column only */
+/* Desktop: Make wrapper sticky (now inside left column, auto-constrained) */
 @media (min-width: 992px) {
   .section-nav-wrapper {
     position: sticky;
     top: var(--sticky-offset, 88px);
-    z-index: 20;
-    /* Constrain to left column width: full width minus sidebar (380px) minus gap (2.5rem) */
-    max-width: calc(100% - 380px - 2.5rem);
+    z-index: 10; /* Below booking sidebar (30), stays in left column naturally */
   }
 }
 
