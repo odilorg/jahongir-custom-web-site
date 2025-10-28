@@ -361,6 +361,7 @@
 /* Main content area (contains sections) */
 .tour-main-content {
   /* Simple block container - sections flow vertically */
+  position: relative; /* Create containing block for sticky navigation */
   margin-bottom: 3rem;
   touch-action: pan-y; /* Always allow vertical scroll on mobile */
 }
@@ -1772,7 +1773,7 @@
     position: sticky;
     top: 100px; /* Below fixed header */
     align-self: flex-start;
-    z-index: 30; /* Above section navigation (z-index: 20) */
+    z-index: 10; /* Above section navigation (z-index: 5), but in separate column */
   }
 
   /* Hero gallery responsive */
@@ -2060,26 +2061,12 @@
   touch-action: pan-y; /* Allow vertical page scroll on mobile */
 }
 
-/* Desktop: Make wrapper sticky with proper z-index */
+/* Desktop: Make wrapper sticky (now inside left column, naturally constrained) */
 @media (min-width: 992px) {
   .section-nav-wrapper {
     position: sticky;
     top: var(--sticky-offset, 88px);
-    z-index: 10; /* Below booking sidebar (30) to not overlap */
-  }
-
-  /* Make navigation more compact to avoid sidebar overlap */
-  .section-nav {
-    padding: 0.5rem;
-  }
-
-  .section-nav__scroller {
-    gap: 0.75rem; /* Reduced from 1.25rem */
-  }
-
-  .section-nav__scroller a {
-    font-size: 0.875rem; /* Reduced from 0.9375rem */
-    padding: 0.35rem 0.65rem; /* Reduced from 0.4rem 0.75rem */
+    z-index: 5; /* Below booking sidebar (10), but stays in left column */
   }
 }
 
@@ -2315,7 +2302,7 @@
   position: sticky;
   top: 120px;
   align-self: flex-start;
-  z-index: 30; /* Above section navigation (z-index: 20) */
+  z-index: 10; /* Above section navigation (z-index: 5), but in separate column */
 }
 
 .booking-card {
