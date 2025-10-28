@@ -1772,6 +1772,7 @@
     position: sticky;
     top: 100px; /* Below fixed header */
     align-self: flex-start;
+    z-index: 30; /* Above section navigation (z-index: 20) */
   }
 
   /* Hero gallery responsive */
@@ -2300,6 +2301,7 @@
   position: sticky;
   top: 120px;
   align-self: flex-start;
+  z-index: 30; /* Above section navigation (z-index: 20) */
 }
 
 .booking-card {
