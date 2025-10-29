@@ -694,7 +694,7 @@
   background: #FFF9E6;
   border: 2px solid var(--color-accent, #F4B400);
   border-radius: 12px;
-  padding: 2rem;
+  padding: 1.5rem; /* Reduced from 2rem - consistent with other sections */
   margin-top: 1.5rem;
 }
 
@@ -819,7 +819,7 @@
 }
 
 .itinerary-list li {
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1rem 0; /* Reduced from 1.5rem - consistent with other card sections */
   position: relative;
 }
 
@@ -850,7 +850,7 @@
   background: linear-gradient(180deg, #ffffff, #f9fafb);
   border: 1px solid #E8E8E8;
   border-radius: 10px;
-  padding: 0.75rem 1rem;
+  padding: 1.25rem 1.5rem; /* Increased from 0.75rem 1rem - consistent with includes/excludes cards */
   transition: all 0.2s ease;
 }
 
@@ -926,13 +926,13 @@
 
 .meeting-grid {
   display: grid;
-  gap: 2rem;
+  gap: 1.5rem; /* Reduced from 2rem - consistent spacing */
   margin-top: 1.5rem;
 }
 
 .meeting-info {
   background: var(--color-surface, #fff);
-  padding: 2rem;
+  padding: 1.5rem; /* Reduced from 2rem - consistent with other cards */
   border-radius: 12px;
   border: 1px solid var(--color-border, #E3E3E3);
 }
@@ -941,7 +941,7 @@
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem; /* Reduced from 1.5rem - tighter spacing */
 }
 
 .meeting-info__item:last-child {
@@ -1039,7 +1039,7 @@
 
 .know-before-item {
   background: linear-gradient(180deg, #ffffff, #f9fafb);
-  padding: 1.75rem 1.5rem;
+  padding: 1.25rem 1.5rem; /* Reduced vertical from 1.75rem - consistent with other cards */
   border-radius: 12px;
   border: 1px solid #E8E8E8;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -1118,7 +1118,7 @@
 
 /* FAQ Question (summary) */
 .faq-question {
-  padding: 1.5rem 1.75rem;
+  padding: 1.25rem 1.5rem; /* Reduced from 1.5rem 1.75rem - consistent spacing */
   font-size: 1.0625rem;
   font-weight: 600;
   color: #1E1E1E;
@@ -1165,7 +1165,7 @@
 
 /* FAQ Answer */
 .faq-answer {
-  padding: 1.25rem 1.75rem 1.75rem;
+  padding: 1.25rem 1.5rem 1.5rem; /* Reduced from 1.25rem 1.75rem 1.75rem - consistent spacing */
   color: #555;
   line-height: 1.7;
   animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
