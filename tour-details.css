@@ -1314,8 +1314,8 @@
   border-color: #0D4C92;
 }
 
-.extra-checkbox:focus {
-  /* Custom accessible focus state - soft blue glow instead of harsh box */
+/* Only show focus outline for keyboard navigation, not mouse clicks */
+.extra-checkbox:focus-visible {
   box-shadow: 0 0 0 3px rgba(13, 76, 146, 0.15);
   border-color: #0D4C92;
 }
@@ -1325,8 +1325,7 @@
   border-color: #0D4C92;
 }
 
-.extra-checkbox:checked:focus {
-  /* Focus state when checked - slightly stronger glow */
+.extra-checkbox:checked:focus-visible {
   box-shadow: 0 0 0 3px rgba(13, 76, 146, 0.25);
 }
 
