@@ -1851,7 +1851,7 @@
   /* Sidebar becomes sticky - positioned below sticky tabs to avoid overlap */
   .booking-sidebar {
     position: sticky;
-    top: 185px; /* Below header (88px) + sticky tabs (~50px) + gap (47px) */
+    top: 200px; /* Below header (88px) + sticky tabs (~50px) + gap (62px) */
     align-self: flex-start;
     z-index: 30; /* Above section navigation (z-index: 10) */
   }
@@ -2397,7 +2397,7 @@
 /* Booking Card - Reference Style */
 .booking-sidebar {
   position: sticky;
-  top: 185px; /* Below header (88px) + sticky tabs (~50px) + gap (47px) */
+  top: 200px; /* Below header (88px) + sticky tabs (~50px) + gap (62px) */
   align-self: flex-start;
   z-index: 30; /* Above section navigation (z-index: 10) */
 }
