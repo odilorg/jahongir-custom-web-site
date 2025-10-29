@@ -1001,6 +1001,35 @@
   margin-bottom: 3rem;
 }
 
+/* Know Before You Go - List Format */
+.know-before-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.know-before-list li {
+  display: flex;
+  align-items: flex-start; /* Align icon with first line of text */
+  gap: 1rem;
+}
+
+.know-before-list li .icon {
+  flex-shrink: 0; /* Prevent icon from shrinking */
+  width: 20px;
+  height: 20px;
+  color: var(--brand-blue);
+  margin-top: 2px; /* Fine-tune alignment with bold text baseline */
+}
+
+.know-before-list li strong {
+  font-weight: 600;
+  color: #1E1E1E;
+}
+
 .know-before-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
