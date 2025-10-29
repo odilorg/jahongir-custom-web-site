@@ -520,7 +520,8 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 
 .activity-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.20);
+  filter: saturate(1.05) brightness(1.02);
 }
 
 .activity-card__media {
@@ -657,7 +658,8 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 
 .tour-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+  filter: saturate(1.05) brightness(1.02);
 }
 
 /* Tour Card Media */
@@ -925,7 +927,8 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 
 .city-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  filter: saturate(1.05) brightness(1.02);
 }
 
 .city-card__link {
@@ -1113,8 +1116,9 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 }
 
 .review-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  filter: saturate(1.02) brightness(1.01);
 }
 
 /* Review Card Header */
@@ -1725,8 +1729,9 @@ button:focus-visible {
 }
 
 .blog-card:hover {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-  transform: translateY(-6px);
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  filter: saturate(1.05) brightness(1.02);
 }
 
 .blog-card__link {
