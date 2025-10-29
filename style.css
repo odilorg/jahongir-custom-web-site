@@ -32,6 +32,13 @@
   --space-4: 32px;
   --space-5: 48px;
 
+  /* Border radius scale */
+  --radius-sm: 6px;    /* Buttons, inputs, tags */
+  --radius-md: 12px;   /* Standard cards, images */
+  --radius-lg: 18px;   /* Large featured elements */
+  --radius-pill: 50px; /* Pill buttons */
+  --radius-circle: 50%; /* Circular elements */
+
   /* Container widths */
   --container-max: 1200px;
   --container-wide: 1200px;
@@ -106,7 +113,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   align-items: center;
   justify-content: center;
   padding: 0.75rem 1.5rem;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
   font-family: var(--font-heading);
   text-decoration: none;
@@ -148,7 +155,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 }
 
 .btn--pill {
-  border-radius: 50px;
+  border-radius: var(--radius-pill);
 }
 
 .btn--large {
@@ -217,7 +224,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   gap: var(--space-1);
   background: rgba(255,255,255,.15);
   backdrop-filter: blur(10px);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   padding: var(--space-2);
 }
 .hero-search label {
@@ -230,7 +237,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 .hero-search select {
   width: 100%;
   padding: 0.5rem;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   border: none;
   background: rgba(255,255,255,.2);
   color: #fff;
@@ -240,7 +247,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   background: #fff;
   color: var(--color-primary);
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   border: none;
   cursor: pointer;
 }
@@ -291,7 +298,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   align-items: flex-start;
   background: var(--color-surface);
   padding: var(--space-2);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
   transition: all 0.3s ease;
 }
@@ -311,7 +318,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 }
 .why-us__photo {
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
 }
@@ -366,7 +373,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   padding: var(--space-2) var(--space-3);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
@@ -411,7 +418,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   padding: var(--space-2) var(--space-3);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   color: var(--color-text);
   text-decoration: none;
   transition: all 0.3s ease;
@@ -502,7 +509,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 .activity-card {
   position: relative;
   display: block;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   transition: all 0.25s ease;
@@ -548,7 +555,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 0, 0, 0.06);
   padding: 6px 12px;
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   font-size: 0.8125rem;
   font-weight: 600;
   font-family: var(--font-heading);
@@ -638,7 +645,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 /* Tour Card */
 .tour-card {
   background: white;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
@@ -679,7 +686,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--color-text);
@@ -712,7 +719,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   padding: 4px 12px;
   background: rgba(13, 76, 146, 0.08);
   color: var(--color-primary);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   font-size: 0.75rem;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -823,7 +830,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   gap: 8px;
   padding: 0.65rem 1rem;
   font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1rem);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
 }
 
 .tour-card__footer .btn i {
@@ -908,7 +915,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 /* City Card */
 .city-card {
   position: relative;
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   background: #000;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -1017,7 +1024,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   padding: 8px 12px;
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(2px);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1rem);
   font-weight: 600;
   color: white;
@@ -1095,7 +1102,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 /* Review Card */
 .review-card {
   background: white;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   padding: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
@@ -1119,7 +1126,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 .review-card__avatar {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  border-radius: var(--radius-circle);
   object-fit: cover;
   border: 3px solid var(--color-bg);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -1217,7 +1224,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   gap: 32px;
   padding: var(--space-4);
   background: white;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   flex-wrap: wrap;
 }
@@ -1513,7 +1520,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   height: 48px;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
-  border-radius: 50%;
+  border-radius: var(--radius-circle);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1707,7 +1714,7 @@ button:focus-visible {
 /* 7.3 Blog Card */
 .blog-card {
   background: var(--color-surface);
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1727,7 +1734,7 @@ button:focus-visible {
   height: 100%;
   text-decoration: none;
   color: inherit;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
 }
 
 .blog-card__link:focus-visible {
@@ -1762,7 +1769,7 @@ button:focus-visible {
   top: 16px;
   left: 16px;
   padding: 6px 12px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -1872,7 +1879,7 @@ button:focus-visible {
   color: var(--color-accent);
   background: transparent;
   border: 2px solid var(--color-accent);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   text-decoration: none;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -2222,7 +2229,7 @@ button:focus-visible {
   border: 1px solid var(--footer-border);
   color: var(--footer-text);
   padding: 10px 16px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 500;
@@ -2307,7 +2314,7 @@ button:focus-visible {
 .site-footer button:focus-visible {
   outline: 2px solid var(--footer-link);
   outline-offset: 2px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .site-footer a:focus:not(:focus-visible),
@@ -2434,7 +2441,7 @@ button:focus-visible {
     border: 1px solid rgba(255, 255, 255, 0.14);
     color: var(--footer-text);
     padding: 8px 12px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     font-size: 0.875rem;
     text-decoration: none;
     transition: all 0.2s ease;
@@ -2533,7 +2540,7 @@ button:focus-visible {
     border: 1px solid rgba(255, 255, 255, 0.14);
     color: var(--footer-text);
     padding: 10px 12px;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     font-family: var(--font-body);
     font-size: 0.9375rem;
     cursor: pointer;
