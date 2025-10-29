@@ -35,11 +35,37 @@
    ====================================================== */
 
 /* ======================================================
-   CSS VARIABLES
+   CSS VARIABLES - Design System
    ====================================================== */
 
 :root {
+  /* Sticky Navigation */
   --sticky-offset: 88px; /* Offset for sticky navigation (header height + padding) */
+
+  /* Brand Colors */
+  --brand-blue: #1C54B2;
+  --brand-blue-dark: #143d85;
+  --brand-yellow: #F9B233;
+  --brand-yellow-dark: #e5a020;
+
+  /* Shadows - Consistent System */
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.06);  /* Default cards */
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.08); /* Hover, sticky elements */
+
+  /* Spacing Rhythm */
+  --space-section: 32px;  /* Between major sections */
+  --space-card: 24px;     /* Inside cards */
+  --space-small: 16px;    /* Small gaps */
+
+  /* Typography Scale */
+  --line-height-tight: 1.3;
+  --line-height-normal: 1.4;
+  --line-height-relaxed: 1.7;
+  --max-line-width: 70ch;
+
+  /* Border Radius */
+  --radius-card: 12px;
+  --radius-button: 8px;
 }
 
 /* ======================================================
@@ -365,9 +391,9 @@
   touch-action: pan-y; /* Always allow vertical scroll on mobile */
 }
 
-/* Section spacing */
+/* Section spacing - Consistent 32px rhythm from audit */
 .tour-main-content > section {
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-section); /* 32px */
 }
 
 .tour-main-content > section:last-child {
@@ -391,10 +417,12 @@
 }
 
 .section-title {
-  font-size: 1.75rem;
+  font-size: 1.5rem; /* H2 size from audit */
+  font-weight: 700;
+  line-height: var(--line-height-normal); /* 1.4 */
   font-family: var(--font-heading, "Poppins", sans-serif);
   color: var(--color-text, #1E1E1E);
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-card); /* 24px from audit */
   padding-bottom: 0.75rem;
   border-bottom: 2px solid var(--color-primary, #0D4C92);
   display: inline-block;
@@ -402,8 +430,9 @@
 
 .tour-overview__text {
   font-size: 1rem;
-  line-height: 1.8;
+  line-height: var(--line-height-relaxed); /* 1.7 from audit */
   color: var(--color-text-muted, #555);
+  max-width: var(--max-line-width); /* 70ch for readability */
 }
 
 .tour-overview__text p {
@@ -489,17 +518,17 @@
   display: flex;
   align-items: flex-start;
   gap: 1.25rem;
-  padding: 1.25rem 1.5rem;
+  padding: var(--space-card);
   background: linear-gradient(180deg, #ffffff, #f9fafb);
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   border: 1px solid #E8E8E8;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-light);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .highlight-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-medium);
   border-color: #D0D0D0;
 }
 
@@ -988,14 +1017,14 @@
 .faq-item {
   background: linear-gradient(180deg, #ffffff, #f9fafb);
   border: 1px solid #E8E8E8;
-  border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-light);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
 
 .faq-item:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-medium);
   border-color: #D0D0D0;
 }
 
@@ -1265,14 +1294,14 @@
 .review-card {
   background: #fff;
   border: 1px solid #DEDEDE;
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   padding: 2rem 1.75rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-light);
 }
 
 .review-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-medium);
   border-color: #C0C0C0;
   transform: translateY(-2px);
 }
@@ -2156,9 +2185,10 @@
 }
 
 .section-nav__scroller a.is-active {
-  color: #0d4c92;
+  color: var(--brand-blue);
   background: #eef4ff;
-  border-color: #dbe7ff;
+  border-bottom: 2px solid var(--brand-blue); /* Underline for active state */
+  font-weight: 600;
 }
 
 /* Arrow buttons */
@@ -2319,11 +2349,11 @@
 }
 
 .booking-card {
-  background: #fff;
+  background: #fff; /* Pure white */
   border: 1px solid #DEDEDE;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: var(--radius-card);
+  padding: var(--space-card);
+  box-shadow: var(--shadow-light); /* Softer, consistent shadow */
 }
 
 .booking-card__header {
@@ -2390,13 +2420,13 @@
   display: none;
 }
 
-/* Primary CTA - Coral/Red */
+/* Primary CTA - Brand Blue (changed from alarming red) */
 .btn--primary {
-  background: #FF6B6B;
+  background: var(--brand-blue);
   color: #fff;
   border: none;
   padding: 1rem 2rem;
-  border-radius: 8px;
+  border-radius: var(--radius-button);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -2406,9 +2436,9 @@
 }
 
 .btn--primary:hover {
-  background: #E85555;
+  background: var(--brand-blue-dark);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+  box-shadow: var(--shadow-medium);
 }
 
 .btn--primary:active {
@@ -2435,13 +2465,13 @@
   border-color: #1E1E1E;
 }
 
-/* Accent Button - Gold/Yellow "Request to Book" */
+/* Accent Button - Brand Yellow "Request to Book" */
 .btn--accent {
-  background: #F4B400;
+  background: var(--brand-yellow);
   color: #1E1E1E;
   border: none;
   padding: 1rem 2rem;
-  border-radius: 8px;
+  border-radius: var(--radius-button);
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
@@ -2451,7 +2481,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  box-shadow: 0 2px 8px rgba(244, 180, 0, 0.2);
+  box-shadow: var(--shadow-light);
 }
 
 /* Full width when used with .btn--block */
@@ -2460,9 +2490,9 @@
 }
 
 .btn--accent:hover {
-  background: #E0A500;
+  background: var(--brand-yellow-dark);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(244, 180, 0, 0.35);
+  box-shadow: var(--shadow-medium);
 }
 
 .btn--accent:active {
