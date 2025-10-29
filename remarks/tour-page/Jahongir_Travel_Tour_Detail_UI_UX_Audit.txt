@@ -1,0 +1,200 @@
+Jahongir Travel – Tour Detail Page UI/UX Audit
+(Samarkand City Tour: Registan Square and Historic Monuments)
+
+------------------------------------------------------
+GENERAL OVERVIEW
+------------------------------------------------------
+Strengths:
+- Excellent layout structure following industry-standard tour detail flow (hero → summary → itinerary → reviews).
+- Strong typography hierarchy and use of cards for sections.
+- Consistent button styling with brand colors.
+- Clear pricing and call-to-action placement.
+
+Weaknesses:
+- Visual density in some mid-sections.
+- Left column text can feel crowded; could benefit from more whitespace.
+- Need better rhythm between content blocks.
+- Mobile layout optimization should ensure smooth scrolling and consistent padding.
+
+------------------------------------------------------
+1. HERO & HEADER SECTION
+------------------------------------------------------
+Strengths:
+- Photo gallery clearly presents the destination with appealing imagery.
+- Title and breadcrumb hierarchy work well.
+- Booking widget visible above the fold – great for conversions.
+
+Improvements:
+- Add a slight overlay gradient on images to make text stand out in case of light backgrounds.
+- Consider introducing a “photo carousel” or image lightbox for better UX.
+- Use a larger heading font size (H1) and slightly tighter line spacing.
+- Ensure header height matches other pages for brand consistency.
+
+------------------------------------------------------
+2. OVERVIEW SECTION
+------------------------------------------------------
+Strengths:
+- Informative, well-written content.
+- Includes key highlights and general context early on.
+
+Improvements:
+- Use shorter paragraphs for readability (aim for 2–4 lines each).
+- Add bullet points or icons for quick scanning (duration, included services, etc.).
+- Increase vertical spacing between heading and first paragraph (use --space-8).
+- Add subhead typography contrast (e.g., semi-bold Inter 18px).
+
+------------------------------------------------------
+3. HIGHLIGHTS SECTION
+------------------------------------------------------
+Strengths:
+- Bullet-pointed list makes it easy to scan.
+- Each highlight supported by icon.
+
+Improvements:
+- Use consistent icon sizing (20–24px) and spacing (8px gap).
+- Add light background surface (#F9FAFB) behind the section to visually separate it.
+- Consider grouping highlights into “Cultural” vs. “Practical” if more items added.
+
+------------------------------------------------------
+4. WHAT’S INCLUDED / EXCLUDED SECTION
+------------------------------------------------------
+Strengths:
+- Good split layout (“Included” vs. “Not included”) is clear.
+- Uses checkmarks/crosses for quick visual parsing.
+
+Improvements:
+- Increase spacing between columns to improve scan path.
+- Add slight background contrast for entire section (e.g., light gray block).
+- Ensure icons meet 3:1 contrast ratio against background.
+
+------------------------------------------------------
+5. CANCELLATION POLICY
+------------------------------------------------------
+Strengths:
+- Visible and easy to find – builds trust.
+- Icon + highlight color draws attention.
+
+Improvements:
+- Add subtle background tint (#FFF8E1 or oklch(98% 0.03 85)) for visual distinction.
+- Increase padding top/bottom to match other sections.
+- Make bullet list more compact (reduce line-height to 1.4).
+
+------------------------------------------------------
+6. TOUR ITINERARY
+------------------------------------------------------
+Strengths:
+- Timeline layout is excellent; intuitive structure with time stamps.
+- Good use of alternating content blocks.
+
+Improvements:
+- Use consistent left alignment for all timestamps.
+- Add visual connection line between itinerary steps for easier follow.
+- Slightly increase padding in each item (16–20px).
+- Consider sticky left column (on desktop) for “Day X” or “Step” indicators.
+
+------------------------------------------------------
+7. MEETING POINT & PICKUP
+------------------------------------------------------
+Strengths:
+- Clear address, map integration, and pickup description.
+- Logical visual grouping.
+
+Improvements:
+- Reduce text block width; add spacing between map and text.
+- Add iconography (map pin, walking person) for visual clarity.
+- Ensure map is interactive or zoomable (or show “Open in Maps” button).
+
+------------------------------------------------------
+8. KNOW BEFORE YOU GO
+------------------------------------------------------
+Strengths:
+- Important information easily accessible.
+
+Improvements:
+- Format as bullet list with consistent spacing.
+- Highlight critical notes (e.g., passport requirements) with color token `--color-warning`.
+- Add icons (e.g., ⚠️ or info symbol) for scannability.
+
+------------------------------------------------------
+9. FREQUENTLY ASKED QUESTIONS (FAQ)
+------------------------------------------------------
+Strengths:
+- Accordion layout is clean and minimal.
+
+Improvements:
+- Ensure all accordions use same border radius and spacing.
+- Add slight hover background color for better affordance.
+- Add expand/collapse micro-animation (max-height transition).
+
+------------------------------------------------------
+10. EXTRA SERVICES
+------------------------------------------------------
+Strengths:
+- Helpful add-on presentation increases upsell potential.
+
+Improvements:
+- Add price visual emphasis with bold font.
+- Include icons consistent in size and color.
+- Use subtle card background and equal card height.
+
+------------------------------------------------------
+11. CUSTOMER REVIEWS
+------------------------------------------------------
+Strengths:
+- Reviews well-structured and legible.
+- Star ratings displayed clearly.
+
+Improvements:
+- Add light shadow or border to separate reviews from background.
+- Introduce verified-badge icon for authenticity.
+- Limit to 2–3 reviews initially; “Load More” reveals rest for better UX.
+
+------------------------------------------------------
+12. BOOKING SIDEBAR (RIGHT COLUMN)
+------------------------------------------------------
+Strengths:
+- Prominent placement for pricing and availability.
+- Clear CTA button.
+
+Improvements:
+- Add sticky behavior (desktop view) so booking box remains visible on scroll.
+- Highlight total price on hover or interaction.
+- Increase contrast of “per person” label.
+- Ensure correct alignment of currency and numeric price (use tabular numerals).
+
+------------------------------------------------------
+13. FOOTER
+------------------------------------------------------
+Strengths:
+- Consistent with homepage; good hierarchy.
+
+Improvements:
+- Add more top padding for balance.
+- Verify all links open in same tab for internal pages.
+- Add quick “Back to Top” button for long pages.
+
+------------------------------------------------------
+VISUAL CONSISTENCY & BRAND ALIGNMENT
+------------------------------------------------------
+- Maintain 8pt spacing grid across all sections.
+- Ensure all headings align to left baseline.
+- Use brand navy and gold accent consistently (no mixed blue shades).
+- Confirm consistent radius and shadow tokens on all cards.
+- All icons must follow unified stroke width and size (1.5–2px stroke).
+
+------------------------------------------------------
+ACCESSIBILITY
+------------------------------------------------------
+- Verify contrast for text on tinted backgrounds.
+- Ensure keyboard focus visible on all interactive elements.
+- Add descriptive `alt` text for images and icons.
+- Mark up FAQ and Itinerary using semantic HTML (e.g., `<details>` / `<summary>`).
+
+------------------------------------------------------
+UX ENHANCEMENT IDEAS
+------------------------------------------------------
+1. Add sticky mini-navigation tabs (Overview / Itinerary / Reviews) for quick jump.
+2. Add floating “Book Now” button on mobile.
+3. Implement image lightbox for photo preview.
+4. Add estimated duration icons in itinerary (clock, car, walk).
+5. Include breadcrumb back to “Samarkand Tours” category for easier navigation.

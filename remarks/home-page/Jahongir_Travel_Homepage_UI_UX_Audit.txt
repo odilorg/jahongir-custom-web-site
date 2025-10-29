@@ -1,0 +1,140 @@
+Jahongir Travel Homepage – UI/UX Design Audit
+
+------------------------------------------------------
+GENERAL OVERVIEW
+------------------------------------------------------
+Strengths:
+- Professional and visually cohesive layout.
+- Strong brand palette (navy, gold, white).
+- Excellent section hierarchy and spacing rhythm.
+- Consistent typography and CTA clarity.
+
+Weaknesses:
+- Visual density in mid sections (similar card size).
+- Minor contrast and whitespace inconsistencies.
+- Hero section hierarchy and alignment could improve.
+- Accessibility and hover feedback can be refined.
+
+------------------------------------------------------
+1. HERO SECTION ("Discover the Magic of Uzbekistan")
+------------------------------------------------------
+Strengths:
+- Strong hero image (Registan) with cultural impact.
+- Serif + sans-serif combo communicates trust and elegance.
+- CTA visible above the fold.
+
+Improvements:
+- Add darker overlay gradient for better contrast (target ≥4.5:1).
+- Tighten vertical spacing (reduce 8–12px between subtitle & CTA).
+- Use gold primary CTA and white outline secondary for clarity.
+- Adjust vertical position for mobile hero text (upper third).
+
+------------------------------------------------------
+2. WHY WE’RE YOUR PERFECT TRAVEL PARTNER
+------------------------------------------------------
+Strengths:
+- Great trust-building section with ratings and contact icons.
+- Warm visuals through image gallery.
+
+Improvements:
+- Increase top/bottom padding.
+- Group contact methods visually in subtle surface card.
+- Increase image radius to match global token (12px).
+- Improve paragraph spacing (line-height 1.6).
+
+------------------------------------------------------
+3. TRENDING ACTIVITIES IN UZBEKISTAN
+------------------------------------------------------
+Strengths:
+- Clear segmentation by interest categories.
+- Consistent card icons and titles.
+
+Improvements:
+- Ensure hover state brightens slightly (saturate +5%).
+- Maintain 24px vertical padding inside cards.
+- Add short intro sentence above heading for context.
+
+------------------------------------------------------
+4. EXPLORE POPULAR UZBEKISTAN TOURS
+------------------------------------------------------
+Strengths:
+- Tour card layout is clear and readable.
+- CTAs are consistent and visually appealing.
+
+Improvements:
+- Align all tour image heights.
+- Make price bolder or highlighted with color.
+- Standardize tag color (“NEW”, “POPULAR”). 
+- Add section divider or tone variation for rhythm.
+
+------------------------------------------------------
+5. TOP PLACES TO TRAVEL
+------------------------------------------------------
+Strengths:
+- Elegant grayscale overlay cards with simple layout.
+
+Improvements:
+- Reduce overlay opacity for image clarity.
+- Add hover zoom/lighten effect for interactivity.
+- Move “Browse” button to hover state to reduce clutter.
+
+------------------------------------------------------
+6. TRAVELLER REVIEWS
+------------------------------------------------------
+Strengths:
+- Well-aligned, scannable testimonial layout.
+
+Improvements:
+- Add subtle card shadow for contrast against white bg.
+- Emphasize rating and TripAdvisor source visually.
+- Consider carousel for mobile view.
+
+------------------------------------------------------
+7. TRAVEL INSIGHTS & TIPS
+------------------------------------------------------
+Strengths:
+- Vibrant, modern pastel cards.
+- Nice typography contrast for blog content.
+
+Improvements:
+- Standardize image corners and alignment.
+- Place category chip above title (smaller, uppercase).
+- Add 64px top margin for section spacing.
+
+------------------------------------------------------
+8. FOOTER
+------------------------------------------------------
+Strengths:
+- Logical structure: logo → navigation → contact → socials.
+- Strong dark contrast with clear legibility.
+
+Improvements:
+- Increase top padding (80px) and column spacing.
+- Slightly enlarge font size (15–16px).
+- Add subtle gold underline under headings for branding.
+
+------------------------------------------------------
+VISUAL CONSISTENCY
+------------------------------------------------------
+- Color: navy + gold + white strong; introduce neutral gray (#F8F9FB) sections.
+- Typography: maintain modular scale, avoid large jumps.
+- Buttons: add hover elevation (box-shadow var(--shadow-2)).
+- Radius: unify all cards/buttons to 12px.
+- Shadows: keep opacity consistent (8–12%).
+
+------------------------------------------------------
+ACCESSIBILITY & PERFORMANCE
+------------------------------------------------------
+- Ensure all text meets WCAG AA contrast ratios.
+- Add aria-labels for icons and links.
+- Verify keyboard focus visibility.
+- Optimize images (WebP/AVIF + lazy-load).
+
+------------------------------------------------------
+UX ENHANCEMENT IDEAS
+------------------------------------------------------
+1. Add sticky CTA header (“Plan My Trip”). 
+2. Alternate white/gray background per section for rhythm.
+3. Subtle fade-in on scroll (200–300ms).
+4. Personalized “Recommended Tours” module.
+5. Refine CTA copy to more descriptive text.

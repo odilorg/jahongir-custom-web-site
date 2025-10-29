@@ -1,0 +1,234 @@
+Desktop Sticky Left Tab Menu — Full Solution (TXT)
+=================================================
+
+Purpose
+-------
+Convert the horizontal section tabs into a sticky **left-side vertical table of contents (TOC) on desktop**, while keeping the existing horizontal strip on mobile/tablet. Maintain smooth scrolling and highlight the active section while the user scrolls.
+
+Files You Will Edit
+-------------------
+1) `tour-details.html` (structure additions)
+2) `tour-details.css` (layout + sticky styles)
+3) `main.js` (active-link sync; reuses your existing smooth scroll)
+
+Viewport Targets
+----------------
+- Desktop (≥1200px): 3-column grid — **[TOC | Main Content | Booking sidebar]**
+- Tablet/Mobile (<1200px): keep your current horizontal tabs `.section-nav-wrapper`
+
+---------------------------------------------------------------------
+1) HTML — Add the Desktop TOC (Keep Mobile Tabs As-Is)
+---------------------------------------------------------------------
+
+Place the following markup **inside** `.tour-content-wrapper > .container`, and **above** the element with class `.tour-layout` (so it sits to the left of the main content when the grid activates on desktop).
+
+```html
+<!-- Desktop-only sticky TOC -->
+<aside class="section-toc-desktop" aria-label="On this page">
+  <nav class="section-toc" id="sectionToc">
+    <a href="#overview" class="toc-link is-active">Overview</a>
+    <a href="#highlights" class="toc-link">Highlights</a>
+    <a href="#includes" class="toc-link">Included</a>
+    <a href="#itinerary" class="toc-link">Itinerary</a>
+    <a href="#meeting-point" class="toc-link">Meeting Point</a>
+    <a href="#know-before" class="toc-link">Know Before</a>
+    <a href="#cancellation" class="toc-link">Cancellation</a>
+    <a href="#faq" class="toc-link">FAQ</a>
+  </nav>
+</aside>
+```
+
+Notes:
+- Do **not** remove the existing horizontal `.section-nav-wrapper` (mobile/tablet uses it).
+- Ensure each content section has the matching id: `#overview`, `#highlights`, `#includes`, `#itinerary`, `#meeting-point`, `#know-before`, `#cancellation`, `#faq`.
+- Section headings should remain in document order (e.g., `<section id="overview"><h2>Overview</h2>…</section>`).
+
+---------------------------------------------------------------------
+2) CSS — Desktop Grid & Sticky TOC Styles
+---------------------------------------------------------------------
+
+Append these styles to **`tour-details.css`**.
+
+```css
+/* ================================
+   Desktop grid & sticky left TOC
+   ================================ */
+@media (min-width: 1200px) {
+  /* 3-column layout: [TOC | main | booking] */
+  .tour-layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr) 360px; /* adjust last column if your booking card differs */
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* Hide the horizontal nav chips on desktop; keep them on tablet/mobile */
+  .section-nav-wrapper { display: none; }
+
+  /* Show the desktop TOC only on desktop */
+  .section-toc-desktop { display: block; }
+
+  .section-toc {
+    position: sticky;
+    /* match your site header height — adjust this token if needed */
+    top: var(--sticky-offset, 88px);
+    max-height: calc(100vh - var(--sticky-offset, 88px) - 24px);
+    overflow: auto;
+    padding: 0.75rem;
+    border: 1px solid #ECECEC;
+    border-radius: 12px;
+    background: #fff;
+    /* subtle elevation; use your existing token if available */
+    box-shadow: var(--shadow-light, 0 2px 8px rgba(0,0,0,.06));
+  }
+
+  .section-toc .toc-link {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin: 2px 0;
+    font-size: 0.9375rem;
+    color: #444;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: background .2s, color .2s, border-color .2s;
+  }
+
+  .section-toc .toc-link:hover {
+    color: #0D4C92;
+    background: #F0F7FF;
+  }
+
+  .section-toc .toc-link.is-active {
+    color: #0D4C92;
+    background: #EAF2FF;
+    border: 1px solid #D0E7FF;
+  }
+
+  /* Keep booking card sticky if desired (optional) */
+  .booking-card {
+    position: sticky;
+    top: var(--sticky-offset, 88px);
+    align-self: start;
+  }
+}
+
+/* Tablet/Mobile: keep original horizontal nav; hide desktop TOC */
+@media (max-width: 1199px) {
+  .section-toc-desktop { display: none; }
+}
+```
+
+If your layout wrapper already sets a `max-width` (e.g., 1200px), no change needed. If not, you can ensure the page doesn't overflow by confirming your container sets a max-width and left/right padding.
+
+---------------------------------------------------------------------
+3) JS — Active Link Sync with IntersectionObserver
+---------------------------------------------------------------------
+
+Append the following to **`main.js`** (keep your existing smooth-scroll logic — this only adds active-state syncing between the desktop TOC links and your current mobile links).
+
+```js
+// Desktop TOC active state + keep mobile chips in sync
+(() => {
+  const sectionIds = [
+    '#overview', '#highlights', '#includes', '#itinerary',
+    '#meeting-point', '#know-before', '#cancellation', '#faq'
+  ];
+
+  const sections = sectionIds
+    .map(id => document.querySelector(id))
+    .filter(Boolean);
+
+  // Desktop TOC links
+  const tocLinks = Array.from(document.querySelectorAll('#sectionToc .toc-link'));
+  // Mobile/Tablet horizontal links (if present)
+  const mobileLinks = Array.from(document.querySelectorAll('.section-nav__scroller a, .section-nav a'));
+
+  const setActive = (hash) => {
+    const all = [...tocLinks, ...mobileLinks];
+    all.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === hash));
+  };
+
+  // Observe section visibility to mark active link
+  const stickyOffsetToken = getComputedStyle(document.documentElement)
+                              .getPropertyValue('--sticky-offset').trim();
+  const stickyOffset = stickyOffsetToken || '88px';
+
+  const io = new IntersectionObserver((entries) => {
+    // Pick the top-most intersecting section
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+
+    if (visible && visible.target && visible.target.id) {
+      setActive('#' + visible.target.id);
+    }
+  }, {
+    // Negative top margin equals your sticky header height
+    rootMargin: `-${stickyOffset} 0px -60% 0px`,
+    threshold: [0.1, 0.3, 0.6]
+  });
+
+  sections.forEach(sec => io.observe(sec));
+
+  // Optional: smooth-scroll on desktop TOC (if not already handled globally)
+  tocLinks.forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      const target = document.querySelector(href);
+      if (!target) return;
+
+      e.preventDefault();
+      const headerOffset = parseInt(stickyOffset, 10) || 88;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      window.scrollTo({ top, behavior: 'smooth' });
+      history.replaceState(null, '', href);
+    });
+  });
+})();
+```
+
+Notes:
+- If you already implement global smooth scrolling for all anchor links, feel free to remove the "Optional" click handler block above.
+- The code synchronizes `is-active` on both the desktop TOC and the mobile chips (if they share identical `href` values).
+
+---------------------------------------------------------------------
+4) Bricks/WordPress Implementation Notes (If Using Bricks)
+---------------------------------------------------------------------
+- Wrap the core area in a **Grid** element with 3 columns at ≥1200px and a single column below.
+- Place the **Nav (List/Links)** component for the desktop TOC in column 1; set **Position: Sticky** and **Top = your header height** (e.g., 88px).
+- Keep your booking widget in column 3; set it sticky with the same top offset for nicer parity.
+- On mobile breakpoints, hide the desktop TOC and show your existing horizontal tabs.
+- Ensure each content section block has the matching HTML ID (Overview → `overview`, etc.).
+
+---------------------------------------------------------------------
+5) QA Checklist
+---------------------------------------------------------------------
+[ ] No overlap between TOC and booking card between 1200–1366px widths.
+[ ] Sticky offset matches your fixed site header (check admin bar adds +32px).
+[ ] Keyboard focus outlines visible on links; Tab order logical (TOC before content).
+[ ] Anchor targets respect header height (`scroll-margin-top` or JS offset).
+[ ] No scroll trapping: page scroll is vertical; TOC internal scrollbar appears only when needed.
+[ ] Lighthouse: no CLS on section navigation; CPU idle remains stable when scrolling.
+
+---------------------------------------------------------------------
+6) Known Pitfalls & Fixes
+---------------------------------------------------------------------
+- **Header height differs per user (admin bar):** Increase `--sticky-offset` when admin bar is present (`body.admin-bar { --sticky-offset: 120px; }`).
+- **Anchors hidden under header:** Add `scroll-margin-top: 120px;` to `section` elements as a CSS fallback (in addition to JS offset).
+- **Mobile WebKit momentum scroll inside sticky TOC:** Consider `-webkit-overflow-scrolling: touch;` for iOS.
+- **Different booking card width:** Adjust the third grid column size (`360px`) to your widget’s actual width.
+- **If you use CSS container queries:** ensure the grid applies at the right container size rather than viewport if that’s your system.
+
+---------------------------------------------------------------------
+7) Optional Enhancements
+---------------------------------------------------------------------
+- Persist the last active section in `localStorage` and restore on reload.
+- Add a “Back to top” button inside the TOC.
+- Collapse long lists (e.g., 12+ headings) into groups with internal toggles.
+
+---------------------------------------------------------------------
+8) Minimal Diff Summary
+---------------------------------------------------------------------
+- **HTML:** add `<aside class="section-toc-desktop">…</aside>` with links matching section IDs.
+- **CSS:** enable grid on `.tour-layout` at ≥1200px; add sticky styles to `.section-toc`; hide `.section-nav-wrapper` at ≥1200px.
+- **JS:** IntersectionObserver to sync `.is-active` between desktop TOC and mobile tabs; optional smooth scroll click handler for TOC.
