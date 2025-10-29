@@ -2643,6 +2643,7 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(135deg, #0D4C92 0%, #093870 50%, #0B1321 100%);
   background-image: url('images/about/hero-team.jpg');
   background-size: cover;
   background-position: center;
@@ -3183,5 +3184,63 @@ button:focus-visible {
     width: 160px;
     height: 160px;
   }
+}
+
+
+/* Image Fallbacks for About Page */
+.story-image, .team-member__photo, .testimonial-card__avatar {
+  background: linear-gradient(135deg, #E8EEF2 0%, #D1DBE5 100%);
+  position: relative;
+}
+
+.story-image::after, .team-member__photo::after, .testimonial-card__avatar::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  font-size: 2rem;
+  color: rgba(13, 76, 146, 0.2);
+}
+
+.story-image::after {
+  content: '\f03e';
+}
+
+.team-member__photo::after {
+  content: '\f007';
+}
+
+.testimonial-card__avatar::after {
+  content: '\f007';
+  font-size: 1rem;
+}
+
+/* Active Navigation State */
+.nav__menu a.active {
+  color: var(--color-accent);
+  font-weight: 600;
+  position: relative;
+}
+
+.nav__menu a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+.nav.nav--sticky .nav__menu a.active {
+  color: var(--color-primary);
+}
+
+.nav.nav--sticky .nav__menu a.active::after {
+  background: var(--color-primary);
 }
 
