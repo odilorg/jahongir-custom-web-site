@@ -48,14 +48,21 @@
   --brand-yellow: #F9B233;
   --brand-yellow-dark: #e5a020;
 
-  /* Shadows - Consistent System */
-  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.06);  /* Default cards */
-  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.08); /* Hover, sticky elements */
+  /* Tab Colors - Improved Contrast */
+  --tab-active-bg: #d6e4ff;     /* Darker blue for better contrast */
+  --tab-active-text: #0d3a7a;   /* Darker text for WCAG AA compliance */
+  --tab-hover-bg: #f0f5ff;      /* Subtle hover state */
 
-  /* Spacing Rhythm */
+  /* Shadows - Softer & More Blurred (Phase 1) */
+  --shadow-light: 0 2px 6px rgba(0, 0, 0, 0.04);   /* Softer for cards */
+  --shadow-medium: 0 2px 12px rgba(0, 0, 0, 0.05); /* Softer for hover/sticky */
+
+  /* Spacing Rhythm - 8pt Grid System */
   --space-section: 32px;  /* Between major sections */
   --space-card: 24px;     /* Inside cards */
   --space-small: 16px;    /* Small gaps */
+  --space-xs: 8px;        /* 8pt base unit */
+  --space-sm: 16px;       /* 16pt (2x base) */
 
   /* Typography Scale */
   --line-height-tight: 1.3;
@@ -66,6 +73,7 @@
   /* Border Radius */
   --radius-card: 12px;
   --radius-button: 8px;
+  --radius-tab: 999px;    /* Full rounded for pills */
 }
 
 /* ======================================================
@@ -2143,7 +2151,7 @@
 
   /* Make navigation more compact to avoid sidebar overlap */
   .section-nav {
-    padding: 0.5rem;
+    padding: var(--space-xs);
   }
 
   .section-nav__scroller {
@@ -2152,7 +2160,7 @@
 
   .section-nav__scroller a {
     font-size: 0.875rem; /* Reduced from 0.9375rem */
-    padding: 0.35rem 0.65rem; /* Reduced from 0.4rem 0.75rem */
+    padding: 6px 12px; /* Compact on desktop, still readable */
   }
 }
 
@@ -2217,20 +2225,22 @@
   color: #555;
   font-weight: 500;
   font-size: 0.9375rem;
-  padding: 0.4rem 0.75rem;
-  border-radius: 999px;
+  padding: var(--space-xs) var(--space-sm); /* 8pt grid: 8px 16px */
+  border-radius: var(--radius-tab);
   border: 1px solid transparent;
-  transition: all 0.2s ease;
+  transition: all 120ms ease; /* Faster, more responsive */
   white-space: nowrap;
 }
 
 .section-nav__scroller a:hover {
-  color: #0d4c92;
+  color: var(--brand-blue);
+  background: var(--tab-hover-bg); /* Subtle background on hover */
+  transform: scale(1.02); /* Micro-interaction */
 }
 
 .section-nav__scroller a.is-active {
-  color: var(--brand-blue);
-  background: #eef4ff;
+  color: var(--tab-active-text); /* Darker for contrast */
+  background: var(--tab-active-bg); /* Darker blue background */
   border-bottom: 2px solid var(--brand-blue); /* Underline for active state */
   font-weight: 600;
 }

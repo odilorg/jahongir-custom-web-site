@@ -1,0 +1,144 @@
+Here’s a focused mobile “scroll trapping” audit and what’s most likely causing it on your tour-details.html, plus fixes you can apply right away.
+
+What’s on this page that commonly traps scroll?
+
+Sticky / fixed layers
+
+Sticky header (.site-header { position: sticky; top: 0; z-index: 50 }). 
+
+tour-details
+
+Mobile floating CTA (.mobile-booking-cta) rendered at the end of the page (usually position: fixed; bottom: 0 in CSS). This sits above content and can catch touch events. 
+
+tour-details
+
+Absolute-position mobile menu
+
+On ≤900px, the nav menu becomes position: absolute; top: 100%; left: 0; right: 0; and is toggled open/closed. If any JS adds overflow: hidden to <body> while this is open, the page will stop scrolling. 
+
+tour-details
+
+Interactive Google Map
+
+The map iframe inside “Meeting Point” often hijacks vertical scroll on mobile. If it’s active by default, users can get stuck when the map eats touch events.
+
+Sticky/scrollable sub-nav (“Overview / Highlights / …”)
+
+If this bar is horizontally scrollable with overflow-x: auto and no clear affordance, it can appear “stuck” and absorb horizontal/diagonal gestures, especially when nested inside another sticky container.
+
+Likely root causes (and how to verify)
+
+Body or html set to overflow: hidden when a UI is open (mobile menu / modal / gallery).
+Check if your menu toggle script adds a class to <body> that prevents scroll. When the menu is closed, that class sometimes fails to be removed.
+
+Quick check: open/close the mobile menu; use DevTools → Elements → <body> computed styles to see if overflow: hidden (or position: fixed; width: 100%) sticks around.
+
+Fixed mobile CTA overlapping content and capturing touch
+If .mobile-booking-cta spans the full width with a high z-index, it may “overlay” the bottom of the page and intercept gestures near it.
+
+Quick check: temporarily add pointer-events: none to .mobile-booking-cta in DevTools and see if scroll trapping disappears.
+
+Map iframe eating scroll
+Google Maps will capture touchmove by default.
+
+Quick check: temporarily set the map wrapper to pointer-events: none; and add a “Tap to interact” overlay. If the trapping vanishes, that’s the culprit.
+
+Nested scroll areas without proper touch-action / -webkit-overflow-scrolling
+Any inner scroller (tabs bar) without correct touch behavior can keep the page from moving.
+
+Quick check: add touch-action: pan-y; to the main content wrappers and -webkit-overflow-scrolling: touch; to any overflow containers.
+Fixes you can ship (safe defaults)
+A) Mobile menu – never lock scroll by accident
+/* Body lock helper — ONLY while menu is open */
+body.menu-open {
+  overflow: hidden;
+  position: relative; /* avoid position:fixed unless you also offset scroll */
+}
+// When toggling menu:
+const toggle = document.getElementById('navToggle');
+const menu   = document.getElementById('navMenu');
+
+toggle.addEventListener('click', () => {
+  const open = toggle.getAttribute('aria-expanded') === 'true';
+  toggle.setAttribute('aria-expanded', String(!open));
+  menu.classList.toggle('is-open', !open);
+  document.body.classList.toggle('menu-open', !open); // remove this on close
+});
+If you already add a lock class, ensure you always remove it on close and on route change.
+
+B) Mobile floating CTA – don’t intercept page scroll
+
+Give it a safe height and keep it out of the hit area unless touched:
+.mobile-booking-cta {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  z-index: 40; /* below header if header is 50 */
+  pointer-events: none;        /* <— important */
+}
+.mobile-booking-cta .mobile-cta__container,
+.mobile-booking-cta .mobile-cta__button {
+  pointer-events: auto;        /* only the button is interactive */
+}
+/* Avoid covering content */
+body { padding-bottom: 72px; } /* match CTA height on mobile */
+This keeps the CTA visible but prevents it from swallowing swipes unless the user taps the button itself.
+
+C) Map iframe – click-to-activate
+
+Wrap the map and disable interaction until the user taps once:
+<div class="map-wrap is-passive">
+  <iframe ...></iframe>
+  <button class="map-activate" aria-label="Activate map">Use map</button>
+</div>
+.map-wrap.is-passive iframe { pointer-events: none; }
+.map-activate { position:absolute; inset:0; opacity:0; } /* or a visible overlay */
+document.querySelector('.map-activate')?.addEventListener('click', e => {
+  e.currentTarget.closest('.map-wrap')?.classList.remove('is-passive');
+});
+D) Horizontal tabs bar – make the scroll obvious & safe
+.section-nav {
+  position: sticky; top: var(--header-h, 64px); z-index: 30;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+.section-nav__scroller {
+  display: flex; gap: 1rem; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory; padding: .5rem 1rem;
+  overscroll-behavior-x: contain; /* don’t steal vertical swipes */
+}
+.section-nav__scroller::-webkit-scrollbar { display: none; }
+.section-nav__item { scroll-snap-align: start; white-space: nowrap; }
+Add gradient edge fades or small arrow buttons so users know they can swipe.
+
+E) Global defensive styles (reduce accidental trapping)
+html, body { height: auto; overflow-x: hidden; }
+main, .tour-layout { touch-action: pan-y; } /* always allow vertical scroll */
+Extra places to look in your code
+
+Sticky header & nav CSS: the header is sticky and high z-index; verify it doesn’t overlap other sticky things unexpectedly. 
+
+tour-details
+
+ 
+
+tour-details
+
+Mobile menu absolute panel: ensure it closes cleanly and never leaves the body locked. 
+
+tour-details
+
+Mobile CTA markup: confirm its container is present only on mobile and with safe pointer-events.
+Quick diagnostic checklist
+
+Reproduce on device → open DevTools (remote).
+
+Inspect <body> when scroll is stuck: any overflow: hidden or position: fixed?
+
+Temporarily disable the map iframe (or set pointer-events:none) → did the problem vanish?
+
+Temporarily set .mobile-booking-cta { pointer-events: none } → did it vanish?
+
+Disable the section tabs overflow to confirm they aren’t catching gestures.
+
+Check z-index stacking: header(50) > CTA(40) > content to avoid invisible overlays.
+
+Apply A–E above and the trap should go away in nearly all scenarios.

@@ -1,0 +1,70 @@
+another question do we need this tab to stay fixed even when we scroll? what is best practices for this kinda tabs ?
+ChatGPT said:
+
+Short answer: make it sticky on desktop, not sticky on mobile.
+
+Why
+
+Desktop (wide screens): Long tour pages benefit from a sticky section bar—users can jump between Overview / Highlights / … anytime. This is what GYG/Viator do.
+
+Mobile: Sticky bars eat precious vertical space and can feel cramped. A non-sticky bar (or a collapsible “Contents” button) tests better.
+
+Practical recipe
+
+1) Sticky only ≥ 992px
+css
+.section-nav { background:#fff; border-top:1px solid #eee; }
+@media (min-width: 992px) {
+  .section-nav { position: sticky; top: var(--sticky-offset, 88px); z-index: 9; }
+  /* subtle shadow when stuck; toggled via JS below */
+  .section-nav.is-stuck { box-shadow: 0 6px 16px rgba(0,0,0,.06); }
+}
+
+2) Scroll-spy + “stuck” shadow (tiny JS)
+
+<script>
+  // adjust if your header height changes on scroll
+  const OFFSET = parseInt(getComputedStyle(document.documentElement)
+                  .getPropertyValue('--sticky-offset')||88,10);
+
+  // Add shadow when the nav is stuck
+  const nav = document.querySelector('.section-nav');
+  if (nav) {
+    const sentry = document.createElement('div');
+    nav.parentElement.insertBefore(sentry, nav);
+    const io = new IntersectionObserver(([e]) => {
+      nav.classList.toggle('is-stuck', !e.isIntersecting);
+    }, {rootMargin: `-${OFFSET}px 0px 0px 0px`, threshold: 0});
+    io.observe(sentry);
+  }
+
+  // Smooth scroll and active tab (scroll-spy)
+  const links = document.querySelectorAll('.section-nav a[href^="#"]');
+  links.forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    const id = a.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if (target) window.scrollTo({top: target.offsetTop - OFFSET - 8, behavior:'smooth'});
+  }));
+
+  const sections = [...document.querySelectorAll('section[id]')];
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${entry.target.id}`));
+      }
+    });
+  }, {rootMargin: `-${OFFSET+40}px 0px -60% 0px`, threshold: 0});
+  sections.forEach(s => spy.observe(s));
+</script>
+Extra tips
+
+Don’t cover content: set top to your header height.
+
+Avoid full-width sticky: keep it inside the same container width as the content.
+
+Accessibility: links should be real anchors (href="#highlights"); support keyboard focus.
+
+Motion: respect users with prefers-reduced-motion (fallback to instant scroll).
+
+Bottom line: sticky tabs improve usability on desktop tour pages; on mobile, prefer non-sticky (or a “Contents” button that opens quick links).

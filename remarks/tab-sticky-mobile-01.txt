@@ -1,0 +1,50 @@
+Great question. The overlap happens because your sticky tabs bar is positioned relative to the page (or a full-width container), while the booking sidebar is also sticky on the right. When both are “on the same layer,” the tab bar can slide under (or over) the sidebar.
+
+Here are solid, production-safe ways to make the tabs always visible without overlapping the sidebar.
+
+Option A — Make the tabs sticky inside the left column only (best)
+
+Why it works: position: sticky respects the bounds of its nearest scrollable ancestor. If that ancestor is the left column, the tabs will never extend into the sidebar’s column, so they can’t overlap.
+
+1) Use CSS Grid for the 2-column layout
+.tour-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px; /* left column, right sidebar */
+  gap: 32px;
+  align-items: start;
+}
+
+/* Breakpoint: stack on mobile (no overlap issue) */
+@media (max-width: 1024px) {
+  .tour-layout {
+    grid-template-columns: 1fr;
+  }
+}
+2) Place each piece in its column
+<div class="tour-layout">
+  <main class="tour-main"> … <!-- left content --> </main>
+  <aside class="booking-sidebar"> … </aside>
+</div>
+3) Make tabs sticky inside .tour-main
+/* header height + small gap for breathing room */
+:root {
+  --header-h: 64px;
+}
+
+.tour-main {  /* the sticky container’s ancestor */
+  position: relative; /* create a containing block */
+}
+
+.section-nav {         /* your tabs bar */
+  position: sticky;
+  top: calc(var(--header-h) + 8px);
+  z-index: 5;          /* below the sidebar if they ever meet */
+  background: #fff;
+  border-bottom: 1px solid #E7EAF0;
+}
+4) Keep the sidebar sticky, higher in the stack
+.booking-sidebar {
+  position: sticky;
+  top: calc(var(--header-h) + 16px);
+  z-index: 10;   /* above tabs, but they live in separate columns anyway */
+}
