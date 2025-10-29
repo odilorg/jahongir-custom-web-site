@@ -61,7 +61,7 @@
   --line-height-tight: 1.3;
   --line-height-normal: 1.4;
   --line-height-relaxed: 1.7;
-  --max-line-width: 70ch;
+  --max-line-width: 65ch; /* Updated from 70ch per audit */
 
   /* Border Radius */
   --radius-card: 12px;
@@ -297,10 +297,11 @@
 }
 
 .tour-header__title {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: 2rem; /* H1 size from audit */
+  font-weight: 700;
+  line-height: var(--line-height-tight); /* 1.3 from audit */
   font-family: var(--font-heading, "Poppins", sans-serif);
   margin: 0 0 0.5rem 0;
-  line-height: 1.2;
   color: var(--color-text, #1E1E1E);
 }
 
@@ -394,6 +395,13 @@
 /* Section spacing - Consistent 32px rhythm from audit */
 .tour-main-content > section {
   margin-bottom: var(--space-section); /* 32px */
+  padding-top: var(--space-section); /* 32px */
+  border-top: 1px solid #F1F1F1; /* Section divider from audit */
+}
+
+.tour-main-content > section:first-child {
+  border-top: none; /* No border on first section */
+  padding-top: 0;
 }
 
 .tour-main-content > section:last-child {
@@ -440,7 +448,7 @@
 }
 
 .tour-overview__text a {
-  color: var(--color-primary, #0D4C92);
+  color: var(--brand-blue); /* Unified link color from audit */
   text-decoration: underline;
   font-weight: 500;
 }
@@ -706,6 +714,38 @@
 .cancellation-list li {
   color: var(--color-text-muted, #555);
   line-height: 1.6;
+}
+
+/* Cancellation Notice - Softer yellow per audit */
+.cancellation-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: #FFFBEA; /* Softened yellow from audit */
+  border: 1px solid #FFE08C; /* Softened border from audit */
+  border-radius: var(--radius-card);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.cancellation-notice .icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: #F59E0B; /* Warm amber for info icon */
+  margin-top: 0.125rem;
+}
+
+.cancellation-notice p {
+  margin: 0;
+  color: #78350F; /* Darker amber for text */
+  line-height: 1.6;
+  font-size: 0.9375rem;
+}
+
+.cancellation-notice strong {
+  color: #78350F;
+  font-weight: 600;
 }
 
 /* ======================================================
@@ -1011,7 +1051,7 @@
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem; /* Breathing room from audit */
 }
 
 .faq-item {
@@ -1279,14 +1319,14 @@
 .reviews-list {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.75rem;
+  gap: 1.25rem; /* Reduced from 1.75rem per audit */
 }
 
 /* 2 columns on desktop */
 @media (min-width: 768px) {
   .reviews-list {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 1.25rem; /* Reduced from 2rem per audit */
   }
 }
 
@@ -1758,12 +1798,16 @@
 
 .btn--secondary {
   background: transparent;
-  border: 2px solid var(--color-primary, #0D4C92);
-  color: var(--color-primary, #0D4C92);
+  border: 2px solid var(--brand-blue);
+  color: var(--brand-blue);
+  padding: 1rem 2rem;
+  border-radius: var(--radius-button);
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 .btn--secondary:hover {
-  background: var(--color-primary, #0D4C92);
+  background: var(--brand-blue);
   color: white;
 }
 
@@ -2116,7 +2160,7 @@
 .section-nav {
   background: #fff;
   border-top: 1px solid #F0F0F0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #E7EAF0; /* Updated per audit for better separation */
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -2445,25 +2489,7 @@
   transform: translateY(0);
 }
 
-/* Secondary Button - Outline */
-.btn--secondary {
-  background: #fff;
-  color: #1E1E1E;
-  border: 1px solid #DEDEDE;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  width: 100%;
-  text-align: center;
-}
-
-.btn--secondary:hover {
-  background: #F8F8F8;
-  border-color: #1E1E1E;
-}
+/* Secondary Button - See definition above at line 1759 (removed duplicate) */
 
 /* Accent Button - Brand Yellow "Request to Book" */
 .btn--accent {
