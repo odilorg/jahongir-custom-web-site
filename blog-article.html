@@ -22,6 +22,9 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="blog-article.css">
 
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -452,67 +455,91 @@
   </section>
 
   <!-- =====================================================
-       FOOTER (Reused from tour-details)
+       FOOTER
        ===================================================== -->
   <footer class="site-footer">
-    <div class="container">
-      <div class="footer-content">
-
-        <!-- Brand Column -->
-        <div class="footer-column footer-brand">
-          <img src="images/logo.png" alt="Jahongir Travel" class="footer-logo">
-          <p class="footer-tagline">Discover the world with expert-guided tours and unforgettable experiences.</p>
-          <div class="footer-contact">
-            <p><a href="mailto:info@jahongir-travel.uz">info@jahongir-travel.uz</a></p>
-            <p><a href="tel:+998991234567">+998 99 123 4567</a></p>
-          </div>
-        </div>
-
-        <!-- Quick Links -->
-        <div class="footer-column">
-          <h4 class="footer-heading">Quick Links</h4>
-          <ul class="footer-links">
-            <li><a href="/tours/">Tours</a></li>
-            <li><a href="/blog/">Blog</a></li>
-            <li><a href="/about/">About Us</a></li>
-            <li><a href="/contact/">Contact</a></li>
-          </ul>
-        </div>
-
-        <!-- Popular Tours -->
-        <div class="footer-column">
-          <h4 class="footer-heading">Popular Tours</h4>
-          <ul class="footer-links">
-            <li><a href="/tours/samarkand/">Samarkand Day Tour</a></li>
-            <li><a href="/tours/bukhara/">Bukhara Heritage Tour</a></li>
-            <li><a href="/tours/khiva/">Khiva Walking Tour</a></li>
-          </ul>
-        </div>
-
-        <!-- Social Links -->
-        <div class="footer-column">
-          <h4 class="footer-heading">Follow Us</h4>
-          <div class="footer-social">
-            <a href="#" aria-label="Facebook"><svg><!-- FB icon --></svg></a>
-            <a href="#" aria-label="Instagram"><svg><!-- IG icon --></svg></a>
-            <a href="#" aria-label="Twitter"><svg><!-- Twitter icon --></svg></a>
-          </div>
-        </div>
-
+    <div class="container footer-main footer-main--desktop">
+      <div class="footer-brand">
+        <a href="/" class="footer-brand__link">
+          <i class="fas fa-compass footer-brand__logo"></i>
+          <span class="footer-brand__text">Jahongir Travel</span>
+        </a>
+        <p class="footer-brand__tagline">Tailor-made Uzbekistan tours since 2012.</p>
+        <address class="footer-brand__contact">
+          <a href="mailto:info@jahongirtravel.com">info@jahongirtravel.com</a><br>
+          <a href="tel:+998991234567">+998 99 123 4567</a>
+        </address>
+        <p class="footer-brand__location">Samarkand, Uzbekistan</p>
       </div>
 
-      <div class="footer-bottom">
-        <p>&copy; 2025 Jahongir Travel. All rights reserved.</p>
-        <div class="footer-legal">
-          <a href="/privacy/">Privacy Policy</a>
-          <a href="/terms/">Terms of Service</a>
+      <nav class="footer-col footer-nav" aria-label="Company">
+        <div class="footer-nav__title">Company</div>
+        <ul class="footer-nav__list">
+          <li><a href="/about/">About us</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/partners/">Partner</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col footer-nav" aria-label="Services">
+        <div class="footer-nav__title">Services</div>
+        <ul class="footer-nav__list">
+          <li><a href="/tours/">Tour booking</a></li>
+          <li><a href="/visa/">Visa online</a></li>
+          <li><a href="/guides/">Travel guide</a></li>
+          <li><a href="/car-service/">Car service</a></li>
+          <li><a href="/sim/">SIM &amp; eSIM</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col footer-nav" aria-label="Help">
+        <div class="footer-nav__title">Need help?</div>
+        <ul class="footer-nav__list">
+          <li><a href="/faqs/">FAQs</a></li>
+          <li><a href="/support/">Customer care</a></li>
+          <li><a href="/safety/">Safety tips</a></li>
+          <li><a href="/privacy/">Privacy policy</a></li>
+          <li><a href="/terms/">Terms of use</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-col footer-social">
+        <div class="footer-social__title">Connect</div>
+        <ul class="footer-social__list">
+          <li><a href="https://facebook.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a></li>
+          <li><a href="https://instagram.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="https://twitter.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="https://youtube.com/@jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+          <li><a href="https://pinterest.com/jahongirtravel" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a></li>
+        </ul>
+
+        <!-- Locale Switcher -->
+        <button class="footer-locale" aria-expanded="false" aria-label="Change language and currency">
+          <i class="fas fa-globe"></i>
+          <span>EN / USD</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <div class="footer-bottom__wrap">
+        <div>© 2025 Jahongir Travel. All rights reserved.</div>
+        <div class="footer-bottom__legal">
+          <a href="/privacy/">Privacy</a>
+          <span> • </span>
+          <a href="/terms/">Terms</a>
+          <span> • </span>
+          <a href="/cookies/">Cookies</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="main.js"></script>
+  <!-- Main JavaScript -->
+  <script src="js/main.js" defer></script>
   <script src="blog-article.js"></script>
 </body>
 </html>
