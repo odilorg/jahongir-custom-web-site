@@ -2631,3 +2631,354 @@ button:focus-visible {
     display: none;
   }
 }
+/* 9.5 LEADERSHIP TEAM */
+.team-section {
+  padding: var(--space-5) 0;
+  background: var(--color-bg);
+}
+
+.team-section__header {
+  max-width: 700px;
+  margin: 0 auto var(--space-5);
+}
+
+.team-section__subtitle {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin-top: var(--space-2);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.team-member {
+  text-align: center;
+}
+
+.team-member__photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto var(--space-2);
+  border: 4px solid #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.team-member__name {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.team-member__position {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+}
+
+.team-section__cta {
+  text-align: center;
+  margin-top: var(--space-4);
+}
+
+/* 9.6 TESTIMONIALS SECTION */
+.testimonials-section {
+  padding: var(--space-5) 0;
+  background: #F0FAF7;
+}
+
+.tripadvisor-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: var(--space-3) 0 var(--space-4);
+}
+
+.tripadvisor-badge__logo {
+  height: 40px;
+  width: auto;
+}
+
+.tripadvisor-badge__rating {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+  color: var(--color-accent);
+  font-size: 1rem;
+}
+
+.stars--green {
+  color: #00AA6C;
+}
+
+.tripadvisor-badge__count {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-3);
+}
+
+.testimonial-card {
+  background: #fff;
+  padding: var(--space-3);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2);
+}
+
+.testimonial-card__date {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.testimonial-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.testimonial-card__text {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.testimonial-card__author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.testimonial-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonial-card__author-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-card__author-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.testimonial-card__author-location {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+/* 9.7 HELP SECTION */
+.help-section {
+  padding: var(--space-5) 0;
+  background: #fff;
+}
+
+.help-section h2 {
+  max-width: 800px;
+  margin: 0 auto var(--space-5);
+}
+
+.help-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-4);
+}
+
+.help-option {
+  text-align: center;
+  padding: var(--space-3);
+}
+
+.help-option__icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFF4E6;
+  border-radius: 50%;
+  color: #FF5722;
+  font-size: 2rem;
+}
+
+.help-option__title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.help-option__text {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.help-option__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #FF5722;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  transition: gap 0.3s ease;
+}
+
+.help-option__link:hover {
+  gap: 12px;
+  text-decoration: underline;
+}
+
+/* 9.8 UTILITY CLASSES */
+.eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #FF5722;
+  margin-bottom: var(--space-2);
+}
+
+.section-heading {
+  font-family: var(--font-accent);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+  margin-bottom: var(--space-2);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn--outline-coral {
+  background: transparent;
+  color: #FF5722;
+  border: 2px solid #FF5722;
+  padding: 12px 32px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.btn--outline-coral:hover {
+  background: #FF5722;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(255, 87, 34, 0.3);
+}
+
+/* 9.9 RESPONSIVE STYLES */
+@media (max-width: 900px) {
+  .about-hero {
+    min-height: 400px;
+  }
+
+  .two-col-section {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .two-col-section__content {
+    padding-right: 0;
+  }
+
+  .two-col-section__images {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .story-image--large {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    aspect-ratio: 16 / 9;
+  }
+
+  .story-image--small {
+    display: none;
+  }
+
+  .icon-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .help-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-hero {
+    min-height: 350px;
+  }
+
+  .icon-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-member__photo {
+    width: 160px;
+    height: 160px;
+  }
+}
+
