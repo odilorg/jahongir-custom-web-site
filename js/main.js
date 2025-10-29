@@ -18,6 +18,22 @@ window.addEventListener('scroll', () => {
 });
 
 // ==========================================
+// 1B. STICKY CTA BAR ON SCROLL
+// ==========================================
+const stickyCta = document.getElementById('stickyCta');
+
+if (stickyCta) {
+  window.addEventListener('scroll', () => {
+    // Show sticky CTA after scrolling past hero section (800px)
+    if (window.scrollY > 800) {
+      stickyCta.removeAttribute('hidden');
+    } else {
+      stickyCta.setAttribute('hidden', '');
+    }
+  });
+}
+
+// ==========================================
 // 2. MOBILE MENU TOGGLE
 // ==========================================
 const navToggle = document.getElementById('navToggle');
