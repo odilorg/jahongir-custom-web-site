@@ -1307,15 +1307,27 @@
   transition: all 0.2s ease;
   margin: 0;
   flex-shrink: 0;
+  outline: none; /* Remove default browser outline */
 }
 
 .extra-checkbox:hover {
   border-color: #0D4C92;
 }
 
+.extra-checkbox:focus {
+  /* Custom accessible focus state - soft blue glow instead of harsh box */
+  box-shadow: 0 0 0 3px rgba(13, 76, 146, 0.15);
+  border-color: #0D4C92;
+}
+
 .extra-checkbox:checked {
   background-color: #0D4C92;
   border-color: #0D4C92;
+}
+
+.extra-checkbox:checked:focus {
+  /* Focus state when checked - slightly stronger glow */
+  box-shadow: 0 0 0 3px rgba(13, 76, 146, 0.25);
 }
 
 .extra-label {
