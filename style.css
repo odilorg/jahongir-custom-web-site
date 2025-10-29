@@ -214,7 +214,7 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 .hero__sub {
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: rgba(255,255,255,.95);
-  margin-bottom: var(--space-4);
+  margin-bottom: 20px;
   line-height: 1.6;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
@@ -2077,10 +2077,10 @@ button:focus-visible {
 .footer-main {
   display: grid;
   grid-template-columns: 1.4fr repeat(4, 1fr);
-  gap: 48px;
+  gap: 56px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 64px 24px;
+  padding: 80px 24px;
 }
 
 /* 8.3 Brand Column */
