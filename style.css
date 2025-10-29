@@ -67,6 +67,25 @@ img, picture, video {
   height: auto;
 }
 
+/* Skip Link (Accessibility) - Hidden by default, visible on Tab focus */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  z-index: 1000;
+  padding: 8px 16px;
+  background: var(--color-accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0 0 4px 0;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 /* --------------------------------------
    3. TYPOGRAPHY
 -----------------------------------------*/
