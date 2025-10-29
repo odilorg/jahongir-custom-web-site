@@ -2035,26 +2035,7 @@ button:focus-visible {
 
 /* 8.1 Custom Properties & Base Styles */
 .site-footer {
-  /* Light theme (fallback) */
-  --footer-bg: #FFFFFF;
-  --footer-text: #334155;
-  --footer-heading: #0F172A;
-  --footer-muted: #64748B;
-  --footer-link: #0B5FFF;
-  --footer-link-hover: #0845C9;
-  --footer-divider: rgba(15, 23, 42, 0.08);
-  --footer-border: rgba(15, 23, 42, 0.12);
-
-  background: var(--footer-bg);
-  color: var(--footer-text);
-  font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 1.6;
-  margin-top: 80px;
-}
-
-/* Dark theme (default) */
-.site-footer[data-theme="dark"] {
+  /* Dark theme (default - original design) */
   --footer-bg: #0b1321;
   --footer-text: #e5eaf3;        /* 85% white - body text */
   --footer-heading: #cdd6e6;     /* 75% white - headings */
@@ -2063,6 +2044,26 @@ button:focus-visible {
   --footer-link-hover: #FFB703;  /* Brand gold accent */
   --footer-divider: rgba(255, 255, 255, 0.08);
   --footer-border: #111a2a;      /* Top border separator */
+
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 80px;
+  border-top: 1px solid var(--footer-border);
+}
+
+/* Light theme (optional override) */
+.site-footer[data-theme="light"] {
+  --footer-bg: #FFFFFF;
+  --footer-text: #334155;
+  --footer-heading: #0F172A;
+  --footer-muted: #64748B;
+  --footer-link: #0B5FFF;
+  --footer-link-hover: #0845C9;
+  --footer-divider: rgba(15, 23, 42, 0.08);
+  --footer-border: rgba(15, 23, 42, 0.12);
   border-top: 1px solid var(--footer-border);
 }
 
