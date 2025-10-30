@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Partials Integration Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 32px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .test-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .test-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-loading {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .loading-message {
+            padding: 20px;
+            background: #f9fafb;
+            border: 2px dashed #d1d5db;
+            border-radius: 8px;
+            text-align: center;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .manual-trigger {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .instructions {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 6px;
+        }
+
+        .instructions h3 {
+            color: #1e40af;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .instructions ul {
+            list-style-position: inside;
+            color: #1e3a8a;
+            line-height: 1.8;
+        }
+
+        .instructions code {
+            background: #dbeafe;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .htmx-indicator {
+            display: inline-block;
+            margin-left: 10px;
+            opacity: 0;
+            transition: opacity 200ms ease-in;
+        }
+
+        .htmx-request .htmx-indicator {
+            opacity: 1;
+        }
+
+        .htmx-request.htmx-indicator {
+            opacity: 1;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #e5e7eb;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🧪 Backend Partials Integration Test</h1>
+            <p>This page tests the connection between the static frontend and the Laravel backend using HTMX and HTML partials.</p>
+            <p style="margin-top: 10px;"><strong>Backend URL:</strong> <code>http://localhost/ssst3/public</code></p>
+        </div>
+
+        <!-- Test Section 1: Auto-load Tours -->
+        <div class="test-section">
+            <h2>
+                Test 1: Auto-Load Tours on Page Load
+                <span class="status-badge status-loading">⏳ Loading...</span>
+            </h2>
+
+            <div id="tour-container"
+                 hx-get="http://localhost/ssst3/public/partials/tours"
+                 hx-trigger="load"
+                 hx-swap="innerHTML"
+                 hx-indicator="#spinner1">
+                <div class="loading-message">
+                    <div class="spinner" id="spinner1"></div>
+                    <p style="margin-top: 10px;">Loading tours from backend...</p>
+                    <p style="font-size: 12px; margin-top: 5px;">Endpoint: GET /partials/tours</p>
+                </div>
+            </div>
+
+            <!-- Manual Trigger -->
+            <div class="manual-trigger">
+                <p style="margin-bottom: 10px; color: #6b7280;">
+                    <strong>Manual Test:</strong> Click the button below to reload tours
+                </p>
+                <button class="btn"
+                        hx-get="http://localhost/ssst3/public/partials/tours"
+                        hx-target="#tour-container"
+                        hx-swap="innerHTML"
+                        hx-indicator="#spinner-manual">
+                    🔄 Reload Tours
+                    <span class="htmx-indicator spinner" id="spinner-manual"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Test Section 2: Search/Filter -->
+        <div class="test-section">
+            <h2>Test 2: Search & Filter</h2>
+
+            <form hx-get="http://localhost/ssst3/public/partials/tours/search"
+                  hx-trigger="change, submit"
+                  hx-target="#search-results"
+                  hx-swap="innerHTML"
+                  hx-indicator="#spinner-search">
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; color: #374151; font-weight: 500;">
+                            Search Keyword
+                        </label>
+                        <input type="text"
+                               name="q"
+                               placeholder="e.g. Samarkand"
+                               style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+                    </div>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; color: #374151; font-weight: 500;">
+                            Duration
+                        </label>
+                        <select name="duration"
+                                style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+                            <option value="">All Durations</option>
+                            <option value="1">1 Day</option>
+                            <option value="2-5">2-5 Days</option>
+                            <option value="6+">6+ Days</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; color: #374151; font-weight: 500;">
+                            Sort By
+                        </label>
+                        <select name="sort"
+                                style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+                            <option value="latest">Latest</option>
+                            <option value="price_low">Price: Low to High</option>
+                            <option value="price_high">Price: High to Low</option>
+                            <option value="rating">Highest Rated</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn">
+                    🔍 Apply Filters
+                    <span class="htmx-indicator spinner" id="spinner-search"></span>
+                </button>
+            </form>
+
+            <div id="search-results" style="margin-top: 20px;">
+                <div class="loading-message">
+                    Apply filters above to see results
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="test-section">
+            <div class="instructions">
+                <h3>✅ Verification Checklist</h3>
+                <ul>
+                    <li>Open browser console (F12) and check for errors</li>
+                    <li>Tours should load automatically when page loads</li>
+                    <li>No CORS errors should appear in console</li>
+                    <li>Click "Reload Tours" button - should work</li>
+                    <li>Try search/filter - results should update</li>
+                    <li>Check Network tab - responses should be HTML (not JSON)</li>
+                    <li>All requests should return <code>200 OK</code> status</li>
+                </ul>
+            </div>
+
+            <div class="instructions" style="margin-top: 20px; background: #ecfdf5; border-left-color: #059669;">
+                <h3 style="color: #059669;">🎯 Next Steps After Successful Test</h3>
+                <ul style="color: #065f46;">
+                    <li>Verify backend is serving proper HTML partials</li>
+                    <li>Confirm no CORS errors in browser console</li>
+                    <li>Test all filter combinations work correctly</li>
+                    <li>Commit frontend changes to git</li>
+                    <li>Report test results to backend AI</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- HTMX Library -->
+    <script src="js/htmx.min.js"></script>
+
+    <!-- Custom JS for debugging -->
+    <script>
+        // Log HTMX events for debugging
+        document.body.addEventListener('htmx:afterRequest', function(evt) {
+            console.log('✅ HTMX Request Complete:', evt.detail);
+        });
+
+        document.body.addEventListener('htmx:responseError', function(evt) {
+            console.error('❌ HTMX Error:', evt.detail);
+        });
+
+        document.body.addEventListener('htmx:sendError', function(evt) {
+            console.error('❌ HTMX Send Error:', evt.detail);
+        });
+
+        // Verify HTMX is loaded
+        if (typeof htmx !== 'undefined') {
+            console.log('✅ HTMX loaded successfully');
+            console.log('HTMX version:', htmx.version || '1.9.10');
+        } else {
+            console.error('❌ HTMX not loaded!');
+        }
+
+        // Log when page loads
+        window.addEventListener('load', function() {
+            console.log('📄 Test page loaded');
+            console.log('🔗 Backend URL: http://localhost/ssst3/public');
+            console.log('📍 Test endpoint: http://localhost/ssst3/public/partials/tours');
+        });
+    </script>
+</body>
+</html>
