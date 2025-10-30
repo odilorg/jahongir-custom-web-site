@@ -16,6 +16,7 @@
 /* ======================================================
    TABLE OF CONTENTS
    ======================================================
+   0. Header Fix (Sticky Navigation Override)
    1. Article Hero Section
    2. Breadcrumb Navigation
    3. Article Meta
@@ -26,6 +27,26 @@
    8. Comments Section
    9. Responsive Breakpoints
    ====================================================== */
+
+/* ======================================================
+   0. HEADER FIX - STICKY NAVIGATION OVERRIDE
+   ====================================================== */
+
+/* Override the default absolute positioning from style.css
+   On blog pages, the header should be sticky from the start */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Higher than default 100 to ensure it stays on top */
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.nav {
+  position: relative !important; /* Override absolute positioning */
+  background: transparent;
+}
 
 /* ======================================================
    1. ARTICLE HERO SECTION
