@@ -381,84 +381,18 @@
   <!-- =====================================================
        SECTION 2: TOUR HEADER INFO (Title, Rating, Meta, Tabs)
        ===================================================== -->
-  <section class="tour-header">
+  <section class="tour-header"
+           data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/hero"
+           hx-trigger="load"
+           hx-swap="innerHTML">
 
-    <!-- BreadcrumbList JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://jahongirtravel.com/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Tours",
-          "item": "https://jahongirtravel.com/tours"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Samarkand City Tour",
-          "item": "https://jahongirtravel.com/tours/samarkand-city-tour"
-        }
-      ]
-    }
-    </script>
-
+    <!-- Loading Skeleton -->
     <div class="container">
-
-      <!-- Breadcrumb Navigation -->
-      <nav class="breadcrumbs" aria-label="Breadcrumb">
-        <ol class="breadcrumbs__list">
-          <li class="breadcrumbs__item">
-            <a href="/" class="breadcrumbs__link">Home</a>
-            <span class="breadcrumbs__separator" aria-hidden="true">/</span>
-          </li>
-          <li class="breadcrumbs__item">
-            <a href="/tours" class="breadcrumbs__link">Tours</a>
-            <span class="breadcrumbs__separator" aria-hidden="true">/</span>
-          </li>
-          <li class="breadcrumbs__item">
-            <span class="breadcrumbs__current" aria-current="page">Samarkand City Tour</span>
-          </li>
-        </ol>
-      </nav>
-
-      <!-- Tour Title with Actions -->
-      <div class="tour-header__title-row">
-        <h1 class="tour-title">Samarkand City Tour: Registan Square and Historic Monuments</h1>
-        <div class="tour-header__actions">
-          <button class="btn-icon" aria-label="Share this tour" title="Share">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path d="M15 7a2 2 0 100-4 2 2 0 000 4zM5 13a2 2 0 100-4 2 2 0 000 4zM15 17a2 2 0 100-4 2 2 0 000 4zM6.5 11.5l7-3M6.5 11.5l7 3"/>
-            </svg>
-          </button>
-          <button class="btn-icon" aria-label="Add to favorites" title="Save to wishlist">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path d="M10 17.5l-1.45-1.32C3.4 11.36 0 8.27 0 4.5 0 1.42 2.42 0 5 0c1.74 0 3.41.81 4.5 2.08C10.59.81 12.26 0 14 0c2.58 0 5 1.42 5 4.5 0 3.77-3.4 6.86-8.55 11.68L10 17.5z"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Rating and Location -->
-      <div class="tour-header__rating">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="#F4B400" aria-hidden="true">
-          <path d="M8 0l2.163 5.238 5.837.423-4.462 3.662 1.338 5.677L8 12.236 3.124 15l1.338-5.677L0 5.661l5.837-.423z"/>
-        </svg>
-        <span class="rating-score">5</span>
-        <span class="rating-count">(28 reviews)</span>
-        <span class="rating-separator">•</span>
-        <span class="tour-location">Samarkand, Uzbekistan</span>
-      </div>
-
+      <div class="skeleton skeleton--text" style="width: 40%; height: 16px; margin-bottom: 1rem;"></div>
+      <div class="skeleton skeleton--title" style="height: 40px; width: 80%; margin-bottom: 1rem;"></div>
+      <div class="skeleton skeleton--text" style="width: 30%; height: 20px;"></div>
     </div>
+
   </section>
 
   <!-- =====================================================
@@ -595,143 +529,55 @@
         <main class="tour-main-content" id="main-content">
 
           <!-- Overview Section -->
-          <section class="tour-overview" id="overview">
+          <section class="tour-overview" id="overview"
+                   data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/overview"
+                   hx-trigger="load"
+                   hx-swap="innerHTML">
+
+            <!-- Loading Skeleton -->
             <h2 class="section-title">Overview</h2>
+            <div class="skeleton skeleton--text" style="width: 90%; height: 16px; margin-bottom: 0.5rem;"></div>
+            <div class="skeleton skeleton--text" style="width: 85%; height: 16px; margin-bottom: 0.5rem;"></div>
+            <div class="skeleton skeleton--text" style="width: 92%; height: 16px; margin-bottom: 0.5rem;"></div>
+            <div class="skeleton skeleton--text" style="width: 88%; height: 16px; margin-bottom: 0.5rem;"></div>
 
-            <!-- Tour Meta Information -->
-            <div class="tour-meta-bar">
-              <span class="tour-meta-item">
-                <svg class="icon icon--tag" width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true"><path d="M2 0a2 2 0 00-2 2v5.586a2 2 0 00.586 1.414l8 8a2 2 0 002.828 0l5.586-5.586a2 2 0 000-2.828l-8-8A2 2 0 008.414 0H2zm2.5 5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/></svg>
-                <span>Private Activity</span>
-              </span>
-              <span class="tour-meta-item">
-                <svg class="icon icon--clock" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M9 4.5v4.5l3 2"/></svg>
-                <span>Duration: 4 hours</span>
-              </span>
-              <span class="tour-meta-item">
-                <svg class="icon icon--users" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7 8a3 3 0 100-6 3 3 0 000 6zm0 2a7 7 0 00-7 7 1 1 0 001 1h12a1 1 0 001-1 7 7 0 00-7-7zm6-2a2 2 0 100-4 2 2 0 000 4zm0 2a5.997 5.997 0 014.917 9H14a8.97 8.97 0 00-2-5.708A5.98 5.98 0 0113 10z"/></svg>
-                <span>Max Group: 8 guests</span>
-              </span>
-              <span class="tour-meta-item">
-                <svg class="icon icon--language" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0a10 10 0 100 20 10 10 0 000-20zm7.75 9h-3.82a19.7 19.7 0 00-1.62-5.53A8.01 8.01 0 0117.75 9zM10 2c.93 1.3 1.65 2.93 2.09 4.74H7.91C8.35 4.93 9.07 3.3 10 2zM2.5 11a7.98 7.98 0 010-2h4.03a21.6 21.6 0 000 2H2.5zm.75 2h3.82a19.7 19.7 0 001.62 5.53A8.01 8.01 0 013.25 13zm3.82-8h-3.82a8.01 8.01 0 015.44-4.53A19.7 19.7 0 007.07 5zM10 18c-.93-1.3-1.65-2.93-2.09-4.74h4.18C11.65 15.07 10.93 16.7 10 18zm2.53-6.74H7.47a19.6 19.6 0 01-.21-2c0-.68.07-1.35.21-2h5.06c.14.65.21 1.32.21 2s-.07 1.35-.21 2zm.16 7.27a19.7 19.7 0 001.62-5.53h3.82a8.01 8.01 0 01-5.44 4.53zM13.47 11a21.6 21.6 0 000-2h4.03a7.98 7.98 0 010 2h-4.03z"/></svg>
-                <span>English, Russian, French</span>
-              </span>
-            </div>
-
-            <div class="tour-overview__content">
-              <p>
-                Come and spend your day discovering the beauty, history, and culture of <a href="/cities/samarkand/">Samarkand</a>, one of the oldest continuously inhabited cities in Central Asia. This comprehensive walking tour takes you through the heart of this ancient Silk Road city, where Persian and Turkic cultures have blended for over 2,500 years.
-              </p>
-              <p>
-                Our journey begins at the magnificent <a href="/insights/registan-square-guide/">Registan Square</a>, the centerpiece of Samarkand and one of the most iconic architectural ensembles in the Islamic world. You'll explore three grand madrasahs dating from the 15th-17th centuries, adorned with intricate tilework, towering minarets, and stunning geometric patterns.
-              </p>
-              <p>
-                Next, we'll visit the <a href="/insights/shah-i-zinda-necropolis/">Shah-i-Zinda necropolis</a>, a stunning collection of mausoleums featuring some of the finest tile work in the Islamic world. Walk through the corridor of azure blue domes and discover the burial site of Kusam ibn Abbas, cousin of Prophet Muhammad.
-              </p>
-              <p>
-                Finally, we'll explore the grand <a href="/insights/bibi-khanym-mosque/">Bibi-Khanym Mosque</a>, once one of the largest mosques in the Islamic world, built by Timur (Tamerlane) after his Indian campaign. Learn about its fascinating history, tragic love story, and recent restoration efforts.
-              </p>
-              <p>
-                Throughout the tour, your <a href="/about/">expert local guide</a> will share stories about Timur's empire, the Silk Road trade, and the daily life of Samarkand's artisans and traders. You'll have plenty of time for photos, questions, and to soak in the atmosphere of this UNESCO World Heritage Site.
-              </p>
-            </div>
           </section>
 
           <!-- Highlights Section -->
-          <section class="tour-highlights" id="highlights">
-            <h2 class="section-title">Highlights</h2>
+          <section class="tour-highlights" id="highlights"
+                   data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/highlights"
+                   hx-trigger="revealed"
+                   hx-swap="innerHTML">
 
-            <ul class="highlights-list">
-              <li class="highlight-item">
-                <svg class="icon icon--check-circle" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm5.707 7.707l-7 7a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L8 12.586l6.293-6.293a1 1 0 111.414 1.414z"/></svg>
-                <span>Explore the legendary Registan Square with three magnificent madrasahs from the 15th-17th centuries</span>
-              </li>
-              <li class="highlight-item">
-                <svg class="icon icon--check-circle" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm5.707 7.707l-7 7a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L8 12.586l6.293-6.293a1 1 0 111.414 1.414z"/></svg>
-                <span>Walk through the stunning Shah-i-Zinda necropolis with its corridor of azure blue domes</span>
-              </li>
-              <li class="highlight-item">
-                <svg class="icon icon--check-circle" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm5.707 7.707l-7 7a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L8 12.586l6.293-6.293a1 1 0 111.414 1.414z"/></svg>
-                <span>Visit the grand Bibi-Khanym Mosque, once among the largest mosques in the Islamic world</span>
-              </li>
-              <li class="highlight-item">
-                <svg class="icon icon--check-circle" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm5.707 7.707l-7 7a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L8 12.586l6.293-6.293a1 1 0 111.414 1.414z"/></svg>
-                <span>Learn about Timur's empire and the Silk Road trade from an expert local guide</span>
-              </li>
-              <li class="highlight-item">
-                <svg class="icon icon--check-circle" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm5.707 7.707l-7 7a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L8 12.586l6.293-6.293a1 1 0 111.414 1.414z"/></svg>
-                <span>Discover intricate tile work, geometric patterns, and Persian-Turkic architectural fusion</span>
-              </li>
-              <li class="highlight-item">
-                <svg class="icon icon--check-circle" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm5.707 7.707l-7 7a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L8 12.586l6.293-6.293a1 1 0 111.414 1.414z"/></svg>
-                <span>Enjoy plenty of time for photography at UNESCO World Heritage sites</span>
-              </li>
-            </ul>
+            <!-- Loading Skeleton -->
+            <h2 class="section-title">Highlights</h2>
+            <div class="skeleton skeleton--text" style="width: 95%; height: 16px; margin-bottom: 0.5rem;"></div>
+            <div class="skeleton skeleton--text" style="width: 92%; height: 16px; margin-bottom: 0.5rem;"></div>
+            <div class="skeleton skeleton--text" style="width: 88%; height: 16px; margin-bottom: 0.5rem;"></div>
+
           </section>
 
           <!-- Includes/Excludes Section -->
-          <section class="tour-includes-excludes" id="includes">
+          <section class="tour-includes-excludes" id="includes"
+                   data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/included-excluded"
+                   hx-trigger="revealed"
+                   hx-swap="innerHTML">
+
+            <!-- Loading Skeleton -->
             <h2 class="section-title">What's Included & Excluded</h2>
-
-            <div class="includes-excludes-grid">
-
-              <!-- Included -->
-              <div class="includes-section">
-                <h3 class="subsection-title">
-                  <svg class="icon icon--check-circle" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm5.707 7.707l-7 7a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L8 12.586l6.293-6.293a1 1 0 111.414 1.414z"/></svg>
-                  <span>Included</span>
-                </h3>
-                <ul class="includes-list">
-                  <li>
-                    <svg class="icon icon--check" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z"/></svg>
-                    <span>Hotel pickup and drop-off (Samarkand city hotels)</span>
-                  </li>
-                  <li>
-                    <svg class="icon icon--check" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z"/></svg>
-                    <span>Professional English-speaking guide</span>
-                  </li>
-                  <li>
-                    <svg class="icon icon--check" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z"/></svg>
-                    <span>Entrance fees to all monuments (Registan, Shah-i-Zinda, Bibi-Khanym)</span>
-                  </li>
-                  <li>
-                    <svg class="icon icon--check" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z"/></svg>
-                    <span>Bottled water</span>
-                  </li>
-                  <li>
-                    <svg class="icon icon--check" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z"/></svg>
-                    <span>Small group tour (max 8 guests)</span>
-                  </li>
-                </ul>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+              <div>
+                <div class="skeleton skeleton--text" style="width: 90%; height: 16px; margin-bottom: 0.5rem;"></div>
+                <div class="skeleton skeleton--text" style="width: 85%; height: 16px; margin-bottom: 0.5rem;"></div>
+                <div class="skeleton skeleton--text" style="width: 92%; height: 16px; margin-bottom: 0.5rem;"></div>
               </div>
-
-              <!-- Excluded -->
-              <div class="excludes-section">
-                <h3 class="subsection-title">
-                  <svg class="icon icon--times-circle" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm4.707 13.293a1 1 0 01-1.414 1.414L10 11.414l-3.293 3.293a1 1 0 01-1.414-1.414L8.586 10 5.293 6.707a1 1 0 011.414-1.414L10 8.586l3.293-3.293a1 1 0 011.414 1.414L11.414 10l3.293 3.293z"/></svg>
-                  <span>Not Included</span>
-                </h3>
-                <ul class="excludes-list">
-                  <li>
-                    <svg class="icon icon--times" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.646 4.646a.5.5 0 01.708 0L8 7.293l2.646-2.647a.5.5 0 01.708.708L8.707 8l2.647 2.646a.5.5 0 01-.708.708L8 8.707l-2.646 2.647a.5.5 0 01-.708-.708L7.293 8 4.646 5.354a.5.5 0 010-.708z"/></svg>
-                    <span>Tips and gratuities for guide (optional)</span>
-                  </li>
-                  <li>
-                    <svg class="icon icon--times" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.646 4.646a.5.5 0 01.708 0L8 7.293l2.646-2.647a.5.5 0 01.708.708L8.707 8l2.647 2.646a.5.5 0 01-.708.708L8 8.707l-2.646 2.647a.5.5 0 01-.708-.708L7.293 8 4.646 5.354a.5.5 0 010-.708z"/></svg>
-                    <span>Lunch (available for purchase at local restaurants)</span>
-                  </li>
-                  <li>
-                    <svg class="icon icon--times" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.646 4.646a.5.5 0 01.708 0L8 7.293l2.646-2.647a.5.5 0 01.708.708L8.707 8l2.647 2.646a.5.5 0 01-.708.708L8 8.707l-2.646 2.647a.5.5 0 01-.708-.708L7.293 8 4.646 5.354a.5.5 0 010-.708z"/></svg>
-                    <span>Personal expenses and souvenirs</span>
-                  </li>
-                  <li>
-                    <svg class="icon icon--times" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.646 4.646a.5.5 0 01.708 0L8 7.293l2.646-2.647a.5.5 0 01.708.708L8.707 8l2.647 2.646a.5.5 0 01-.708.708L8 8.707l-2.646 2.647a.5.5 0 01-.708-.708L7.293 8 4.646 5.354a.5.5 0 010-.708z"/></svg>
-                    <span>Photography fees inside certain monuments (if applicable)</span>
-                  </li>
-                </ul>
+              <div>
+                <div class="skeleton skeleton--text" style="width: 88%; height: 16px; margin-bottom: 0.5rem;"></div>
+                <div class="skeleton skeleton--text" style="width: 93%; height: 16px; margin-bottom: 0.5rem;"></div>
+                <div class="skeleton skeleton--text" style="width: 87%; height: 16px; margin-bottom: 0.5rem;"></div>
               </div>
-
             </div>
+
           </section>
 
           <!-- Cancellation Policy Section -->
@@ -757,86 +603,21 @@
           </section>
 
           <!-- Itinerary Section -->
-          <section class="tour-itinerary" id="itinerary" aria-label="Tour itinerary">
+          <section class="tour-itinerary" id="itinerary"
+                   data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/itinerary"
+                   hx-trigger="revealed"
+                   hx-swap="innerHTML"
+                   aria-label="Tour itinerary">
+
+            <!-- Loading Skeleton -->
             <div class="itinerary-header">
               <h2 class="section-title">Tour Itinerary</h2>
-              <div class="itinerary-controls" aria-controls="itinerary-list">
-                <button type="button" id="expandAll">Expand all</button>
-                <button type="button" id="collapseAll">Collapse all</button>
-              </div>
             </div>
+            <div class="skeleton skeleton--text" style="width: 92%; height: 16px; margin-bottom: 0.5rem;"></div>
+            <div class="skeleton skeleton--text" style="width: 88%; height: 16px; margin-bottom: 0.5rem;"></div>
+            <div class="skeleton skeleton--text" style="width: 90%; height: 16px; margin-bottom: 0.5rem;"></div>
+            <div class="skeleton skeleton--text" style="width: 85%; height: 16px; margin-bottom: 0.5rem;"></div>
 
-            <ol id="itinerary-list" class="itinerary-list">
-
-              <!-- Stop 1: Hotel Pickup -->
-              <li id="stop-pickup">
-                <details open>
-                  <summary>
-                    <time datetime="09:00">09:00 AM</time>
-                    <span class="stop-title">Hotel Pickup & Departure</span>
-                  </summary>
-                  <div class="stop-body">
-                    <p>Your guide will pick you up from your hotel in Samarkand. We'll drive to the historic center to begin our walking tour.</p>
-                  </div>
-                </details>
-              </li>
-
-              <!-- Stop 2: Registan Square -->
-              <li id="stop-registan">
-                <details open>
-                  <summary>
-                    <time datetime="09:30">09:30 AM</time>
-                    <span class="stop-title">Registan Square</span>
-                  </summary>
-                  <div class="stop-body">
-                    <p>Explore the magnificent Registan Square, the heart of ancient Samarkand. Visit three grand madrasahs (Ulugh Beg, Sher-Dor, and Tilya-Kori) dating from the 15th-17th centuries. Marvel at the intricate tile work, towering minarets, and stunning geometric patterns that define Islamic architecture.</p>
-                    <p class="stop-duration">Duration: ~90 minutes</p>
-                  </div>
-                </details>
-              </li>
-
-              <!-- Stop 3: Shah-i-Zinda -->
-              <li id="stop-shah-i-zinda">
-                <details open>
-                  <summary>
-                    <time datetime="11:00">11:00 AM</time>
-                    <span class="stop-title">Shah-i-Zinda Necropolis</span>
-                  </summary>
-                  <div class="stop-body">
-                    <p>Walk through the stunning corridor of azure-blue domes at Shah-i-Zinda, one of the most beautiful necropolises in the world. Discover the burial site of Kusam ibn Abbas, cousin of Prophet Muhammad, and admire some of the finest tile work in Central Asia.</p>
-                    <p class="stop-duration">Duration: ~60 minutes</p>
-                  </div>
-                </details>
-              </li>
-
-              <!-- Stop 4: Bibi-Khanym Mosque -->
-              <li id="stop-bibi-khanym">
-                <details open>
-                  <summary>
-                    <time datetime="12:00">12:00 PM</time>
-                    <span class="stop-title">Bibi-Khanym Mosque</span>
-                  </summary>
-                  <div class="stop-body">
-                    <p>Visit the grand Bibi-Khanym Mosque, once one of the largest mosques in the Islamic world. Built by Timur (Tamerlane) after his Indian campaign, learn about its fascinating history, tragic love story, and recent restoration efforts.</p>
-                    <p class="stop-duration">Duration: ~45 minutes</p>
-                  </div>
-                </details>
-              </li>
-
-              <!-- Stop 5: Return to Hotel -->
-              <li id="stop-return">
-                <details open>
-                  <summary>
-                    <time datetime="13:00">01:00 PM</time>
-                    <span class="stop-title">Return to Hotel</span>
-                  </summary>
-                  <div class="stop-body">
-                    <p>Your guide will escort you back to your hotel, with time for any last-minute questions or photo opportunities.</p>
-                  </div>
-                </details>
-              </li>
-
-            </ol>
           </section>
 
           <!-- Meeting Point & Pickup Section -->
@@ -926,356 +707,51 @@
           </section>
 
           <!-- FAQ Section -->
-          <section class="tour-faq" id="faq">
+          <section class="tour-faq" id="faq"
+                   data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/faqs"
+                   hx-trigger="revealed"
+                   hx-swap="innerHTML">
 
-            <!-- FAQPage JSON-LD -->
-            <script type="application/ld+json">
-            {
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              "mainEntity": [
-                {
-                  "@type": "Question",
-                  "name": "What should I bring?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Comfortable walking shoes, sun protection (hat, sunscreen, sunglasses), camera, water bottle, and local currency (Uzbek som) for tips and souvenirs. We also recommend bringing a scarf for women to cover shoulders when entering religious sites."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "What is not allowed on this tour?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Smoking inside historical monuments, touching ancient artifacts or walls, flash photography inside certain buildings (external photography is always allowed), and climbing on ancient structures. Please be respectful of these UNESCO World Heritage sites."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Is the tour suitable for children?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, this tour is family-friendly and suitable for children aged 6 and above. The walking pace is moderate, and we can adjust the tour content to keep younger visitors engaged. Children under 12 receive a 50% discount."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "What happens if it rains?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "The tour operates in most weather conditions. Samarkand has relatively little rain, but if heavy rain is forecasted, we'll contact you to reschedule or offer a full refund. Light rain doesn't typically affect the tour as many sites have covered areas."
-                  }
-                }
-              ]
-            }
-            </script>
-
+            <!-- Loading Skeleton -->
             <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="skeleton skeleton--text" style="width: 95%; height: 16px; margin-bottom: 1rem;"></div>
+            <div class="skeleton skeleton--text" style="width: 92%; height: 16px; margin-bottom: 1rem;"></div>
+            <div class="skeleton skeleton--text" style="width: 90%; height: 16px; margin-bottom: 1rem;"></div>
+            <div class="skeleton skeleton--text" style="width: 88%; height: 16px; margin-bottom: 1rem;"></div>
 
-            <div class="faq-accordion">
-
-              <details class="faq-item">
-                <summary class="faq-question">
-                  <span>What should I bring?</span>
-                  <svg class="icon icon--chevron-down" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.646 5.646a.5.5 0 01.708 0L8 9.293l3.646-3.647a.5.5 0 01.708.708l-4 4a.5.5 0 01-.708 0l-4-4a.5.5 0 010-.708z"/></svg>
-                </summary>
-                <div class="faq-answer">
-                  <p>Comfortable walking shoes, sun protection (hat, sunscreen, sunglasses), camera, water bottle, and local currency (Uzbek som) for tips and souvenirs. We also recommend bringing a scarf for women to cover shoulders when entering religious sites.</p>
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary class="faq-question">
-                  <span>What is not allowed on this tour?</span>
-                  <svg class="icon icon--chevron-down" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.646 5.646a.5.5 0 01.708 0L8 9.293l3.646-3.647a.5.5 0 01.708.708l-4 4a.5.5 0 01-.708 0l-4-4a.5.5 0 010-.708z"/></svg>
-                </summary>
-                <div class="faq-answer">
-                  <p>Smoking inside historical monuments, touching ancient artifacts or walls, flash photography inside certain buildings (external photography is always allowed), and climbing on ancient structures. Please be respectful of these UNESCO World Heritage sites.</p>
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary class="faq-question">
-                  <span>Is the tour suitable for children?</span>
-                  <svg class="icon icon--chevron-down" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.646 5.646a.5.5 0 01.708 0L8 9.293l3.646-3.647a.5.5 0 01.708.708l-4 4a.5.5 0 01-.708 0l-4-4a.5.5 0 010-.708z"/></svg>
-                </summary>
-                <div class="faq-answer">
-                  <p>Yes, this tour is family-friendly and suitable for children aged 6 and above. The walking pace is moderate, and we can adjust the tour content to keep younger visitors engaged. Children under 12 receive a 50% discount.</p>
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary class="faq-question">
-                  <span>What happens if it rains?</span>
-                  <svg class="icon icon--chevron-down" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.646 5.646a.5.5 0 01.708 0L8 9.293l3.646-3.647a.5.5 0 01.708.708l-4 4a.5.5 0 01-.708 0l-4-4a.5.5 0 010-.708z"/></svg>
-                </summary>
-                <div class="faq-answer">
-                  <p>The tour operates in most weather conditions. Samarkand has relatively little rain, but if heavy rain is forecasted, we'll contact you to reschedule or offer a full refund. Light rain doesn't typically affect the tour as many sites have covered areas.</p>
-                </div>
-              </details>
-
-            </div>
           </section>
 
           <!-- Extra Services Section -->
-          <section class="tour-extras" id="extras">
+          <section class="tour-extras" id="extras"
+                   data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/extras"
+                   hx-trigger="revealed"
+                   hx-swap="innerHTML">
+
+            <!-- Loading Skeleton -->
             <h2 class="section-title">Extra Services</h2>
-
-            <p class="section-intro">Enhance your tour experience with these optional services. Select any add-ons when booking.</p>
-
-            <div class="extras-grid">
-
-              <!-- Service 1: Private Transport -->
-              <div class="extra-service-card">
-                <div class="extra-service__icon">
-                  <svg class="icon icon--car" width="22" height="18" viewBox="0 0 22 18" fill="currentColor" aria-hidden="true"><path d="M18 7l-2-4H6L4 7H0v8h2v3h3v-3h12v3h3v-3h2V7h-4zM7 4h8l1.5 3h-11L7 4zM5 13a2 2 0 110-4 2 2 0 010 4zm12 0a2 2 0 110-4 2 2 0 010 4z"/></svg>
-                </div>
-                <div class="extra-service__content">
-                  <h3 class="extra-service__title">Private Transport Upgrade</h3>
-                  <p class="extra-service__description">
-                    Upgrade to a private, air-conditioned vehicle for your group only. Includes flexible pickup times and the option to customize the route.
-                  </p>
-                  <div class="extra-service__price">
-                    <span class="price-label">From</span>
-                    <span class="price-value" data-service-price="30.00">$30.00</span>
-                    <span class="price-unit">per group</span>
-                  </div>
-                </div>
-                <div class="extra-service__action">
-                  <input
-                    type="checkbox"
-                    id="extra-transport"
-                    name="extra-transport"
-                    value="30.00"
-                    class="extra-checkbox"
-                    aria-label="Add private transport upgrade">
-                  <label for="extra-transport" class="extra-label">Add to booking</label>
-                </div>
-              </div>
-
-              <!-- Service 2: Traditional Lunch -->
-              <div class="extra-service-card">
-                <div class="extra-service__icon">
-                  <svg class="icon icon--utensils" width="18" height="20" viewBox="0 0 18 20" fill="currentColor" aria-hidden="true"><path d="M4 0v7a2 2 0 002 2v11h2V9a2 2 0 002-2V0H8v7H6V0H4zm10 0v6c0 1.1-.9 2-2 2v12h2V8c1.1 0 2-.9 2-2V0h-2z"/></svg>
-                </div>
-                <div class="extra-service__content">
-                  <h3 class="extra-service__title">Traditional Uzbek Lunch</h3>
-                  <p class="extra-service__description">
-                    Enjoy an authentic 3-course Uzbek meal at a traditional restaurant. Includes plov (pilaf), fresh salads, samsa, and green tea. Vegetarian options available.
-                  </p>
-                  <div class="extra-service__price">
-                    <span class="price-label">From</span>
-                    <span class="price-value" data-service-price="15.00">$15.00</span>
-                    <span class="price-unit">per person</span>
-                  </div>
-                </div>
-                <div class="extra-service__action">
-                  <input
-                    type="checkbox"
-                    id="extra-lunch"
-                    name="extra-lunch"
-                    value="15.00"
-                    class="extra-checkbox"
-                    aria-label="Add traditional Uzbek lunch">
-                  <label for="extra-lunch" class="extra-label">Add to booking</label>
-                </div>
-              </div>
-
-              <!-- Service 3: Professional Photographer -->
-              <div class="extra-service-card">
-                <div class="extra-service__icon">
-                  <svg class="icon icon--camera" width="20" height="18" viewBox="0 0 20 18" fill="currentColor" aria-hidden="true"><path d="M10 13a3 3 0 100-6 3 3 0 000 6z"/><path d="M2 4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2h-2.586l-.707-.707A2 2 0 0013.293 2H6.707a2 2 0 00-1.414.586L4.586 4H2zm8 11a5 5 0 110-10 5 5 0 010 10z"/></svg>
-                </div>
-                <div class="extra-service__content">
-                  <h3 class="extra-service__title">Professional Photography Service</h3>
-                  <p class="extra-service__description">
-                    Capture your memories with a professional photographer. Receive 50+ high-resolution edited photos delivered within 48 hours via digital download.
-                  </p>
-                  <div class="extra-service__price">
-                    <span class="price-label">From</span>
-                    <span class="price-value" data-service-price="80.00">$80.00</span>
-                    <span class="price-unit">per session</span>
-                  </div>
-                </div>
-                <div class="extra-service__action">
-                  <input
-                    type="checkbox"
-                    id="extra-photographer"
-                    name="extra-photographer"
-                    value="80.00"
-                    class="extra-checkbox"
-                    aria-label="Add professional photography service">
-                  <label for="extra-photographer" class="extra-label">Add to booking</label>
-                </div>
-              </div>
-
-              <!-- Service 4: Souvenirs & Shopping -->
-              <div class="extra-service-card">
-                <div class="extra-service__icon">
-                  <svg class="icon icon--shopping-bag" width="18" height="20" viewBox="0 0 18 20" fill="currentColor" aria-hidden="true"><path d="M2 6l1-4h12l1 4v12H2V6zm3-2l-.5 2h9l-.5-2h-8zM6 8a4 4 0 108 0"/></svg>
-                </div>
-                <div class="extra-service__content">
-                  <h3 class="extra-service__title">Guided Shopping Experience</h3>
-                  <p class="extra-service__description">
-                    Visit authentic local markets and artisan workshops. Your guide will help you find quality souvenirs, textiles, and ceramics at fair prices. Includes transport to 3 recommended shops.
-                  </p>
-                  <div class="extra-service__price">
-                    <span class="price-label">From</span>
-                    <span class="price-value" data-service-price="20.00">$20.00</span>
-                    <span class="price-unit">per group</span>
-                  </div>
-                </div>
-                <div class="extra-service__action">
-                  <input
-                    type="checkbox"
-                    id="extra-shopping"
-                    name="extra-shopping"
-                    value="20.00"
-                    class="extra-checkbox"
-                    aria-label="Add guided shopping experience">
-                  <label for="extra-shopping" class="extra-label">Add to booking</label>
-                </div>
-              </div>
-
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+              <div class="skeleton skeleton--thumb"></div>
+              <div class="skeleton skeleton--thumb"></div>
+              <div class="skeleton skeleton--thumb"></div>
+              <div class="skeleton skeleton--thumb"></div>
             </div>
 
-            <div class="extras-note">
-              <svg class="icon icon--info-circle" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm1 15H9v-6h2v6zm0-8H9V5h2v2z"/></svg>
-              <p>All add-ons must be selected at booking time. Prices are subject to change based on group size and availability. Contact us for custom packages.</p>
-            </div>
           </section>
 
           <!-- Customer Reviews Section -->
-          <section class="tour-reviews" id="reviews">
+          <section class="tour-reviews" id="reviews"
+                   data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/reviews"
+                   hx-trigger="revealed"
+                   hx-swap="innerHTML">
+
+            <!-- Loading Skeleton -->
             <div class="reviews-header">
               <h2 class="section-title">Customer Reviews</h2>
-              <div class="reviews-summary">
-                <div class="reviews-rating">
-                  <span class="rating-score">5.0</span>
-                  <div class="rating-stars">
-                    <svg class="icon icon--star" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                    <svg class="icon icon--star" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                    <svg class="icon icon--star" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                    <svg class="icon icon--star" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                    <svg class="icon icon--star" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                  </div>
-                  <span class="rating-count">Based on 47 reviews</span>
-                </div>
-              </div>
             </div>
+            <div class="skeleton skeleton--text" style="width: 100%; height: 80px; margin-bottom: 1rem;"></div>
+            <div class="skeleton skeleton--text" style="width: 100%; height: 80px; margin-bottom: 1rem;"></div>
+            <div class="skeleton skeleton--text" style="width: 100%; height: 80px; margin-bottom: 1rem;"></div>
 
-            <div class="reviews-list">
-
-              <!-- Review 1 -->
-              <article class="review-card">
-                <div class="review-header">
-                  <img src="images/reviewers/avatar-placeholder.jpg" alt="" class="reviewer-avatar" width="56" height="56" loading="lazy">
-                  <div class="reviewer-info">
-                    <h3 class="reviewer-name">Sarah Mitchell</h3>
-                    <div class="review-rating">
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <span class="sr-only">5 out of 5 stars</span>
-                    </div>
-                    <div class="review-meta">
-                      <span class="review-location">United States</span>
-                      <span class="review-separator">•</span>
-                      <time class="review-date" datetime="2024-10-15">October 2024</time>
-                    </div>
-                  </div>
-                </div>
-                <p class="review-text">
-                  Absolutely breathtaking! Our guide was incredibly knowledgeable about the history of Samarkand and made every monument come alive with stories. The Registan Square at sunset was magical. Highly recommend this tour to anyone visiting Uzbekistan.
-                </p>
-              </article>
-
-              <!-- Review 2 -->
-              <article class="review-card">
-                <div class="review-header">
-                  <img src="images/reviewers/avatar-placeholder.jpg" alt="" class="reviewer-avatar" width="56" height="56" loading="lazy">
-                  <div class="reviewer-info">
-                    <h3 class="reviewer-name">James Chen</h3>
-                    <div class="review-rating">
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <span class="sr-only">5 out of 5 stars</span>
-                    </div>
-                    <div class="review-meta">
-                      <span class="review-location">Singapore</span>
-                      <span class="review-separator">•</span>
-                      <time class="review-date" datetime="2024-09-28">September 2024</time>
-                    </div>
-                  </div>
-                </div>
-                <p class="review-text">
-                  Perfect tour for photography enthusiasts! Our guide knew all the best spots and angles for photos. The Shah-i-Zinda necropolis was stunning with its blue tiles. Great pace, not rushed at all. Worth every penny!
-                </p>
-              </article>
-
-              <!-- Review 3 -->
-              <article class="review-card">
-                <div class="review-header">
-                  <img src="images/reviewers/avatar-placeholder.jpg" alt="" class="reviewer-avatar" width="56" height="56" loading="lazy">
-                  <div class="reviewer-info">
-                    <h3 class="reviewer-name">Emma Dubois</h3>
-                    <div class="review-rating">
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <span class="sr-only">5 out of 5 stars</span>
-                    </div>
-                    <div class="review-meta">
-                      <span class="review-location">France</span>
-                      <span class="review-separator">•</span>
-                      <time class="review-date" datetime="2024-08-12">August 2024</time>
-                    </div>
-                  </div>
-                </div>
-                <p class="review-text">
-                  An unforgettable experience! The guide spoke excellent French and English. The small group size meant we could ask lots of questions. Bibi-Khanym Mosque was incredible. Hotel pickup was punctual. Thank you, Jahongir Travel!
-                </p>
-              </article>
-
-              <!-- Review 4 -->
-              <article class="review-card">
-                <div class="review-header">
-                  <img src="images/reviewers/avatar-placeholder.jpg" alt="" class="reviewer-avatar" width="56" height="56" loading="lazy">
-                  <div class="reviewer-info">
-                    <h3 class="reviewer-name">Michael O'Brien</h3>
-                    <div class="review-rating">
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <svg class="icon icon--star" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l2.163 5.331 5.837.423-4.437 3.798 1.363 5.648L8 12.331 3.074 15.2l1.363-5.648L.563 5.754l5.837-.423L8 0z"/></svg>
-                      <span class="sr-only">5 out of 5 stars</span>
-                    </div>
-                    <div class="review-meta">
-                      <span class="review-location">Australia</span>
-                      <span class="review-separator">•</span>
-                      <time class="review-date" datetime="2024-07-22">July 2024</time>
-                    </div>
-                  </div>
-                </div>
-                <p class="review-text">
-                  Best tour we did in Central Asia! The architecture is mind-blowing and our guide's passion for Samarkand's history was contagious. Four hours flew by. Great value for money. Would definitely book with Jahongir Travel again.
-                </p>
-              </article>
-
-            </div>
-
-            <div class="reviews-cta">
-              <p class="reviews-cta-text">Have you taken this tour? Share your experience!</p>
-              <a href="#booking-form" class="btn btn--secondary">Write a Review</a>
-            </div>
           </section>
 
         </main>
@@ -1561,6 +1037,52 @@
   <!-- =====================================================
        JAVASCRIPT
        ===================================================== -->
+  <!-- HTMX Library -->
+  <script src="js/htmx.min.js"></script>
+
+  <!-- Dynamic Tour Slug Detection -->
+  <script>
+    // Extract tour slug from URL query parameter (?tour=slug) or use default
+    function getTourSlug() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('tour') || 'samarkand-city-tour';
+    }
+
+    // Set global variable for HTMX to use
+    window.TOUR_SLUG = getTourSlug();
+    window.BACKEND_URL = 'http://127.0.0.1:8000';
+
+    // Update HTMX URLs dynamically on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const tourSlug = getTourSlug();
+      console.log('[HTMX] Tour slug detected:', tourSlug);
+
+      // Update all HTMX elements with dynamic slug
+      document.querySelectorAll('[data-hx-url-template]').forEach(function(el) {
+        const template = el.getAttribute('data-hx-url-template');
+        const url = template.replace('{slug}', tourSlug);
+        el.setAttribute('hx-get', url);
+        el.removeAttribute('data-hx-url-template');
+      });
+
+      console.log('[HTMX] URL templates updated with slug:', tourSlug);
+    });
+
+    // HTMX event listeners for debugging and error handling
+    document.body.addEventListener('htmx:beforeRequest', function(evt) {
+      console.log('[HTMX] Loading:', evt.detail.pathInfo.requestPath);
+    });
+
+    document.body.addEventListener('htmx:afterSwap', function(evt) {
+      console.log('[HTMX] Loaded:', evt.detail.pathInfo.requestPath);
+    });
+
+    document.body.addEventListener('htmx:responseError', function(evt) {
+      console.error('[HTMX] Error loading:', evt.detail.pathInfo.requestPath, evt.detail.xhr.status);
+      evt.detail.target.innerHTML = '<div class="error-message">Failed to load content. Please refresh the page.</div>';
+    });
+  </script>
+
   <!-- Tour Details JavaScript -->
   <script src="tour-details.js" defer></script>
 
