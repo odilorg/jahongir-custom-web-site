@@ -705,6 +705,8 @@
 .contact-personality .cp-media__img {
   width: 100%;
   height: auto;
+  max-height: 400px;
+  object-fit: cover;
   border-radius: 16px;
   box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
   display: block;
