@@ -383,7 +383,6 @@
        ===================================================== -->
   <section class="tour-header"
            data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/hero"
-           hx-trigger="load"
            hx-swap="innerHTML">
 
     <!-- Loading Skeleton -->
@@ -531,7 +530,6 @@
           <!-- Overview Section -->
           <section class="tour-overview" id="overview"
                    data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/overview"
-                   hx-trigger="load"
                    hx-swap="innerHTML">
 
             <!-- Loading Skeleton -->
@@ -1066,6 +1064,25 @@
       });
 
       console.log('[HTMX] URL templates updated with slug:', tourSlug);
+
+      // Trigger HTMX to process the new attributes
+      if (window.htmx) {
+        htmx.process(document.body);
+
+        // Manually trigger the immediate load sections
+        const heroSection = document.querySelector('.tour-header');
+        const overviewSection = document.querySelector('.tour-overview');
+
+        if (heroSection) {
+          console.log('[HTMX] Triggering hero section');
+          htmx.trigger(heroSection, 'revealed');
+        }
+
+        if (overviewSection) {
+          console.log('[HTMX] Triggering overview section');
+          htmx.trigger(overviewSection, 'revealed');
+        }
+      }
     });
 
     // HTMX event listeners for debugging and error handling
