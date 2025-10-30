@@ -493,6 +493,16 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
   margin-bottom: var(--space-5);
 }
 
+.section-eyebrow {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+
 .section-header__title {
   font-size: clamp(1.75rem, 3.5vw, 2.25rem);
   margin-bottom: var(--space-2);
@@ -710,6 +720,21 @@ p { margin-bottom: 1rem; color: var(--color-text-muted); }
 .tour-card__badge--featured {
   background: var(--color-accent);
   color: var(--color-text-dark);
+}
+
+.tour-card__badge--urgency {
+  background: #FF5722;
+  color: #fff;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
 }
 
 /* Tour Card Content */
