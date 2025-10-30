@@ -1,0 +1,165 @@
+
+Caching Strategy for Separate Static Frontend + Laravel (Filament) Partials
+============================================================================
+
+Goal
+----
+Deliver fast first paint on static pages and snappy partial loads, while keeping content fresh and invalidation simple.
+
+Stack in Scope
+--------------
+- Frontend: static HTML site (loads HTML partials via HTMX/AJAX)
+- Backend: Laravel + Filament (serves HTML partials via /partials/* routes)
+- Optional CDN: Cloudflare / similar
+- Cache store: Redis (recommended) or File (dev)
+
+Overview (Layers)
+-----------------
+1) Browser & CDN
+   - Cache static assets aggressively (hashed filenames).
+   - Cache HTML PARTIALS for short TTLs to reduce origin load.
+2) App (Laravel)
+   - Fragment cache per partial with Redis + TAGS for clean invalidation.
+   - ETag/304 for bandwidth savings on repeat hits.
+3) DB
+   - Proper indexes and eager loading so cache misses are cheap.
+
+What to Cache (TTLs)
+--------------------
+Partial / Page                           TTL        Notes
+---------------------------------------  ---------  -----------------------------------------------
+Tour list (cards) /partials/tours        10 min     Bust on publish/price/city changes.
+Tour overview/hero /partials/tours/{s}   60 min     Bust on that tour update.
+Highlights/Itinerary/Inclusions          24 hours   Very stable; bust on tour update.
+FAQs / Extras                             24 hours   Bust on FAQ/extra change.
+Reviews /partials/tours/{s}/reviews       5 min     More dynamic; bust on new/updated review.
+Search/filter results                     5–10 min   Cache by normalized query string.
+Static pages (about/contact)              1–7 days   Page cache/CDN; purge when edited.
+
+HTTP Caching Headers (partials)
+-------------------------------
+Use short, safe TTLs and allow revalidation.
+- Cache-Control: public, max-age=300, stale-while-revalidate=30
+- ETag: "<sha1(body)>"
+- Vary: Accept, X-Requested-With
+
+Example (Controller Snippet)
+----------------------------
+$body = view('partials.tours.reviews', compact('tour','reviews'))->render();
+$etag = sha1($body);
+
+if (request()->getETags() && in_array('\"'.$etag.'\"', request()->getETags())) {
+    return response('', 304, ['ETag' => '\"'.$etag.'\"']);
+}
+
+return response($body, 200, [
+  'Cache-Control' => 'public, max-age=300, stale-while-revalidate=30',
+  'ETag' => '\"'.$etag.'\"',
+  'Vary' => 'Accept, X-Requested-With',
+]);
+
+App-Level Fragment Cache (Redis + Tags)
+---------------------------------------
+Key Shapes
+- Keys:  tour:{id}:section:{name}:v1
+- Tags:  tour:{id}, list:tours, filters:{signature}, reviews
+
+Example (Reviews)
+$cache = Cache::tags([\"tour:{$tour->id}\", 'reviews']);
+$reviews = $cache->remember(\"tour:{$tour->id}:section:reviews:v1\", 300, function () use ($tour) {
+    return $tour->approvedReviews()->latest()->limit(20)->get();
+});
+
+Invalidation (Observers/Events)
+-------------------------------
+TourObserver
+  saved()     -> Cache::tags([\"tour:{$tour->id}\"])->flush(); // hero/overview/highlights/etc.
+                 Cache::tags(['list:tours'])->flush();        // list caches
+
+ReviewObserver
+  saved()     -> Cache::tags([\"tour:{$review->tour_id}\", 'reviews'])->flush();
+
+City/Category Observer (taxonomy affecting lists)
+  saved()     -> Cache::tags(['list:tours'])->flush();
+
+Note: Start coarse (tags per tour & list). Split further if needed later.
+
+CDN Strategy (Cloudflare-style)
+-------------------------------
+- Static assets: Cache-Control: public, max-age=31536000, immutable (Vite-hashed files).
+- Partial HTML: respect origin Cache-Control; set Cache Rule to cache for 2–10 minutes.
+- Enable stale-while-revalidate where possible.
+- Bypass cache for /admin, /filament, and POST endpoints.
+
+Route Middleware for Cache Headers
+----------------------------------
+Create a reusable middleware to stamp headers per route group.
+
+class PartialCacheHeaders
+{
+    public function handle($request, Closure $next, $ttl = 300)
+    {
+        $response = $next($request);
+        $response->headers->set('Cache-Control', \"public, max-age={$ttl}, stale-while-revalidate=30\");
+        $response->headers->set('Vary', 'Accept, X-Requested-With');
+        return $response;
+    }
+}
+
+Usage:
+Route::prefix('partials')->middleware('partial.cache:300')->group(function(){ ... });
+
+CORS & Domains
+--------------
+- Dev: enable CORS for localhost to fetch partials from Laravel.
+- Prod: prefer same domain (or subpath) to avoid credential issues.
+- Keep CORS tight (allow only the static site origin).
+
+HTMX Notes
+----------
+- Add CSRF automatically:
+document.addEventListener('htmx:configRequest', (e) => {
+  const t = document.querySelector('meta[name=\"csrf-token\"]')?.content;
+  if (t) e.detail.headers['X-CSRF-TOKEN'] = t;
+});
+
+- htmx-indicator for loading spinners.
+- Use hx-boost/hx-get/hx-swap for partial loads; server sets cache headers.
+
+DB Hygiene (for cheap cache misses)
+-----------------------------------
+- Indexes: tours.slug UNIQUE, tours.is_published, pivots on (tour_id, city_id).
+- Add indexes for sorting/filtering fields: price_from, rating, created_at.
+- Eager load only what each partial needs to avoid N+1.
+
+Testing Checklist
+-----------------
+[ ] Partial returns 200 and expected strings (title, first card).
+[ ] ETag present on first request; second request returns 304 with If-None-Match.
+[ ] Cache invalidates after Tour save (hero/highlights).
+[ ] Reviews partial invalidates after Review save.
+[ ] List caches flush when City/Category updated.
+[ ] CDN respects origin headers (verify via response headers).
+[ ] Admin/POST endpoints bypass cache.
+
+Rollout Steps
+-------------
+1) Switch cache store to Redis in .env; install predis or ext-redis.
+2) Add PartialCacheHeaders middleware; apply to /partials routes.
+3) Implement fragment caching with tags and observer-based invalidation.
+4) Add ETag logic to dynamic partials (reviews/search).
+5) Configure CDN rules (cache HTML for 2–10 min; bypass admin/POST).
+6) Add the feature tests above to CI.
+7) Monitor cache hit rates and TTFB; adjust TTLs per section.
+
+When NOT to Cache
+-----------------
+- POST responses (booking submit) → Cache-Control: no-store
+- User-specific or authenticated fragments → private or no-store
+- Extremely volatile sections with negligible benefit
+
+Notes
+-----
+- Start conservative (short TTLs). Extend only where safe.
+- Prefer tag-based flushing over guessing exact keys.
+- Keep one place to define TTLs so the team knows the policy.

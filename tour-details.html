@@ -382,8 +382,10 @@
        SECTION 2: TOUR HEADER INFO (Title, Rating, Meta, Tabs)
        ===================================================== -->
   <section class="tour-header"
-           data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/hero"
-           hx-swap="innerHTML">
+           hx-get="http://127.0.0.1:8000/partials/tours/samarkand-city-tour/hero"
+           hx-trigger="load"
+           hx-swap="innerHTML"
+           data-tour-slug="samarkand-city-tour">
 
     <!-- Loading Skeleton -->
     <div class="container">
@@ -529,8 +531,10 @@
 
           <!-- Overview Section -->
           <section class="tour-overview" id="overview"
-                   data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/overview"
-                   hx-swap="innerHTML">
+                   hx-get="http://127.0.0.1:8000/partials/tours/samarkand-city-tour/overview"
+                   hx-trigger="load"
+                   hx-swap="innerHTML"
+                   data-tour-slug="samarkand-city-tour">
 
             <!-- Loading Skeleton -->
             <h2 class="section-title">Overview</h2>
@@ -543,9 +547,10 @@
 
           <!-- Highlights Section -->
           <section class="tour-highlights" id="highlights"
-                   data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/highlights"
+                   hx-get="http://127.0.0.1:8000/partials/tours/samarkand-city-tour/highlights"
                    hx-trigger="revealed"
-                   hx-swap="innerHTML">
+                   hx-swap="innerHTML"
+                   data-tour-slug="samarkand-city-tour">
 
             <!-- Loading Skeleton -->
             <h2 class="section-title">Highlights</h2>
@@ -557,9 +562,10 @@
 
           <!-- Includes/Excludes Section -->
           <section class="tour-includes-excludes" id="includes"
-                   data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/included-excluded"
+                   hx-get="http://127.0.0.1:8000/partials/tours/samarkand-city-tour/included-excluded"
                    hx-trigger="revealed"
-                   hx-swap="innerHTML">
+                   hx-swap="innerHTML"
+                   data-tour-slug="samarkand-city-tour">
 
             <!-- Loading Skeleton -->
             <h2 class="section-title">What's Included & Excluded</h2>
@@ -602,10 +608,11 @@
 
           <!-- Itinerary Section -->
           <section class="tour-itinerary" id="itinerary"
-                   data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/itinerary"
+                   hx-get="http://127.0.0.1:8000/partials/tours/samarkand-city-tour/itinerary"
                    hx-trigger="revealed"
                    hx-swap="innerHTML"
-                   aria-label="Tour itinerary">
+                   aria-label="Tour itinerary"
+                   data-tour-slug="samarkand-city-tour">
 
             <!-- Loading Skeleton -->
             <div class="itinerary-header">
@@ -706,9 +713,10 @@
 
           <!-- FAQ Section -->
           <section class="tour-faq" id="faq"
-                   data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/faqs"
+                   hx-get="http://127.0.0.1:8000/partials/tours/samarkand-city-tour/faqs"
                    hx-trigger="revealed"
-                   hx-swap="innerHTML">
+                   hx-swap="innerHTML"
+                   data-tour-slug="samarkand-city-tour">
 
             <!-- Loading Skeleton -->
             <h2 class="section-title">Frequently Asked Questions</h2>
@@ -721,9 +729,10 @@
 
           <!-- Extra Services Section -->
           <section class="tour-extras" id="extras"
-                   data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/extras"
+                   hx-get="http://127.0.0.1:8000/partials/tours/samarkand-city-tour/extras"
                    hx-trigger="revealed"
-                   hx-swap="innerHTML">
+                   hx-swap="innerHTML"
+                   data-tour-slug="samarkand-city-tour">
 
             <!-- Loading Skeleton -->
             <h2 class="section-title">Extra Services</h2>
@@ -738,9 +747,10 @@
 
           <!-- Customer Reviews Section -->
           <section class="tour-reviews" id="reviews"
-                   data-hx-url-template="http://127.0.0.1:8000/partials/tours/{slug}/reviews"
+                   hx-get="http://127.0.0.1:8000/partials/tours/samarkand-city-tour/reviews"
                    hx-trigger="revealed"
-                   hx-swap="innerHTML">
+                   hx-swap="innerHTML"
+                   data-tour-slug="samarkand-city-tour">
 
             <!-- Loading Skeleton -->
             <div class="reviews-header">
@@ -1038,52 +1048,10 @@
   <!-- HTMX Library -->
   <script src="js/htmx.min.js"></script>
 
-  <!-- Dynamic Tour Slug Detection -->
+  <!-- HTMX Debug Script -->
   <script>
-    // Extract tour slug from URL query parameter (?tour=slug) or use default
-    function getTourSlug() {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get('tour') || 'samarkand-city-tour';
-    }
-
-    // Set global variable for HTMX to use
-    window.TOUR_SLUG = getTourSlug();
-    window.BACKEND_URL = 'http://127.0.0.1:8000';
-
-    // Update HTMX URLs dynamically on page load
-    document.addEventListener('DOMContentLoaded', function() {
-      const tourSlug = getTourSlug();
-      console.log('[HTMX] Tour slug detected:', tourSlug);
-
-      // Update all HTMX elements with dynamic slug
-      document.querySelectorAll('[data-hx-url-template]').forEach(function(el) {
-        const template = el.getAttribute('data-hx-url-template');
-        const url = template.replace('{slug}', tourSlug);
-        el.setAttribute('hx-get', url);
-        el.removeAttribute('data-hx-url-template');
-      });
-
-      console.log('[HTMX] URL templates updated with slug:', tourSlug);
-
-      // Trigger HTMX to process the new attributes
-      if (window.htmx) {
-        htmx.process(document.body);
-
-        // Manually trigger the immediate load sections
-        const heroSection = document.querySelector('.tour-header');
-        const overviewSection = document.querySelector('.tour-overview');
-
-        if (heroSection) {
-          console.log('[HTMX] Triggering hero section');
-          htmx.trigger(heroSection, 'revealed');
-        }
-
-        if (overviewSection) {
-          console.log('[HTMX] Triggering overview section');
-          htmx.trigger(overviewSection, 'revealed');
-        }
-      }
-    });
+    console.log('[HTMX] Page loaded - tour-details.html');
+    console.log('[HTMX] Backend URL: http://127.0.0.1:8000');
 
     // HTMX event listeners for debugging and error handling
     document.body.addEventListener('htmx:beforeRequest', function(evt) {
@@ -1091,12 +1059,16 @@
     });
 
     document.body.addEventListener('htmx:afterSwap', function(evt) {
-      console.log('[HTMX] Loaded:', evt.detail.pathInfo.requestPath);
+      console.log('[HTMX] Loaded successfully:', evt.detail.pathInfo.requestPath);
     });
 
     document.body.addEventListener('htmx:responseError', function(evt) {
-      console.error('[HTMX] Error loading:', evt.detail.pathInfo.requestPath, evt.detail.xhr.status);
-      evt.detail.target.innerHTML = '<div class="error-message">Failed to load content. Please refresh the page.</div>';
+      console.error('[HTMX] Error:', evt.detail.pathInfo.requestPath, 'Status:', evt.detail.xhr.status);
+      evt.detail.target.innerHTML = '<div style="padding:20px;background:#fee;border:1px solid #c33;color:#c33;">Failed to load content. Please refresh the page.</div>';
+    });
+
+    document.body.addEventListener('htmx:sendError', function(evt) {
+      console.error('[HTMX] Network error:', evt.detail);
     });
   </script>
 

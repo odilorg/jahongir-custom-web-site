@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTMX Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .section { border: 2px solid #ccc; padding: 20px; margin: 20px 0; }
+        .skeleton { background: #f0f0f0; height: 20px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>HTMX Debug Test</h1>
+
+    <h2>Test 1: Simple HTMX Request</h2>
+    <div class="section"
+         hx-get="http://127.0.0.1:8000/partials/tours/samarkand-city-tour/hero"
+         hx-trigger="load"
+         hx-swap="innerHTML">
+        <div class="skeleton">Loading...</div>
+    </div>
+
+    <h2>Test 2: Check HTMX Loaded</h2>
+    <div class="section">
+        <p>HTMX loaded: <span id="htmx-status">Checking...</span></p>
+        <p>HTMX version: <span id="htmx-version">N/A</span></p>
+    </div>
+
+    <h2>Test 3: Manual Trigger</h2>
+    <div class="section" id="manual-section">
+        <div class="skeleton">Waiting for manual trigger...</div>
+    </div>
+    <button onclick="testManualTrigger()">Trigger Manual Load</button>
+
+    <h2>Console Logs</h2>
+    <div class="section">
+        <pre id="console-output"></pre>
+    </div>
+
+    <!-- HTMX Library -->
+    <script src="js/htmx.min.js"></script>
+
+    <script>
+        const consoleOutput = document.getElementById('console-output');
+
+        function log(msg) {
+            console.log(msg);
+            consoleOutput.textContent += msg + '\n';
+        }
+
+        // Check if HTMX loaded
+        window.addEventListener('load', function() {
+            const htmxStatus = document.getElementById('htmx-status');
+            const htmxVersion = document.getElementById('htmx-version');
+
+            if (window.htmx) {
+                htmxStatus.textContent = 'YES ✓';
+                htmxVersion.textContent = htmx.version || 'Unknown';
+                log('[✓] HTMX loaded successfully');
+            } else {
+                htmxStatus.textContent = 'NO ✗';
+                log('[✗] HTMX failed to load');
+            }
+        });
+
+        // Test manual trigger
+        function testManualTrigger() {
+            log('[TEST] Manual trigger button clicked');
+            const section = document.getElementById('manual-section');
+            section.setAttribute('hx-get', 'http://127.0.0.1:8000/partials/tours/samarkand-city-tour/overview');
+            section.setAttribute('hx-swap', 'innerHTML');
+
+            if (window.htmx) {
+                log('[TEST] Processing section with HTMX');
+                htmx.process(section);
+                log('[TEST] Triggering load');
+                htmx.trigger(section, 'load');
+            } else {
+                log('[ERROR] HTMX not available');
+            }
+        }
+
+        // HTMX event listeners
+        document.body.addEventListener('htmx:beforeRequest', function(evt) {
+            log('[HTMX] beforeRequest: ' + evt.detail.pathInfo.requestPath);
+        });
+
+        document.body.addEventListener('htmx:afterRequest', function(evt) {
+            log('[HTMX] afterRequest: ' + evt.detail.xhr.status);
+        });
+
+        document.body.addEventListener('htmx:responseError', function(evt) {
+            log('[ERROR] Response error: ' + evt.detail.xhr.status);
+        });
+
+        document.body.addEventListener('htmx:sendError', function(evt) {
+            log('[ERROR] Send error: ' + evt.detail.error);
+        });
+    </script>
+</body>
+</html>
