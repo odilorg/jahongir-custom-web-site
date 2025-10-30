@@ -69,6 +69,64 @@
       }
     }
     </script>
+
+    <!-- Schema.org FAQPage Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How can I book a tour?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can book a tour by browsing our tours page, selecting your preferred tour, and clicking the \"Book Now\" button. Alternatively, you can contact us directly via phone or email, and our team will assist you with the booking process."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are there any age restrictions for the tour?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most of our tours are suitable for all ages. However, some adventure tours may have minimum age requirements for safety reasons. Please check the specific tour details or contact us for more information about age restrictions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I pack for the tour?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We recommend packing comfortable walking shoes, weather-appropriate clothing, sunscreen, a hat, and a reusable water bottle. For specific tours, we'll send you a detailed packing list after booking. Don't forget your camera to capture the beautiful sights of Uzbekistan!"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I contact customer support after the tour?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can reach our customer support team anytime via email at info@jahongirtravel.com or by calling +998 99 123 4567. We're here to help with any questions or feedback you may have about your tour experience."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I cancel or reschedule my booking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, you can cancel or reschedule your booking according to our cancellation policy. Cancellations made 30+ days before the tour start date receive a full refund. For cancellations within 30 days, please contact us to discuss available options and any applicable fees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer group discounts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we offer special discounts for group bookings of 6 or more people. The discount varies depending on the tour and group size. Contact us with your travel details, and we'll provide you with a customized group rate."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- ========================================
@@ -253,6 +311,9 @@
                             Send Message
                         </button>
 
+                        <!-- Form Status Live Region -->
+                        <div id="form-status" aria-live="polite" class="visually-hidden"></div>
+
                         <!-- Success Message -->
                         <div class="form-success" id="formSuccess" role="status" aria-live="polite">
                             <i class="fas fa-check-circle"></i>
@@ -265,6 +326,35 @@
                             <p>Oops! Something went wrong. Please check the form and try again.</p>
                         </div>
                     </form>
+
+                    <!-- Testimonial Card -->
+                    <div class="contact-card contact-card--testimonial animate-on-scroll">
+                        <div class="testimonial-header">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">
+                            "Exceptional service from start to finish! The team helped us plan the perfect Silk Road journey.
+                            Their local knowledge and attention to detail made our trip unforgettable."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author__avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="testimonial-author__info">
+                                <p class="testimonial-author__name">Sarah Mitchell</p>
+                                <p class="testimonial-author__location">London, UK</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- ========================================
@@ -368,6 +458,33 @@
                         </a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         PERSONALITY SECTION
+         ======================================== -->
+    <section id="contact-personality" class="contact-personality" aria-labelledby="contact-personality-title">
+        <div class="container cp-grid">
+            <figure class="cp-media">
+                <img
+                    src="/images/team-samarkand.webp"
+                    srcset="/images/team-samarkand-480.webp 480w, /images/team-samarkand-768.webp 768w, /images/team-samarkand-1024.webp 1024w, /images/team-samarkand-1440.webp 1440w"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    width="1024"
+                    height="682"
+                    alt="Jahongir Travel team in Samarkand office"
+                    loading="lazy"
+                    decoding="async"
+                    class="cp-media__img" />
+                <figcaption class="visually-hidden">The local team that crafts and supports your trip</figcaption>
+            </figure>
+            <div class="cp-copy">
+                <h2 id="contact-personality-title" class="cp-title">Faces behind every journey</h2>
+                <p class="cp-sub">We're a small local team based in Samarkand — the same people who greet travelers, plan routes, and make every trip feel like family.</p>
+                <p class="cp-body">Whether it's crafting your first Silk Road itinerary or helping you choose the best guest house, you'll always talk to someone who knows Uzbekistan by heart.</p>
+                <a href="/about-us" class="btn btn--outline cp-cta">Meet the Team</a>
             </div>
         </div>
     </section>

@@ -1,0 +1,200 @@
+AI Coder Brief — “Personality” Section for Contact Page
+===========================================================
+Project: Jahongir Travel — Contact Page
+Block Name: Faces Behind Every Journey (Personality Section)
+Version: 1.0
+Authoring Date: 2025‑10‑30
+
+Goal
+----
+Add a warm, human “Personality” section directly below the Contact form block and above the FAQ. The section shows a real team/office photo with short copy that reinforces the brand’s human, local identity — cohesive in layout, colors, spacing, and typography with the current page.
+
+Success Criteria (Acceptance Tests)
+-----------------------------------
+1) The section renders directly below the Contact block and above FAQ on desktop and mobile.
+2) The section matches existing page spacing rhythm (vertical rhythm identical to adjacent sections).
+3) The image uses rounded corners and soft shadow, and loads as WebP with responsive sizes.
+4) The copy matches the text provided below and line-lengths are readable (55–75ch desktop).
+5) The section passes a11y checks (alt text, heading levels, contrast, keyboard focus on CTA).
+6) Lighthouse Performance ≥ 90 and Accessibility ≥ 90 (after image optimization).
+7) No reflow/jumps when fonts or image load (use width/height or aspect-ratio).
+
+Placement
+---------
+- Insert after: Contact block (form + sidebar).
+- Insert before: FAQ block.
+- Section ID: contact-personality
+- HTML landmark: <section id="contact-personality" aria-labelledby="contact-personality-title">
+
+Copy (EN; replace if RU needed)
+-------------------------------
+Heading (H2):
+  Faces behind every journey
+
+Subheading:
+  We’re a small local team based in Samarkand — the same people who greet travelers, plan routes, and make every trip feel like family.
+
+Body:
+  Whether it’s crafting your first Silk Road itinerary or helping you choose the best guest house, you’ll always talk to someone who knows Uzbekistan by heart.
+
+CTA (optional small button):
+  Meet the Team  → /about-us
+
+Assets
+------
+- Primary photo (team or office near Registan Square): /images/team-samarkand.webp
+  • Format: WebP (fallback JPG optional)
+  • Ideal size: 1600w master; exported responsive sizes: 480, 768, 1024, 1440
+  • Target weight: ≤ 250–350 KB for largest source
+  • Aspect: ~4:3 or 3:2 (natural, candid, warm tone)
+- Alt text: “Jahongir Travel team in Samarkand office” (localize if needed)
+
+Structure (Vanilla HTML)
+------------------------
+<section id="contact-personality" class="contact-personality" aria-labelledby="contact-personality-title">
+  <div class="container cp-grid">
+    <figure class="cp-media">
+      <img
+        src="/images/team-samarkand.webp"
+        srcset="/images/team-samarkand-480.webp 480w, /images/team-samarkand-768.webp 768w, /images/team-samarkand-1024.webp 1024w, /images/team-samarkand-1440.webp 1440w"
+        sizes="(max-width: 768px) 100vw, 50vw"
+        width="1024" height="682"
+        alt="Jahongir Travel team in Samarkand office"
+        loading="lazy" decoding="async" />
+      <figcaption class="visually-hidden">The local team that crafts and supports your trip</figcaption>
+    </figure>
+    <div class="cp-copy">
+      <h2 id="contact-personality-title" class="cp-title">Faces behind every journey</h2>
+      <p class="cp-sub">We’re a small local team based in Samarkand — the same people who greet travelers, plan routes, and make every trip feel like family.</p>
+      <p class="cp-body">Whether it’s crafting your first Silk Road itinerary or helping you choose the best guest house, you’ll always talk to someone who knows Uzbekistan by heart.</p>
+      <a href="/about-us" class="btn btn-outline cp-cta">Meet the Team</a>
+    </div>
+  </div>
+</section>
+
+Styling (Vanilla CSS — integrate into site styles)
+--------------------------------------------------
+/* Section container */
+#contact-personality.contact-personality {
+  background: #FAFAF8;           /* soft, warm off‑white to distinguish from pure white blocks */
+  padding: 3rem 0;               /* align to site’s section spacing scale */
+}
+
+/* Grid layout */
+.contact-personality .cp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Media styles */
+.contact-personality .cp-media img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 26px rgba(0,0,0,.08);
+}
+
+/* Typography (rely on site tokens; fallback provided) */
+.contact-personality .cp-title {
+  margin: 0 0 .5rem 0;
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  line-height: 1.2;
+  /* Optional: font-family: var(--heading-font, "Playfair Display", serif); */
+}
+.contact-personality .cp-sub {
+  margin: 0 0 .5rem 0;
+  color: #555;                   /* ensure contrast AA on #FAFAF8 */
+}
+.contact-personality .cp-body {
+  margin: 0 0 1rem 0;
+  color: #555;
+}
+.contact-personality .cp-cta.btn.btn-outline { /* leverage existing button styles */
+  /* If needed, ensure minimum tap target */
+  min-height: 40px;
+}
+
+/* Responsive */
+@media (max-width: 992px){
+  .contact-personality .cp-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-personality .cp-media {
+    order: -1;                   /* image above text on mobile */
+  }
+}
+
+/* Optional: match section rhythm with neighbors */
+section.contact + #contact-personality { margin-top: 0; }
+#contact-personality + section.faq { margin-top: 0; }
+
+Integration with Existing System
+--------------------------------
+- If using Bricks Builder:
+  • Add a Section → set ID: contact-personality.
+  • Container: 2 columns on desktop, 1 column on tablet/mobile.
+  • Drop Image element (rounded corners 16px, shadow ‘md’). Bind to /images/team-samarkand.webp.
+  • Text: H2 (cp-title), two Paragraphs (cp-sub, cp-body), Button (btn-outline).
+  • Section Background: #FAFAF8; Padding: 48px top/bottom (or match design tokens).
+  • Ensure global tokens (spacing, colors, fonts) are used where available.
+  • Remove extra top/bottom margins so it visually “clicks” with Contact and FAQ sections.
+
+- If using Tailwind:
+  Replace .cp-* with utility classes:
+  <section class="bg-[#FAFAF8] py-12" id="contact-personality">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <img class="rounded-2xl shadow-md w-full h-auto" ... />
+      <div>
+        <h2 class="text-2xl font-semibold mb-2">Faces behind every journey</h2>
+        <p class="text-gray-600 mb-3">We’re a small local team...</p>
+        <p class="text-gray-600 mb-4">Whether it’s crafting...</p>
+        <a href="/about-us" class="btn btn-outline">Meet the Team</a>
+      </div>
+    </div>
+  </section>
+
+Accessibility
+-------------
+- Heading order: H1 (page) → H2 (this section). Do not skip levels.
+- Alt text: meaningful; no “image of…”. Keep: “Jahongir Travel team in Samarkand office”.
+- Link name clarity: “Meet the Team” makes sense out of context.
+- Focus states: inherit site’s button/input focus outline. Confirm visible on keyboard tab.
+- Color contrast: ensure text on #FAFAF8 meets WCAG AA (≥ 4.5:1 for body copy). If needed, darken to #4B5563.
+
+Performance
+-----------
+- Serve WebP with srcset & sizes (provided). Keep width/height attributes to avoid CLS.
+- Preload the hero fonts only; do NOT preload this section’s image.
+- Largest contentful element on this section should not exceed 350 KB.
+- Set loading=“lazy” and decoding=“async” on the image.
+
+Analytics (optional)
+--------------------
+- Add click tracking on the CTA:
+  gtag('event','click_meet_team',{location:'contact_personality'});
+- Heatmap tagging (if Hotjar/Clarity): data-attribute data-hj="contact-personality"
+
+Edge Cases & Fallbacks
+----------------------
+- If /images/team-samarkand.webp missing → use a neutral city/office placeholder and keep copy; do not remove section.
+- If copy length changes (RU/FR), ensure the grid remains balanced (image above text on mobile).
+- If no CTA is desired, remove the button without changing spacing (cp-cta is optional).
+
+QA Checklist
+------------
+[ ] Section appears between Contact and FAQ on all breakpoints.
+[ ] No extra white gaps above/below the section.
+[ ] Image is responsive, rounded, and has a soft shadow.
+[ ] Text wraps nicely (no overly long lines).
+[ ] Button focus and hover states visible; link is keyboard accessible.
+[ ] Lighthouse a11y ≥ 90; contrast warnings resolved.
+[ ] GA event logged on CTA click (if analytics enabled).
+
+Deliverables
+------------
+1) HTML snippet inserted (or Bricks Section configured) per Structure.
+2) CSS rules merged into site stylesheet or component CSS.
+3) One optimized WebP + responsive sizes placed in /images/.
+4) Verified UX/a11y/CLS via Lighthouse and manual keyboard test.

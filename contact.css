@@ -73,6 +73,7 @@
   line-height: 1.2;
   margin: 0 0 16px 0;
   letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .contact-hero__subtitle {
@@ -82,6 +83,7 @@
   line-height: 1.6;
   margin: 0;
   opacity: 0.95;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 /* ======================================================
@@ -89,7 +91,7 @@
    ====================================================== */
 
 .contact-section {
-  padding: 80px 0;
+  padding: 80px 0 40px 0;
   background: #fff;
 }
 
@@ -206,7 +208,7 @@
   border-radius: 8px;
   background: #fff;
   color: #1a1a1a;
-  transition: all 0.3s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   outline: none;
 }
 
@@ -222,8 +224,9 @@
 
 .form-input:focus,
 .form-textarea:focus {
-  border-color: #ff6b35;
-  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+  border-color: #0d47a1;
+  box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.15);
+  outline: 0;
 }
 
 .form-input.error,
@@ -330,6 +333,13 @@
   font-weight: 600;
 }
 
+.form-submit:disabled,
+.form-submit[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 /* Success and Error Messages */
 .form-success,
 .form-error-message {
@@ -393,8 +403,9 @@
 }
 
 .contact-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
   border-color: #d1d5db;
+  transform: translateY(-2px);
 }
 
 .contact-card__title {
@@ -511,6 +522,7 @@
 
 .contact-card__link:hover {
   color: #ff6b35;
+  text-decoration: underline;
 }
 
 /* Opening Hours */
@@ -576,12 +588,174 @@
   margin-top: 4px;
 }
 
+/* Testimonial Card */
+.contact-card--testimonial {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 1px solid #fbbf24;
+  position: relative;
+  margin-top: 32px;
+}
+
+.testimonial-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.testimonial-quote {
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonial-quote i {
+  font-size: 18px;
+  color: #f59e0b;
+}
+
+.testimonial-stars {
+  display: flex;
+  gap: 4px;
+}
+
+.testimonial-stars i {
+  font-size: 14px;
+  color: #f59e0b;
+}
+
+.testimonial-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #78350f;
+  font-style: italic;
+  margin: 0 0 20px 0;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.testimonial-author__avatar {
+  width: 44px;
+  height: 44px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.testimonial-author__avatar i {
+  font-size: 20px;
+  color: #92400e;
+}
+
+.testimonial-author__info {
+  flex: 1;
+}
+
+.testimonial-author__name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #78350f;
+  margin: 0 0 2px 0;
+}
+
+.testimonial-author__location {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #92400e;
+  margin: 0;
+}
+
 /* ======================================================
-   5. FAQ SECTION
+   5. PERSONALITY SECTION
+   ====================================================== */
+
+/* Section container */
+#contact-personality.contact-personality {
+  background: #fafaf8;
+  padding: 80px 0;
+}
+
+/* Grid layout */
+.contact-personality .cp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Media styles */
+.contact-personality .cp-media {
+  margin: 0;
+}
+
+.contact-personality .cp-media__img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+  display: block;
+}
+
+/* Typography */
+.contact-personality .cp-title {
+  margin: 0 0 16px 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 1.2rem + 1vw, 40px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a202c;
+}
+
+.contact-personality .cp-sub {
+  margin: 0 0 16px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+.contact-personality .cp-body {
+  margin: 0 0 24px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #4a5568;
+}
+
+.contact-personality .cp-cta.btn.btn--outline {
+  min-height: 48px;
+  padding: 12px 32px;
+}
+
+/* Section spacing integration */
+section.contact-section + #contact-personality {
+  margin-top: 0;
+}
+
+#contact-personality + section.faq-section {
+  margin-top: 0;
+}
+
+/* ======================================================
+   6. FAQ SECTION
    ====================================================== */
 
 .faq-section {
-  padding: 80px 0;
+  padding: 60px 0 80px 0;
   background: #f9fafb;
 }
 
@@ -620,8 +794,9 @@
 }
 
 .faq-item:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
   border-color: #d1d5db;
+  transform: translateY(-1px);
 }
 
 .faq-item[open] {
@@ -904,6 +1079,32 @@
   .form-row {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  /* Personality section responsive */
+  #contact-personality.contact-personality {
+    padding: 48px 0;
+  }
+
+  .contact-personality .cp-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .contact-personality .cp-media {
+    order: -1;
+  }
+
+  .contact-personality .cp-title {
+    font-size: 32px;
+  }
+
+  .contact-personality .cp-sub {
+    font-size: 16px;
+  }
+
+  .contact-personality .cp-body {
+    font-size: 15px;
   }
 
   .faq-section {
@@ -1198,4 +1399,21 @@
   .faq-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ====================================
+   ACCESSIBILITY UTILITIES
+   ==================================== */
+
+/* Visually hide content but keep it accessible to screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

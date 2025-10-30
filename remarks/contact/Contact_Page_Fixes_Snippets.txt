@@ -1,0 +1,226 @@
+Jahongir Travel — Contact Page: Fixes & Code Snippets (CSS + HTML + JS + Schema)
+=====================================================================================
+Use this as a handoff to your developer. Copy/paste what you need.
+
+-------------------------------------------------------------------------------------
+1) CSS – spacing, hero contrast, focus states, sidebar & FAQ polish
+-------------------------------------------------------------------------------------
+/* Collapse the gap between Contact and FAQ */
+section.contact { padding-bottom: 0 !important; }
+section.faq     { margin-top: 0 !important; }
+
+/* Global: avoid double margins between stacked sections */
+section + section { margin-top: 0; }
+
+/* Hero readability */
+.hero-contact .hero-inner {
+  position: relative;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,.25);
+}
+.hero-contact .hero-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.15));
+  pointer-events: none;
+}
+
+/* Input focus & hover states (brand accent) */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+  transition: border-color .2s, box-shadow .2s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #0d47a1;
+  box-shadow: 0 0 0 3px rgba(13,71,161,.15);
+  outline: 0;
+}
+
+/* Submit button loading/disabled styles */
+.contact-form .btn-submit[disabled] {
+  opacity: .7;
+  cursor: not-allowed;
+}
+
+/* Sidebar cards hover */
+.contact-aside .card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+}
+
+/* Clickable links underlined only on hover for neat look */
+.contact-aside a { text-decoration: none; }
+.contact-aside a:hover { text-decoration: underline; }
+
+/* FAQ item hover */
+.faq-accordion .faq-item:hover {
+  box-shadow: 0 4px 14px rgba(0,0,0,.05);
+}
+
+/* Newsletter opt-in / button spacing */
+.newsletter-optin { margin-bottom: .5rem; }
+.contact-form .btn-submit { margin-top: .25rem; }
+
+/* Mobile sticky help bar (optional) */
+@media (max-width: 768px){
+  .contact-sticky {
+    position: fixed; left: 12px; right: 12px; bottom: 12px;
+    display: flex; gap: .5rem; z-index: 60;
+  }
+  .contact-sticky .btn { flex: 1; }
+}
+
+-------------------------------------------------------------------------------------
+2) HTML – microcopy, accessible labels & tappable actions
+-------------------------------------------------------------------------------------
+<!-- Headline & subline -->
+<h1>Let’s plan your Uzbekistan trip</h1>
+<p class="muted">We typically respond within 24 hours. Our team in Samarkand is here to help you every step of the way.</p>
+
+<!-- Icon bullets under headline -->
+<ul class="contact-bullets">
+  <li>Local experts, real stories</li>
+  <li>24‑hour response</li>
+  <li>Safe, private & hassle‑free</li>
+</ul>
+
+<!-- Tappable contact channels -->
+<a href="tel:+998991234657">+998 99 123 4657</a>
+<a href="mailto:info@jahongirtravel.com">info@jahongirtravel.com</a>
+
+<!-- Inputs with labels for a11y -->
+<label for="first_name">First name *</label>
+<input id="first_name" name="first_name" type="text" required aria-required="true" />
+
+<label for="email">Email *</label>
+<input id="email" name="email" type="email" required aria-required="true" aria-describedby="email-help" />
+<small id="email-help" class="muted">We’ll never share your email.</small>
+
+<!-- Live region for messages -->
+<div id="form-status" aria-live="polite" class="visually-hidden"></div>
+
+<!-- Head Office microcopy -->
+<p>Visit our cozy office in the heart of Samarkand, 100 m from Registan Square.</p>
+
+-------------------------------------------------------------------------------------
+3) JS – inline validation, thank-you toast & GA4 events
+-------------------------------------------------------------------------------------
+<script>
+(function(){
+  const form = document.querySelector('.contact-form');
+  const btn  = form?.querySelector('.btn-submit');
+  const status = document.getElementById('form-status');
+
+  function showMessage(msg, ok=true){
+    if(!status) return;
+    status.classList.remove('visually-hidden');
+    status.textContent = msg;
+    status.style.color = ok ? '#0a7d2a' : '#b00020';
+  }
+
+  function validateEmail(v){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+
+  form?.addEventListener('submit', async (e)=>{
+    const email = form.querySelector('input[name="email"]')?.value.trim();
+    const name  = form.querySelector('input[name="first_name"]')?.value.trim();
+    if(!validateEmail(email)){
+      e.preventDefault();
+      showMessage('Please enter a valid email address.', false);
+      return;
+    }
+    if(!name){
+      e.preventDefault();
+      showMessage('Please enter your first name.', false);
+      return;
+    }
+    btn?.setAttribute('disabled', 'disabled');
+    // Allow native submission / fetch here. On success:
+    // Simulate success message if using AJAX:
+    // e.preventDefault();
+    // await fetch('/contact', {method:'POST', body:new FormData(form)});
+    showMessage('Thanks! We’ll reply within 24 hours.');
+    window.gtag && gtag('event','contact_submit',{page:'contact'});
+    btn?.removeAttribute('disabled');
+  });
+
+  // Track key clicks
+  document.querySelectorAll('a[href^="tel:"]').forEach(el=>{
+    el.addEventListener('click', ()=> window.gtag && gtag('event','click_call',{value:1}));
+  });
+  document.querySelectorAll('.open-maps').forEach(el=>{
+    el.addEventListener('click', ()=> window.gtag && gtag('event','click_maps',{value:1}));
+  });
+})();
+</script>
+
+-------------------------------------------------------------------------------------
+4) Structured Data (JSON‑LD) – FAQ + LocalBusiness
+-------------------------------------------------------------------------------------
+<!-- FAQPage (add all items you have) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "How can I book a tour?",
+    "acceptedAnswer": { "@type": "Answer", "text": "Send the form on this page or call/WhatsApp us. We confirm within 24 hours with an itinerary and secure payment link." }
+  },{
+    "@type": "Question",
+    "name": "Are there any age restrictions for the tour?",
+    "acceptedAnswer": { "@type": "Answer", "text": "Most tours are suitable for all ages. Family and senior‑friendly options are available. Contact us for recommendations." }
+  }]
+}
+</script>
+
+<!-- LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Jahongir Travel",
+  "image": "https://example.com/images/logo.png",
+  "telephone": "+998991234657",
+  "email": "info@jahongirtravel.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Registan Street, 15",
+    "addressLocality": "Samarkand",
+    "addressCountry": "UZ"
+  },
+  "url": "https://jahongirtravel.com",
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "09:00",
+    "closes": "18:00"
+  }],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "127"
+  }
+}
+</script>
+
+-------------------------------------------------------------------------------------
+5) Performance & assets
+-------------------------------------------------------------------------------------
+- Convert the hero image to **WebP/AVIF**, target ≤ 300–350 KB, serve responsive sizes (`srcset`).
+- Preload hero font weights actually used on the page.
+- Defer non‑critical JS; keep validation inline or in a small deferred file.
+
+-------------------------------------------------------------------------------------
+6) Optional: WhatsApp sticky bar (mobile)
+-------------------------------------------------------------------------------------
+<div class="contact-sticky" aria-label="Quick help" role="navigation">
+  <a class="btn btn-outline" href="https://wa.me/998991234657">WhatsApp</a>
+  <a class="btn btn-primary" href="tel:+998991234657">Call</a>
+</div>
+
+Done. Apply CSS and JS via your theme or Bricks enqueue. Adjust class names to match your setup.
