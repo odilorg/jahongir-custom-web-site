@@ -187,7 +187,8 @@
         <div class="header">
             <h1>🧪 Backend Partials Integration Test</h1>
             <p>This page tests the connection between the static frontend and the Laravel backend using HTMX and HTML partials.</p>
-            <p style="margin-top: 10px;"><strong>Backend URL:</strong> <code>http://localhost/ssst3/public</code></p>
+            <p style="margin-top: 10px;"><strong>Backend URL:</strong> <code>http://127.0.0.1:8000</code></p>
+            <p style="margin-top: 5px; font-size: 14px;"><strong>Status:</strong> <span style="color: #059669; font-weight: 600;">🟢 Server Running</span></p>
         </div>
 
         <!-- Test Section 1: Auto-load Tours -->
@@ -198,7 +199,7 @@
             </h2>
 
             <div id="tour-container"
-                 hx-get="http://localhost/ssst3/public/partials/tours"
+                 hx-get="http://127.0.0.1:8000/partials/tours"
                  hx-trigger="load"
                  hx-swap="innerHTML"
                  hx-indicator="#spinner1">
@@ -215,7 +216,7 @@
                     <strong>Manual Test:</strong> Click the button below to reload tours
                 </p>
                 <button class="btn"
-                        hx-get="http://localhost/ssst3/public/partials/tours"
+                        hx-get="http://127.0.0.1:8000/partials/tours"
                         hx-target="#tour-container"
                         hx-swap="innerHTML"
                         hx-indicator="#spinner-manual">
@@ -229,7 +230,7 @@
         <div class="test-section">
             <h2>Test 2: Search & Filter</h2>
 
-            <form hx-get="http://localhost/ssst3/public/partials/tours/search"
+            <form hx-get="http://127.0.0.1:8000/partials/tours/search"
                   hx-trigger="change, submit"
                   hx-target="#search-results"
                   hx-swap="innerHTML"
@@ -343,8 +344,8 @@
         // Log when page loads
         window.addEventListener('load', function() {
             console.log('📄 Test page loaded');
-            console.log('🔗 Backend URL: http://localhost/ssst3/public');
-            console.log('📍 Test endpoint: http://localhost/ssst3/public/partials/tours');
+            console.log('🔗 Backend URL: http://127.0.0.1:8000');
+            console.log('📍 Test endpoint: http://127.0.0.1:8000/partials/tours');
         });
     </script>
 </body>
