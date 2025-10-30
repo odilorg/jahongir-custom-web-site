@@ -1045,6 +1045,52 @@
   <!-- =====================================================
        JAVASCRIPT
        ===================================================== -->
+  <!-- Dynamic Tour Slug Detection (MUST run before HTMX) -->
+  <script>
+    (function() {
+      // Get tour slug from URL query parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const tourSlug = urlParams.get('tour');
+
+      console.log('[Tour] Query parameter slug:', tourSlug);
+
+      if (tourSlug) {
+        // Update all sections with dynamic tour slug
+        const sections = document.querySelectorAll('[data-tour-slug]');
+        const backendUrl = 'http://127.0.0.1:8000/partials/tours';
+
+        sections.forEach(function(section) {
+          // Map section class names to partial endpoint names
+          const classToPartialMap = {
+            'tour-header': 'hero',
+            'tour-overview': 'overview',
+            'tour-highlights': 'highlights',
+            'tour-includes-excludes': 'included-excluded',
+            'tour-itinerary': 'itinerary',
+            'tour-faq': 'faqs',
+            'tour-extras': 'extras',
+            'tour-reviews': 'reviews'
+          };
+
+          // Get the first class name from the element
+          const className = section.className.split(' ')[0];
+          const partialName = classToPartialMap[className];
+
+          if (partialName) {
+            const dynamicUrl = backendUrl + '/' + tourSlug + '/' + partialName;
+            section.setAttribute('hx-get', dynamicUrl);
+            section.setAttribute('data-tour-slug', tourSlug);
+            console.log('[Tour] Updated ' + className + ' → ' + dynamicUrl);
+          } else {
+            console.warn('[Tour] Unknown section class:', className);
+          }
+        });
+      } else {
+        console.warn('[Tour] No tour slug in URL query parameter');
+      }
+    })();
+  </script>
+
   <!-- HTMX Library -->
   <script src="js/htmx.min.js"></script>
 
